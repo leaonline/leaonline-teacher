@@ -1,0 +1,22 @@
+<template name="notFound">
+    <div class="container lea-pagenotfound-container">
+        <div class="jumbotron">
+            <h1 class="text-center">
+                <span>¯\_(ツ)_/¯</span>
+            </h1>
+            <p>{{i18n "pages.notFound.title"}}</p>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                {{#if currentUser}}
+                    {{> actionButton tts="common.toOverview" href=(route 'overview') label=(i18n "common.toOverview")
+                            block=true outline=true type="primary" btnClass="lea-pagenotfound-button"}}
+                {{else}}
+                    {{> actionButton tts="common.toWelcome" href=(route 'welcome') label=(i18n "common.toWelcome")
+                            block=true outline=true type="primary" btnClass="lea-pagenotfound-button"}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</template>
