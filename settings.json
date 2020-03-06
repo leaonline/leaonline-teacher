@@ -1,1 +1,11 @@
-{}
+{
+  "fixtures": {
+    "accounts": [{
+      "username": "admin",
+      "password": "password",
+      "firstName": "Anton",
+      "lastName": "Administrator",
+      "email": "admin@leaonline.de"
+    }]
+  }
+}
