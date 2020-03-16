@@ -118,7 +118,10 @@ And run the respective build script `npm run build:folder-tree`.
    increase the version of the project in a separate commit.
    
 
+### UI Components
 
+We use [Meteor Blaze Bootstrap](https://github.com/jankapunkt/meteor-blaze-bs4) as UI components library.
+Please read it's documentation, if you are interested to contribute to the UI part.
 
 ## Deployment
 
@@ -131,4 +134,3 @@ on their website. It's super easy.
 ## License
 
 APGL 3, see [LICENSE FILE](./LICENSE)
-

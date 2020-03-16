@@ -1,0 +1,11 @@
+{
+  "pages": {
+    "notFound": {
+      "title": "404 - Page not found",
+      "backToRoot": "Back to home"
+    }
+  },
+  "routes": {
+    "notFound": "page-not-found"
+  }
+}

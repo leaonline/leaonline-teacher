@@ -5,13 +5,15 @@
     "start": "meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "visualize": "meteor --production --extra-packages bundle-visualizer",
-    "build:folder-tree": "markdown-notes-tree"
+    "build:folder-tree": "markdown-notes-tree",
+    "lint:style": "stylelint \"**/*.scss\"",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.6",
-    "jquery": "^3.4.1",
-    "meteor-node-stubs": "^1.0.0"
+    "bcrypt": "^4.0.1",
+    "meteor-node-stubs": "^1.0.0",
+    "stylelint-config-sass-guidelines": "^7.0.0"
   },
   "meteor": {
     "mainModule": {
@@ -21,6 +23,17 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "markdown-notes-tree": "^1.8.0"
+    "markdown-notes-tree": "^1.8.0",
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "bootstrap": "^4.4.1",
+    "chai": "^4.2.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1",
+    "puppeteer": "^2.1.1",
+    "sinon": "^9.0.1",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.3",
+    "stylelint": "^13.2.1",
+    "stylelint-config-standard": "^20.0.0"
   }
 }
