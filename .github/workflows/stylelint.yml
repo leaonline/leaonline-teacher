@@ -1,6 +1,5 @@
 name: Stylelint
-
-on: [push,pull_request]
+on: [pull_request]
 
 jobs:
   linters:
@@ -9,12 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Setup stylelint
       - uses: actions-hub/stylelint@v1.1.2
         env:
           PATTERN: "**/*.scss"
           INDENT_SPACES: 4
-      - name: Run stylelint
-      - run: stylelint
-
-
