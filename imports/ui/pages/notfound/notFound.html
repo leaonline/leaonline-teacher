@@ -9,13 +9,7 @@
 
         <div class="card">
             <div class="card-body">
-                {{#if currentUser}}
-                    {{> actionButton tts="common.toOverview" href=(route 'overview') label=(i18n "common.toOverview")
-                            block=true outline=true type="primary" btnClass="lea-pagenotfound-button"}}
-                {{else}}
-                    {{> actionButton tts="common.toWelcome" href=(route 'welcome') label=(i18n "common.toWelcome")
-                            block=true outline=true type="primary" btnClass="lea-pagenotfound-button"}}
-                {{/if}}
+                <a href="{{route 'root'}}">{{i18n "routes.root"}}</a>
             </div>
         </div>
     </div>

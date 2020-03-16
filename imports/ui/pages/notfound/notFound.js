@@ -1,1 +1,1 @@
-import './notFound'
+import './notFound.html'
