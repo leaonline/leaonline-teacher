@@ -31,6 +31,53 @@ and then open your browser on `localhost:5555` to load the client app.
 Every contribution is appreciated and we treat every issue and pull request with care.
 Please note, that we follow a certain workflow for contributions.
 
+### Folder Structure
+
+The folder structure follows the [recommended structure from the Meteor guide](https://guide.meteor.com/structure.html#javascript-structure).
+If you are not familiar with it, please consult the Meteor guide, first.
+
+<!-- auto-generated notes tree starts here -->
+
+- [**client**](client) - This is the main entry point for the client code. Imports, starting from here will be added
+to the client bundle.
+- [**imports**](imports)
+    - [**routing**](imports/routing) - Contains all relevant tools for client-side routing
+    - [**startup**](imports/startup) - Files loaded very first at application start
+        - [**client**](imports/startup/client) - Files loaded at very first on client app start
+    - [**ui**](imports/ui) - Client-only UI system
+        - [**pages**](imports/ui/pages) - Contains all templates, that represent a specific page (targeted via 1..n routes)
+            - [**notfound**](imports/ui/pages/notfound) - Loaded by the Router when no route was found by given url
+- [**resources**](resources) - Static resources
+    - [**i18n**](resources/i18n) - Translation files
+- [**server**](server) - This is the main entry point for the server code. Imports, starting from here will be added
+to the server bundle.
+- [**tests**](tests) - Top-level of the test suite. ALl tests file are in here
+
+<!-- auto-generated notes tree ends here -->
+
+#### Updating and documenting the folder structure 
+
+In order to build / update the folder structure please edit the respective `README.md` file in the folder
+you want to describe. The description is wrapped inside comments to indicate that this part is printed to the tree.
+
+Example:
+
+```markdown
+# foldername
+
+This will not be printed but still be part of the README.
+
+<!-- optional markdown-notes-tree directory description starts here -->
+
+This will be printed as description next to the folder name
+
+<!-- optional markdown-notes-tree directory description ends here -->
+
+This will not be printed but still be part of the README.
+```
+
+And run the respective build script `npm run build:folder-tree`.
+
 ### Contribution workflow
 
 
@@ -84,3 +131,4 @@ on their website. It's super easy.
 ## License
 
 APGL 3, see [LICENSE FILE](./LICENSE)
+
