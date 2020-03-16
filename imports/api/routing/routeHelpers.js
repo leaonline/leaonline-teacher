@@ -1,5 +1,5 @@
 import { Routes } from './Routes'
-import settings from '../../resources/i18n/routes'
+import settings from '../../../resources/i18n/routes'
 
 export const resolveRoute = function resolve (key, ...optionalArgs) {
   const route = Routes[key]
