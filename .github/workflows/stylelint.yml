@@ -2,13 +2,14 @@ name: Stylelint
 on: [pull_request]
 
 jobs:
-  linters:
-    name: stylelint
+  stylelint:
+    name: runner / stylelint
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-hub/stylelint@v1.1.2
-        env:
-          PATTERN: "**/*.scss"
-          INDENT_SPACES: 4
+      - name: stylelint
+        uses: reviewdog/action-stylelint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review # Change reporter.
+          stylelint_input: '**/*.scss'
