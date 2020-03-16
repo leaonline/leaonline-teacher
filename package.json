@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.6",
-    "jquery": "^3.4.1",
+    "bcrypt": "^4.0.1",
     "meteor-node-stubs": "^1.0.0"
   },
   "meteor": {
@@ -18,7 +18,10 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
+    "bootstrap": "^4.4.1",
     "chai": "^4.2.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.1",
     "puppeteer": "^2.1.1",
     "sinon": "^9.0.1",
     "snazzy": "^8.0.0",
