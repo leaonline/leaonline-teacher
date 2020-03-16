@@ -19,4 +19,3 @@ jobs:
           meteor-release: ${{ matrix.meteor }}
       - run: meteor npm install
       - run: sh ./test.sh -c
-      
