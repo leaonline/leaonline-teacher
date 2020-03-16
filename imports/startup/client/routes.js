@@ -1,6 +1,5 @@
 import { Router } from '../../api/routing/Router'
 import { Routes } from '../../api/routing/Routes'
-import '../../ui/components/loading/loading'
 
 Router.setDefaultLabel('teacher app')
 Router.setDefaultTarget('main-render-target')
