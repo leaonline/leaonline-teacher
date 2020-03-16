@@ -20,3 +20,6 @@ typescript@3.7.5              # Enable TypeScript syntax in .ts and .tsx modules
 shell-server@0.4.0            # Server-side component of the `meteor shell` command
 
 ostrio:flow-router-extra
+
+# TESTING
+meteortesting:mocha

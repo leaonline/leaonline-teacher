@@ -3,8 +3,6 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor test --once --driver-package meteortesting:mocha",
-    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
@@ -18,5 +16,12 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "puppeteer": "^2.1.1",
+    "sinon": "^9.0.1",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.3"
   }
 }
