@@ -1,3 +1,12 @@
+---
+name: Requirement
+about: Define a new requirement
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 **Summarize the feature from a user perspective in one or two sentences**
 
 ...
