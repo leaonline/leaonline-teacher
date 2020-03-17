@@ -169,6 +169,19 @@ You can call the script with the following options:
 * `-v` - verbose, prints variables and paths before the test execution
 * `-c` - cli, also used in the ci workflow, runs the script ones in headless mode using `puppeteer`
 
+## CI guide
+
+The ci workflows run on push to `master` and `develop` (which is restricted) and on pull requests.
+Every ci workflow includes the following jobs:
+
+* lint code
+* lint style
+* lint markdown
+* pass tests
+
+If any of these jobs failes, the whole workflow fails and your PR is not considered for review until the issues
+have been resolved.
+
 ## Deployment
 
 We use [`mup` (Meteor-Up)](http://meteor-up.com/) as one-step deployment tool.
