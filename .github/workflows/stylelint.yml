@@ -1,5 +1,5 @@
 name: Stylelint
-on: [pull_request]
+on: [push,pull_request]
 
 jobs:
   stylelint:
@@ -13,3 +13,5 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Change reporter.
           stylelint_input: '**/*.scss'
+          stylelint_config: '.stylelintrc.json'
+          level: 'error'
