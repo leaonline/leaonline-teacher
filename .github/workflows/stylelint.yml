@@ -14,4 +14,3 @@ jobs:
           reporter: github-pr-review # Change reporter.
           stylelint_input: '**/*.scss'
           stylelint_config: '.stylelintrc.json'
-          level: 'error'
