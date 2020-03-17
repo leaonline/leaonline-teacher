@@ -19,15 +19,13 @@ ecmascript@0.14.2              # Enable ECMAScript2015+ syntax in app code
 typescript@3.7.5              # Enable TypeScript syntax in .ts and .tsx modules
 shell-server@0.4.0            # Server-side component of the `meteor shell` command
 
-
 #========================================
 # Base Tools
 #========================================
-leaonline:corelib
-leaonline:errors@1.0.0
-leaonline:interfaces
-leaonline:utils
-leaonline:factories
+# leaonline:errors
+# leaonline:interfaces
+# leaonline:utils
+# leaonline:factories
 
 #========================================
 # Collections
