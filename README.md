@@ -136,7 +136,7 @@ This will be printed as description next to the folder name
 This will not be printed but still be part of the README.
 ```
 
-And run the respective build script `npm run build:folder-tree`. After that, please validate the markdown using 
+And run the respective build script `npm run build:folder-tree`. After that, please validate the markdown using
 the `lint:markdown` script.
 
 ### UI Components
@@ -155,29 +155,29 @@ respective tools and commands (scripts, see [package.json](./package.json)):
 |SCSS|[Sass Guidelines](https://sass-guidelin.es/)|`stylelint`|`lint:style`|
 |Markdown|[Markdown lint](https://github.com/DavidAnson/markdownlint)|`markdownlint`|`lint:markdown`|
 
-Make sure to run all linters without error, before you open a pull request.  There is a `lint.sh` shellscript added 
+Make sure to run all linters without error, before you open a pull request.  There is a `lint.sh` shellscript added
 for your convenience. It basically executes these commands in a row.
 
 ### Testing guide
 
 This project uses `mocha` and `chai` for tests. In order to run the tests locally in watch mode, you simply
-need to call the `test.sh` script and then watch your `server` tests on the console and your `client` tests on 
+need to call the `test.sh` script and then watch your `server` tests on the console and your `client` tests on
 `localhost:5566` in the browser.
 
 You can call the script with the following options:
 
-* `-v` - verbose, prints variables and paths before the test execution
-* `-c` - cli, also used in the ci workflow, runs the script ones in headless mode using `puppeteer`
+- `-v` - verbose, prints variables and paths before the test execution
+- `-c` - cli, also used in the ci workflow, runs the script ones in headless mode using `puppeteer`
 
 ## CI guide
 
 The ci workflows run on push to `master` and `develop` (which is restricted) and on pull requests.
 Every ci workflow includes the following jobs:
 
-* lint code
-* lint style
-* lint markdown
-* pass tests
+- lint code
+- lint style
+- lint markdown
+- pass tests
 
 If any of these jobs failes, the whole workflow fails and your PR is not considered for review until the issues
 have been resolved.
