@@ -9,9 +9,9 @@
     "lint:code-fix": "standard --fix | snazzy",
     "lint:style": "stylelint \"**/*.scss\"",
     "lint:style-fix": "stylelint --fix \"**/*.scss\"",
-    "lint:markdown": "markdownlint \"**/*.md\"",
-    "lint:markdown-fix": "markdownlint --fix \"**/*.md\"",
-    "build:folder": "markdown-notes-tree",
+    "lint:markdown": "markdownlint \"**/*.md\" --config ./.markdownlint.json",
+    "lint:markdown-fix": "markdownlint --fix \"**/*.md\" --config ./.markdownlint.json",
+    "build:notes-tree": "markdown-notes-tree && npm run lint:markdown-fix",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {

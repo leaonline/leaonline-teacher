@@ -6,9 +6,20 @@
 
 <!-- optional markdown-notes-tree directory description ends here -->
 
-- [**routing**](routing) - Contains all relevant tools for client-side routing
-- [**startup**](startup) - Files loaded very first at application start
-    - [**client**](startup/client) - Files loaded at very first on client app start
-- [**ui**](ui) - Client-only UI system
-    - [**pages**](ui/pages) - Contains all templates, that represent a specific page (targeted via 1..n routes)
-        - [**notfound**](ui/pages/notfound) - Loaded by the Router when no route was found by given url
+- [**api**](api)
+  - [**blazebootstrap**](api/blazebootstrap)
+  - [**i18n**](api/i18n)
+  - [**routing**](api/routing)
+  - [**utils**](api/utils)
+- [**startup**](startup)
+  - [**client**](startup/client)
+    - [**scss**](startup/client/scss) - custom styles / theme
+  - [**server**](startup/server)
+- [**ui**](ui)
+  - [**components**](ui/components)
+    - [**icon**](ui/components/icon)
+    - [**loading**](ui/components/loading)
+    - [**onloaded**](ui/components/onloaded)
+  - [**pages**](ui/pages)
+    - [**notfound**](ui/pages/notfound)
+  - [**utils**](ui/utils)
