@@ -4,4 +4,4 @@ set -e
 
 meteor npm run lint:code
 meteor npm run lint:style
-metepr npm run lint:markdown
+meteor npm run lint:markdown
