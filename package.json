@@ -6,8 +6,11 @@
     "test:once": "meteor test --once --driver-package meteortesting:mocha",
     "test:app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "lint:code": "standard | snazzy",
+    "lint:code-fix": "standard --fix | snazzy",
     "lint:style": "stylelint \"**/*.scss\"",
+    "lint:style-fix": "stylelint --fix \"**/*.scss\"",
     "lint:markdown": "markdownlint \"**/*.md\"",
+    "lint:markdown-fix": "markdownlint --fix \"**/*.md\"",
     "build:folder": "markdown-notes-tree",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
