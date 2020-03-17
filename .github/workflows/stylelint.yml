@@ -6,11 +6,15 @@ jobs:
     name: runner / stylelint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: stylelint
-        uses: reviewdog/action-stylelint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review # Change reporter.
-          stylelint_input: '**/*.scss'
-          stylelint_config: '.stylelintrc.json'
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - run: npm install
+    - run: npm run lint:style
