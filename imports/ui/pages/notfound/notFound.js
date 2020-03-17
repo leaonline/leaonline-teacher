@@ -1,3 +1,4 @@
+import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import './notFound.html'
