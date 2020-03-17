@@ -1,6 +1,6 @@
 import { check } from 'meteor/check'
 import { Router } from './Router'
-import { loggedIn, loggedOut } from 'meteor/leaonline:corelib/utils/accountUtils'
+import { loggedIn, loggedOutt } from '../utils/accountUtils'
 
 export const createLoginTrigger = (redirectRoute) => {
   check(redirectRoute.path, Function)
