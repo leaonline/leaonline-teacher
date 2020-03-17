@@ -158,6 +158,17 @@ respective tools and commands (scripts, see [package.json](./package.json)):
 Make sure to run all linters without error, before you open a pull request.  There is a `lint.sh` shellscript added 
 for your convenience. It basically executes these commands in a row.
 
+### Testing guide
+
+This project uses `mocha` and `chai` for tests. In order to run the tests locally in watch mode, you simply
+need to call the `test.sh` script and then watch your `server` tests on the console and your `client` tests on 
+`localhost:5566` in the browser.
+
+You can call the script with the following options:
+
+* `-v` - verbose, prints variables and paths before the test execution
+* `-c` - cli, also used in the ci workflow, runs the script ones in headless mode using `puppeteer`
+
 ## Deployment
 
 We use [`mup` (Meteor-Up)](http://meteor-up.com/) as one-step deployment tool.
