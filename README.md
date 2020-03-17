@@ -2,6 +2,19 @@
 
 This is the code repository for the lea.online teacher dashboard application.
 
+![built with Meteor](https://img.shields.io/badge/Meteor-1.9.2-%23595dff?logo=meteor&logoColor=white&link=https://meteor.com)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+![GitHub](https://img.shields.io/github/license/leaonline/leaonline-teacher)
+
+Tests master:
+
+![Test suite](https://github.com/leaonline/leaonline-teacher/workflows/Test%20suite/badge.svg)
+
+Tests develop:
+
+![Test suite](https://github.com/leaonline/leaonline-teacher/workflows/Test%20suite/badge.svg?branch=develop)
+
 ## Install and run
 
 We use Meteor for our application to fetch and display data in near realtime.
