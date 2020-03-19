@@ -48,8 +48,8 @@ Please note, that we follow a certain workflow for contributions.
 1. **Create issue**
 
    There should always be an issue, describing a bug or a feature request before contributing code.
-   Pull requests without issues will be on stale until an issue is created and passed step 2.
-   Issues that have did not went through step 2 will get the `needs approval` label.
+   Pull requests without issues **will be on hold** until an issue is created and passed step 2.
+   Issues that did not go through step 2 will get the `needs approval` label.
 
 2. **Issue approved / rejected**
 
@@ -64,7 +64,7 @@ Please note, that we follow a certain workflow for contributions.
    It is possible to reference multiple issues with a single PR as long as it's made clear, which issues
    are solved by which parts of the PR. Try to avoid to solve multiple issues with a single commit.
 
-   Pull request that have merge conflicts, failed the linter, failed the tests or miss tests for new features / bigger
+   Pull requests that have merge conflicts, failed the linter, failed the tests or miss tests for new features / bigger
    changes will not get into review phase. They will also be tagged with the `fixes required` label.
 
    Work-in-progress pull requests are encouraged and you should tag them with the `work in progress` label
@@ -75,6 +75,10 @@ Please note, that we follow a certain workflow for contributions.
    There will be always two reviewers for a PR, one from a code perspective and one from a UI/UX
    perspective. If any of the reviewers reject the PR there will be also the `fixes required` label assigned.
    On approve the PR is ready for being merged.
+   
+   Reviews should reject the pull request, in case of any changes required. However, there may the case of 
+   neglectable changes ("nice to have"), which may not affect the approval of the pull request.
+   In such a case, an issue should be opened and referenced in the comment, while the pull request can be approved.   
 
 5. **Merge**
 
