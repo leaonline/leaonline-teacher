@@ -1,9 +1,9 @@
 /* custom.scss */
 /* import the necessary Bootstrap files */
-@import "{}/node_modules/bootstrap/scss/functions";
-@import "{}/node_modules/bootstrap/scss/variables";
-@import "{}/node_modules/bootstrap/scss/mixins/buttons";
-@import "./leacolors";
+@import '{}/node_modules/bootstrap/scss/functions';
+@import '{}/node_modules/bootstrap/scss/variables';
+@import '{}/node_modules/bootstrap/scss/mixins/buttons';
+@import './leacolors';
 
 /* -------begin customization-------- */
 
@@ -13,13 +13,13 @@ $body-bg: $lea-gray-lighter;
 
 /* or, use an existing variable */
 $theme-colors: (
-        warning: $lea-warning,
-        danger: $lea-danger,
-        success: $lea-success,
-        primary: $lea-primary,
-        secondary: $lea-secondary,
-        light: $lea-light,
-        gray: $lea-gray
+  warning: $lea-warning,
+  danger: $lea-danger,
+  success: $lea-success,
+  primary: $lea-primary,
+  secondary: $lea-secondary,
+  light: $lea-light,
+  gray: $lea-gray
 );
 
 @each $color, $value in $theme-colors {
@@ -29,12 +29,14 @@ $theme-colors: (
   */
 
   .btn-#{$color} {
-    color: white !important;
+    color: $white !important;
+
     &:hover {
-      color: white !important;
+      color: $white !important;
     }
+
     &.active {
-      color: white !important;
+      color: $white !important;
     }
   }
 
@@ -44,10 +46,11 @@ $theme-colors: (
 
   .btn-outline-#{$color} {
     &:hover {
-      color: white !important;
+      color: $white !important;
     }
+
     &.active {
-      color: white !important;
+      color: $white !important;
     }
   }
 
@@ -56,15 +59,17 @@ $theme-colors: (
   */
 
   .lea-action-btn-#{$color} {
+    background-color: $white !important;
     color: $value !important;
-    background-color: white !important;
+
     &:hover {
       background-color: $value !important;
-      color: white !important;
+      color: $white !important;
     }
+
     &.active {
       background-color: $value !important;
-      color: white !important;
+      color: $white !important;
     }
   }
 
@@ -73,15 +78,17 @@ $theme-colors: (
   */
 
   .lea-action-btn-outline-#{$color} {
+    background-color: $white !important;
     color: $value !important;
-    background-color: white !important;
+
     &:hover {
-      background-color:$value !important;
-      color: white !important;
+      background-color: $value !important;
+      color: $white !important;
     }
+
     &.active {
       background-color: $value !important;
-      color: white !important;
+      color: $white !important;
     }
   }
 }
@@ -93,18 +100,18 @@ $theme-colors: (
 }
 
 .card {
-  border-radius: 0px !important;
+  border-radius: 0 !important;
 }
 
 a {
-  color: #183B5D !important;
+  color: #183b5d !important;
 }
 
 a:hover {
-  color: #ACACAC !important;
+  color: #acacac !important;
 }
 
 /* -------end customization-------- */
 
 /* finally, import Bootstrap to set the changes! */
-@import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+@import '{}/node_modules/bootstrap/scss/bootstrap';

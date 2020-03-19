@@ -2,7 +2,8 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
-import { FlowRouter, RouterHelpers } from 'meteor/ostrio:flow-router-extra'
+import { ReactiveVar } from 'meteor/reactive-var'
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
 
 /**
  * Facade to a router to support a common definition for routing in case
@@ -73,7 +74,7 @@ Router.setDefaultLabel = function (value) {
   _defaultLabel = value
 }
 
-let _loadingTemplate = undefined
+let _loadingTemplate
 
 Router.setLoadingTemplate = function (value) {
   _loadingTemplate = value
