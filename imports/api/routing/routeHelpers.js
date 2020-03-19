@@ -1,10 +1,10 @@
 import { Routes } from './Routes'
-import settings from '../../../resources/i18n/routes'
+import { i18n } from '../i18n/I18n'
 
 export const resolveRoute = function resolve (key, ...optionalArgs) {
   const route = Routes[key]
   if (!route) {
-    return settings.notFound
+    return i18n.get('routes.notFound')
   }
   return route && route.path(...optionalArgs)
 }

@@ -56,13 +56,8 @@ jquery@3.0.0
 lai:collection-extensions@0.2.1_1
 launch-screen@1.1.1
 leaonline:accounts-lea@1.0.1
-leaonline:corelib@1.0.0
 leaonline:ddp-login-handler@1.0.3
-leaonline:errors@1.0.0
-leaonline:factories@1.1.0
-leaonline:interfaces@1.0.0
 leaonline:oauth-lea@1.0.2
-leaonline:utils@1.0.0
 livedata@1.0.18
 lmieulet:meteor-coverage@1.1.4
 localstorage@1.2.0

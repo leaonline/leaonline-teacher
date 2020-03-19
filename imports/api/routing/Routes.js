@@ -1,5 +1,5 @@
-import { createNotFoundTrigger } from './triggers'
 import { i18n } from '../i18n/I18n'
+import { createNotFoundTrigger } from './triggers'
 
 export const Routes = {}
 
