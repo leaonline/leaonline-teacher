@@ -75,10 +75,10 @@ Please note, that we follow a certain workflow for contributions.
    There will be always two reviewers for a PR, one from a code perspective and one from a UI/UX
    perspective. If any of the reviewers reject the PR there will be also the `fixes required` label assigned.
    On approve the PR is ready for being merged.
-   
-   Reviews should reject the pull request, in case of any changes required. However, there may the case of 
+
+   Reviews should reject the pull request, in case of any changes required. However, there may the case of
    neglectable changes ("nice to have"), which may not affect the approval of the pull request.
-   In such a case, an issue should be opened and referenced in the comment, while the pull request can be approved.   
+   In such a case, an issue should be opened and referenced in the comment, while the pull request can be approved.
 
 5. **Merge**
 
@@ -115,7 +115,7 @@ If you are not familiar with it, please consult the Meteor guide, first.
 - [**resources**](resources) - Static resources
   - [**i18n**](resources/i18n) - Translation files
 - [**server**](server)
-- [**tests**](tests) - Top-level of the test suite. ALl tests file are in here
+- [**tests**](tests)
 
 <!-- auto-generated notes tree ends here -->
 
