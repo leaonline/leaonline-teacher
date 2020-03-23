@@ -1,5 +1,17 @@
 {
+  "actions": {
+    "continue": "Fortfahren"
+  },
+  "error": {
+    "occurred": "Es ist ein Problem aufgetreten"
+  },
   "pages": {
+    "login": {
+      "title": "Anmelden",
+      "login": "Benutzer anmelden",
+      "loggingIn": "Anmeldung läuft",
+      "loggedIn": "Erfolgreich angemeldet"
+    },
     "notFound": {
       "title": "404 - Page not found",
       "backToRoot": "Back to home"
