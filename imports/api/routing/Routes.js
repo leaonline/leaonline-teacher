@@ -173,7 +173,9 @@ Routes.logout = {
   },
   target: null,
   template: 'logout',
-  data: null
+  data: {
+    onSuccess: () => createRedirect(Routes.login).call()
+  }
 }
 
 /**
