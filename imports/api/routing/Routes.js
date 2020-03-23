@@ -66,7 +66,6 @@ let toMyClasses
  * Example: https://mysite.com
  */
 
-
 Routes.root = {
   path: () => '/',
   label: 'routes.redirecting',

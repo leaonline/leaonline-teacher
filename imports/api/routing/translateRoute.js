@@ -14,7 +14,7 @@ import { i18n } from '../i18n/I18n'
 export const translateRoute = route => {
   if (!route || !route.template) {
     console.debug('[translateRoute]: error info', route)
-    throw new Error(`Expected route name, got undefined.`)
+    throw new Error('Expected route name, got undefined.')
   }
 
   const translatedPath = i18n.get(`routes.${route.template}`)

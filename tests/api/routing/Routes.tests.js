@@ -1,4 +1,4 @@
-/* elsint-env mocha */
+/* eslint-env mocha */
 import { check, Match } from 'meteor/check'
 import { Routes } from '../../../imports/api/routing/Routes'
 import { i18n } from '../../../imports/api/i18n/I18n'
@@ -8,7 +8,6 @@ import sinon from 'sinon'
 const allRoutes = Object.keys(Routes)
 
 describe('Routes', function () {
-
   beforeEach(function () {
     sinon.stub(i18n, 'get').callsFake(x => x)
   })
@@ -18,7 +17,6 @@ describe('Routes', function () {
   })
 
   describe('properties', function () {
-
     it('path', function () {
       allRoutes.forEach(key => {
         const route = Routes[key]
@@ -43,7 +41,6 @@ describe('Routes', function () {
     })
 
     it('load', function () {
-      const failed = []
       allRoutes.forEach(key => {
         const route = Routes[key]
         const promise = route.load()

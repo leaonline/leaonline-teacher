@@ -26,7 +26,6 @@ Template.login.onCreated(function () {
 
 Template.login.helpers({
   loginError () {
-    console.log(Template.getState('loginError'))
     return Template.getState('loginError')
   },
   login (name) {
