@@ -56,7 +56,7 @@ Template.logout.helpers({
 
 function onLoggedOut (templateInstance) {
   templateInstance.state.set('view', states.loggedOut)
-  setTimeout(() =>  {
+  setTimeout(() => {
     templateInstance.data.onSuccess()
   }, 1000)
 }

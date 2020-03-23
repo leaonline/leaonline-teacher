@@ -24,6 +24,15 @@ Router.go = function (value, ...optionalArgs) {
   }
 }
 
+const routeCache = new ReactiveVar()
+
+Router.cache = function (value) {
+  if (value) {
+    routeCache.set(value)
+  }
+  return routeCache.get()
+}
+
 Router.has = function (path) {
   return paths[path]
 }
@@ -142,8 +151,9 @@ function createRoute (routeDef, onError) {
       data.params = params
       data.queryParams = queryParams
 
-      document.title = `${_defaultLabel}${label}`
+      document.title = `${_defaultLabel} ${label}`
       _currentLabel.set(label)
+      routeCache.set(routeDef)
       try {
         this.render(routeDef.target || _defaultTarget, routeDef.template, data)
       } catch (e) {

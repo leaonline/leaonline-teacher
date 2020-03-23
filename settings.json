@@ -1,4 +1,9 @@
 {
+  "public": {
+    "app": {
+      "name": "lea.online teacher"
+    }
+  },
   "oauth": {
     "clientId": "teacher-application-id",
     "secret": "abcdefghijklmnopabcdefghijklmnop",

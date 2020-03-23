@@ -100,7 +100,7 @@ Routes.notFound = {
   async load () {
     return import('../../ui/pages/notfound/notFound')
   },
-  target: null,
+  target: 'logged-out-render-target',
   template: 'notFound',
   data: {
     next () {
@@ -145,7 +145,7 @@ Routes.login = {
   async load () {
     return import('../../ui/pages/login/login')
   },
-  target: null,
+  target: 'logged-out-render-target',
   template: 'login',
   data: {
     onSuccess: () => {
@@ -171,7 +171,7 @@ Routes.logout = {
   async load () {
     return import('../../ui/pages/logout/logout')
   },
-  target: null,
+  target: 'logged-out-render-target',
   template: 'logout',
   data: {
     onSuccess: () => createRedirect(Routes.login).call()
@@ -217,6 +217,7 @@ Routes.class = {
   async load () {
     return import('../../ui/pages/class/class')
   },
+  parent: Routes.myClasses,
   target: null,
   template: 'class',
   data: null
@@ -240,6 +241,7 @@ Routes.user = {
   async load () {
     return import('../../ui/pages/user/user')
   },
+  parent: Routes.class,
   target: null,
   template: 'user',
   data: null
