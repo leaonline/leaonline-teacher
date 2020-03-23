@@ -53,10 +53,9 @@ Template.login.events({
       templateInstance.state.set('loggingIn', false)
       if (err) {
         return templateInstance.state.set('loginError', err)
-      } else {
-        const route = templateInstance.data.next()
-        Router.go(route)
       }
+
+      templateInstance.data.onSuccess(res)
     })
   }
 })
