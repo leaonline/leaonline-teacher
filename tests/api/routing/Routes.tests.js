@@ -63,10 +63,20 @@ describe('Routes', function () {
       })
     })
 
+    it('parent', function () {
+      allRoutes.forEach(key => {
+        const route = Routes[key]
+        check(route.parent, Match.Maybe(Object))
+        if (route.parent) {
+          assert.isTrue(!!Routes[route.parent.template])
+        }
+      })
+    })
+
     it('data', function () {
       allRoutes.forEach(key => {
         const route = Routes[key]
-        check(route.target, Match.Maybe(Object))
+        check(route.target, Match.Maybe(String))
       })
     })
   })
