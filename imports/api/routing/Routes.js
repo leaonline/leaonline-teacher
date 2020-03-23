@@ -1,5 +1,6 @@
 import { createLoggedinTrigger, createLoginTrigger, createNotFoundTrigger } from './triggers'
 import { translateRoute } from './translateRoute'
+import { createRedirect } from './createRedirect'
 
 /**
  * Routes are static definitions of pages that the {Router} uses to navigate.
@@ -42,6 +43,20 @@ import { translateRoute } from './translateRoute'
 
 export const Routes = {}
 
+// triggers for triggersEnter
+// use lazy initialization within
+// the triggersEnter methods
+
+let rootLoginTrigger
+let myClassesTrigger
+let notFoundTrigger
+
+// redirects for data callbacks
+// use lazy initialization within
+// the data callback methods
+
+let toMyClasses
+
 /**
  * This route is triggered when the user enters the url without any further suffix.
  * Based on the current logged-in state (logged-in, logged-out) the respective trigger
@@ -51,9 +66,6 @@ export const Routes = {}
  * Example: https://mysite.com
  */
 
-let rootLoginTrigger
-let myClassesTrigger
-let notFoundTrigger
 
 Routes.root = {
   path: () => '/',
@@ -137,7 +149,12 @@ Routes.login = {
   target: null,
   template: 'login',
   data: {
-    loggedInRoute: () => Routes.myClasses
+    onSuccess: () => {
+      if (!toMyClasses) {
+        toMyClasses = createRedirect(Routes.myClasses)
+      }
+      toMyClasses()
+    }
   }
 }
 
@@ -157,9 +174,7 @@ Routes.logout = {
   },
   target: null,
   template: 'logout',
-  data: {
-    loggedInRoute: () => Routes.myClasses
-  }
+  data: null
 }
 
 /**
