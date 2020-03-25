@@ -2,7 +2,7 @@
 
 This is the code repository for the lea.online teacher dashboard application.
 
-![built with Meteor](https://img.shields.io/badge/Meteor-1.9.2-%23595dff?logo=meteor&logoColor=white&link=https://meteor.com)
+[![built with Meteor](https://img.shields.io/badge/Meteor-1.10.1-green?logo=meteor&logoColor=white)](https://meteor.com)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![GitHub](https://img.shields.io/github/license/leaonline/leaonline-teacher)
@@ -28,7 +28,22 @@ Please note, that Windows is supported by Meteor but not officially supported by
 If you get everything running on Windows (dev, tests, build / deployment) feel free to update
 the documentation accordingly for Windows users.
 
-In order to get the code and run the app you simply need to clone this repo and run the `./run.sh` script:
+### Install accounts server
+
+The lea.online system (which this app is part of) uses a [dedicated OAuth2 server](https://github.com/leaonline/leaonline-accounts)
+for authenticating users and authorizing access across applications. If you have not installed this repo from the main
+[development repository](https://github.com/leaonline/dev) (recommended), you need to install the accounts server
+manually:
+
+```bash
+https://github.com/leaonline/leaonline-accounts
+cd ./leaonline-accounts
+./run.sh
+```
+
+### Install teacher app
+
+For the teacher app you need to clone this repo and run the `./run.sh` script:
 
 ```bash
 git clone git@github.com:leaonline/leaonline-teacher.git
@@ -36,7 +51,8 @@ cd ./leaonline-teacher
 ./run.sh
 ```
 
-and then open your browser on `localhost:5555` to load the client app.
+Finally, open your browser and go to `localhost:5555` to load the client app.
+You can login with `admin` / `password` to continue to the teacher dashboard.
 
 ## Development and contribution to this project
 

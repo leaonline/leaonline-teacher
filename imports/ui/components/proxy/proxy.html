@@ -1,0 +1,9 @@
+<template name="proxy">
+    {{#unless loaded}}
+        {{> loading title=(i18n "common.component")}}
+    {{else}}
+        {{#Template.dynamic template=template data=templateData}}
+            {{>Template.contentBlock}}
+        {{/Template.dynamic}}
+    {{/unless}}
+</template>
