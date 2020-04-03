@@ -23,7 +23,7 @@ i18n.get = function (...params) {
   return _translator.get(...params)
 }
 
-i18n.add =  function (lang, options) {
+i18n.add = function (lang, options) {
   return _translator.addl10n({ [lang]: options })
 }
 

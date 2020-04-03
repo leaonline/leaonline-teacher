@@ -33,12 +33,6 @@ Router.cache = function (value) {
   return routeCache.get()
 }
 
-let i18nRef
-
-Router.setI18n = function (value) {
-  i18nRef = value
-}
-
 Router.has = function (path) {
   return paths[path]
 }

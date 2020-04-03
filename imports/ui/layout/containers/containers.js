@@ -1,3 +1,4 @@
+import { Template } from 'meteor/templating'
 import './containers.html'
 
 Template['logged-out-render-target'].onRendered(function () {

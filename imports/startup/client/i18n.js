@@ -19,4 +19,3 @@ import('../../../resources/i18n/en.json').then(en => {
   // add content after loading
   i18n.add('en', en)
 })
-
