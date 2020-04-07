@@ -6,4 +6,9 @@
 
 <!-- optional markdown-notes-tree directory description ends here -->
 
+- [**class**](class)
+- [**login**](login)
+- [**logout**](logout)
+- [**myclasses**](myclasses)
 - [**notfound**](notfound)
+- [**user**](user)
