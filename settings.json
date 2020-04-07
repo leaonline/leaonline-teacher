@@ -14,12 +14,14 @@
     "redirectUrl": "http://localhost:5555/_oauth/lea"
   },
   "fixtures": {
-    "accounts": [{
-      "username": "admin",
-      "password": "password",
-      "firstName": "Anton",
-      "lastName": "Administrator",
-      "email": "admin@leaonline.de"
-    }]
+    "accounts": [
+      {
+        "username": "admin",
+        "password": "password",
+        "firstName": "Anton",
+        "lastName": "Administrator",
+        "email": "admin@leaonline.de"
+      }
+    ]
   }
 }
