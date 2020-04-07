@@ -15,7 +15,9 @@ const config = {
 
 i18n.load(config)
 
-import('../../../resources/i18n/en.json').then(en => {
-  // add content after loading
-  i18n.add('en', en)
-})
+import('../../../resources/i18n/en.json')
+  .then(en => {
+    // add content after loading
+    i18n.add('en', en)
+  })
+  .catch(e => console.error(e))
