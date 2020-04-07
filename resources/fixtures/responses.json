@@ -1,0 +1,5732 @@
+{
+  "responses": [
+    {
+      "_id": "6SXYMsivRqYrDGWfk",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:42:30.188Z",
+      "updatedAt": "2019-12-05T15:42:53.080Z"
+    },
+    {
+      "_id": "psz9e43n9WthpWDAK",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:42:44.562Z",
+      "updatedAt": "2019-12-05T15:43:16.379Z"
+    },
+    {
+      "_id": "cZdBQQnKv5nyT64fB",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:43:00.528Z",
+      "updatedAt": "2019-12-05T15:43:43.161Z"
+    },
+    {
+      "_id": "X6ZXQH2BXxgWYxwHt",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [
+        "Jeden Tag um eins kommt die frische Ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-05T15:43:36.621Z",
+      "updatedAt": "2019-12-05T15:43:43.077Z"
+    },
+    {
+      "_id": "Gebwhxk8dywsJzAnJ",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:43:55.454Z",
+      "updatedAt": "2019-12-05T15:44:34.963Z"
+    },
+    {
+      "_id": "wHdQppptEavL3Afug",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:44:18.214Z",
+      "updatedAt": "2019-12-05T15:45:11.422Z"
+    },
+    {
+      "_id": "G7HdSf49j49QX7up4",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:44:42.659Z",
+      "updatedAt": "2019-12-05T15:45:39.280Z"
+    },
+    {
+      "_id": "7J2pPfjrqzPCNBJTT",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die Will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-05T15:45:31.600Z",
+      "updatedAt": "2019-12-05T15:45:39.215Z"
+    },
+    {
+      "_id": "8WSHY534XdZtoA2da",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:45:50.859Z",
+      "updatedAt": "2019-12-05T15:47:04.513Z"
+    },
+    {
+      "_id": "qh4R54CBDLSHXsFwh",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:46:20.716Z"
+    },
+    {
+      "_id": "BhXn9hxJPqtv44wbA",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [],
+      "createdAt": "2019-12-05T15:46:23.577Z",
+      "updatedAt": "2019-12-05T15:47:20.713Z"
+    },
+    {
+      "_id": "XuqxbA5R4Rvi5tLDN",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "h3czkJwM2pcs5JjqN",
+      "responses": [
+        "dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-05T15:47:09.374Z",
+      "updatedAt": "2019-12-05T15:47:20.636Z"
+    },
+    {
+      "_id": "WptzwhjCdyYsDLAao",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-05T15:55:00.872Z",
+      "updatedAt": "2019-12-05T15:55:07.099Z"
+    },
+    {
+      "_id": "dq2ZN8D2rRNCcZtek",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T15:57:53.595Z",
+      "updatedAt": "2019-12-05T15:58:47.885Z"
+    },
+    {
+      "_id": "Rn2j5xevXPzBMqE3h",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T15:58:22.596Z",
+      "updatedAt": "2019-12-05T15:59:10.380Z"
+    },
+    {
+      "_id": "hEpBC6jNsik8LFfhB",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [
+        "Jeden Tag um 1 kommt die frische Ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-05T15:59:01.858Z",
+      "updatedAt": "2019-12-05T15:59:10.320Z"
+    },
+    {
+      "_id": "gcnSrKiey76SaGQQ9",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T15:59:18.827Z",
+      "updatedAt": "2019-12-05T16:00:03.994Z"
+    },
+    {
+      "_id": "papxAzJKNeDC8735c",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T15:59:31.212Z"
+    },
+    {
+      "_id": "LuyAsxiux6D4W95uo",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T15:59:34.440Z",
+      "updatedAt": "2019-12-05T16:00:30.385Z"
+    },
+    {
+      "_id": "eaW7BHe66mmKvAmJw",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die Will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-05T16:00:22.984Z",
+      "updatedAt": "2019-12-05T16:00:30.320Z"
+    },
+    {
+      "_id": "8NLu4YQHm8ujDGB8n",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T16:00:38.375Z",
+      "updatedAt": "2019-12-05T16:01:20.836Z"
+    },
+    {
+      "_id": "CTyeqBAFhSwYpD9wB",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T16:01:04.979Z"
+    },
+    {
+      "_id": "Wu5CpDdQKutH9X3NH",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [],
+      "createdAt": "2019-12-05T16:01:12.758Z",
+      "updatedAt": "2019-12-05T16:01:36.030Z"
+    },
+    {
+      "_id": "aZStpBrkgTfzvDvut",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "Ykou6XwiF5DnAXiuX",
+      "responses": [
+        "dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-05T16:01:22.785Z",
+      "updatedAt": "2019-12-05T16:01:35.944Z"
+    },
+    {
+      "_id": "eerXESmJfKoqY3xK4",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-05T16:56:28.062Z",
+      "updatedAt": "2019-12-05T17:00:09.611Z"
+    },
+    {
+      "_id": "WirKoWTLqLfSukdeN",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-05T17:01:19.464Z"
+    },
+    {
+      "_id": "8gYaT3s89ET3f4inH",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-05T17:07:02.655Z",
+      "updatedAt": "2019-12-05T17:09:06.777Z"
+    },
+    {
+      "_id": "4HkcfPNc6TSD9mmnT",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-05T17:10:31.230Z",
+      "updatedAt": "2019-12-05T17:11:09.189Z"
+    },
+    {
+      "_id": "q54xcAeWnxuNWBdSZ",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0009",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [],
+      "createdAt": "2019-12-05T17:11:18.331Z"
+    },
+    {
+      "_id": "q2STxXwjL9NMsmYff",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-05T17:11:43.243Z",
+      "updatedAt": "2019-12-05T17:12:02.860Z"
+    },
+    {
+      "_id": "J2pec7Dq63QR2vsSN",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [],
+      "createdAt": "2019-12-05T17:12:11.209Z"
+    },
+    {
+      "_id": "wDwd52waPCMqdosEt",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-05T17:12:43.624Z",
+      "updatedAt": "2019-12-05T17:17:36.119Z"
+    },
+    {
+      "_id": "JywamS277peZLWxgg",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [],
+      "createdAt": "2019-12-05T17:17:37.733Z"
+    },
+    {
+      "_id": "KRaodeG6P8ggEC4vy",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0012",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [],
+      "createdAt": "2019-12-05T17:17:45.413Z",
+      "updatedAt": "2019-12-05T17:18:42.501Z"
+    },
+    {
+      "_id": "uxGWmFMoEEcQz76qX",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-05T17:18:11.101Z",
+      "updatedAt": "2019-12-05T17:18:40.874Z"
+    },
+    {
+      "_id": "z2JXdtAmznDGBsTAT",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0013",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-05T17:18:45.586Z"
+    },
+    {
+      "_id": "9H9YztTfCHh78WSYt",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-05T17:18:50.058Z"
+    },
+    {
+      "_id": "f4gxfdoJFBqmMiu8K",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-05T17:19:18.615Z",
+      "updatedAt": "2019-12-05T17:19:30.784Z"
+    },
+    {
+      "_id": "kDGqRiiQ8icEvky2h",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0013",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [],
+      "createdAt": "2019-12-05T17:19:33.190Z"
+    },
+    {
+      "_id": "ZDvnXHyJmCMxGfQ9E",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0014",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-05T17:19:37.352Z"
+    },
+    {
+      "_id": "dmHbDuhKwmqEZEMSt",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "cqzgst23qxbSxQu8J",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-05T17:19:41.445Z"
+    },
+    {
+      "_id": "T7gLMruKfySKnk8Cf",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-06T16:23:28.790Z",
+      "updatedAt": "2019-12-10T12:12:29.094Z"
+    },
+    {
+      "_id": "86rBrhjYdCkxBq4tw",
+      "userId": "LuK2FEjqsqXfEpcoW",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "YQE2tSvCtKEHLFbmi",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-09T16:53:04.541Z",
+      "updatedAt": "2019-12-09T16:53:06.073Z"
+    },
+    {
+      "_id": "xvP8WzMCNTouDGmSM",
+      "userId": "LuK2FEjqsqXfEpcoW",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "Gekfpm6oso7TEbALy",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-09T16:53:40.403Z",
+      "updatedAt": "2019-12-09T16:57:48.258Z"
+    },
+    {
+      "_id": "EueNBsgaHs2vSGDfi",
+      "userId": "LuK2FEjqsqXfEpcoW",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "Gekfpm6oso7TEbALy",
+      "responses": [],
+      "createdAt": "2019-12-09T16:57:54.485Z",
+      "updatedAt": "2019-12-09T16:58:02.737Z"
+    },
+    {
+      "_id": "TgYSWo8gbiGGqFMEX",
+      "userId": "LuK2FEjqsqXfEpcoW",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "Gekfpm6oso7TEbALy",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-09T16:57:59.080Z",
+      "updatedAt": "2019-12-09T17:12:10.184Z"
+    },
+    {
+      "_id": "KoPvZZyWFmXnekrHo",
+      "userId": "aAnMkyaNMD5dTRnJx",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "nWH2p99AcPzce3xmW",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T08:47:32.024Z",
+      "updatedAt": "2019-12-10T08:47:32.372Z"
+    },
+    {
+      "_id": "f9GKsmHLoMQryFowf",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T10:25:23.148Z"
+    },
+    {
+      "_id": "HTnMuPPSnAJoqPs3t",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T11:07:08.427Z",
+      "updatedAt": "2019-12-10T11:07:35.582Z"
+    },
+    {
+      "_id": "6mkPCmbSrcH92BaBp",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T11:07:35.601Z",
+      "updatedAt": "2019-12-10T11:07:46.365Z"
+    },
+    {
+      "_id": "mTsnYXuoB8vixunvu",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T11:07:46.381Z",
+      "updatedAt": "2019-12-10T12:09:59.084Z"
+    },
+    {
+      "_id": "BCc5kZ7QjTzgsXwA5",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T12:10:14.341Z"
+    },
+    {
+      "_id": "ChKkn7m2kN5scKGo6",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T12:10:14.358Z",
+      "updatedAt": "2019-12-10T12:10:23.850Z"
+    },
+    {
+      "_id": "4tPWgQGkZE4Loz7YQ",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T12:10:23.866Z",
+      "updatedAt": "2019-12-10T12:11:23.181Z"
+    },
+    {
+      "_id": "bBddSrufpRK3fEY7D",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T12:11:23.196Z"
+    },
+    {
+      "_id": "iKwb84hfvyycxFPc2",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T12:11:28.085Z"
+    },
+    {
+      "_id": "cuENS9iqEhSZWkZSE",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T12:11:28.100Z",
+      "updatedAt": "2019-12-10T12:11:31.100Z"
+    },
+    {
+      "_id": "E5JYnLwNuERF2fnon",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [],
+      "createdAt": "2019-12-10T12:11:31.114Z",
+      "updatedAt": "2019-12-10T12:11:34.195Z"
+    },
+    {
+      "_id": "a7X5u9MMMJqL3BKkP",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "ADgkw4NxFGGA3CAvg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T12:11:34.210Z"
+    },
+    {
+      "_id": "7ayvivDnNcxtCNLMd",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T12:12:44.259Z",
+      "updatedAt": "2019-12-10T12:12:46.697Z"
+    },
+    {
+      "_id": "ThtHiBSXXTPBuy9qZ",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:12:48.479Z"
+    },
+    {
+      "_id": "HZpS4BqCFLrecxdyx",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:13:02.207Z"
+    },
+    {
+      "_id": "kKmrtdKAXmSGKykiM",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0009",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:13:09.807Z"
+    },
+    {
+      "_id": "fPzRF4ZCSbt2PavNL",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0010",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T12:13:11.240Z"
+    },
+    {
+      "_id": "JwBcj76PNrXY6CPik",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-10T12:13:18.701Z",
+      "updatedAt": "2019-12-10T12:13:20.940Z"
+    },
+    {
+      "_id": "vbiMs8N7hEoiqKwuP",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:13:22.005Z"
+    },
+    {
+      "_id": "9YsBvj5jHN4YbPbtr",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T12:13:30.102Z",
+      "updatedAt": "2019-12-10T12:13:32.206Z"
+    },
+    {
+      "_id": "jArGjcFT88RudTxZH",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:13:33.257Z"
+    },
+    {
+      "_id": "hWC6cKnXw4RPvsmpG",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0012",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T12:13:35.534Z"
+    },
+    {
+      "_id": "RTvWNCRjuXvYT6pfq",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T12:13:42.257Z",
+      "updatedAt": "2019-12-10T12:13:44.522Z"
+    },
+    {
+      "_id": "6D6GgM2gbHbxhypQN",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0012",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:13:45.938Z"
+    },
+    {
+      "_id": "5MTaGfEmCCvADgpxQ",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-10T12:13:54.952Z",
+      "updatedAt": "2019-12-10T12:13:57.197Z"
+    },
+    {
+      "_id": "wWQ4fwqRbcDPtKWcZ",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0013",
+      "sessionId": "RLatHYMuf5bB7K4kk",
+      "responses": [],
+      "createdAt": "2019-12-10T12:13:58.094Z"
+    },
+    {
+      "_id": "6qsSZPEBpKu44MLFv",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "EvQSBBJ8a3iqzREEj",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T12:16:50.571Z",
+      "updatedAt": "2019-12-10T14:37:56.203Z"
+    },
+    {
+      "_id": "jphXmFEEJ2uwhYJaA",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:09.876Z",
+      "updatedAt": "2019-12-10T12:17:12.020Z"
+    },
+    {
+      "_id": "wJpSwcKdFZvHJvQtu",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:12.033Z",
+      "updatedAt": "2019-12-10T12:17:14.050Z"
+    },
+    {
+      "_id": "qmnuSNLeveS84ASfp",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:14.065Z",
+      "updatedAt": "2019-12-10T12:17:19.545Z"
+    },
+    {
+      "_id": "Yx784Ez9ePzhCBeL6",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T12:17:19.559Z"
+    },
+    {
+      "_id": "6B2qBxtLkFKZTvEHr",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:23.669Z"
+    },
+    {
+      "_id": "ESdYGa62YErqMrj7r",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:23.684Z",
+      "updatedAt": "2019-12-10T12:17:25.684Z"
+    },
+    {
+      "_id": "kBeuw7n77xBpCm4gG",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:25.699Z",
+      "updatedAt": "2019-12-10T12:17:31.280Z"
+    },
+    {
+      "_id": "MLzpqjNhLrmzvCSsq",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T12:17:31.293Z"
+    },
+    {
+      "_id": "TPPAHjodfP5agwXYK",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:35.680Z"
+    },
+    {
+      "_id": "y3ZykX4w6WsdXi6N3",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:35.693Z",
+      "updatedAt": "2019-12-10T12:17:38.234Z"
+    },
+    {
+      "_id": "9WBSXT2ferFAX9sXN",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [],
+      "createdAt": "2019-12-10T12:17:38.247Z",
+      "updatedAt": "2019-12-10T12:17:41.101Z"
+    },
+    {
+      "_id": "hsgYgDuzWYK7oxGNe",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "jG9TppFaTpG6uc22p",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T12:17:41.115Z"
+    },
+    {
+      "_id": "LscAQHnQE49oEkJyr",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "6KozoSMjrBxNGjMNn",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T13:05:53.547Z",
+      "updatedAt": "2019-12-10T13:05:53.716Z"
+    },
+    {
+      "_id": "WJEAHQ4825zFG8kRH",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "6KozoSMjrBxNGjMNn",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T13:06:05.598Z",
+      "updatedAt": "2019-12-10T13:06:15.190Z"
+    },
+    {
+      "_id": "Bozm9XpPmhjF4owB8",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "6KozoSMjrBxNGjMNn",
+      "responses": [],
+      "createdAt": "2019-12-10T13:06:17.968Z"
+    },
+    {
+      "_id": "uFsw6AjQNh3EwKs7r",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T14:25:08.415Z",
+      "updatedAt": "2019-12-10T14:25:14.402Z"
+    },
+    {
+      "_id": "BPSE9KPZvMaavexZt",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:25:19.254Z"
+    },
+    {
+      "_id": "Zc3kpjaQZB3FNSN2J",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T14:25:26.839Z",
+      "updatedAt": "2019-12-10T14:26:00.380Z"
+    },
+    {
+      "_id": "wHgb46PhWRxofq2uT",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0009",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:26:10.174Z"
+    },
+    {
+      "_id": "GYSor4zpzyAmtrb2s",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0009",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:26:28.703Z",
+      "updatedAt": "2019-12-10T14:26:30.126Z"
+    },
+    {
+      "_id": "mCHtstrwcHNkyC4DC",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:26:35.702Z",
+      "updatedAt": "2019-12-10T14:26:38.333Z"
+    },
+    {
+      "_id": "i7k8BfdksSib26mb5",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0010",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-10T14:27:55.352Z",
+      "updatedAt": "2019-12-10T14:28:05.286Z"
+    },
+    {
+      "_id": "ww8q9Tpkc6jCkhyta",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:28:16.748Z",
+      "updatedAt": "2019-12-10T14:28:54.438Z"
+    },
+    {
+      "_id": "9RybYhKhAxiEfnvFt",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T14:29:38.501Z",
+      "updatedAt": "2019-12-10T14:29:39.504Z"
+    },
+    {
+      "_id": "mWw8Muum72NaCvXwq",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:29:41.890Z"
+    },
+    {
+      "_id": "CnGCSMiGWXYojH6Dh",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-10T14:29:45.146Z",
+      "updatedAt": "2019-12-10T14:29:45.849Z"
+    },
+    {
+      "_id": "ejCSoQxehis9kA4zN",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0012",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T14:29:48.204Z"
+    },
+    {
+      "_id": "jCza2BTZfjymun3AH",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0012",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:29:50.294Z"
+    },
+    {
+      "_id": "hLzqJGuPJNFsQj2Pj",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T14:29:56.855Z",
+      "updatedAt": "2019-12-10T14:29:57.777Z"
+    },
+    {
+      "_id": "HtuHCKjLZC5CtmZiP",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0013",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:29:59.995Z"
+    },
+    {
+      "_id": "yfKcs8RG2c6hpudhb",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-10T14:30:02.647Z"
+    },
+    {
+      "_id": "gFoFzJAJ9oLhcDdaj",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T14:30:08.596Z",
+      "updatedAt": "2019-12-10T14:30:09.353Z"
+    },
+    {
+      "_id": "MCPPRvPtBfw4X6E2v",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0014",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-10T14:30:11.661Z"
+    },
+    {
+      "_id": "H44gg5qA4ymJDjw28",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "3ZD4SPNK6Tz7u3faQ",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-10T14:30:14.359Z"
+    },
+    {
+      "_id": "onvPEA8Apc8vjTy7Y",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "ENojQChEzD3AFonzb",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T14:49:58.923Z"
+    },
+    {
+      "_id": "2Sw4hAxAKBJ8xzYNy",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "ENojQChEzD3AFonzb",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T14:50:09.624Z"
+    },
+    {
+      "_id": "D6M78jFJjgcf2AyRr",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "ENojQChEzD3AFonzb",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T14:50:45.275Z"
+    },
+    {
+      "_id": "98CqwksKonk26fYrL",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "ENojQChEzD3AFonzb",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T15:04:41.067Z"
+    },
+    {
+      "_id": "8KzEDsW8gb95XBQTr",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-10T15:11:47.882Z",
+      "updatedAt": "2019-12-10T15:11:55.165Z"
+    },
+    {
+      "_id": "PB2bprCCMnZ2JcEWA",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "M",
+        "M",
+        "T",
+        "h",
+        "kommen"
+      ],
+      "createdAt": "2019-12-10T15:11:57.920Z",
+      "updatedAt": "2019-12-10T15:12:03.851Z"
+    },
+    {
+      "_id": "d8LHAT4YA2e7bBq23",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "1. August 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "Bitte",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-10T15:12:23.977Z",
+      "updatedAt": "2019-12-10T15:12:39.051Z"
+    },
+    {
+      "_id": "xafCKe7v67nu5MQp5",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "Jeden Tag um 1 kommt die Frische ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-10T15:12:51.326Z",
+      "updatedAt": "2019-12-10T15:12:58.957Z"
+    },
+    {
+      "_id": "yMbGiNfsNxgZHMoxL",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "Sie muss für Ordnung sorgen.",
+        "Ihre Kollegin ist allerdings etwas faul."
+      ],
+      "createdAt": "2019-12-10T15:13:09.934Z",
+      "updatedAt": "2019-12-10T15:13:27.204Z"
+    },
+    {
+      "_id": "tbq6T8fFCL2awZJZ3",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "2. April 2013",
+        "Paletten",
+        "Fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-10T15:13:55.635Z",
+      "updatedAt": "2019-12-10T15:14:09.303Z"
+    },
+    {
+      "_id": "Me9MumQLgWQD5dtWC",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "Jetzt",
+        "bevor",
+        "und",
+        "schnell",
+        "Ob",
+        "Schmetterlinge"
+      ],
+      "createdAt": "2019-12-10T15:14:13.203Z",
+      "updatedAt": "2019-12-10T15:14:27.344Z"
+    },
+    {
+      "_id": "bkHJeLjNFHdW9Sp8L",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-10T15:14:41.393Z",
+      "updatedAt": "2019-12-10T15:14:49.982Z"
+    },
+    {
+      "_id": "CwipRMucRjdLK5XBC",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "Das schwarze Radio kommt ins Lager.",
+        "Das stand sowieso immer nur im Weg."
+      ],
+      "createdAt": "2019-12-10T15:14:53.246Z",
+      "updatedAt": "2019-12-10T15:15:09.198Z"
+    },
+    {
+      "_id": "csHJuwZ9RPsJ6Rdtg",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "schnell",
+        "zufallen",
+        "lassen",
+        "Schlüssel",
+        "kommen",
+        "freuen",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-10T15:15:15.407Z",
+      "updatedAt": "2019-12-10T15:15:34.345Z"
+    },
+    {
+      "_id": "ZxKDF3aJu2XbXmmXd",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "Schmal",
+        "15. Februar 2013",
+        "Bremen"
+      ],
+      "createdAt": "2019-12-10T15:15:39.304Z",
+      "updatedAt": "2019-12-10T15:15:52.965Z"
+    },
+    {
+      "_id": "PQxupyAi2xr3tyXPA",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "oMPr45KJJSpowkQ76",
+      "responses": [
+        "dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-10T15:15:57.948Z",
+      "updatedAt": "2019-12-10T15:16:05.788Z"
+    },
+    {
+      "_id": "rY5KzEBDtPYJzcBzN",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "ENojQChEzD3AFonzb",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T16:06:29.420Z"
+    },
+    {
+      "_id": "g2FiawJZH7RtgYCSj",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "L",
+        "L",
+        "l",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-10T16:09:57.731Z",
+      "updatedAt": "2019-12-10T16:10:06.401Z"
+    },
+    {
+      "_id": "M7veSSMjL9kq8Wtw3",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "M",
+        "M",
+        "T",
+        "h",
+        "kommen"
+      ],
+      "createdAt": "2019-12-10T16:10:16.880Z",
+      "updatedAt": "2019-12-10T16:10:38.117Z"
+    },
+    {
+      "_id": "hpBd3m27FcBtkrAbR",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "1. August 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "Bitte",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-10T16:10:54.723Z",
+      "updatedAt": "2019-12-10T16:11:23.307Z"
+    },
+    {
+      "_id": "FvsLDAJ5qMP5fCEBS",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Jeden Tag um eins kommt die frische Ware.",
+        "Helga ist das immer im Lager."
+      ],
+      "createdAt": "2019-12-10T16:11:50.705Z",
+      "updatedAt": "2019-12-10T16:12:01.790Z"
+    },
+    {
+      "_id": "ypozEhqtxNC5w2gyX",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Sie muss für Ordnung sorgen.",
+        "Ihre Kollegin ist allerdings etwas faul."
+      ],
+      "createdAt": "2019-12-10T16:14:30.622Z",
+      "updatedAt": "2019-12-10T16:14:49.071Z"
+    },
+    {
+      "_id": "TTcDMfZNrLJtwg9mj",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "2. April 2013",
+        "Paletten",
+        "Fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-10T16:15:16.351Z",
+      "updatedAt": "2019-12-10T16:15:32.328Z"
+    },
+    {
+      "_id": "uo4L5yapA9JCyGB2Z",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Jetzt",
+        "bevor",
+        "und",
+        "schnell",
+        "Ob",
+        "Schmetterlinge"
+      ],
+      "createdAt": "2019-12-10T16:15:43.552Z",
+      "updatedAt": "2019-12-10T16:16:08.795Z"
+    },
+    {
+      "_id": "o499ufpeQGDrGWNR8",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-10T16:16:47.962Z",
+      "updatedAt": "2019-12-10T16:17:00.101Z"
+    },
+    {
+      "_id": "Nfa5f53wojyqhJvWM",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Das schwarze Radio kommt ins Lager.",
+        "Das stand sowieso immer nur im Weg."
+      ],
+      "createdAt": "2019-12-10T16:18:00.327Z",
+      "updatedAt": "2019-12-10T16:18:15.946Z"
+    },
+    {
+      "_id": "RudA2FogNf7KtLpce",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Schnell",
+        "zufallen",
+        "lassen",
+        "Schlüssel",
+        "kommen",
+        "freuen",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-10T16:18:26.784Z",
+      "updatedAt": "2019-12-10T16:19:13.103Z"
+    },
+    {
+      "_id": "MPRaB96RRQNx59Nq8",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Schmal",
+        "15.  Februar 2013",
+        "Bremen"
+      ],
+      "createdAt": "2019-12-10T16:19:30.797Z",
+      "updatedAt": "2019-12-10T16:19:47.918Z"
+    },
+    {
+      "_id": "XvgTRzt6vGR6Yrw5j",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "pYZ8k3jfRiW98gTem",
+      "responses": [
+        "Dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-10T16:20:12.442Z",
+      "updatedAt": "2019-12-10T16:20:30.455Z"
+    },
+    {
+      "_id": "LTq7t529pS6i6onzx",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "phMgvAP4DR7PxKBAp",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T16:21:54.106Z",
+      "updatedAt": "2019-12-10T16:22:23.276Z"
+    },
+    {
+      "_id": "gczfwPLi5vWnoM7E4",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "ZHg7c8xwhx98kQyGY",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T16:22:56.736Z",
+      "updatedAt": "2019-12-10T17:12:27.281Z"
+    },
+    {
+      "_id": "PbwXfaiiMrqd4yfth",
+      "userId": "oaZ4QkecB2wnrKa2K",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "rft3PMvqR5w3qnYxW",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-10T16:29:05.322Z",
+      "updatedAt": "2019-12-10T16:29:24.774Z"
+    },
+    {
+      "_id": "HrHgZhKQd3T24dQ9H",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T17:13:02.913Z"
+    },
+    {
+      "_id": "5oH4JuPMHc6Nv5wAp",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T17:17:31.755Z"
+    },
+    {
+      "_id": "4XPFmwMrD2dXsFiRx",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-10T17:17:49.284Z"
+    },
+    {
+      "_id": "G6zs72Wgor98rzdci",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-10T17:42:22.859Z",
+      "updatedAt": "2019-12-10T17:43:40.817Z"
+    },
+    {
+      "_id": "sFoc3DWWXuJL8ExWh",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "M",
+        "S",
+        "L",
+        "p",
+        "jomen"
+      ],
+      "createdAt": "2019-12-10T17:44:07.511Z",
+      "updatedAt": "2019-12-10T17:44:31.602Z"
+    },
+    {
+      "_id": "fJxfpctFSN6itcKHg",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "01.10.2011",
+        "Ind",
+        "K",
+        "p",
+        "L",
+        "Bite",
+        "ale",
+        "Bodden",
+        "D"
+      ],
+      "createdAt": "2019-12-10T17:45:10.798Z",
+      "updatedAt": "2019-12-10T17:46:20.820Z"
+    },
+    {
+      "_id": "sabfgeivXzaPdnu4u",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "Jeden Tag um 1 kommt die frische Ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-10T17:47:10.803Z",
+      "updatedAt": "2019-12-10T17:47:19.721Z"
+    },
+    {
+      "_id": "FavhjAMNSrNLcNRRL",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "02.04.2013",
+        "Paletten",
+        "Fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-10T17:47:46.017Z",
+      "updatedAt": "2019-12-10T17:48:09.053Z"
+    },
+    {
+      "_id": "A3MgC4ZQhRwi3bFGc",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "Jetzt",
+        "bis",
+        "und",
+        "schnell",
+        "Ob",
+        "Schmetterlinge"
+      ],
+      "createdAt": "2019-12-10T17:48:15.146Z",
+      "updatedAt": "2019-12-10T17:48:49.102Z"
+    },
+    {
+      "_id": "96grAx4WKwBZ6MrtK",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-10T17:49:21.122Z",
+      "updatedAt": "2019-12-10T17:49:32.407Z"
+    },
+    {
+      "_id": "v6XTjFgQYNvNxFKyn",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "schnell",
+        "zufallen",
+        "lassen",
+        "Schlüssel",
+        "kommen",
+        "freuen",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-10T17:49:58.085Z",
+      "updatedAt": "2019-12-10T17:50:34.340Z"
+    },
+    {
+      "_id": "HSz6jReygPYn7Xavn",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "Schnall",
+        "15.02.2014",
+        "Delmenhorst"
+      ],
+      "createdAt": "2019-12-10T17:50:56.946Z",
+      "updatedAt": "2019-12-10T17:51:30.450Z"
+    },
+    {
+      "_id": "2DAHZDzsf3YfyznWC",
+      "userId": "eSBcPnwEuyNXhqN9E",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "HrDtsiGXGxyqm9agC",
+      "responses": [
+        "dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-10T17:51:50.549Z",
+      "updatedAt": "2019-12-10T17:52:16.496Z"
+    },
+    {
+      "_id": "oZGsqGZQnnpWPdyNP",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:53:36.943Z"
+    },
+    {
+      "_id": "LoDoKvaEgQWwuRgpM",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:54:08.287Z"
+    },
+    {
+      "_id": "DXxtq9PeQBgewvTqz",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:54:43.220Z"
+    },
+    {
+      "_id": "8JAFfqKCMGMYA4v8b",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:55:05.742Z"
+    },
+    {
+      "_id": "e6ejcTSmSfZ3fQohL",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:55:22.015Z"
+    },
+    {
+      "_id": "6AnsDWgk2wM3y3bzr",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:55:35.177Z"
+    },
+    {
+      "_id": "mAC7CEL5HGiu3SnPh",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "fDCQobGCf6SD8Ge6i",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T07:56:15.044Z"
+    },
+    {
+      "_id": "HcoppiGoqrGEwkB3a",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "Q7wo73FhQ9iivAQh9",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-11T11:00:52.207Z",
+      "updatedAt": "2019-12-11T11:00:56.827Z"
+    },
+    {
+      "_id": "aPofCFgd2iLm5iyJD",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-11T12:46:27.569Z",
+      "updatedAt": "2019-12-11T12:46:37.623Z"
+    },
+    {
+      "_id": "w5sjjLk73TGTZhYdE",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "M",
+        "m",
+        "T",
+        "h",
+        "kommen"
+      ],
+      "createdAt": "2019-12-11T12:46:43.034Z",
+      "updatedAt": "2019-12-11T12:46:55.845Z"
+    },
+    {
+      "_id": "zi2xDH5ZaBW7cc9Rj",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "1. August 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "Bitte",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-11T12:47:11.883Z",
+      "updatedAt": "2019-12-11T12:47:31.270Z"
+    },
+    {
+      "_id": "tRrWPgsnuGj5vcSq7",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "k4sfKBHdjaZkf84Jt",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T12:47:35.043Z",
+      "updatedAt": "2019-12-11T12:49:40.320Z"
+    },
+    {
+      "_id": "DM4eWTQbQ2dpkpizF",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Jeden Tag um eins kommt die frische Ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-11T12:47:49.919Z",
+      "updatedAt": "2019-12-11T12:48:01.593Z"
+    },
+    {
+      "_id": "kKyCE6MQFJCwvPmq6",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Sie muss für Ordnung sorgen.",
+        "Ihre Kollegin ist allerdings etwas faul."
+      ],
+      "createdAt": "2019-12-11T12:48:18.586Z",
+      "updatedAt": "2019-12-11T12:48:30.632Z"
+    },
+    {
+      "_id": "yL4tcqdqaqgYhKefy",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "2. April 2013",
+        "Paletten",
+        "Fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-11T12:49:03.358Z",
+      "updatedAt": "2019-12-11T12:49:19.873Z"
+    },
+    {
+      "_id": "bvkvhbcNw8N5PKDLZ",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Jetzt",
+        "bevor",
+        "und",
+        "schnell",
+        "Ob",
+        "Schmetterlinge"
+      ],
+      "createdAt": "2019-12-11T12:49:29.142Z",
+      "updatedAt": "2019-12-11T12:49:48.965Z"
+    },
+    {
+      "_id": "eDHyk5oPLo8w5pftZ",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "rKQqA9GcRfJ8KyRko",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T12:49:42.867Z"
+    },
+    {
+      "_id": "JNZuc5uK7HLaNTZgE",
+      "userId": "CFoztvXtiuabByhrq",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "DuLYht9AD7PMKPFai",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-11T12:49:48.775Z",
+      "updatedAt": "2019-12-11T12:53:17.511Z"
+    },
+    {
+      "_id": "A7yKS2BoKN7oWZjDZ",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-11T12:50:06.987Z",
+      "updatedAt": "2019-12-11T12:50:16.774Z"
+    },
+    {
+      "_id": "uT5AjrgoxHg4BvqSu",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Das schwarze Radio kommt ins Lager.",
+        "Das stand sowieso immer nur im Weg."
+      ],
+      "createdAt": "2019-12-11T12:50:31.379Z",
+      "updatedAt": "2019-12-11T12:50:42.715Z"
+    },
+    {
+      "_id": "s4sgTq5CFrxtBaijB",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "schnell",
+        "zufallen",
+        "lassen",
+        "Schlüssel",
+        "kommen",
+        "freuen",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-11T12:50:49.547Z",
+      "updatedAt": "2019-12-11T12:51:18.384Z"
+    },
+    {
+      "_id": "wcoeQREpghqcRCr4W",
+      "userId": "zEefoq6GSRu4bzR7S",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "k4sfKBHdjaZkf84Jt",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-11T12:51:14.780Z",
+      "updatedAt": "2019-12-11T12:51:17.316Z"
+    },
+    {
+      "_id": "93ik3BqcLXYQk4mXP",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Schmal",
+        "15. Februar 2013",
+        "Bremen"
+      ],
+      "createdAt": "2019-12-11T12:51:24.681Z",
+      "updatedAt": "2019-12-11T12:51:36.881Z"
+    },
+    {
+      "_id": "Tc4hcu4AYng9XDHnf",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "ud4g6nZHLCB6eWdsN",
+      "responses": [
+        "Dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-11T12:51:43.649Z",
+      "updatedAt": "2019-12-11T12:51:55.834Z"
+    },
+    {
+      "_id": "mSZ3NbYyZdminsXbs",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-11T13:20:57.425Z",
+      "updatedAt": "2019-12-11T13:21:06.754Z"
+    },
+    {
+      "_id": "iuM35bnbtWKkQMaxQ",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "M",
+        "m",
+        "T",
+        "h",
+        "kommen"
+      ],
+      "createdAt": "2019-12-11T13:22:44.164Z",
+      "updatedAt": "2019-12-11T13:22:55.421Z"
+    },
+    {
+      "_id": "QWnCNLtMmgoagzo83",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "1. August 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "Bitte",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-11T13:33:04.144Z",
+      "updatedAt": "2019-12-11T13:33:21.742Z"
+    },
+    {
+      "_id": "ToChhHistYwsfvMMG",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Jeden Tag um eins kommt die frische Ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-11T13:53:44.815Z",
+      "updatedAt": "2019-12-11T13:53:52.336Z"
+    },
+    {
+      "_id": "psQRwiZFoWwWMH48C",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Sie muss für Ordnung sorgen.",
+        "Ihre Kollegin ist allerdings etwas faul."
+      ],
+      "createdAt": "2019-12-11T13:54:23.308Z",
+      "updatedAt": "2019-12-11T13:54:34.836Z"
+    },
+    {
+      "_id": "uhYYz6xymcjkKpbTC",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "2. April 2013",
+        "Paletten",
+        "Fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-11T13:55:27.250Z",
+      "updatedAt": "2019-12-11T13:55:39.284Z"
+    },
+    {
+      "_id": "aRrcaWnAa2G5E6zmv",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Jetzt",
+        "bevor",
+        "und",
+        "schnell",
+        "Ob",
+        "Schmetterlinge"
+      ],
+      "createdAt": "2019-12-11T14:08:47.025Z",
+      "updatedAt": "2019-12-11T14:09:03.117Z"
+    },
+    {
+      "_id": "9yovXo4tN4D7b8WfS",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-11T14:10:32.979Z",
+      "updatedAt": "2019-12-11T14:10:52.529Z"
+    },
+    {
+      "_id": "temApezS7FyYyHHqk",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Das schwarze Radio kommt ins Lager.",
+        "Das stand sowieso immer nur im Weg."
+      ],
+      "createdAt": "2019-12-11T14:11:22.942Z",
+      "updatedAt": "2019-12-11T14:11:33.367Z"
+    },
+    {
+      "_id": "n4oYpGdg3jHvNgr8d",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "schnell",
+        "zufallen",
+        "lassen",
+        "Schlüssel",
+        "kommen",
+        "freuen",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-11T14:12:26.904Z",
+      "updatedAt": "2019-12-11T14:12:54.112Z"
+    },
+    {
+      "_id": "cTJxLLuBQ6TqqmAMb",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Schmal",
+        "15. Februar 2013",
+        "Bremen"
+      ],
+      "createdAt": "2019-12-11T14:14:04.412Z",
+      "updatedAt": "2019-12-11T14:14:15.900Z"
+    },
+    {
+      "_id": "YAExEFf8CenEKkhHf",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "Y6rM8pSNRNTdrsmiH",
+      "responses": [
+        "Dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-11T14:15:03.392Z",
+      "updatedAt": "2019-12-11T14:15:13.477Z"
+    },
+    {
+      "_id": "aS9vGxnNecnL6pahG",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-11T15:12:12.097Z",
+      "updatedAt": "2019-12-11T15:12:20.880Z"
+    },
+    {
+      "_id": "Aqa69NEQRxWobERyj",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "M",
+        "T",
+        "h",
+        "kommen",
+        "Bitte sagen Sie auch Frau Scholz Bescheid"
+      ],
+      "createdAt": "2019-12-11T15:12:26.307Z",
+      "updatedAt": "2019-12-11T15:12:46.733Z"
+    },
+    {
+      "_id": "XfunjNRwKcjySeind",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "1. August 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "wird",
+        "Bitte",
+        "die",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-11T15:13:36.428Z",
+      "updatedAt": "2019-12-11T15:14:00.542Z"
+    },
+    {
+      "_id": "wviTkqg49W2qKp5sF",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Jeden Tag um eins kommt die frische Ware.",
+        "Helga ist dann immer im Lager."
+      ],
+      "createdAt": "2019-12-11T15:15:11.407Z",
+      "updatedAt": "2019-12-11T15:15:22.471Z"
+    },
+    {
+      "_id": "FpfuZF7JxckPGM7ih",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Sie muss für Ordnung sorgen.",
+        "Ihre Kollegin ist allerdings etwas faul."
+      ],
+      "createdAt": "2019-12-11T15:15:36.037Z",
+      "updatedAt": "2019-12-11T15:15:49.546Z"
+    },
+    {
+      "_id": "DseKvAHsMHgeJk6iB",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "2. April 2013",
+        "Paletten",
+        "Fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-11T15:15:59.129Z",
+      "updatedAt": "2019-12-11T15:16:12.277Z"
+    },
+    {
+      "_id": "uhpNfyWjA7RabLxXw",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Jetzt",
+        "bevor",
+        "und",
+        "schnell",
+        "Ob",
+        "Schmetterlinge"
+      ],
+      "createdAt": "2019-12-11T15:16:34.762Z",
+      "updatedAt": "2019-12-11T15:16:50.652Z"
+    },
+    {
+      "_id": "FZCW8B6S8veCouMPk",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen.",
+        "Die will er bei der Arbeit hören."
+      ],
+      "createdAt": "2019-12-11T15:17:06.375Z",
+      "updatedAt": "2019-12-11T15:17:21.156Z"
+    },
+    {
+      "_id": "NRbx3w5g9ycaxsB7W",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Das schwarze Radio kommt ins Lager.",
+        "Das stand sowieso immer nur im Weg."
+      ],
+      "createdAt": "2019-12-11T15:17:35.024Z",
+      "updatedAt": "2019-12-11T15:17:46.918Z"
+    },
+    {
+      "_id": "ke6AbdPQ7YYsmHBiE",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "schnell",
+        "zufallen",
+        "lassen",
+        "Schlüssel",
+        "kommen",
+        "freuen",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-11T15:17:53.881Z",
+      "updatedAt": "2019-12-11T15:18:19.570Z"
+    },
+    {
+      "_id": "uQCoK5Ygen6kHvw7a",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Schmal",
+        "15. Februar 2013",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-11T15:18:24.227Z",
+      "updatedAt": "2019-12-11T15:18:35.745Z"
+    },
+    {
+      "_id": "SFf2k3arMML4tEkrP",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "Wg6vSLMaNbSkeTctg",
+      "responses": [
+        "Dummes",
+        "spinne",
+        "Schlamassel",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-11T15:18:41.098Z",
+      "updatedAt": "2019-12-11T15:18:53.481Z"
+    },
+    {
+      "_id": "fTE57zBAtYbhFsFcR",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "L",
+        "L",
+        "H",
+        "S",
+        "k",
+        "g"
+      ],
+      "createdAt": "2019-12-12T14:38:23.593Z",
+      "updatedAt": "2019-12-12T14:38:36.791Z"
+    },
+    {
+      "_id": "PMdGGrEJMFADPtsge",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "M",
+        "t",
+        "h",
+        "komen",
+        "Bite sagen sie auch Frau Scholtz bescheit"
+      ],
+      "createdAt": "2019-12-12T14:38:41.627Z",
+      "updatedAt": "2019-12-12T14:39:11.314Z"
+    },
+    {
+      "_id": "inCFfBNmAxzFLscyL",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "1.8.2009",
+        "kint",
+        "k",
+        "b",
+        "F",
+        "wirt",
+        "Bite",
+        "die",
+        "ale",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-12T14:39:23.936Z",
+      "updatedAt": "2019-12-12T14:39:54.628Z"
+    },
+    {
+      "_id": "9rtGDbNFMjiFotf7c",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "Jedn Tag um Eins komt die frische Wahre.",
+        "Helga ist dan imer im Lager."
+      ],
+      "createdAt": "2019-12-12T14:40:15.456Z",
+      "updatedAt": "2019-12-12T14:40:31.944Z"
+    },
+    {
+      "_id": "PwWgrQKNM7jgq9zQy",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "Si muss für Ortnung sorgn.",
+        "Ire Kollegin ist alerdinx etwas faul."
+      ],
+      "createdAt": "2019-12-12T14:40:49.097Z",
+      "updatedAt": "2019-12-12T14:41:09.242Z"
+    },
+    {
+      "_id": "wAvPyJLyXmPctRMRB",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "2.4.2013",
+        "paleten",
+        "fruchtsaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-12T14:41:18.791Z",
+      "updatedAt": "2019-12-12T14:41:33.873Z"
+    },
+    {
+      "_id": "z7DnrsKDLmRomDZGd",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "Jetz",
+        "befor",
+        "und",
+        "schnell",
+        "Op",
+        "heute",
+        "Schmeterlinge"
+      ],
+      "createdAt": "2019-12-12T14:41:39.246Z",
+      "updatedAt": "2019-12-12T14:42:01.776Z"
+    },
+    {
+      "_id": "pejbALyf6Ge5hdCc2",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "Aniel hat musik auf sein Handy geladn.",
+        "Die wil er bei arbeit hören."
+      ],
+      "createdAt": "2019-12-12T14:42:25.631Z",
+      "updatedAt": "2019-12-12T14:42:35.349Z"
+    },
+    {
+      "_id": "ZTGNr4ccbCjBTNQsH",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "Das schwaze radio komt ins Lager.",
+        "Das stand so wie so imer nur im Weg."
+      ],
+      "createdAt": "2019-12-12T14:42:52.652Z",
+      "updatedAt": "2019-12-12T14:43:07.864Z"
+    },
+    {
+      "_id": "8vAuXjnD8C337fzrj",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "schnell",
+        "zufaln",
+        "lassn",
+        "Schlüssel",
+        "komen",
+        "freun",
+        "flucht",
+        "Schraube"
+      ],
+      "createdAt": "2019-12-12T14:43:14.451Z",
+      "updatedAt": "2019-12-12T14:43:37.906Z"
+    },
+    {
+      "_id": "wmpqCFYxTwWi9Fj93",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "Schmal",
+        "15.2.2013",
+        "Bremen"
+      ],
+      "createdAt": "2019-12-12T14:43:42.769Z",
+      "updatedAt": "2019-12-12T14:43:55.041Z"
+    },
+    {
+      "_id": "tFNFnLjBQHKunCdph",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "CkdpRtBKMj3NRcx9x",
+      "responses": [
+        "dummes",
+        "spinne",
+        "Schlamm",
+        "vergesen"
+      ],
+      "createdAt": "2019-12-12T14:44:00.800Z",
+      "updatedAt": "2019-12-12T14:44:11.712Z"
+    },
+    {
+      "_id": "6uxvA8ZR93EcDQPdn",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "SuRj9TXrPvEQfqtBF",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T06:56:16.941Z"
+    },
+    {
+      "_id": "DqZLnH8eQrrt6NQLo",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "SuRj9TXrPvEQfqtBF",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T06:56:32.535Z"
+    },
+    {
+      "_id": "bGWuTHhARApwhfaCe",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:00:47.633Z"
+    },
+    {
+      "_id": "Qg4REimmyGJHwByZQ",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:03:01.143Z"
+    },
+    {
+      "_id": "jzGzaGuGQAg72Fx7N",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:05:11.890Z"
+    },
+    {
+      "_id": "3Stq4vMRj9iY6TqFn",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:05:41.391Z"
+    },
+    {
+      "_id": "xD35AHBQ5AkntgpqH",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:06:13.465Z"
+    },
+    {
+      "_id": "sNciWHakm2w9B358C",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:07:13.351Z"
+    },
+    {
+      "_id": "kPc4sRCGo2pWDwnNg",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:07:24.869Z"
+    },
+    {
+      "_id": "ENozzwAcMqn2SgMCf",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:08:14.649Z"
+    },
+    {
+      "_id": "FxsuQJrjpZ6Cz7EL3",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:08:39.405Z"
+    },
+    {
+      "_id": "YHNNuuz6QvaWCm7jk",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "F7vLXKsmvPLg9iNLh",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:09:03.279Z"
+    },
+    {
+      "_id": "G4SPktGondxmzomwA",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:47:19.655Z"
+    },
+    {
+      "_id": "wnunaJM6CwuucyT4P",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:16.050Z"
+    },
+    {
+      "_id": "zxuyJcMw636sJzRSn",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:19.115Z"
+    },
+    {
+      "_id": "cNEuPXaapyrzkfiYh",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:27.191Z"
+    },
+    {
+      "_id": "JXbGdPgdYwZQ7czNw",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:29.482Z"
+    },
+    {
+      "_id": "bRncumfNd7pSQLLCh",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:31.552Z"
+    },
+    {
+      "_id": "dWvEL4uinb4uvaGhi",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:38.596Z"
+    },
+    {
+      "_id": "tvW6kibZRqhSNv6cv",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:41.162Z"
+    },
+    {
+      "_id": "hGD3zQuNhZ8tqqxYX",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-13T07:48:43.772Z"
+    },
+    {
+      "_id": "tkytReaPkqms5kM6K",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "KEua596JGhSQZ2oN3",
+      "responses": [
+        "Dummes",
+        "spinne",
+        "Schlamasse",
+        "vergessen"
+      ],
+      "createdAt": "2019-12-13T07:48:50.048Z",
+      "updatedAt": "2019-12-13T07:49:00.812Z"
+    },
+    {
+      "_id": "vRxYftHwF7kxpq8fL",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-16T09:59:08.293Z",
+      "updatedAt": "2019-12-16T09:59:26.700Z"
+    },
+    {
+      "_id": "thd7LFmARCwygSosv",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "M",
+        "T",
+        "h",
+        "kommen",
+        "Bitte sagen Sie auch Frau Scholz Bescheid"
+      ],
+      "createdAt": "2019-12-16T09:59:53.758Z",
+      "updatedAt": "2019-12-16T10:00:04.578Z"
+    },
+    {
+      "_id": "KJzRWpBoff2R8G24F",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "1. August 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "wird",
+        "Bitte",
+        "die",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-16T10:00:11.403Z",
+      "updatedAt": "2019-12-16T10:03:16.392Z"
+    },
+    {
+      "_id": "YW6jscRNAZ6prMeH2",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:22.372Z"
+    },
+    {
+      "_id": "eaWvdS7hf3YQXCkww",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:24.143Z"
+    },
+    {
+      "_id": "7jY6kgaHMf9dkwNAt",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:25.657Z"
+    },
+    {
+      "_id": "33PvQjgrCiZmDug7e",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:31.093Z"
+    },
+    {
+      "_id": "GFaGpAkFaFJTrCHye",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:32.758Z"
+    },
+    {
+      "_id": "tLZtnn5hXNoupomsJ",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:34.684Z"
+    },
+    {
+      "_id": "qQSBqTJf3s8ioWa2X",
+      "userId": "cHoEyMd6qpXZfapu4",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "L73DmJavjXdXXQdW6",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T10:03:36.462Z"
+    },
+    {
+      "_id": "9bAwCXSP38foddRqC",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2019-12-16T11:51:02.214Z",
+      "updatedAt": "2019-12-16T11:51:18.370Z"
+    },
+    {
+      "_id": "LL35GAF8Mk9SQE2nZ",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "M",
+        "T",
+        "h",
+        "kommen",
+        "Bitte sagen auch Frau Scholz Bescheid"
+      ],
+      "createdAt": "2019-12-16T11:51:49.993Z",
+      "updatedAt": "2019-12-16T11:52:06.777Z"
+    },
+    {
+      "_id": "c87NxHxYzp579Ky2t",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:09.967Z"
+    },
+    {
+      "_id": "nZzfzyikyCSPHyyMs",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:15.560Z"
+    },
+    {
+      "_id": "3MS8YcsDPwJNhFeWh",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:17.290Z"
+    },
+    {
+      "_id": "ESKX8aG7fv7v9uKTv",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:18.860Z"
+    },
+    {
+      "_id": "YPspzgLGgZkPCgrt9",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:23.574Z"
+    },
+    {
+      "_id": "gXuc7kACqxBSiNhvR",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:25.397Z"
+    },
+    {
+      "_id": "XTKwLYQgy9yxa7zhj",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:27.027Z"
+    },
+    {
+      "_id": "fbkLPzEfguJaaAyX9",
+      "userId": "RSxzCsJN4hzkaZiLD",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "KAFtwjefv9htipH8E",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-16T11:52:28.797Z"
+    },
+    {
+      "_id": "mi2kHRpCd9vDhZu9f",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "L",
+        "l",
+        "l",
+        "d",
+        "G",
+        "g"
+      ],
+      "createdAt": "2019-12-17T10:48:41.195Z",
+      "updatedAt": "2019-12-17T10:51:43.575Z"
+    },
+    {
+      "_id": "wcda8ZQZJjhFZJxYp",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-17T10:51:07.343Z"
+    },
+    {
+      "_id": "HLzzRcZoX84FhkC27",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "01. 08. 2009",
+        "Kind",
+        "K",
+        "p",
+        "F",
+        "wird",
+        "Bitte",
+        "die",
+        "alle",
+        "Boden",
+        "T"
+      ],
+      "createdAt": "2019-12-17T10:52:46.800Z",
+      "updatedAt": "2019-12-17T10:55:24.353Z"
+    },
+    {
+      "_id": "ww73DQ3dCHyLnnWQZ",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "Jeden Tag um 1 kommt die frische Ware",
+        "Helga ist dann im immer im Lager"
+      ],
+      "createdAt": "2019-12-17T10:56:46.181Z",
+      "updatedAt": "2019-12-17T10:59:00.208Z"
+    },
+    {
+      "_id": "zf9LQvcwXbrvdDEq7",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "sie muss für Ordnung sorgen",
+        "Ihre Kollegin ist allerdings etwas faul."
+      ],
+      "createdAt": "2019-12-17T11:06:44.265Z",
+      "updatedAt": "2019-12-17T11:07:13.179Z"
+    },
+    {
+      "_id": "ZWJPXWBLuYt9ESGKd",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "2.04.2013",
+        "Paletten",
+        "FRuchstaft",
+        "Helga Bauer"
+      ],
+      "createdAt": "2019-12-17T11:08:06.554Z",
+      "updatedAt": "2019-12-17T11:08:41.335Z"
+    },
+    {
+      "_id": "JYKjieMg32fwBLni5",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "Jedst",
+        "befor",
+        "unt",
+        "schnel",
+        "ob",
+        "heute",
+        "schmedderlings"
+      ],
+      "createdAt": "2019-12-17T11:09:18.773Z",
+      "updatedAt": "2019-12-17T11:10:20.208Z"
+    },
+    {
+      "_id": "phLwrTsFgctBL4mqz",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "Anil hat Musik auf sein Handy geladen",
+        "Die will er bei der Arbeit hören"
+      ],
+      "createdAt": "2019-12-17T11:12:34.566Z",
+      "updatedAt": "2019-12-17T11:14:27.789Z"
+    },
+    {
+      "_id": "iYgBniuWEwxxrCFwx",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-17T11:15:23.193Z"
+    },
+    {
+      "_id": "tTjhtiqTp3w6ioQck",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "Schmal",
+        "15. Feb. 2013",
+        "Stuttgart"
+      ],
+      "createdAt": "2019-12-17T11:31:57.451Z",
+      "updatedAt": "2019-12-17T11:32:17.930Z"
+    },
+    {
+      "_id": "Rudy8tdXx42RE3yNj",
+      "userId": "B6Bid5Tns9rj3sMwN",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "yd2GPHAKFp6nQzj45",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2019-12-17T11:33:04.142Z"
+    },
+    {
+      "_id": "tBGgu9onMYYAFkh4v",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-18T23:50:25.739Z",
+      "updatedAt": "2019-12-18T23:50:51.574Z"
+    },
+    {
+      "_id": "urneca2ZfKvFZQ3T4",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-18T23:51:00.692Z"
+    },
+    {
+      "_id": "DC6Riv72dSYfE8aWH",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-18T23:52:35.142Z",
+      "updatedAt": "2019-12-18T23:52:56.838Z"
+    },
+    {
+      "_id": "CcB2Td2eqFM7Z9esx",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-18T23:58:53.066Z",
+      "updatedAt": "2019-12-18T23:59:47.269Z"
+    },
+    {
+      "_id": "GcZvEDv8NHKkcJtqy",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0010",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-19T00:00:05.611Z"
+    },
+    {
+      "_id": "z3ukJbhxk7oiAQqdH",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-19T00:01:49.238Z",
+      "updatedAt": "2019-12-19T00:02:37.668Z"
+    },
+    {
+      "_id": "pAuudFPLWtMrsGyAL",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-19T00:02:22.574Z",
+      "updatedAt": "2019-12-19T00:02:54.012Z"
+    },
+    {
+      "_id": "7jArBGzLXDWB28ons",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-19T00:07:30.339Z",
+      "updatedAt": "2019-12-19T00:08:02.486Z"
+    },
+    {
+      "_id": "F7xH3igdgdbcweF5a",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0013",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-19T00:08:08.339Z",
+      "updatedAt": "2019-12-19T00:08:23.317Z"
+    },
+    {
+      "_id": "FsHkqNBmYFodRZp96",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-19T00:08:32.557Z",
+      "updatedAt": "2019-12-19T00:08:36.042Z"
+    },
+    {
+      "_id": "oBwS5qMbvywbir9Tp",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0013",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2019-12-19T00:08:39.789Z",
+      "updatedAt": "2019-12-19T00:08:44.465Z"
+    },
+    {
+      "_id": "59vWE9tio6bjeREnB",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-19T00:09:05.658Z",
+      "updatedAt": "2019-12-19T00:09:42.740Z"
+    },
+    {
+      "_id": "5BpNpjxAhbzSzgZMB",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0014",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2019-12-19T00:09:47.553Z",
+      "updatedAt": "2019-12-19T00:09:48.193Z"
+    },
+    {
+      "_id": "PnESXdXZAtyLyc74A",
+      "userId": "rMXrEHLgL92JFoBwM",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "3DfZtzKaN2E9jrjRR",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2019-12-19T00:09:53.673Z",
+      "updatedAt": "2019-12-19T00:09:59.964Z"
+    },
+    {
+      "_id": "Ds3zGmK2uLRrtn2pF",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "vn47obQo29g5Hcd2Y",
+      "responses": [
+        "L",
+        "M",
+        "H",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2020-01-09T09:55:23.024Z",
+      "updatedAt": "2020-01-09T09:55:31.773Z"
+    },
+    {
+      "_id": "WiHRZsJQjXqRhMT2s",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "vn47obQo29g5Hcd2Y",
+      "responses": [
+        "M",
+        "T",
+        "H",
+        "kommen",
+        "Bitte sagen Sie auch Frau Scholz Bescheid"
+      ],
+      "createdAt": "2020-01-09T09:55:37.916Z",
+      "updatedAt": "2020-01-09T09:56:05.770Z"
+    },
+    {
+      "_id": "BKrG7pAzS5uocLxWY",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "vn47obQo29g5Hcd2Y",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-09T09:56:16.726Z",
+      "updatedAt": "2020-01-09T09:56:30.320Z"
+    },
+    {
+      "_id": "Jfb8iSFzXxHgdtSeC",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-09T10:31:58.199Z",
+      "updatedAt": "2020-01-09T10:32:02.041Z"
+    },
+    {
+      "_id": "nMMb4Ebzsn6xnzLtv",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-09T10:32:08.166Z"
+    },
+    {
+      "_id": "Gk2qT9miDLLJM9SmM",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-09T10:32:13.413Z",
+      "updatedAt": "2020-01-09T10:32:17.801Z"
+    },
+    {
+      "_id": "Dd8R5FxL6Aj95mWzn",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0009",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-09T10:32:21.876Z"
+    },
+    {
+      "_id": "QvkTazBMXrbjoTAXo",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-09T10:32:35.709Z",
+      "updatedAt": "2020-01-09T10:32:41.734Z"
+    },
+    {
+      "_id": "EnxyfCm6sreoiZDg2",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-09T10:32:58.513Z"
+    },
+    {
+      "_id": "odkLoEMzwK5MsN76D",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-09T10:33:04.076Z",
+      "updatedAt": "2020-01-09T10:33:11.076Z"
+    },
+    {
+      "_id": "53TKyAx4otWoeCKB2",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "ho8RdTgAiQBreCyyZ",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-09T10:33:15.505Z"
+    },
+    {
+      "_id": "FkC8cjDxa7Ezkuop7",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "JwAyvBuqWs3RxgrjX",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-09T12:27:51.257Z"
+    },
+    {
+      "_id": "EQRt4Q3iSZGH6T2NY",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "JwAyvBuqWs3RxgrjX",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-09T12:27:58.254Z"
+    },
+    {
+      "_id": "QsnHapD8wup3NrjmC",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "JwAyvBuqWs3RxgrjX",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-09T12:28:09.936Z"
+    },
+    {
+      "_id": "dwRpLEj3ZZv22nL2B",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "JwAyvBuqWs3RxgrjX",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-09T12:28:19.878Z",
+      "updatedAt": "2020-01-09T12:28:38.962Z"
+    },
+    {
+      "_id": "MLTyfXnpresdoDvZB",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "JwAyvBuqWs3RxgrjX",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-09T12:28:44.069Z"
+    },
+    {
+      "_id": "8mavvZqaWJiEdoMYN",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "aGKwhDevunTyuH7FJ",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T08:06:30.982Z"
+    },
+    {
+      "_id": "uJ6xiZe8RDh5MeFNm",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "aGKwhDevunTyuH7FJ",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T08:08:07.315Z"
+    },
+    {
+      "_id": "AwwP6sFKZJMSuiRff",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "aGKwhDevunTyuH7FJ",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T08:37:32.264Z"
+    },
+    {
+      "_id": "wWerDvBXYorgfPLXT",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T08:38:45.699Z",
+      "updatedAt": "2020-01-10T09:18:42.215Z"
+    },
+    {
+      "_id": "NRMNgfiuiG98kvpJ5",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:18:44.483Z"
+    },
+    {
+      "_id": "ZEtmdkr8jLwzdP3Mp",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:18:50.109Z",
+      "updatedAt": "2020-01-10T09:18:53.631Z"
+    },
+    {
+      "_id": "dbLNp2o9oY3dfrHBL",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0009",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:18:57.544Z"
+    },
+    {
+      "_id": "WQYg8pBvcg5bRh5Mn",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:19:46.589Z",
+      "updatedAt": "2020-01-10T09:20:11.177Z"
+    },
+    {
+      "_id": "FCSqesefbGi3MgSQW",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:20:19.364Z"
+    },
+    {
+      "_id": "q7zTzHZCcsTqe8oxC",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:20:24.912Z",
+      "updatedAt": "2020-01-10T09:20:31.653Z"
+    },
+    {
+      "_id": "NAtAiYER3Dndt8BzM",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:20:34.983Z",
+      "updatedAt": "2020-01-10T09:20:42.683Z"
+    },
+    {
+      "_id": "bFJ6WBTrACxeRXpbN",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:20:48.578Z",
+      "updatedAt": "2020-01-10T09:20:52.386Z"
+    },
+    {
+      "_id": "giH2tNs92WdJPXH9C",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0012",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:20:56.922Z"
+    },
+    {
+      "_id": "C9YHLNitJb68tmP3W",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:21:08.209Z",
+      "updatedAt": "2020-01-10T09:21:12.549Z"
+    },
+    {
+      "_id": "99GZFX9GvCEHkMGqj",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:21:21.967Z"
+    },
+    {
+      "_id": "vWj8ZT4tLdT7n4Fu4",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T09:21:31.793Z"
+    },
+    {
+      "_id": "sYB9Ew2YuCM988iHv",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0014",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:21:38.462Z"
+    },
+    {
+      "_id": "eeBRxxk5XzECbzfXN",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "krfoDPyFWC5MGuJkm",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:21:44.429Z"
+    },
+    {
+      "_id": "KRbkaxpftHdrPFwSf",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:23:18.763Z",
+      "updatedAt": "2020-01-10T09:24:51.286Z"
+    },
+    {
+      "_id": "vkamGTpKYnJPPxWjg",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:25:00.786Z"
+    },
+    {
+      "_id": "Y4J6v5CBX3g9N5Yne",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:25:06.079Z",
+      "updatedAt": "2020-01-10T09:25:10.189Z"
+    },
+    {
+      "_id": "RPQNmAobJDiMSbq7W",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0009",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:25:14.937Z"
+    },
+    {
+      "_id": "7tko2tgAGEJ3b3dbC",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:25:42.349Z",
+      "updatedAt": "2020-01-10T09:25:45.306Z"
+    },
+    {
+      "_id": "CNnYfcZYTfmQQdHFA",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:25:52.425Z"
+    },
+    {
+      "_id": "FnoB4xzDyfwqeHcDe",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:25:58.259Z",
+      "updatedAt": "2020-01-10T09:26:01.457Z"
+    },
+    {
+      "_id": "JM3KZ4JHabf7yFMY7",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:26:08.809Z",
+      "updatedAt": "2020-01-10T09:26:11.327Z"
+    },
+    {
+      "_id": "Q2hKGrBySuhSY6mBy",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0012",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:26:15.146Z"
+    },
+    {
+      "_id": "PkvSrYT2uJiBTogTg",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:26:24.103Z",
+      "updatedAt": "2020-01-10T09:26:28.292Z"
+    },
+    {
+      "_id": "56tLwjQgSwZyeZ7Z8",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:26:35.823Z"
+    },
+    {
+      "_id": "8TR3YgRr3Z7GG7Aoj",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:26:44.273Z",
+      "updatedAt": "2020-01-10T09:26:47.664Z"
+    },
+    {
+      "_id": "q9QgSTccM94xuyyfi",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "R44u3k8zWAdvrpPZP",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:26:55.809Z"
+    },
+    {
+      "_id": "WwWgNnb7f7dqBWhXC",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "3cGWvgd7XgYzfYSyS",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T09:43:26.182Z"
+    },
+    {
+      "_id": "QfYe37x5mi4dLZXkp",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "3cGWvgd7XgYzfYSyS",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T09:43:27.526Z"
+    },
+    {
+      "_id": "ajxFkvKSpcFeQCdMu",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "3cGWvgd7XgYzfYSyS",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T09:43:30.067Z"
+    },
+    {
+      "_id": "WQZxmaKcbFinaRi4i",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "3cGWvgd7XgYzfYSyS",
+      "responses": [
+        "Jeden Tag um Eins kommt die frische Ware.",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-10T09:43:36.448Z",
+      "updatedAt": "2020-01-10T09:43:51.494Z"
+    },
+    {
+      "_id": "pvcZzAbwy3tHBdRnr",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:55:16.230Z",
+      "updatedAt": "2020-01-10T09:55:17.233Z"
+    },
+    {
+      "_id": "WLMuJTPqFXgDzX64y",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:55:20.532Z"
+    },
+    {
+      "_id": "uoqgyzjhuPpzjYyoM",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:55:24.896Z",
+      "updatedAt": "2020-01-10T09:55:27.153Z"
+    },
+    {
+      "_id": "ZHYkSYFFqCNGNYEw2",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0009",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:55:30.260Z"
+    },
+    {
+      "_id": "awLBHTpRt7Agy8aTj",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:56:29.726Z",
+      "updatedAt": "2020-01-10T09:56:32.961Z"
+    },
+    {
+      "_id": "LAxkXPATK7QkwpCyP",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:56:41.003Z"
+    },
+    {
+      "_id": "inw2icBdw5HeKzNdW",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:56:45.178Z",
+      "updatedAt": "2020-01-10T09:56:48.005Z"
+    },
+    {
+      "_id": "hTDwobTyzT4bPho4F",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:56:55.423Z",
+      "updatedAt": "2020-01-10T09:56:58.080Z"
+    },
+    {
+      "_id": "DcZMGragYeXnGAym7",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0012",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-01-10T09:57:01.974Z"
+    },
+    {
+      "_id": "rPmooT9kHJPXppcAK",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:57:08.962Z",
+      "updatedAt": "2020-01-10T09:57:10.774Z"
+    },
+    {
+      "_id": "73i6oWmfYPuytCRAy",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:57:17.788Z"
+    },
+    {
+      "_id": "Qgj8m45iRF37uBthQ",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-01-10T09:57:25.132Z",
+      "updatedAt": "2020-01-10T09:57:27.927Z"
+    },
+    {
+      "_id": "oT4bbrPrF3kdWJG5d",
+      "userId": "a5MpQ3hhENC7KkzYG",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "v3zNxsKdzWks5Si7W",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-01-10T09:57:34.635Z"
+    },
+    {
+      "_id": "WDqwkboMB7uvN7piQ",
+      "userId": "cjrj3RGuDwXdLoqRQ",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "nbcz885E5ez9fj4Cp",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-28T11:35:30.018Z"
+    },
+    {
+      "_id": "NKepNxCbTaPiiByNf",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:37:11.254Z"
+    },
+    {
+      "_id": "MmBfhcWLno4jDMYp5",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:37:13.742Z"
+    },
+    {
+      "_id": "2AnXCmhwcDxWJ4Kp3",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:37:15.472Z"
+    },
+    {
+      "_id": "HMzmPaXaKTxfnJAoD",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0013",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "fsddfdsfsd",
+        "dsfdsfdfvfdbfdbgfb"
+      ],
+      "createdAt": "2020-01-30T09:37:49.205Z",
+      "updatedAt": "2020-01-30T09:37:50.902Z"
+    },
+    {
+      "_id": "yc3ACGxzqFeDg5SJ2",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "tet34r3r423",
+        "2423242423423dfg"
+      ],
+      "createdAt": "2020-01-30T09:37:54.987Z",
+      "updatedAt": "2020-01-30T09:38:01.129Z"
+    },
+    {
+      "_id": "AFD8iDbs67khWCWXi",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:38:04.339Z"
+    },
+    {
+      "_id": "Ss4WtkXzYPryCBEff",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:38:06.470Z"
+    },
+    {
+      "_id": "vsk2XgoLEag4PjfxR",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0017",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "fsfsf",
+        "fsdfdsfsf"
+      ],
+      "createdAt": "2020-01-30T09:38:10.941Z",
+      "updatedAt": "2020-01-30T09:38:11.808Z"
+    },
+    {
+      "_id": "BZtkbwidriHKgu8nQ",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "sdfsdfdsf",
+        "fsdfdsfsfsdfsddfsfsf"
+      ],
+      "createdAt": "2020-01-30T09:38:14.218Z",
+      "updatedAt": "2020-01-30T09:38:15.303Z"
+    },
+    {
+      "_id": "zrsah4rBivdSC4siP",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:38:19.416Z"
+    },
+    {
+      "_id": "toPfET7Sj5pdTGg37",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:38:21.392Z"
+    },
+    {
+      "_id": "4Z3zHfJB7Q6iBtfyR",
+      "userId": "bxhzPdZoFze8qiKLs",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "tx4KP4XwFGGuNLmpH",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-01-30T09:38:24.103Z"
+    },
+    {
+      "_id": "oZuvDyZtx4uS4N9z3",
+      "userId": "FY3h4SrsHhJ7nznB9",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "HChPy44b5R6sP73Ay",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-10T10:15:20.454Z",
+      "updatedAt": "2020-02-10T10:15:26.859Z"
+    },
+    {
+      "_id": "7rjM3oamg3T5KLo3T",
+      "userId": "FY3h4SrsHhJ7nznB9",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "HChPy44b5R6sP73Ay",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-10T10:16:17.737Z"
+    },
+    {
+      "_id": "Yzi4xs6vhQkowSGp3",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:46:21.275Z"
+    },
+    {
+      "_id": "77ZHSntnark5u8RbB",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:46:37.696Z"
+    },
+    {
+      "_id": "pFvG6jthBCMraccKe",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:46:39.741Z"
+    },
+    {
+      "_id": "w4je2k79FwtWHhyZu",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:47:16.575Z"
+    },
+    {
+      "_id": "cymQSrdeKj4jdWFwg",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:47:19.207Z"
+    },
+    {
+      "_id": "WCCQb9BfXX69BJDtQ",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:47:20.650Z"
+    },
+    {
+      "_id": "N7BYXcTrBWjrFvdeA",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:47:26.654Z"
+    },
+    {
+      "_id": "g36KtENrhQRTMJnYG",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:47:28.537Z"
+    },
+    {
+      "_id": "EkbpeC3zRztgBA3Hd",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:47:31.200Z"
+    },
+    {
+      "_id": "git786rPZvMFLrkia",
+      "userId": "ruDXMGXXTZPYNw64J",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "Hn3JLMidj9n97Eahg",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-12T11:48:05.526Z"
+    },
+    {
+      "_id": "MkMFwzZSX82w4f5f8",
+      "userId": "FY3h4SrsHhJ7nznB9",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "HChPy44b5R6sP73Ay",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-14T12:44:39.892Z"
+    },
+    {
+      "_id": "hmBLKMrLEWNDE7Ybe",
+      "userId": "FY3h4SrsHhJ7nznB9",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "biXMRztrkKh7p84KJ",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-14T13:02:09.484Z",
+      "updatedAt": "2020-02-14T13:30:00.515Z"
+    },
+    {
+      "_id": "xYXiBCQv8RcpuTEdC",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0010",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "L",
+        "L",
+        "h",
+        "S",
+        "K",
+        "g"
+      ],
+      "createdAt": "2020-02-24T15:30:03.720Z",
+      "updatedAt": "2020-02-24T15:30:13.875Z"
+    },
+    {
+      "_id": "TqnDpCa6mX7ZtZxqp",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0011",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:16.529Z"
+    },
+    {
+      "_id": "2K3P7To95FuDhhZd7",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0012",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:18.173Z"
+    },
+    {
+      "_id": "JQdbAetWxM3rshTu5",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0013",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:22.807Z"
+    },
+    {
+      "_id": "ea5hrpTLBKyczb7Sv",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0014",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:25.190Z"
+    },
+    {
+      "_id": "Q4HMjkJr8QTQANyuv",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0015",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:26.844Z"
+    },
+    {
+      "_id": "6viDANms2F9oSAJdP",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "1",
+      "taskId": "W0017",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:32.143Z"
+    },
+    {
+      "_id": "nhzwXAdJee9yhc7BK",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0018",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:34.245Z"
+    },
+    {
+      "_id": "GS2fh74JhHXJYmk3a",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0019",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:35.965Z"
+    },
+    {
+      "_id": "rHwSRHbQAHgk7wfpb",
+      "userId": "pSg8yKBkyYBxWyqjo",
+      "type": "cloze",
+      "page": "0",
+      "taskId": "W0020",
+      "sessionId": "nvwMb6QW9jbWFR2nx",
+      "responses": [
+        "__undefined__",
+        "__undefined__",
+        "__undefined__",
+        "__undefined__"
+      ],
+      "createdAt": "2020-02-24T15:30:38.009Z"
+    },
+    {
+      "_id": "HP4QG2RztbhocoBTf",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:03:32.846Z",
+      "updatedAt": "2020-02-25T16:03:35.914Z"
+    },
+    {
+      "_id": "6AGaWL4ChmEBNztCo",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0008",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-25T16:03:38.773Z"
+    },
+    {
+      "_id": "apqD2jDs3nwoyJRcu",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0009",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-25T16:03:44.549Z",
+      "updatedAt": "2020-02-25T16:03:47.192Z"
+    },
+    {
+      "_id": "DAu6JEgZEmbjRWFfJ",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0009",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:03:50.104Z"
+    },
+    {
+      "_id": "A7DNXEoDQ8FCc9Bt7",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "3",
+      "taskId": "R0009",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-25T16:03:57.864Z"
+    },
+    {
+      "_id": "KvNKK5MB297CaiZcv",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0010",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:04:00.842Z",
+      "updatedAt": "2020-02-25T16:04:02.704Z"
+    },
+    {
+      "_id": "Eg8siHcjteYbRxtRg",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0010",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-25T16:04:05.196Z"
+    },
+    {
+      "_id": "52kQuvWbi8xERB6TF",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0010",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:04:11.875Z"
+    },
+    {
+      "_id": "pdLS47QktEdzFA2tW",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0011",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:04:15.841Z",
+      "updatedAt": "2020-02-25T16:04:18.077Z"
+    },
+    {
+      "_id": "Cam5tioJRzXD2AF6o",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0011",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-02-25T16:04:22.512Z",
+      "updatedAt": "2020-02-25T16:04:24.441Z"
+    },
+    {
+      "_id": "WD4B7RGhd5KxagBGQ",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0012",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:04:28.784Z",
+      "updatedAt": "2020-02-25T16:04:31.858Z"
+    },
+    {
+      "_id": "ADFZKddoER22LmjSf",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0012",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-02-25T16:04:36.870Z"
+    },
+    {
+      "_id": "nz32LAwbZiqDHBFEu",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0013",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:04:50.828Z",
+      "updatedAt": "2020-02-25T16:04:52.774Z"
+    },
+    {
+      "_id": "MJsZEz5Yn3kRSsjJa",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0013",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-25T16:04:55.749Z"
+    },
+    {
+      "_id": "kBEjdqgunpnYsDzLp",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0013",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-02-25T16:04:58.578Z"
+    },
+    {
+      "_id": "XBSEhSsbgLvurbZXo",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0014",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "1"
+      ],
+      "createdAt": "2020-02-25T16:05:06.182Z",
+      "updatedAt": "2020-02-25T16:05:08.369Z"
+    },
+    {
+      "_id": "Ha4LcMSFKHe2pY2eG",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "1",
+      "taskId": "R0014",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "0"
+      ],
+      "createdAt": "2020-02-25T16:05:11.691Z"
+    },
+    {
+      "_id": "uc85MhvqnMWb7Kidm",
+      "userId": "gqE4jGjYRgTzsomgJ",
+      "type": "singleChoice",
+      "page": "2",
+      "taskId": "R0014",
+      "sessionId": "ydH5fLLnLwGoehEoC",
+      "responses": [
+        "2"
+      ],
+      "createdAt": "2020-02-25T16:05:15.569Z"
+    },
+    {
+      "_id": "CmGrbbu6LpvLW5o53",
+      "userId": "MGFBDwcb9LHcyWkqK",
+      "type": "singleChoice",
+      "page": "0",
+      "taskId": "R0008",
+      "sessionId": "73B3xpH6NzCbhpNom",
+      "responses": [
+        "__undefined__"
+      ],
+      "createdAt": "2020-03-23T12:49:23.693Z"
+    }
+
+  ]
+}

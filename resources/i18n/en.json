@@ -1,0 +1,40 @@
+{
+  "actions": {
+    "continue": "Continue"
+  },
+  "common": {
+    "loading": "Loading"
+  },
+  "error": {
+    "title": "Error",
+    "occurred": "An error occurred"
+  },
+  "pages": {
+    "login": {
+      "title": "Login",
+      "login": "Login to the app",
+      "loggingIn": "Logging in...",
+      "loggedIn": "Login successful!"
+    },
+    "logout": {
+      "logout": "Logout",
+      "loggingOut": "Logging out...",
+      "loggedOut": "Successfully logged out!"
+    },
+    "notFound": {
+      "title": "404 - Page not found",
+      "backToRoot": "Back to home"
+    },
+    "myClasses": {
+      "title": "My Classes"
+    }
+  },
+  "routes": {
+    "notFound": "page-not-found",
+    "login": "login",
+    "logout": "logout",
+    "myClasses": "my-classes",
+    "class": "class",
+    "user": "user"
+  }
+}

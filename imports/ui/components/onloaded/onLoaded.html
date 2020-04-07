@@ -1,0 +1,7 @@
+<template name="onLoaded">
+    {{#unless loaded}}
+        {{>loading}}
+    {{else}}
+        {{> Template.contentBlock }}
+    {{/unless}}
+</template>

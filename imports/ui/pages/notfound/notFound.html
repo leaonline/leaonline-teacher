@@ -1,22 +1,19 @@
 <template name="notFound">
     <div class="container lea-pagenotfound-container">
-        <div class="jumbotron">
-            <h1 class="text-center">
-                <span>¯\_(ツ)_/¯</span>
-            </h1>
-            <p>{{i18n "pages.notFound.title"}}</p>
-        </div>
+        {{#onLoaded loaded=componentsLoaded}}
+            {{#jumbotron}}
+                <h1 class="text-center">
+                    <span>¯\_(ツ)_/¯</span>
+                </h1>
+                <p class="text-center">{{i18n "pages.notFound.title"}}</p>
+            {{/jumbotron}}
+        {{/onLoaded}}
 
-        <div class="card">
-            <div class="card-body">
-                {{#if currentUser}}
-                    {{> actionButton tts="common.toOverview" href=(route 'overview') label=(i18n "common.toOverview")
-                            block=true outline=true type="primary" btnClass="lea-pagenotfound-button"}}
-                {{else}}
-                    {{> actionButton tts="common.toWelcome" href=(route 'welcome') label=(i18n "common.toWelcome")
-                            block=true outline=true type="primary" btnClass="lea-pagenotfound-button"}}
-                {{/if}}
-            </div>
-        </div>
+        {{#onLoaded loaded=componentsLoaded}}
+            {{#card justbody=true}}
+                {{> icon fw=true name="caret-left" }}
+                {{> link href=(route 'root') label=(i18n "pages.notFound.backToRoot")}}
+            {{/card}}
+        {{/onLoaded}}
     </div>
 </template>

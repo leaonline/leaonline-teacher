@@ -1,9 +1,9 @@
-/* global Roles */
-import { FlowRouter, RouterHelpers } from 'meteor/ostrio:flow-router-extra'
+/* global Roles Promise */
 import { Meteor } from 'meteor/meteor'
-import { Tracker } from 'meteor/tracker'
 import { Template } from 'meteor/templating'
-import { translate } from '../i18n/reactiveTranslate'
+import { Tracker } from 'meteor/tracker'
+import { ReactiveVar } from 'meteor/reactive-var'
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
 
 /**
  * Facade to a router to support a common definition for routing in case
@@ -12,7 +12,6 @@ import { translate } from '../i18n/reactiveTranslate'
  */
 export const Router = {}
 Router.src = FlowRouter
-Router.debug = false
 
 Router.go = function (value, ...optionalArgs) {
   const type = typeof value
@@ -25,12 +24,21 @@ Router.go = function (value, ...optionalArgs) {
   }
 }
 
+const routeCache = new ReactiveVar()
+
+Router.cache = function (value) {
+  if (value) {
+    routeCache.set(value)
+  }
+  return routeCache.get()
+}
+
 Router.has = function (path) {
   return paths[path]
 }
 
-Router.location = function (options = {}) {
-  if (options.pathName) {
+Router.location = function ({ pathName } = {}) {
+  if (pathName) {
     return FlowRouter.current().route.name
   }
   return FlowRouter.current().path
@@ -44,36 +52,40 @@ Router.current = function (options = {}) {
 }
 
 Router.param = function (value) {
-  const type = typeof value
-  if (type === 'object') {
+  if (typeof value === 'object') {
     return FlowRouter.setParams(value)
   }
-  if (type === 'string') {
+  if (typeof value === 'string') {
     return FlowRouter.getParam(value)
   }
-  throw new Error(`Unexpected format: [${type}], expected string or object`)
+  throw new Error(`Unexpected format: [${typeof value}], expected string or object`)
 }
 
 Router.queryParam = function (value) {
-  const type = typeof value
-  if (type === 'object') {
+  if (typeof value === 'object') {
     return FlowRouter.setQueryParams(value)
   }
-  if (type === 'string') {
+  if (typeof value === 'string') {
     return FlowRouter.getQueryParam(value)
   }
-  throw new Error(`Unexpected format: [${type}], expected string or object`)
+  throw new Error(`Unexpected format: [${typeof type}], expected string or object`)
 }
 
-let _titlePrefix = ''
+let _defaultTarget = 'body'
 
-Router.titlePrefix = function (value = '') {
-  _titlePrefix = value
+Router.setDefaultTarget = function (value) {
+  _defaultTarget = value
+}
+
+let _defaultLabel = ''
+
+Router.setDefaultLabel = function (value) {
+  _defaultLabel = value
 }
 
 let _loadingTemplate
 
-Router.loadingTemplate = function (value = 'loading') {
+Router.setLoadingTemplate = function (value) {
   _loadingTemplate = value
 }
 
@@ -91,13 +103,16 @@ const paths = {}
     .triggersExit() hooks
  */
 function createRoute (routeDef, onError) {
+  const label = typeof routeDef.label === 'function'
+    ? routeDef.label()
+    : routeDef.label
   return {
     name: routeDef.key,
     whileWaiting () {
       // we render by default a "loading" template if the Template has not been loaded yet
       // which can be explicitly prevented by switching showLoading to false
       if (!Template[routeDef.template] && routeDef.showLoading !== false) {
-        this.render(routeDef.target, _loadingTemplate, { title: routeDef.label })
+        this.render(routeDef.target || _defaultTarget, _loadingTemplate, { title: label })
       }
     },
     waitOn () {
@@ -116,31 +131,31 @@ function createRoute (routeDef, onError) {
     },
     triggersEnter: routeDef.triggersEnter && routeDef.triggersEnter(),
     action (params, queryParams) {
-      console.log(routeDef)
       // if we have loaded the template but it is not available
       // on the rendering pipeline through Template.<name> we
       // just skip the action and wait for the next rendering cycle
       if (!Template[routeDef.template]) {
-        console.warn(`Found rendering attempt on unloaded Template [${routeDef.template}]`)
-        return
+        console.warn('[Router]: skipping yet undefined template', routeDef.template)
+        document.title = `${_defaultLabel} ${label}`
+        return setTimeout(() => {
+          Router.refresh(routeDef.target || _defaultTarget, _loadingTemplate)
+        }, 50)
       }
 
-      // run custom actions to run at very first,
-      // for example to scroll the window to the top
-      // or prepare the window environment otherwise
       if (routeDef.onAction) {
         routeDef.onAction(params, queryParams)
       }
 
+      window.scrollTo(0, 0)
       const data = routeDef.data || {}
       data.params = params
       data.queryParams = queryParams
 
-      const label = translate(routeDef.label)
-      document.title = `${_titlePrefix} ${label}`
-
+      document.title = `${_defaultLabel} ${label}`
+      _currentLabel.set(label)
+      routeCache.set(routeDef)
       try {
-        this.render(routeDef.target, routeDef.template, data)
+        this.render(routeDef.target || _defaultTarget, routeDef.template, data)
       } catch (e) {
         console.error(e)
         if (typeof onError === 'function') {
@@ -151,6 +166,12 @@ function createRoute (routeDef, onError) {
   }
 }
 
+const _currentLabel = new ReactiveVar()
+
+Router.label = function () {
+  return _currentLabel.get()
+}
+
 Router.register = function (routeDefinition) {
   const path = routeDefinition.path()
   paths[path] = routeDefinition
@@ -158,8 +179,10 @@ Router.register = function (routeDefinition) {
   return FlowRouter.route(path, routeInstance)
 }
 
-Router.helpers = {
-  isActive (name) {
-    return RouterHelpers.name(name)
-  }
+Router.reload = function () {
+  return FlowRouter.reload()
+}
+
+Router.refresh = function (target, template) {
+  return FlowRouter.refresh(target, template)
 }

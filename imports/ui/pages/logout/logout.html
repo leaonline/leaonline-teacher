@@ -1,0 +1,27 @@
+<template name="logout">
+    {{#if loggingOut}}
+        {{#proxy template="alert" loaded=loadComplete type="info"}}
+           <h1>
+               {{>icon pulse=true name="spinner"}}
+               <span>{{i18n "pages.logout.loggingOut"}}</span>
+           </h1>
+        {{/proxy}}
+    {{/if}}
+
+
+    {{#if loggedOut}}
+        {{#proxy template="alert" loaded=loadComplete type="success"}}
+            <h1>
+                <span>{{i18n "pages.logout.loggedOut"}}</span>
+            </h1>
+        {{/proxy}}
+    {{/if}}
+
+    {{#if hasError}}
+        {{#proxy template="alert" loaded=loadComplete type="danger"}}
+            <h1>
+                <span>{{i18n "error.occurred"}}</span>
+            </h1>
+        {{/proxy}}
+    {{/if}}
+</template>
