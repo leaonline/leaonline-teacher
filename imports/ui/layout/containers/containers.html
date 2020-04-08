@@ -1,0 +1,24 @@
+<!-- the login render target is used only for routes on logged-out users -->
+
+<template name="logged-out-render-target">
+    <wrapper class="container-fluid d-flex flex-column">
+        <main class="w-100 main-container flex-fill">
+            {{> yield}}
+        </main>
+        {{> navBottom}}
+    </wrapper>
+</template>
+
+<!-- the login render target is used for logged-in users -->
+
+<template name="main-render-target">
+    {{> navTop}}
+    <wrapper class="container-fluid d-flex flex-row p-0">
+        {{> navSide}}
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-9 pt-3 px-4 main-container">
+            <h1>{{routeLabel}}</h1>
+            {{> yield}}
+        </main>
+    </wrapper>
+    {{> navBottom}}
+</template>

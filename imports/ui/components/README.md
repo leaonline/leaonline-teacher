@@ -9,3 +9,4 @@
 - [**icon**](icon)
 - [**loading**](loading)
 - [**onloaded**](onloaded)
+- [**proxy**](proxy)

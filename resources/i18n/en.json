@@ -28,13 +28,5 @@
     "myClasses": {
       "title": "My Classes"
     }
-  },
-  "routes": {
-    "notFound": "page-not-found",
-    "login": "login",
-    "logout": "logout",
-    "myClasses": "my-classes",
-    "class": "class",
-    "user": "user"
   }
 }
