@@ -116,6 +116,7 @@ If you are not familiar with it, please consult the Meteor guide, first.
     - [**i18n**](imports/api/i18n)
     - [**routing**](imports/api/routing)
     - [**utils**](imports/api/utils)
+  - [**factories**](imports/factories)
   - [**startup**](imports/startup)
     - [**client**](imports/startup/client)
       - [**scss**](imports/startup/client/scss) - custom styles / theme
@@ -125,13 +126,27 @@ If you are not familiar with it, please consult the Meteor guide, first.
       - [**icon**](imports/ui/components/icon)
       - [**loading**](imports/ui/components/loading)
       - [**onloaded**](imports/ui/components/onloaded)
+      - [**proxy**](imports/ui/components/proxy)
+    - [**layout**](imports/ui/layout)
+      - [**nav**](imports/ui/layout/nav)
+        - [**bottom**](imports/ui/layout/nav/bottom)
+        - [**side**](imports/ui/layout/nav/side)
+          - [**scss**](imports/ui/layout/nav/side/scss)
+        - [**top**](imports/ui/layout/nav/top)
     - [**pages**](imports/ui/pages)
+      - [**class**](imports/ui/pages/class)
+      - [**login**](imports/ui/pages/login)
+      - [**logout**](imports/ui/pages/logout)
+      - [**myclasses**](imports/ui/pages/myclasses)
       - [**notfound**](imports/ui/pages/notfound)
+      - [**user**](imports/ui/pages/user)
     - [**utils**](imports/ui/utils)
 - [**resources**](resources) - Static resources
   - [**i18n**](resources/i18n) - Translation files
 - [**server**](server)
 - [**tests**](tests)
+  - [**api**](tests/api)
+    - [**routing**](tests/api/routing)
 
 <!-- auto-generated notes tree ends here -->
 

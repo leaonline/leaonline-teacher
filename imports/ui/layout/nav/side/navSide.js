@@ -1,19 +1,16 @@
 import { Template } from 'meteor/templating'
+import { BlazeBootstrap } from '../../../../api/blazebootstrap/BlazeBootstrap'
+import { bbsComponentLoader } from '../../../utils/bbsComponentLoader'
 import './navSide.html'
-import { Routes } from '../../../../api/routing/Routes'
-import { Router } from '../../../../api/routing/Router'
+import './scss/navSlide.scss'
 
-let currentElement = null
-let currentPath = null
+const componentsLoader = bbsComponentLoader([
+  BlazeBootstrap.link.load()
+])
+const componentsLoaded = componentsLoader.loaded
 
 Template.navSide.helpers({
-})
-
-Template.navSide.events({
-  'click .nav-link' (e) {
-    // console.log(e.currentTarget.id)
-    // currentElement = e.currentTarget.id
-    // console.log(Router.go())
-    // currentPath = Routes.class.load()
+  componentsLoaded () {
+    return componentsLoaded.get()
   }
 })
