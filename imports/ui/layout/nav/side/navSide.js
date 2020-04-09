@@ -14,3 +14,11 @@ Template.navSide.helpers({
     return componentsLoaded.get()
   }
 })
+
+Template.navSide.events({
+  'click .nav-item' (event) {
+    console.log(event.currentTarget)
+    $('.nav-item').css('background-color', '#646464')
+    $(event.currentTarget).css('background-color', '#f59d1d')
+  }
+})

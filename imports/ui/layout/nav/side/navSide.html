@@ -1,25 +1,25 @@
 <template name="navSide">
-	<nav class="col-md-3 d-none d-md-block sidebar">
+	<nav class="sidebar">
 		<div class="sidebar-sticky">
 			<ul id="main-sidebar" class="nav nav-pills flex-column mt-4">
-                <li class="nav-item">
+                <li class="nav-item side-nav-item" style='background-color:#f59d1d'>
                     {{#onLoaded loaded=componentsLoaded}}
                         {{> link href=(route 'myClasses') icon="home" title='Routes.myClasses.label'}}
                     {{/onLoaded}}
                 </li>
-                <li class="nav-item">
+                <li class="nav-item side-nav-item">
                     {{#onLoaded loaded=componentsLoaded}}
                         {{> link href=(route 'class' class) icon="th-large" title='Routes.class.label'}}
                     {{/onLoaded}}
                 </li>
-                <li class="nav-item">
+                <li class="nav-item side-nav-item">
                     {{#onLoaded loaded=componentsLoaded}}
-                        {{> link href=(route 'user' user) icon="sliders-h" title='Routes.user.label'}}
+                        {{> link href=(route 'user' user) icon="sliders-h" title='Routes.user.label' disabled=true}}
                     {{/onLoaded}}
                 </li>
-                <li class="nav-item">
+                <li class="nav-item side-nav-item">
                     {{#onLoaded loaded=componentsLoaded}}
-                        {{> link href='#' icon="print" title='actions.print'}}
+                        {{> link href='#' icon="print" title='actions.print' disabled=false}}
                     {{/onLoaded}}
                 </li>
 			</ul>
