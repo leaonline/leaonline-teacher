@@ -18,7 +18,9 @@ Template.navSide.helpers({
 Template.navSide.events({
   'click .nav-item' (event) {
     console.log(event.currentTarget)
+    // eslint-disable-next-line no-undef
     $('.nav-item').css('background-color', '#646464')
+    // eslint-disable-next-line no-undef
     $(event.currentTarget).css('background-color', '#f59d1d')
   }
 })
