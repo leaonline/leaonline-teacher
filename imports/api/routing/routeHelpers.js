@@ -15,7 +15,7 @@ export const routeLabel = function () {
   return cachedRoute && i18n.get(cachedRoute.label)
 }
 
-export const currentRoute =function (key) {
+export const currentRoute = function (key) {
   const cachedRoute = Router.cache()
   return cachedRoute && cachedRoute.name === key
 }
