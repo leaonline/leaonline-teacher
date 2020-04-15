@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../../utils/bbsComponentLoader'
+import { Session } from '../../../../api/session/Session'
 import './navSide.html'
 import './scss/navSlide.scss'
 
@@ -12,15 +13,17 @@ const componentsLoaded = componentsLoader.loaded
 Template.navSide.helpers({
   componentsLoaded () {
     return componentsLoaded.get()
-  }
-})
-
-Template.navSide.events({
-  'click .nav-item' (event) {
-    console.log(event.currentTarget)
-    // eslint-disable-next-line no-undef
-    $('.nav-item').css('background-color', '#646464')
-    // eslint-disable-next-line no-undef
-    $(event.currentTarget).css('background-color', '#f59d1d')
+  },
+  currentClass () {
+    return Session.currentClass()
+  },
+  currentParticipant () {
+    return Session.currentParticipant()
+  },
+  classRouteDisabled () {
+    return !Session.currentClass()
+  },
+  userRouteDisabled () {
+    return !Session.currentClass() || !Session.currentParticipant()
   }
 })
