@@ -5,7 +5,9 @@ import './navSide.html'
 import './scss/navSlide.scss'
 
 const componentsLoader = bbsComponentLoader([
-  BlazeBootstrap.link.load()
+  BlazeBootstrap.link.load(),
+  BlazeBootstrap.button.load(),
+  BlazeBootstrap.navbar.load()
 ])
 const componentsLoaded = componentsLoader.loaded
 
