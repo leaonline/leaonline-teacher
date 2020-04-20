@@ -1,0 +1,40 @@
+import { ReactiveDict } from 'meteor/reactive-dict'
+
+/**
+ * Global representation of current selected class, user, etc.
+ */
+
+export const Session = {}
+
+const state = new ReactiveDict()
+
+state.set({
+  currentParticipant: null,
+  currentClass: null
+})
+
+/**
+ * Set or get the current selected participant
+ * @param value optional userId (_id) to set this user as the current
+ * @return {*}
+ */
+
+Session.currentParticipant = (value) => {
+  if (value) {
+    state.set({ currentParticipant: value })
+  }
+  return state.get('currentParticipant')
+}
+
+/**
+ * Set or get the current class
+ * @param value optional classId (_id) to set this class as current
+ * @return {*}
+ */
+
+Session.currentClass = (value) => {
+  if (value) {
+    state.set({ currentClass: value })
+  }
+  return state.get('currentClass')
+}

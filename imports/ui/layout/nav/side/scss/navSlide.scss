@@ -15,11 +15,10 @@
   color: #fff !important;
 }
 
-.disabled-link > a {
-  color: #646464;
-  pointer-events: none;
+.sidebar-nav-item {
+  background-color: #646464;
 }
 
-
-
-
+.sidebar-nav-item:active {
+  background-color: #f59d1d;
+}
