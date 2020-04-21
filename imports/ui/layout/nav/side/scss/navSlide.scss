@@ -4,21 +4,27 @@
   width: 5%;
 }
 
-.side-nav-item {
+.sidebar-nav-item {
+  //width: 50%;
   border: #fff 1px solid;
   border-radius: 5px;
   margin: 15% 30%;
   text-align: center;
 }
 
-.side-nav-item > a {
+.sidebar-nav-item > a {
   color: #fff !important;
+  padding: 0;
 }
 
 .sidebar-nav-item {
   background-color: #646464;
 }
 
-.sidebar-nav-item:active {
+.sidebar-nav-item-active {
   background-color: #f59d1d;
-}
+
+
+
+
+
