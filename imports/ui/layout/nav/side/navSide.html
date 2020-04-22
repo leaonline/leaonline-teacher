@@ -1,22 +1,26 @@
 <template name="navSide">
-	<nav class="sidebar">
-		<div class="sidebar-sticky">
+    <nav class="sidebar">
+        <div class="sidebar-sticky">
             {{#onLoaded loaded=componentsLoaded}}
                 {{#nav class="flex-column flex-wrap mt-4 justify-content-center"}}
-                    {{#navlink href=(route 'myClasses') class="sidebar-nav-item sidebar-nav-item-active" active=(currentRoute 'myClasses')}}
+                    {{#navlink href=(route 'myClasses') linkclass="sidebar-nav-link text-white"
+                               active=(currentRoute 'myClasses')}}
                         <span title='Routes.myClasses.label' class="fa fas fa-fw fa-home"></span>
                     {{/navlink}}
-                    {{#navlink href=(route 'class' currentClass) class="sidebar-nav-item" disabled=(classRouteDisabled) active=(currentRoute 'class')}}
+                    {{#navlink href=(route 'class' currentClass) linkclass="sidebar-nav-link text-white"
+                               disabled=(classRouteDisabled) active=(currentRoute 'class' currentClass)}}
                         <span title='Routes.class.label' class="fa fas fa-fw fa-th-large"></span>
                     {{/navlink}}
-                    {{#navlink href=(route 'user' currentClass currentParticipant) class="sidebar-nav-item" disabled=(userRouteDisabled) active=(currentRoute 'user')}}
+                    {{#navlink href=(route 'user' currentClass currentParticipant)
+                               linkclass="sidebar-nav-link text-white" disabled=(userRouteDisabled)
+                               active=(currentRoute 'user')}}
                         <span title='Routes.user.label' class="fa fas fa-fw fa-sliders-h"></span>
                     {{/navlink}}
-                    {{#navlink href='#' class="sidebar-nav-item " disabled=false }}
+                    {{#navlink href='#' linkclass="sidebar-nav-link text-white" disabled=false }}
                         <span title='actions.print' class="fa fas fa-fw fa-print"></span>
                     {{/navlink}}
                 {{/nav}}
             {{/onLoaded}}
-		</div>
-	</nav>
+        </div>
+    </nav>
 </template>
