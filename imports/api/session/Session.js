@@ -20,7 +20,7 @@ state.set({
  */
 
 Session.currentParticipant = (value) => {
-  if (value) {
+  if (typeof value !== 'undefined') {
     state.set({ currentParticipant: value })
   }
   return state.get('currentParticipant')
@@ -33,7 +33,7 @@ Session.currentParticipant = (value) => {
  */
 
 Session.currentClass = (value) => {
-  if (value) {
+  if (typeof value !== 'undefined') {
     state.set({ currentClass: value })
   }
   return state.get('currentClass')
