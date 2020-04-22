@@ -3,7 +3,7 @@
 		<div class="sidebar-sticky">
             {{#onLoaded loaded=componentsLoaded}}
                 {{#nav class="flex-column flex-wrap mt-4 justify-content-center"}}
-                    {{#navlink href=(route 'myClasses') class="sidebar-nav-item" active=(currentRoute 'myClasses')}}
+                    {{#navlink href=(route 'myClasses') class="sidebar-nav-item sidebar-nav-item-active" active=(currentRoute 'myClasses')}}
                         <span title='Routes.myClasses.label' class="fa fas fa-fw fa-home"></span>
                     {{/navlink}}
                     {{#navlink href=(route 'class' currentClass) class="sidebar-nav-item" disabled=(classRouteDisabled) active=(currentRoute 'class')}}

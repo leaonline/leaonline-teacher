@@ -1,15 +1,18 @@
 .sidebar {
   background-color: #646464;
-  min-width: 1rem;
+  min-width: 2rem;
   width: 5%;
 }
 
 .sidebar-nav-item {
-  //width: 50%;
   border: #fff 1px solid;
   border-radius: 5px;
-  margin: 15% 30%;
+  margin-bottom: 20%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  vertical-align: middle;
+  width: 2rem;
 }
 
 .sidebar-nav-item > a {
@@ -17,12 +20,13 @@
   padding: 0;
 }
 
-.sidebar-nav-item {
-  background-color: #646464;
-}
-
 .sidebar-nav-item-active {
   background-color: #f59d1d;
+}
+
+.sidebar-nav-item-inactive {
+  background-color: #646464;
+}
 
 
 

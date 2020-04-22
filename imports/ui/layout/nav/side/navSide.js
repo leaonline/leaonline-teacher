@@ -4,7 +4,6 @@ import { bbsComponentLoader } from '../../../utils/bbsComponentLoader'
 import { Session } from '../../../../api/session/Session'
 import './navSide.html'
 import './scss/navSlide.scss'
-import { Router } from '../../../../api/routing/Router'
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -17,7 +16,6 @@ const componentsLoaded = componentsLoader.loaded
 
 Template.navSide.helpers({
   componentsLoaded () {
-    console.log(Router.label())
     return componentsLoaded.get()
   },
   currentClass () {
