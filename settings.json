@@ -1,4 +1,18 @@
 {
+  "public": {
+    "app": {
+      "name": "lea.online teacher"
+    }
+  },
+  "oauth": {
+    "clientId": "teacher-application-id",
+    "secret": "abcdefghijklmnopabcdefghijklmnop",
+    "dialogUrl": "http://localhost:9090/oauth/authorize",
+    "accessTokenUrl": "http://localhost:9090/oauth/token",
+    "authorizeUrl": "http://localhost:9090/oauth/authorize",
+    "identityUrl": "http://localhost:9090/oauth/ident",
+    "redirectUrl": "http://localhost:5555/_oauth/lea"
+  },
   "fixtures": {
     "accounts": [{
       "username": "admin",
