@@ -56,7 +56,8 @@ jquery@3.0.0
 lai:collection-extensions@0.2.1_1
 launch-screen@1.2.0
 leaonline:accounts-lea@1.0.1
-leaonline:factories@1.1.0
+leaonline:errors@1.0.0
+leaonline:factories@1.2.0
 leaonline:oauth-lea@1.0.2
 livedata@1.0.18
 lmieulet:meteor-coverage@3.2.0
@@ -88,7 +89,9 @@ oauth@1.3.0
 oauth2@1.3.0
 observe-sequence@1.0.16
 ordered-dict@1.1.0
+ostrio:cookies@2.6.0
 ostrio:cstorage@2.2.2
+ostrio:files@1.14.1
 ostrio:flow-router-extra@3.7.4
 ostrio:i18n@3.1.0
 promise@0.11.2
