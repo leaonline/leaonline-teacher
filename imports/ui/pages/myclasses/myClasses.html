@@ -1,2 +1,49 @@
 <template name="myClasses">
+    {{#onLoaded loaded=componentsLoaded}}
+        {{#card style="width: 100%; margin-bottom: 5%;"}}
+            {{>cardheader label="Running Courses"}}
+            {{#listgroup flush=true}}
+                {{#if runningCourses}}
+                    {{#each runningCourses}}
+                        {{#item label=(value.title)}}
+                        {{/item}}
+                    {{/each}}
+                {{else}}
+                    {{> item label='No Entries'}}
+                {{/if}}
+            {{/listgroup}}
+        {{/card}}
+
+        {{#card style="width: 100%; margin-bottom: 5%;"}}
+            {{>cardheader label="Completed courses"}}
+            {{#listgroup flush=true}}
+                {{#if completedCourses}}
+                    {{#each completedCourses}}
+                        {{#item label=(value.title)}}
+                        {{/item}}
+                    {{/each}}
+                {{else}}
+                    {{> item label='No Entries'}}
+                {{/if}}
+            {{/listgroup}}
+        {{/card}}
+
+        {{#card style="width: 100%"}}
+            {{>cardheader label="Courses not started yet    "}}
+            {{#listgroup flush=true}}
+                {{#if notStartedCourses}}
+                    {{#each notStartedCourses}}
+                        {{#item label=(value.title)}}
+                        {{/item}}
+                    {{/each}}
+                {{else}}
+                    {{> item label='No Entries'}}
+                {{/if}}
+            {{/listgroup}}
+        {{/card}}
+    {{/onLoaded}}
+</template>
+
+<template name="cardItems">
+    {{#item}}{{value.title}}{{/item}}
 </template>
