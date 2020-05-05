@@ -1,43 +1,40 @@
 <template name="myClasses">
     {{#onLoaded loaded=componentsLoaded}}
         {{#card style="width: 100%; margin-bottom: 5%;"}}
-            {{>cardheader label="Running Courses"}}
+            {{>cardheader label="Running Courses" class="bg-light font-weight-bold"}}
             {{#listgroup flush=true}}
                 {{#if runningCourses}}
                     {{#each runningCourses}}
-                        {{#item label=(value.title)}}
-                        {{/item}}
+                        {{> cardItems}}
                     {{/each}}
                 {{else}}
-                    {{> item label='No Entries'}}
+                    {{> item label=noEntries}}
                 {{/if}}
             {{/listgroup}}
         {{/card}}
 
         {{#card style="width: 100%; margin-bottom: 5%;"}}
-            {{>cardheader label="Completed courses"}}
+            {{>cardheader label="Completed courses" class="bg-light font-weight-bold"}}
             {{#listgroup flush=true}}
                 {{#if completedCourses}}
                     {{#each completedCourses}}
-                        {{#item label=(value.title)}}
-                        {{/item}}
+                        {{> cardItems}}
                     {{/each}}
                 {{else}}
-                    {{> item label='No Entries'}}
+                    {{> item label=noEntries}}
                 {{/if}}
             {{/listgroup}}
         {{/card}}
 
-        {{#card style="width: 100%"}}
-            {{>cardheader label="Courses not started yet    "}}
+        {{#card style="width: 100%; margin-bottom: 5%;"}}
+            {{>cardheader label="Courses not started yet" class="bg-light font-weight-bold"}}
             {{#listgroup flush=true}}
                 {{#if notStartedCourses}}
                     {{#each notStartedCourses}}
-                        {{#item label=(value.title)}}
-                        {{/item}}
+                        {{> cardItems}}
                     {{/each}}
                 {{else}}
-                    {{> item label='No Entries'}}
+                    {{> item label=noEntries}}
                 {{/if}}
             {{/listgroup}}
         {{/card}}
@@ -45,5 +42,14 @@
 </template>
 
 <template name="cardItems">
-    {{#item}}{{value.title}}{{/item}}
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col">{{value.title}}</div>
+            <div class="col d-flex justify-content-end">
+                <span class="fa fas fa-fw fa-eye text-secondary mr-3"></span>
+                <span class="fa fas fa-fw fa-edit text-success mr-3"></span>
+                <span class="fa fas fa-fw fa-trash text-danger mr-3"></span>
+            </div>
+        </div>
+    </li>
 </template>

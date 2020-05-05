@@ -2,9 +2,8 @@ import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
-import { i18n } from '../../../api/i18n/I18n'
-import './myClasses.html'
 import en from '../../../../resources/i18n/en'
+import './myClasses.html'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -52,5 +51,8 @@ Template.myClasses.helpers({
       notStartedArray.push({ key: key, value: notStartedObject[key] })
     }
     return notStartedArray
+  },
+  noEntries () {
+    return en.courses.noEntriesFound
   }
 })
