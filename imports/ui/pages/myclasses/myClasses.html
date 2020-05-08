@@ -1,54 +1,57 @@
 <template name="myClasses">
     {{#onLoaded loaded=componentsLoaded}}
-        {{#card style="width: 100%; margin-bottom: 5%;"}}
-            {{>cardheader label="Running Courses" class="bg-light font-weight-bold"}}
-            {{#listgroup flush=true}}
-                {{#if runningCourses}}
-                    {{#each runningCourses}}
-                        {{> cardItems}}
-                    {{/each}}
-                {{else}}
-                    {{> item label=noEntries}}
-                {{/if}}
-            {{/listgroup}}
-        {{/card}}
+<!--        {{#each courseCategories}}-->
+<!--            {{text}}-->
+<!--        {{/each}}-->
+        <h3><span class="badge badge-secondary ml-5 bg-white text-secondary course-badge">Running Courses</span></h3>
+        {{#listgroup flush=true class="mb-5" style="box-shadow: 2px 5px 5px #888888;"}}
+            {{#if runningCourses}}
+                {{#each runningCourses}}
+                    {{> cardItems}}
+                {{/each}}
+            {{else}}
+                {{> item label=noEntries}}
+            {{/if}}
+        {{/listgroup}}
 
-        {{#card style="width: 100%; margin-bottom: 5%;"}}
-            {{>cardheader label="Completed courses" class="bg-light font-weight-bold"}}
-            {{#listgroup flush=true}}
-                {{#if completedCourses}}
-                    {{#each completedCourses}}
-                        {{> cardItems}}
-                    {{/each}}
-                {{else}}
-                    {{> item label=noEntries}}
-                {{/if}}
-            {{/listgroup}}
-        {{/card}}
+        <h3><span class="badge badge-secondary ml-5 bg-white text-secondary course-badge">Completed Courses</span></h3>
+        {{#listgroup flush=true class="mb-5" style="box-shadow: 2px 5px 5px #888888;"}}
+            {{#if completedCourses}}
+                {{#each completedCourses}}
+                    {{> cardItems}}
+                {{/each}}
+            {{else}}
+                {{> item label=noEntries}}
+            {{/if}}
+        {{/listgroup}}
 
-        {{#card style="width: 100%; margin-bottom: 5%;"}}
-            {{>cardheader label="Courses not started yet" class="bg-light font-weight-bold"}}
-            {{#listgroup flush=true}}
-                {{#if notStartedCourses}}
-                    {{#each notStartedCourses}}
-                        {{> cardItems}}
-                    {{/each}}
-                {{else}}
-                    {{> item label=noEntries}}
-                {{/if}}
-            {{/listgroup}}
-        {{/card}}
+        <h3><span class="badge badge-secondary ml-5 bg-white text-secondary course-badge">Courses not started yet</span></h3>
+        {{#listgroup flush=true class="mb-5" style="box-shadow: 2px 5px 5px #888888;"}}
+            {{#if notStartedCourses}}
+                {{#each notStartedCourses}}
+                    {{> cardItems}}
+                {{/each}}
+            {{else}}
+                {{> item label=noEntries}}
+            {{/if}}
+        {{/listgroup}}
     {{/onLoaded}}
 </template>
 
 <template name="cardItems">
     <li class="list-group-item">
         <div class="row">
-            <div class="col">{{value.title}}</div>
-            <div class="col d-flex justify-content-end">
-                <span class="fa fas fa-fw fa-eye text-secondary mr-3"></span>
-                <span class="fa fas fa-fw fa-edit text-success mr-3"></span>
-                <span class="fa fas fa-fw fa-trash text-danger mr-3"></span>
+            <div class="col d-flex align-items-center">{{value.title}}</div>
+            <div class="col d-flex justify-content-end align-items-center">
+                {{#button  colorType="secondary" outline=true class="border-0 mr-3"}}
+                    <span class="fa fas fa-fw fa-eye"></span>
+                {{/button}}
+                {{#button  colorType="success" outline=true class="border-0 mr-3"}}
+                    <span class="fa fas fa-fw fa-edit text-success"></span>
+                {{/button}}
+                {{#button  colorType="danger" outline=true class="border-0 mr-3"}}
+                    <span class="fa fas fa-fw fa-trash text-danger"></span>
+                {{/button}}
             </div>
         </div>
     </li>

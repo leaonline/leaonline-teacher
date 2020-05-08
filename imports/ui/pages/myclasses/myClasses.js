@@ -4,6 +4,7 @@ import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
 import en from '../../../../resources/i18n/en'
 import './myClasses.html'
+import './scss/myClasses.scss'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -19,7 +20,8 @@ const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.button.load(),
   BlazeBootstrap.listgroup.load(),
   BlazeBootstrap.item.load(),
-  BlazeBootstrap.card.load()
+  BlazeBootstrap.card.load(),
+  BlazeBootstrap.badge.load()
 ])
 
 const componentsLoaded = componentsLoader.loaded
@@ -52,6 +54,14 @@ Template.myClasses.helpers({
     }
     return notStartedArray
   },
+  courseCategories () {
+    return [
+      { text: 'Running Courses' },
+      { text: 'Completed Courses' },
+      { text: 'Courses not started yet' }
+    ]
+  },
+
   noEntries () {
     return en.courses.noEntriesFound
   }
