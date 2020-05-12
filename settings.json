@@ -5,8 +5,8 @@
     }
   },
   "oauth": {
-    "clientId": "teacher-application-id",
-    "secret": "abcdefghijklmnopabcdefghijklmnop",
+    "clientId": "iwtu4JCmyTDGg3eg6",
+    "secret": "xKX9q8ZQwaNdHoKcLywyrJeNh3T8F4Gk",
     "dialogUrl": "http://localhost:9090/oauth/authorize",
     "accessTokenUrl": "http://localhost:9090/oauth/token",
     "authorizeUrl": "http://localhost:9090/oauth/authorize",

@@ -4,13 +4,13 @@
 <!--            {{text}}-->
 <!--        {{/each}}-->
         <h3><span class="badge badge-secondary ml-5 bg-white text-secondary course-badge">Running Courses</span></h3>
-        {{#listgroup flush=true class="mb-5" style="box-shadow: 2px 5px 5px #888888;"}}
+        {{#listgroup flush=true class="mb-5 rounded-lg"}}
             {{#if runningCourses}}
                 {{#each runningCourses}}
                     {{> cardItems}}
                 {{/each}}
             {{else}}
-                {{> item label=noEntries}}
+                {{> item label=noEntries class="d-flex align-items-center"}}
             {{/if}}
         {{/listgroup}}
 
@@ -21,7 +21,7 @@
                     {{> cardItems}}
                 {{/each}}
             {{else}}
-                {{> item label=noEntries}}
+                {{> item label=noEntries class="d-flex align-items-center"}}
             {{/if}}
         {{/listgroup}}
 
@@ -32,7 +32,7 @@
                     {{> cardItems}}
                 {{/each}}
             {{else}}
-                {{> item label=noEntries}}
+                {{> item label=noEntries class="d-flex align-items-center"}}
             {{/if}}
         {{/listgroup}}
     {{/onLoaded}}
@@ -41,7 +41,7 @@
 <template name="cardItems">
     <li class="list-group-item">
         <div class="row">
-            <div class="col d-flex align-items-center">{{value.title}}</div>
+            <div class="col d-flex align-items-center text-secondary">{{value.title}}</div>
             <div class="col d-flex justify-content-end align-items-center">
                 {{#button  colorType="secondary" outline=true class="border-0 mr-3"}}
                     <span class="fa fas fa-fw fa-eye"></span>
