@@ -5,7 +5,7 @@
 <!--        {{/each}}-->
 
         <div class="row d-flex justify-content-end align-items-center mr-1">
-            {{> button label="Add New Course" colortype="warning" size="sm"}}
+            {{> button data-toggle="modal" data-target="#add-course-modal" label="Add New Course" size="sm" class="add-new-course-button"}}
         </div>
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">Running Courses</span></h4>
@@ -41,6 +41,20 @@
             {{/if}}
         {{/listgroup}}
     {{/onLoaded}}
+
+    {{#modal id="add-course-modal" centered=true}}
+        {{>modalheader title="Add Course" dismiss=true}}
+        {{#modalbody}}
+            <div class="form-group">
+                <label for="course-name" class="col-form-label">Enter Course Name</label>
+                <input type="text" class="form-control" id="course-name">
+            </div>
+        {{/modalbody}}
+        {{#modalfooter}}
+            {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
+            {{> button colortype="primary" label="Save changes" class="save-changes"}}
+        {{/modalfooter}}
+    {{/modal}}
 </template>
 
 <template name="cardItems">
@@ -48,13 +62,13 @@
         <div class="row">
             <div class="col d-flex align-items-center text-secondary">{{value.title}}</div>
             <div class="col d-flex justify-content-end align-items-center">
-                {{#button  colorType="secondary" outline=true class="border-0 mr-1"}}
+                {{#button size="sm" colorType="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}
-                {{#button  colorType="success" outline=true class="border-0 mr-1"}}
+                {{#button size="sm"  colorType="success" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-edit text-success"></span>
                 {{/button}}
-                {{#button  colorType="danger" outline=true class="border-0 mr-1"}}
+                {{#button size="sm" colorType="danger" outline=true class="mr-1 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-trash text-danger"></span>
                 {{/button}}
             </div>
