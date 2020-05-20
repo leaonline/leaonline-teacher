@@ -67,12 +67,3 @@ Template.myClasses.helpers({
     return en.courses.noEntriesFound
   }
 })
-
-Template.myClasses.events({
-  'click .save-changes' (event) {
-    // Prevent default browser form submit
-    event.preventDefault()
-    const text = $('#course-name').val()
-    console.log(text)
-  }
-})
