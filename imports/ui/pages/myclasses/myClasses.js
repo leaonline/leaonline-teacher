@@ -21,7 +21,8 @@ const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.listgroup.load(),
   BlazeBootstrap.item.load(),
   BlazeBootstrap.card.load(),
-  BlazeBootstrap.badge.load()
+  BlazeBootstrap.badge.load(),
+  BlazeBootstrap.modal.load()
 ])
 
 const componentsLoaded = componentsLoader.loaded
@@ -64,5 +65,13 @@ Template.myClasses.helpers({
 
   noEntries () {
     return en.courses.noEntriesFound
+  }
+})
+
+Template.myClasses.events({
+  'click .save-changes' (event , templateInstance) {
+    // Prevent default browser form submit
+    event.preventDefault()
+    const text = templateInstance.$('#course-name').val()
   }
 })
