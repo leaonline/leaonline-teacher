@@ -26,7 +26,11 @@
       "backToRoot": "Back to home"
     },
     "myClasses": {
-      "title": "My Classes"
+      "title": "My Classes",
+      "running": "Running Courses",
+      "completed": "Completed Courses",
+      "upcoming": "Courses not started yet",
+      "notFound": "Entries not found"
     }
   },
   "routes": {
@@ -36,26 +40,5 @@
     "myClasses": "my-classes",
     "class": "class",
     "user": "user"
-  },
-
-  "courses": {
-    "runningCourses": {
-      "ws-19/20-1":{
-        "title": "Course WS 19/20 1"
-      },
-      "ws-19/20-2":{
-        "title": "Course WS 19/20 2"
-      },
-      "ws-19/20-3":{
-        "title": "Course WS 19/20 3"
-      }
-    },
-    "notStartedCourses": {},
-    "completedCourses": {
-      "ss-19-1":{
-        "title": "Course SS-19-1"
-      }
-    },
-    "noEntriesFound": "No Entries Found"
   }
 }

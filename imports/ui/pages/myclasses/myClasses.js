@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
-import en from '../../../../resources/i18n/en'
+import { exampleDataRunningCourses, exampleDataNotStartedCourses, exampleDataCompletedCourses } from '../../../startup/client/exampleDataCollection'
 import './myClasses.html'
 import './scss/myClasses.scss'
 
@@ -32,44 +32,18 @@ Template.myClasses.helpers({
     return componentsLoaded.get()
   },
   runningCourses () {
-    const runningCoursesArray = []
-    const runningCoursesObject = en.courses.runningCourses
-    for (const key in runningCoursesObject) {
-      runningCoursesArray.push({ key: key, value: runningCoursesObject[key] })
-    }
-    return runningCoursesArray
+    return exampleDataRunningCourses.find({}).fetch()
   },
   completedCourses () {
-    const completedCoursesArray = []
-    const completedCoursesObject = en.courses.completedCourses
-    for (const key in completedCoursesObject) {
-      completedCoursesArray.push({ key: key, value: completedCoursesObject[key] })
-    }
-    return completedCoursesArray
+    return exampleDataCompletedCourses.find({}).fetch()
   },
   notStartedCourses () {
-    const notStartedArray = []
-    const notStartedObject = en.courses.notStartedCourses
-    for (const key in notStartedObject) {
-      notStartedArray.push({ key: key, value: notStartedObject[key] })
-    }
-    return notStartedArray
-  },
-  courseCategories () {
-    return [
-      { text: 'Running Courses' },
-      { text: 'Completed Courses' },
-      { text: 'Courses not started yet' }
-    ]
-  },
-
-  noEntries () {
-    return en.courses.noEntriesFound
+    return exampleDataNotStartedCourses.find({}).fetch()
   }
 })
 
 Template.myClasses.events({
-  'click .save-changes' (event , templateInstance) {
+  'click .save-changes' (event, templateInstance) {
     // Prevent default browser form submit
     event.preventDefault()
     const text = templateInstance.$('#course-name').val()
