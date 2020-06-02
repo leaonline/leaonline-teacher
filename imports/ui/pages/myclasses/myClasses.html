@@ -6,15 +6,13 @@
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.running"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
-            {{#if runningCourses}}
-                {{#each runningCourses}}
-                    {{> cardItems}}
-                {{/each}}
+            {{#each document in runningCourses}}
+                {{> cardItems course=document}}
             {{else}}
                 {{# item class="d-flex align-items-center"}}
                     {{i18n "pages.myClasses.notFound"}}
                 {{/item}}
-            {{/if}}
+            {{/each}}
         {{/listgroup}}
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.completed"}}</span></h4>
@@ -63,7 +61,7 @@
 <template name="cardItems">
     <li class="list-group-item">
         <div class="row">
-            <div class="col d-flex align-items-center text-secondary">{{title}}</div>
+            <div class="col d-flex align-items-center text-secondary">{{course.title}}</div>
             <div class="col d-flex justify-content-end align-items-center">
                 {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>

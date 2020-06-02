@@ -5,6 +5,7 @@ import { Session } from '../../../api/session/Session'
 import { exampleDataRunningCourses, exampleDataNotStartedCourses, exampleDataCompletedCourses } from '../../../startup/client/exampleDataCollection'
 import './myClasses.html'
 import './scss/myClasses.scss'
+import { MyCourses } from '../../../api/collections/MyCourses'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -32,7 +33,9 @@ Template.myClasses.helpers({
     return componentsLoaded.get()
   },
   runningCourses () {
-    return exampleDataRunningCourses.find({}).fetch()
+    const cursor = MyCourses.find({ startedAt: { $exists: true }, completedAt: { $exists: false } })
+    if (cursor.size() === 0) return null
+    return cursor
   },
   completedCourses () {
     return exampleDataCompletedCourses.find({}).fetch()
