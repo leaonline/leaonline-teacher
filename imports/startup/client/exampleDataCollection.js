@@ -20,6 +20,3 @@ for (const key in notStartedCoursesInfojson) {
 for (const key in completedCoursesInfojson) {
   exampleDataCompletedCourses.insert({ title: completedCoursesInfojson[key].title, startedAt: new Date(), completedAt: new Date() })
 }
-
-console.log(exampleDataCompletedCourses.find({}).fetch())
-
