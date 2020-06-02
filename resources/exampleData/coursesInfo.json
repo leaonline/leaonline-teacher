@@ -1,21 +1,12 @@
-{
-  "courses": {
-    "runningCourses": {
-      "ws-19/20-1": {
-        "title": "Course WS 19/20 1"
-      },
-      "ws-19/20-2": {
-        "title": "Course WS 19/20 2"
-      },
-      "ws-19/20-3": {
-        "title": "Course WS 19/20 3"
-      }
-    },
-    "notStartedCourses": {},
-    "completedCourses": {
-      "ss-19-1": {
-        "title": "Course SS-19-1"
-      }
-    }
-  }
-}
+[
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 1" },
+  { "title": "Course WS 19/20 1" },
+  { "title": "Course WS 19/20 1" }
+]
