@@ -1,0 +1,21 @@
+{
+  "courses": {
+    "runningCourses": {
+      "ws-19/20-1": {
+        "title": "Course WS 19/20 1"
+      },
+      "ws-19/20-2": {
+        "title": "Course WS 19/20 2"
+      },
+      "ws-19/20-3": {
+        "title": "Course WS 19/20 3"
+      }
+    },
+    "notStartedCourses": {},
+    "completedCourses": {
+      "ss-19-1": {
+        "title": "Course SS-19-1"
+      }
+    }
+  }
+}
