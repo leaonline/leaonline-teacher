@@ -17,28 +17,24 @@
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.completed"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
-            {{#if completedCourses}}
-                {{#each completedCourses}}
-                    {{> cardItems}}
-                {{/each}}
+            {{#each document in completedCourses}}
+                {{> cardItems course=document}}
             {{else}}
                 {{# item class="d-flex align-items-center"}}
                     {{i18n "pages.myClasses.notFound"}}
                 {{/item}}
-            {{/if}}
+            {{/each}}
         {{/listgroup}}
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.upcoming"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
-            {{#if notStartedCourses}}
-                {{#each notStartedCourses}}
-                    {{> cardItems}}
-                {{/each}}
+            {{#each document in notStartedCourses}}
+                {{> cardItems course=document}}
             {{else}}
                 {{# item class="d-flex align-items-center"}}
                     {{i18n "pages.myClasses.notFound"}}
                 {{/item}}
-            {{/if}}
+            {{/each}}
         {{/listgroup}}
 
         {{#modal id="add-course-modal" centered=true}}

@@ -1,12 +1,12 @@
 [
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1", "startedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Jun 02 2020 15:17:30 GMT+0200 (Central European Summer Time)" },
-  { "title": "Course WS 19/20 1" },
-  { "title": "Course WS 19/20 1" },
-  { "title": "Course WS 19/20 1" }
+  { "title": "Course WS 19/20 1", "startedAt": "Tue Oct 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 2", "startedAt": "Tue Oct 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 3", "startedAt": "Tue Oct 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 19/20 4", "startedAt": "Tue Oct 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course SS 19 1", "startedAt": "Tue Apr 09 2019 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Sep 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course SS 19 2", "startedAt": "Tue Apr 09 2019 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Sep 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course SS 19 3", "startedAt": "Tue Apr 09 2019 15:17:30 GMT+0200 (Central European Summer Time)", "completedAt": "Tue Sep 02 2019 15:17:30 GMT+0200 (Central European Summer Time)" },
+  { "title": "Course WS 20/21 1" },
+  { "title": "Course WS 20/21 2" },
+  { "title": "Course WS 20/21 3" }
 ]
