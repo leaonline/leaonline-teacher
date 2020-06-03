@@ -32,7 +32,7 @@ Template.myClasses.helpers({
     return componentsLoaded.get()
   },
   runningCourses () {
-    return exampleDataRunningCourses.find({}).fetch()
+    return exampleDataRunningCourses.find({}, { sort: { name: 1 } }).fetch()
   },
   completedCourses () {
     return exampleDataCompletedCourses.find({}).fetch()
