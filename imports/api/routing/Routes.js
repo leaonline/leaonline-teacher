@@ -229,7 +229,7 @@ Routes.class = {
 
 Routes.user = {
   path: (classId = ':classId', userId = ':userId') => {
-    const classPath = translateRoute(Routes.myClasses)
+    const classPath = translateRoute(Routes.class)
     const userPath = translateRoute(Routes.user)
     return `/${classPath}/${classId}/${userPath}/${userId}`
   },

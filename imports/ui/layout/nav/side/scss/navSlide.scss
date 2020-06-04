@@ -1,0 +1,27 @@
+.sidebar {
+  background-color: #646464;
+  min-width: 2rem;
+  width: 3.5%;
+}
+
+.sidebar-nav-link {
+  align-items: center;
+  border: #fff 1px solid;
+  border-radius: 5px;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  width: 2rem;
+}
+
+.sidebar-nav-link.active {
+  background-color: #f59d1d;
+}
+
+.sidebar-nav-link.disabled {
+  opacity: 0.4;
+}

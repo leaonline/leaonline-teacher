@@ -1,2 +1,74 @@
 <template name="myClasses">
+    {{#onLoaded loaded=componentsLoaded}}
+        <div class="row d-flex justify-content-end align-items-center mr-1">
+            {{> button data-toggle="modal" data-target="#add-course-modal" label="Add New Course" size="sm" class="add-new-course-button"}}
+        </div>
+
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.running"}}</span></h4>
+        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
+            {{#each document in runningCourses}}
+                {{> cardItems course=document}}
+            {{else}}
+                {{# item class="d-flex align-items-center"}}
+                    {{i18n "pages.myClasses.notFound"}}
+                {{/item}}
+            {{/each}}
+        {{/listgroup}}
+
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.completed"}}</span></h4>
+        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
+            {{#each document in completedCourses}}
+                {{> cardItems course=document}}
+            {{else}}
+                {{# item class="d-flex align-items-center"}}
+                    {{i18n "pages.myClasses.notFound"}}
+                {{/item}}
+            {{/each}}
+        {{/listgroup}}
+
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.upcoming"}}</span></h4>
+        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
+            {{#each document in notStartedCourses}}
+                {{> cardItems course=document}}
+            {{else}}
+                {{# item class="d-flex align-items-center"}}
+                    {{i18n "pages.myClasses.notFound"}}
+                {{/item}}
+            {{/each}}
+        {{/listgroup}}
+
+        {{#modal id="add-course-modal" centered=true}}
+            {{>modalheader title="Add Course" dismiss=true}}
+            {{#modalbody}}
+                <div class="form-group">
+                    <label for="course-name" class="col-form-label">Enter Course Name</label>
+                 <input type="text" class="form-control" id="course-name">
+             </div>
+            {{/modalbody}}
+            {{#modalfooter}}
+                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
+                {{> button colortype="primary" label="Save changes" class="save-changes"}}
+            {{/modalfooter}}
+        {{/modal}}
+    {{/onLoaded}}
+
+</template>
+
+<template name="cardItems">
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col d-flex align-items-center text-secondary">{{course.title}}</div>
+            <div class="col d-flex justify-content-end align-items-center">
+                {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
+                    <span class="fa fas fa-fw fa-eye"></span>
+                {{/button}}
+                {{#button size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons"}}
+                    <span class="fa fas fa-fw fa-edit"></span>
+                {{/button}}
+                {{#button size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons"}}
+                    <span class="fa fas fa-fw fa-trash"></span>
+                {{/button}}
+            </div>
+        </div>
+    </li>
 </template>

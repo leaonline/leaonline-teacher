@@ -1,0 +1,22 @@
+.course-badge {
+  border-radius: 0;
+  position: relative;
+  top: 20px;
+  z-index: 1;
+}
+
+.add-new-course-button {
+  background-color: #f59d1d;
+  border: #f59d1d;
+}
+
+.course-items-icon-buttons {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+  margin-left: 0.5rem;
+  padding: 0;
+  width: 2rem;
+}

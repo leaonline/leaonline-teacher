@@ -1,14 +1,26 @@
 <template name="navSide">
-	<nav class="col-md-3 d-none d-md-block bg-light sidebar">
-		<div class="sidebar-sticky">
-			<ul id="main-sidebar" class="nav nav-pills flex-column mt-4">
-                <li class="nav-item">
-                    <a class="nav-link no-wrap" href="#">
-                        <i class="fa fas fa-fw fa-user"></i>
-                        <span>route label</span>
-                    </a>
-                </li>
-			</ul>
-		</div>
-	</nav>
+    <nav class="sidebar">
+        <div class="sidebar-sticky">
+            {{#onLoaded loaded=componentsLoaded}}
+                {{#nav class="flex-column flex-wrap mt-4 justify-content-center"}}
+                    {{#navlink href=(route 'myClasses') linkclass="sidebar-nav-link text-white"
+                               active=(currentRoute 'myClasses')}}
+                        <span title='Routes.myClasses.label' class="fa fas fa-fw fa-home"></span>
+                    {{/navlink}}
+                    {{#navlink href=(route 'class' currentClass) linkclass="sidebar-nav-link text-white"
+                               disabled=(classRouteDisabled) active=(currentRoute 'class' currentClass)}}
+                        <span title='Routes.class.label' class="fa fas fa-fw fa-th-large"></span>
+                    {{/navlink}}
+                    {{#navlink href=(route 'user' currentClass currentParticipant)
+                               linkclass="sidebar-nav-link text-white" disabled=(userRouteDisabled)
+                               active=(currentRoute 'user')}}
+                        <span title='Routes.user.label' class="fa fas fa-fw fa-sliders-h"></span>
+                    {{/navlink}}
+                    {{#navlink href='#' linkclass="sidebar-nav-link text-white" disabled=false }}
+                        <span title='actions.print' class="fa fas fa-fw fa-print"></span>
+                    {{/navlink}}
+                {{/nav}}
+            {{/onLoaded}}
+        </div>
+    </nav>
 </template>
