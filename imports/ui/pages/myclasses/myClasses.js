@@ -2,10 +2,9 @@ import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
-import { exampleDataRunningCourses, exampleDataNotStartedCourses, exampleDataCompletedCourses } from '../../../startup/client/exampleDataCollection'
+import { MyCourses } from '../../../api/collections/MyCourses'
 import './myClasses.html'
 import './scss/myClasses.scss'
-import { MyCourses } from '../../../api/collections/MyCourses'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -53,6 +52,6 @@ Template.myClasses.events({
   'click .save-changes' (event, templateInstance) {
     // Prevent default browser form submit
     event.preventDefault()
-    const text = templateInstance.$('#course-name').val()
+    // const text = templateInstance.$('#course-name').val()
   }
 })

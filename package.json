@@ -12,7 +12,7 @@
     "lint:markdown": "markdownlint \"**/*.md\" --config ./.markdownlint.json",
     "lint:markdown-fix": "markdownlint --fix \"**/*.md\" --config ./.markdownlint.json",
     "build:notes-tree": "markdown-notes-tree && npm run lint:markdown-fix",
-    "visualize": "meteor --production --extra-packages bundle-visualizer"
+    "visualize": "meteor --production --extra-packages bundle-visualizer,dynamic-import --settings=settings.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.6",
