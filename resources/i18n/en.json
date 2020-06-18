@@ -33,13 +33,5 @@
       "notFound": "Entries not found",
       "addNew": "Add new class"
     }
-  },
-  "routes": {
-    "notFound": "page-not-found",
-    "login": "login",
-    "logout": "logout",
-    "myClasses": "my-classes",
-    "class": "class",
-    "user": "user"
   }
 }

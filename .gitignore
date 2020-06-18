@@ -10,7 +10,6 @@ packages/
 productionSettings.json
 leaconfig.json
 i18n_routes.json
-routes.json
 
 # proprietary stuff
 public/fonts/

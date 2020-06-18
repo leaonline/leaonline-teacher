@@ -1,18 +1,19 @@
 <head>
     <meta charset="utf-8">
-    <meta name="application-name" content="otue.lea">
-    <meta name="description" content="Online Testumgebung zur Literalitätsentwicklung von Arbeitskräften">
+    <meta name="application-name" content="lea.teacher">
+    <meta name="description" content="Kursleitenden Dashboard">
     <meta name="viewport" content="initial-scale=1, maximum-scale=5, minimum-scale=-5"/>
     <meta name="theme-color" content="#FF00AA">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'"/>
-    <link rel="preconnect" href="http://www.ifeb.uni-bremen.de" crossorigin>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
     <link rel="shortcut icon" type="image/png" href="/icon/favicon.png?v1" sizes="16x16 32x32 64x64">
     <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-precomposed.png">
     <link rel="fluid-icon" href="/icon/favicon.png?v1" title="otu.lea icon">
     <title>leaonline-teacher</title>
-    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+    <noscript>
+        <style>
+            body:before { content: "Sorry, your browser does not support JavaScript!"; }
+        </style>
+    </noscript>
 </head>
 
 <body>

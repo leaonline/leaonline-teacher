@@ -141,6 +141,8 @@ If you are not familiar with it, please consult the Meteor guide, first.
       - [**notfound**](imports/ui/pages/notfound)
       - [**user**](imports/ui/pages/user)
     - [**utils**](imports/ui/utils)
+- [**public**](public)
+  - [**icons**](public/icons)
 - [**resources**](resources) - Static resources
   - [**i18n**](resources/i18n) - Translation files
 - [**server**](server)

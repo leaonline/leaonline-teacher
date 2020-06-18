@@ -12,14 +12,5 @@
     "authorizeUrl": "http://localhost:9090/oauth/authorize",
     "identityUrl": "http://localhost:9090/oauth/ident",
     "redirectUrl": "http://localhost:5555/_oauth/lea"
-  },
-  "fixtures": {
-    "accounts": [{
-      "username": "admin",
-      "password": "password",
-      "firstName": "Anton",
-      "lastName": "Administrator",
-      "email": "admin@leaonline.de"
-    }]
   }
 }
