@@ -1,7 +1,7 @@
 import { Tracker } from 'meteor/tracker'
 import SimpleSchema from 'simpl-schema'
 
-SimpleSchema.extendOptions.push('autoform')
+SimpleSchema.extendOptions(['autoform'])
 
 export const Schema = {}
 

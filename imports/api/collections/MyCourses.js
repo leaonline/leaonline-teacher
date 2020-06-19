@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import { Mongo } from 'meteor/mongo'
-
-export const MyCourses = new Mongo.Collection(null)
-=======
-import { i18n } from '../i18n/I18n'
+import { reactiveTranslate } from '../i18n/reactiveTranslate'
 
 export const MyCourses = {
   name: 'myCourses',
@@ -14,21 +9,20 @@ export const MyCourses = {
 MyCourses.schema = {
   title: {
     type: String,
-    label: i18n.reactive('common.title')
+    label: reactiveTranslate('common.title')
   },
   startedAt: {
     type: Date,
-    label: i18n.reactive('common.startedAt'),
+    label: reactiveTranslate('common.startedAt'),
     optional: true
   },
   completedAt: {
     type: Date,
-    label: i18n.reactive('common.completedAt')
+    label: reactiveTranslate('common.completedAt')
   },
 
   // users array example data:
   // [ { id: 'x0at2' , firstName: 'John', lastName: 'Doe' } ]
-  
   users: {
     type: Array,
     optional: true
@@ -44,14 +38,14 @@ MyCourses.schema = {
   },
   'users.$.lastName': {
     type: String
-  },
+  }
 }
 
 MyCourses.api = {}
 
 MyCourses.api.insert = (insertDoc) => {
   // TODO send later to server via Meteor.call
-  return collection.insert(insertDoc)
+  return MyCourses.collection.insert(insertDoc)
 }
 
 MyCourses.api.update = (updateDoc) => {
@@ -63,4 +57,4 @@ MyCourses.api.remove = (_id) => {
   // TODO send later to server via Meteor.call
   return collection.remove(_id)
 }
->>>>>>> 595f33fa29660f5efcc896712eb5f1f2c13a6686
+

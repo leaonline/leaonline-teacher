@@ -3,10 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
-<<<<<<< HEAD
-=======
 import { MyCourses } from '../../../api/collections/MyCourses'
->>>>>>> 595f33fa29660f5efcc896712eb5f1f2c13a6686
 import './myClasses.html'
 import './scss/myClasses.scss'
 
@@ -61,13 +58,9 @@ Template.myClasses.helpers({
 Template.myClasses.events({
   'click #addNewParticipant' (event, templateInstance) {
     // Prevent default browser form submit
-<<<<<<< HEAD
     // event.preventDefault()
     console.log(templateInstance.value.get().push(2))
     templateInstance.value.set(templateInstance.value.get())
-=======
-    event.preventDefault()
->>>>>>> 595f33fa29660f5efcc896712eb5f1f2c13a6686
     // const text = templateInstance.$('#course-name').val()
   }
 })
