@@ -1,8 +1,12 @@
 import { Template } from 'meteor/templating'
+import { ReactiveVar } from 'meteor/reactive-var'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
+<<<<<<< HEAD
+=======
 import { MyCourses } from '../../../api/collections/MyCourses'
+>>>>>>> 595f33fa29660f5efcc896712eb5f1f2c13a6686
 import './myClasses.html'
 import './scss/myClasses.scss'
 
@@ -13,6 +17,7 @@ Template.myClasses.onCreated(function () {
   if (Session.currentParticipant()) {
     Session.currentParticipant(null)
   }
+  this.value = new ReactiveVar([1])
 })
 
 const componentsLoader = bbsComponentLoader([
@@ -45,13 +50,24 @@ Template.myClasses.helpers({
     const cursor = MyCourses.find({ startedAt: { $exists: false }, completedAt: { $exists: false } })
     if (cursor.count() === 0) return null
     return cursor
+  },
+
+  addField () {
+    const template = Template.instance()
+    return template.value.get()
   }
 })
 
 Template.myClasses.events({
-  'click .save-changes' (event, templateInstance) {
+  'click #addNewParticipant' (event, templateInstance) {
     // Prevent default browser form submit
+<<<<<<< HEAD
+    // event.preventDefault()
+    console.log(templateInstance.value.get().push(2))
+    templateInstance.value.set(templateInstance.value.get())
+=======
     event.preventDefault()
+>>>>>>> 595f33fa29660f5efcc896712eb5f1f2c13a6686
     // const text = templateInstance.$('#course-name').val()
   }
 })
