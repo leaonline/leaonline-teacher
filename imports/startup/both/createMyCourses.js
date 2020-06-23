@@ -1,4 +1,4 @@
-import { Mongo } from "meteor/mongo"
+import { Mongo } from 'meteor/mongo'
 import { MyCourses } from '../../api/collections/MyCourses'
 import { Schema } from '../../api/schema/Schema'
 
