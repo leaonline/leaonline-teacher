@@ -34,17 +34,17 @@ Template.myClasses.helpers({
     return componentsLoaded.get()
   },
   runningCourses () {
-    const cursor = MyCourses.collection.find({ startedAt: { $exists: true }, completedAt: { $exists: false } })
+    const cursor = MyCourses.collection().find({ startedAt: { $exists: true }, completedAt: { $exists: false } })
     if (cursor.count() === 0) return null
     return cursor
   },
   completedCourses () {
-    const cursor = MyCourses.collection.find({ startedAt: { $exists: true }, completedAt: { $exists: true } })
+    const cursor = MyCourses.collection().find({ startedAt: { $exists: true }, completedAt: { $exists: true } })
     if (cursor.count() === 0) return null
     return cursor
   },
   notStartedCourses () {
-    const cursor = MyCourses.collection.find({ startedAt: { $exists: false }, completedAt: { $exists: false } })
+    const cursor = MyCourses.collection().find({ startedAt: { $exists: false }, completedAt: { $exists: false } })
     if (cursor.count() === 0) return null
     return cursor
   },

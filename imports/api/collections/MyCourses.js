@@ -45,16 +45,16 @@ MyCourses.api = {}
 
 MyCourses.api.insert = (insertDoc) => {
   // TODO send later to server via Meteor.call
-  return MyCourses.collection.insert(insertDoc)
+  return MyCourses.collection().insert(insertDoc)
 }
 
 MyCourses.api.update = (updateDoc) => {
   // TODO send later to server via Meteor.call
-  return MyCourses.collection.update(updateDoc._id, { $set: { updateDoc } })
+  return MyCourses.collection().update(updateDoc._id, { $set: { updateDoc } })
 }
 
 MyCourses.api.remove = (_id) => {
   // TODO send later to server via Meteor.call
-  return MyCourses.collection.remove(_id)
+  return MyCourses.collection().remove(_id)
 }
 
