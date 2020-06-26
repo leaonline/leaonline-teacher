@@ -6,6 +6,7 @@ import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
 import './myClasses.html'
 import './scss/myClasses.scss'
+import { Schema } from '../../../api/schema/Schema'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -14,7 +15,7 @@ Template.myClasses.onCreated(function () {
   if (Session.currentParticipant()) {
     Session.currentParticipant(null)
   }
-  this.value = new ReactiveVar([1])
+  this.value = new ReactiveVar([0])
 })
 
 const componentsLoader = bbsComponentLoader([
@@ -28,6 +29,7 @@ const componentsLoader = bbsComponentLoader([
 ])
 
 const componentsLoaded = componentsLoader.loaded
+const courseSchema = Schema.create(MyCourses.schema)
 
 Template.myClasses.helpers({
   componentsLoaded () {
@@ -52,6 +54,9 @@ Template.myClasses.helpers({
   addField () {
     const template = Template.instance()
     return template.value.get()
+  },
+  courseSchema () {
+    return courseSchema
   }
 })
 
@@ -60,7 +65,13 @@ Template.myClasses.events({
     // Prevent default browser form submit
     // event.preventDefault()
     // console.log(templateInstance.value.get().push(2))
-    // templateInstance.value.set(templateInstance.value.get())
-    // const text = templateInstance.$('#course-name').val()
+    templateInstance.value.set(templateInstance.value.get())
+    const text = templateInstance.$('#course-name').val()
+  },
+  'submit #insertCourseForm' (event, templateInstance) {
+    event.preventDefault()
+    const formValues = AutoForm.getFormValues('insertCourseForm')
+    console.log(formValues)
   }
+
 })

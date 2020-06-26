@@ -44,6 +44,7 @@
             {{#modalbody}}
                 <div class="form-group">
                     <label for="course-name" class="col-form-label">Enter Course Name</label>
+                    {{> quickForm schema = courseSchema id="insertCourseForm" type="normal"}}
                     <div class="row">
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="course-name" placeholder="Title">

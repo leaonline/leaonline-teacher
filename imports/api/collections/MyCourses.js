@@ -18,7 +18,8 @@ MyCourses.schema = {
   },
   completedAt: {
     type: Date,
-    label: reactiveTranslate('common.completedAt')
+    label: reactiveTranslate('common.completedAt'),
+    optional: true
   },
 
   // users array example data:
