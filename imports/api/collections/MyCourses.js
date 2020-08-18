@@ -9,36 +9,81 @@ export const MyCourses = {
 MyCourses.schema = {
   title: {
     type: String,
-    label: reactiveTranslate('common.title')
+    label: false,
+    autoform: {
+      placeHolder: reactiveTranslate('common.title')
+    }
   },
   startedAt: {
     type: Date,
-    label: reactiveTranslate('common.startedAt'),
-    optional: true
+    label: false,
+    optional: true,
+    autoform: {
+      placeHolder: reactiveTranslate('common.startedAt')
+    }
   },
   completedAt: {
     type: Date,
-    label: reactiveTranslate('common.completedAt'),
-    optional: true
+    label: false,
+    optional: true,
+    autoform: {
+      placeHolder: reactiveTranslate('common.completedAt')
+    }
   },
 
   // users array example data:
   // [ { id: 'x0at2' , firstName: 'John', lastName: 'Doe' } ]
   users: {
     type: Array,
-    optional: true
+    optional: true,
+    label: false,
+    autoform: {
+      afFormGroup: {
+        class: 'border-0 bg-danger'
+      }
+    }
   },
   'users.$': {
-    type: Object
+    type: Object,
+    label: false,
+    autoform: {
+      afFormGroup: {
+        class: 'border-0 bg-danger'
+      },
+      afObjectField: {
+        bodyClass: 'row border-0'
+      }
+    }
   },
   'users.$.id': {
-    type: String
+    type: String,
+    autoform: {
+      label: false,
+      placeHolder: 'ID',
+      afFormGroup: {
+        class: ''
+      }
+    }
   },
   'users.$.firstName': {
-    type: String
+    type: String,
+    autoform: {
+      label: false,
+      placeHolder: 'First Name',
+      afFormGroup: {
+        class: ''
+      }
+    }
   },
   'users.$.lastName': {
-    type: String
+    type: String,
+    autoform: {
+      label: false,
+      placeHolder: 'Last Name',
+      afFormGroup: {
+        class: ''
+      }
+    }
   }
 }
 
@@ -49,9 +94,9 @@ MyCourses.api.insert = (insertDoc) => {
   return MyCourses.collection().insert(insertDoc)
 }
 
-MyCourses.api.update = (updateDoc) => {
+MyCourses.api.update = (_id, updateDoc) => {
   // TODO send later to server via Meteor.call
-  return MyCourses.collection().update(updateDoc._id, { $set: { updateDoc } })
+  return MyCourses.collection().update(_id, { $set: updateDoc })
 }
 
 MyCourses.api.remove = (_id) => {

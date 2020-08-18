@@ -4,6 +4,7 @@ import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
+import { AutoFormBootstrap4 } from 'meteor/jkuester:autoform-bootstrap4'
 import './myClasses.html'
 import './scss/myClasses.scss'
 import { Schema } from '../../../api/schema/Schema'
@@ -17,6 +18,8 @@ Template.myClasses.onCreated(function () {
   }
   this.value = new ReactiveVar([0])
 })
+
+AutoFormBootstrap4.load().then(() => console.log('hello')).catch(e => console.error(e))
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -57,8 +60,13 @@ Template.myClasses.helpers({
   },
   courseSchema () {
     return courseSchema
+  },
+  getClickedCourse () {
+
   }
 })
+
+let a = null
 
 Template.myClasses.events({
   'click #addNewParticipant' (event, templateInstance) {
@@ -72,6 +80,12 @@ Template.myClasses.events({
     event.preventDefault()
     const formValues = AutoForm.getFormValues('insertCourseForm')
     console.log(formValues)
-  }
+    MyCourses.api.insert(formValues.insertDoc)
+  },
 
+  'click .update-course' (event, templateInstance) {
+    event.preventDefault()
+    a = event.target.parentElement.previousElementSibling.innerHTML
+    console.log(a)
+  }
 })

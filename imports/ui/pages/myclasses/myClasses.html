@@ -42,57 +42,35 @@
         {{#modal id="add-course-modal" centered=true large=true}}
             {{>modalheader title="Add Course" dismiss=true class="bg-warning"}}
             {{#modalbody}}
-                <div class="form-group">
-                    <label for="course-name" class="col-form-label">Enter Course Name</label>
-                    {{> quickForm schema = courseSchema id="insertCourseForm" type="normal"}}
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="course-name" placeholder="Title">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="date" class="form-control" id="course-name">
-                        </div>
-                        <div class="col-md-3">
-                            <input type="date" class="form-control" id="course-name">
-                        </div>
-                    </div>
+                {{> quickForm template="bootstrap4-inline" schema = courseSchema id="insertCourseForm" type="normal"}}
+<!--                {{#autoForm template="bootstrap4" schema = courseSchema id="insertCourseForm" type="normal"}}-->
+<!--                    <fieldset>-->
+<!--                        <span>Course Title</span>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-6">-->
+<!--                                {{> afQuickField name='title' }}-->
+<!--                            </div>-->
+<!--                            <div class="col-md-3">-->
+<!--                                {{> afQuickField name='startedAt'}}-->
+<!--                            </div>-->
+<!--                            <div class="col-md-3">-->
+<!--                                {{> afQuickField name='completedAt'}}-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </fieldset>-->
+<!--                    {{> afArrayField name='users'}}-->
+<!--                {{/autoForm}}-->
+            {{/modalbody}}
+            {{#modalfooter}}
+                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
+                {{> button type="submit" form="insertCourseForm" colortype="primary" label="Save changes" class="save-changes"}}
+            {{/modalfooter}}
+        {{/modal}}
 
-                    <label for="course-name" class="col-form-label">Enter participant details</label>
-                    {{#each addField}}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        {{# button}}
-                                            <i class="fa fa-fw fa-minus"></i>
-                                        {{/button}}
-                                    </div>
-                                    <div class="col-md-10">
-                                        <input type="text" class="form-control" id="course-name" placeholder="Code">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="course-name" placeholder="First Name">
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="course-name" placeholder="Last Name">
-                            </div>
-                        </div>
-                    {{else}}
-                        {{# item class="d-flex align-items-center"}}
-                            {{i18n "pages.myClasses.notFound"}}
-                        {{/item}}
-                    {{/each}}
-
-                    <div class="row">
-                        <div class="col">
-                            {{# button colortype="danger" class="ml-30" id="addNewParticipant"}}
-                                <i class="fa fa-fw fa-plus"></i>
-                            {{/button}}
-                        </div>
-                    </div>
-                </div>
+        {{#modal id="edit-course-modal" centered=true large=true}}
+            {{>modalheader title="Edit Course" dismiss=true class="bg-success"}}
+            {{#modalbody}}
+                {{> quickForm template="bootstrap4-inline" doc= this schema = courseSchema id="editCourseForm" type="update"}}
             {{/modalbody}}
             {{#modalfooter}}
                 {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
@@ -111,7 +89,7 @@
                 {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}
-                {{#button size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons"}}
+                {{#button data-toggle="modal" data-target="#edit-course-modal" size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons update-course"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
                 {{#button size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons"}}

@@ -3,7 +3,10 @@
     "continue": "Continue"
   },
   "common": {
-    "loading": "Loading"
+    "loading": "Loading",
+    "title": "Title",
+    "startedAt": "Begin",
+    "completedAt": "End"
   },
   "error": {
     "title": "Error",
