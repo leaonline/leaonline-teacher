@@ -75,17 +75,9 @@ Template.myClasses.helpers({
 })
 
 Template.myClasses.events({
-  // 'click #addNewParticipant' (event, templateInstance) {
-  //   // Prevent default browser form submit
-  //   // event.preventDefault()
-  //   // console.log(templateInstance.value.get().push(2))
-  //   templateInstance.value.set(templateInstance.value.get())
-  //   const text = templateInstance.$('#course-name').val()
-  // },
   'submit #insertCourseForm' (event, templateInstance) {
     event.preventDefault()
     const formValues = AutoForm.getFormValues('insertCourseForm')
-    console.log(formValues)
     MyCourses.api.insert(formValues.insertDoc)
     templateInstance.$('#add-course-modal').modal('hide')
   },
@@ -93,15 +85,12 @@ Template.myClasses.events({
     event.preventDefault()
     const clickedCourseTitle = event.currentTarget.parentElement.previousElementSibling.innerHTML
     const clickedCourseData = MyCourses.collection().find({ title: clickedCourseTitle }).fetch()[0]
-    console.log(clickedCourseData)
     templateInstance.value.set(clickedCourseData)
   },
   'submit #editCourseForm' (event, templateInstance) {
     event.preventDefault()
     const updateDocFormValues = AutoForm.getFormValues('editCourseForm')
-    console.log(updateDocFormValues)
     const transformedDoc = transformUpdateDoc({ $set: updateDocFormValues.updateDoc.$set, $unset: updateDocFormValues.updateDoc.$unset })
-    console.log(transformedDoc)
     MyCourses.api.update(templateInstance.value.get()._id, { $set: transformedDoc })
     templateInstance.$('#edit-course-modal').modal('hide')
   },
