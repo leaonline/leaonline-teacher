@@ -5,9 +5,11 @@ import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
 import { AutoFormBootstrap4 } from 'meteor/jkuester:autoform-bootstrap4'
+import { AutoForm } from 'meteor/aldeed:autoform'
 import './myClasses.html'
 import './scss/myClasses.scss'
 import { Schema } from '../../../api/schema/Schema'
+import { transformUpdateDoc } from '../../../api/utils/transformUpdateDoc'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -16,7 +18,7 @@ Template.myClasses.onCreated(function () {
   if (Session.currentParticipant()) {
     Session.currentParticipant(null)
   }
-  this.value = new ReactiveVar([0])
+  this.value = new ReactiveVar(0)
 })
 
 AutoFormBootstrap4.load().then(() => console.log('hello')).catch(e => console.error(e))
@@ -33,6 +35,9 @@ const componentsLoader = bbsComponentLoader([
 
 const componentsLoaded = componentsLoader.loaded
 const courseSchema = Schema.create(MyCourses.schema)
+const collection = MyCourses.collection()
+
+let clickedCourse = null
 
 Template.myClasses.helpers({
   componentsLoaded () {
@@ -61,31 +66,54 @@ Template.myClasses.helpers({
   courseSchema () {
     return courseSchema
   },
+  getCollection () {
+    return collection
+  },
   getClickedCourse () {
-
+    return Template.instance().value.get()
   }
 })
 
-let a = null
-
 Template.myClasses.events({
-  'click #addNewParticipant' (event, templateInstance) {
-    // Prevent default browser form submit
-    // event.preventDefault()
-    // console.log(templateInstance.value.get().push(2))
-    templateInstance.value.set(templateInstance.value.get())
-    const text = templateInstance.$('#course-name').val()
-  },
+  // 'click #addNewParticipant' (event, templateInstance) {
+  //   // Prevent default browser form submit
+  //   // event.preventDefault()
+  //   // console.log(templateInstance.value.get().push(2))
+  //   templateInstance.value.set(templateInstance.value.get())
+  //   const text = templateInstance.$('#course-name').val()
+  // },
   'submit #insertCourseForm' (event, templateInstance) {
     event.preventDefault()
     const formValues = AutoForm.getFormValues('insertCourseForm')
     console.log(formValues)
     MyCourses.api.insert(formValues.insertDoc)
+    templateInstance.$('#add-course-modal').modal('hide')
   },
-
   'click .update-course' (event, templateInstance) {
     event.preventDefault()
-    a = event.target.parentElement.previousElementSibling.innerHTML
-    console.log(a)
+    const clickedCourseTitle = event.currentTarget.parentElement.previousElementSibling.innerHTML
+    const clickedCourseData = MyCourses.collection().find({ title: clickedCourseTitle }).fetch()[0]
+    console.log(clickedCourseData)
+    templateInstance.value.set(clickedCourseData)
+  },
+  'submit #editCourseForm' (event, templateInstance) {
+    event.preventDefault()
+    const updateDocFormValues = AutoForm.getFormValues('editCourseForm')
+    console.log(updateDocFormValues)
+    const transformedDoc = transformUpdateDoc({ $set: updateDocFormValues.updateDoc.$set, $unset: updateDocFormValues.updateDoc.$unset })
+    console.log(transformedDoc)
+    MyCourses.api.update(templateInstance.value.get()._id, { $set: transformedDoc })
+    templateInstance.$('#edit-course-modal').modal('hide')
+  },
+  'click .delete-course-icon' (event, templateInstance) {
+    event.preventDefault()
+    clickedCourse = event.currentTarget.parentElement.previousElementSibling.innerHTML
+    templateInstance.$('#delete-course-modal').modal('show')
+  },
+  'click .delete-course-button' (event, templateInstance) {
+    event.preventDefault()
+    const clickedCourseData = MyCourses.collection().find({ title: clickedCourse }).fetch()[0]
+    MyCourses.api.remove(clickedCourseData._id)
+    templateInstance.$('#delete-course-modal').modal('hide')
   }
 })

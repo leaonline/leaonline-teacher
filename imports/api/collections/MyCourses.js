@@ -103,4 +103,3 @@ MyCourses.api.remove = (_id) => {
   // TODO send later to server via Meteor.call
   return MyCourses.collection().remove(_id)
 }
-

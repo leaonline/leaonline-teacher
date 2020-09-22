@@ -57,7 +57,7 @@ aldeed:autoform
 ostrio:flow-router-extra
 ostrio:i18n
 jkuester:template-states
-jkuester:blaze-bs4
+jkuester:blaze-bs4@0.16.2
 
 #========================================
 # TESTING
