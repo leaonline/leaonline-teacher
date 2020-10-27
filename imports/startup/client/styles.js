@@ -6,5 +6,11 @@ Meteor.startup(() => {
   Promise.all([
     import('./bootstrap'),
     import('./fontawesome')
-  ]).catch(e => console.error(e))
+  ])
+    .then(() => {
+      console.log('styles loaded')
+    })
+    .catch(e => {
+      console.error(e)
+    })
 })

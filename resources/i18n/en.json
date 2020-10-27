@@ -3,7 +3,10 @@
     "continue": "Continue"
   },
   "common": {
-    "loading": "Loading"
+    "loading": "Loading",
+    "title": "Title",
+    "startedAt": "Begin",
+    "completedAt": "End"
   },
   "error": {
     "title": "Error",
@@ -30,7 +33,8 @@
       "running": "Running Courses",
       "completed": "Completed Courses",
       "upcoming": "Courses not started yet",
-      "notFound": "Entries not found"
+      "notFound": "Entries not found",
+      "addNew": "Add new class"
     }
   }
 }

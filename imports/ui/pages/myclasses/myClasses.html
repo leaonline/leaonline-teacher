@@ -1,7 +1,9 @@
 <template name="myClasses">
     {{#onLoaded loaded=componentsLoaded}}
         <div class="row d-flex justify-content-end align-items-center mr-1">
-            {{> button data-toggle="modal" data-target="#add-course-modal" label="Add New Course" size="sm" class="add-new-course-button"}}
+            {{# button data-toggle="modal" data-target="#add-course-modal" size="sm" class="add-new-course-button"}}
+                <span>{{i18n "pages.myClasses.addNew"}}</span>
+            {{/button}}
         </div>
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.running"}}</span></h4>
@@ -37,17 +39,72 @@
             {{/each}}
         {{/listgroup}}
 
-        {{#modal id="add-course-modal" centered=true}}
-            {{>modalheader title="Add Course" dismiss=true}}
+<!--        {{> quickForm template="bootstrap4-inline" schema = courseSchema id="insertCourseForm" type="normal"}}-->
+
+        {{#modal id="add-course-modal" centered=true large=true}}
+            {{>modalheader title="Add Course" dismiss=true class="bg-warning"}}
             {{#modalbody}}
-                <div class="form-group">
-                    <label for="course-name" class="col-form-label">Enter Course Name</label>
-                 <input type="text" class="form-control" id="course-name">
-             </div>
+                {{#autoForm template="bootstrap4" schema = courseSchema id="insertCourseForm" type="normal"}}
+                    <fieldset>
+                        <span>Course Title</span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{> afQuickField name='title' }}
+                            </div>
+                            <div class="col-md-3">
+                                {{> afQuickField name='startedAt'}}
+                            </div>
+                            <div class="col-md-3">
+                                {{> afQuickField name='completedAt'}}
+                            </div>
+                        </div>
+                    </fieldset>
+                    {{> afArrayField name='users'}}
+                {{/autoForm}}
             {{/modalbody}}
             {{#modalfooter}}
                 {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
-                {{> button colortype="primary" label="Save changes" class="save-changes"}}
+                {{> button type="submit" form="insertCourseForm" colortype="primary" label="Insert" class="insert"}}
+            {{/modalfooter}}
+        {{/modal}}
+
+        {{#modal id="edit-course-modal" centered=true large=true}}
+            {{>modalheader title="Edit Course" dismiss=true class="bg-success"}}
+            {{#modalbody}}
+<!--                {{> quickForm template="bootstrap4-inline" doc=getClickedCourse  collection=getCollection schema=courseSchema id="editCourseForm" type="normal"}}-->
+                {{#autoForm template="bootstrap4"  doc=getClickedCourse  collection=getCollection schema=courseSchema
+                    id="editCourseForm" type="normal"}}
+                    <fieldset>
+                        <span>Course Title</span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{> afQuickField name='title' }}
+                            </div>
+                            <div class="col-md-3">
+                                {{> afQuickField name='startedAt'}}
+                            </div>
+                            <div class="col-md-3">
+                                {{> afQuickField name='completedAt'}}
+                            </div>
+                        </div>
+                    </fieldset>
+                    {{> afArrayField name='users'}}
+                {{/autoForm}}
+            {{/modalbody}}
+            {{#modalfooter}}
+                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
+                {{> button type="submit" colortype="primary" label="Save changes" class="save-changes" form="editCourseForm"}}
+            {{/modalfooter}}
+        {{/modal}}
+
+        {{#modal id="delete-course-modal" centered=true}}
+            {{>modalheader title="Delete Course" dismiss=true class="bg-danger"}}
+            {{#modalbody}}
+                <div>Are you sure you want to delete this course? This action cannot be reversed.</div>
+            {{/modalbody}}
+            {{#modalfooter}}
+                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
+                {{> button type="submit" colortype="primary" label="Delete" class="delete-course-button"}}
             {{/modalfooter}}
         {{/modal}}
     {{/onLoaded}}
@@ -62,10 +119,10 @@
                 {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}
-                {{#button size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons"}}
+                {{#button data-toggle="modal" data-target="#edit-course-modal" size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons update-course"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
-                {{#button size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons"}}
+                {{#button size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons delete-course-icon"}}
                     <span class="fa fas fa-fw fa-trash"></span>
                 {{/button}}
             </div>

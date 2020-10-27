@@ -15,10 +15,10 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer,dynamic-import --settings=settings.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.7.6",
+    "@babel/runtime": "^7.11.2",
     "bcrypt": "^4.0.1",
-    "meteor-node-stubs": "^1.0.0",
-    "stylelint-config-sass-guidelines": "^7.0.0"
+    "meteor-node-stubs": "^1.0.1",
+    "simpl-schema": "^1.10.1"
   },
   "meteor": {
     "mainModule": {
@@ -28,18 +28,19 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1",
-    "bootstrap": "^4.4.1",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bootstrap": "^4.5.2",
     "chai": "^4.2.0",
-    "jquery": "^3.5.0",
-    "markdown-notes-tree": "^1.8.0",
+    "jquery": "^3.5.1",
+    "markdown-notes-tree": "^1.10.1",
     "markdownlint-cli": "^0.22.0",
     "popper.js": "^1.16.1",
     "puppeteer": "^2.1.1",
-    "sinon": "^9.0.1",
+    "sinon": "^9.0.3",
     "snazzy": "^8.0.0",
-    "standard": "^14.3.3",
-    "stylelint": "^13.2.1",
+    "standard": "^14.3.4",
+    "stylelint": "^13.7.1",
+    "stylelint-config-sass-guidelines": "^7.1.0",
     "stylelint-config-standard": "^20.0.0"
   }
 }
