@@ -55,6 +55,7 @@ launch-screen@1.2.0
 leaonline:accounts-lea@1.0.1
 leaonline:factories@1.1.0
 leaonline:oauth-lea@1.0.2
+leaonline:theme@1.0.0
 livedata@1.0.18
 lmieulet:meteor-coverage@3.2.0
 localstorage@1.2.0
