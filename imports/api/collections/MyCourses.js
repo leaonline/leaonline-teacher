@@ -57,6 +57,7 @@ MyCourses.schema = {
   },
   'users.$.id': {
     type: String,
+    max: 5,
     autoform: {
       label: false,
       placeHolder: 'ID',

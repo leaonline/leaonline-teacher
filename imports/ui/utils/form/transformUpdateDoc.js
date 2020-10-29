@@ -1,3 +1,8 @@
+const defaultOptions = {
+  enumerable: true,
+  writable: false
+}
+
 /**
  * Takes an AutoForm updateDoc (via getFormValues) and transforms it into a normal document.
  * @param $set
@@ -8,11 +13,11 @@ export const transformUpdateDoc = ({ $set, $unset }) => {
   const document = {}
   Object.entries($set).forEach(([key, value]) => {
     // better than document[key] = value is the following
-    Object.defineProperty(document, key, { value })
+    Object.defineProperty(document, key, { value, ...defaultOptions })
   })
   Object.keys($unset).forEach(key => {
     // better than document[key] = value is the following
-    Object.defineProperty(document, key, { value: null })
+    Object.defineProperty(document, key, { value: null, ...defaultOptions })
   })
   return document
 }

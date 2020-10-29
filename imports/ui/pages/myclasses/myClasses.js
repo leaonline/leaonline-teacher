@@ -6,10 +6,13 @@ import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
 import { AutoFormBootstrap4 } from 'meteor/jkuester:autoform-bootstrap4'
 import { AutoForm } from 'meteor/aldeed:autoform'
+import { Schema } from '../../../api/schema/Schema'
+import { transformUpdateDoc } from '../../utils/form/transformUpdateDoc'
+import { formIsValid } from '../../utils/form/formIsValid'
+import { resetForm } from '../../utils/form/resetForm'
 import './myClasses.html'
 import './scss/myClasses.scss'
-import { Schema } from '../../../api/schema/Schema'
-import { transformUpdateDoc } from '../../../api/utils/transformUpdateDoc'
+import { cleanUpdateDoc } from '../../utils/form/cleanUpdateDoc'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -18,7 +21,7 @@ Template.myClasses.onCreated(function () {
   if (Session.currentParticipant()) {
     Session.currentParticipant(null)
   }
-  this.value = new ReactiveVar(0)
+  this.courseDoc = new ReactiveVar(0)
 })
 
 AutoFormBootstrap4.load().then(() => console.log('hello')).catch(e => console.error(e))
@@ -38,13 +41,22 @@ const courseSchema = Schema.create(MyCourses.schema)
 const collection = MyCourses.collection()
 
 let clickedCourse = null
+const notExists = field => ({
+  $or: [
+    { [field]: { $exists: false } },
+    { [field]: null },
+  ]
+})
 
 Template.myClasses.helpers({
   componentsLoaded () {
     return componentsLoaded.get()
   },
   runningCourses () {
-    const cursor = MyCourses.collection().find({ startedAt: { $exists: true }, completedAt: { $exists: false } })
+    const query = { startedAt: { $exists: true }}
+    Object.assign(query, notExists('completedAt'))
+
+    const cursor = MyCourses.collection().find(query)
     if (cursor.count() === 0) return null
     return cursor
   },
@@ -54,14 +66,17 @@ Template.myClasses.helpers({
     return cursor
   },
   notStartedCourses () {
-    const cursor = MyCourses.collection().find({ startedAt: { $exists: false }, completedAt: { $exists: false } })
+    const query = {}
+    Object.assign(query, notExists('startedAt'), notExists('completedAt'))
+
+    const cursor = MyCourses.collection().find()
     if (cursor.count() === 0) return null
     return cursor
   },
 
   addField () {
     const template = Template.instance()
-    return template.value.get()
+    return template.courseDoc.get()
   },
   courseSchema () {
     return courseSchema
@@ -70,7 +85,7 @@ Template.myClasses.helpers({
     return collection
   },
   getClickedCourse () {
-    return Template.instance().value.get()
+    return Template.instance().courseDoc.get()
   }
 })
 
@@ -83,15 +98,20 @@ Template.myClasses.events({
   },
   'click .update-course' (event, templateInstance) {
     event.preventDefault()
-    const clickedCourseTitle = event.currentTarget.parentElement.previousElementSibling.innerHTML
-    const clickedCourseData = MyCourses.collection().find({ title: clickedCourseTitle }).fetch()[0]
-    templateInstance.value.set(clickedCourseData)
+    const courseId = templateInstance.$(event.currentTarget).data('course')
+    const clickedCourseData = MyCourses.collection().findOne(courseId)
+    templateInstance.courseDoc.set(clickedCourseData)
   },
   'submit #editCourseForm' (event, templateInstance) {
     event.preventDefault()
-    const updateDocFormValues = AutoForm.getFormValues('editCourseForm')
-    const transformedDoc = transformUpdateDoc({ $set: updateDocFormValues.updateDoc.$set, $unset: updateDocFormValues.updateDoc.$unset })
-    MyCourses.api.update(templateInstance.value.get()._id, { $set: transformedDoc })
+    const updateDoc = formIsValid('editCourseForm', courseSchema, { isUpdate: true })
+    if (!updateDoc) return
+
+    const courseDoc = templateInstance.courseDoc.get()
+    const transformedDoc = transformUpdateDoc(updateDoc)
+    const cleanedDoc = cleanUpdateDoc(transformedDoc, courseDoc)
+    MyCourses.api.update(courseDoc._id, cleanedDoc)
+
     templateInstance.$('#edit-course-modal').modal('hide')
   },
   'click .delete-course-icon' (event, templateInstance) {
@@ -104,5 +124,8 @@ Template.myClasses.events({
     const clickedCourseData = MyCourses.collection().find({ title: clickedCourse }).fetch()[0]
     MyCourses.api.remove(clickedCourseData._id)
     templateInstance.$('#delete-course-modal').modal('hide')
+  },
+  'hidden.bs.modal #edit-course-modal' () {
+    resetForm('editCourseForm')
   }
 })
