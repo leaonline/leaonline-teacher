@@ -1,3 +1,5 @@
+import { AutoForm } from 'meteor/aldeed:autoform'
+
 export const formIsValid = (formId, schema, { isUpdate } = {}) => {
   const { insertDoc, updateDoc } = AutoForm.getFormValues(formId)
   const targetDoc = isUpdate
