@@ -40,11 +40,11 @@ const componentsLoaded = componentsLoader.loaded
 const courseSchema = Schema.create(MyCourses.schema)
 const collection = MyCourses.collection()
 
-let clickedCourse = null
+// let clickedCourse = null
 const notExists = field => ({
   $or: [
     { [field]: { $exists: false } },
-    { [field]: null },
+    { [field]: null }
   ]
 })
 
@@ -53,9 +53,8 @@ Template.myClasses.helpers({
     return componentsLoaded.get()
   },
   runningCourses () {
-    const query = { startedAt: { $exists: true }}
+    const query = { startedAt: { $exists: true } }
     Object.assign(query, notExists('completedAt'))
-
     const cursor = MyCourses.collection().find(query)
     if (cursor.count() === 0) return null
     return cursor
@@ -67,9 +66,13 @@ Template.myClasses.helpers({
   },
   notStartedCourses () {
     const query = {}
-    Object.assign(query, notExists('startedAt'), notExists('completedAt'))
-
-    const cursor = MyCourses.collection().find()
+    query.$or = [
+      { startedAt: { $exists: false }, completedAt: { $exists: false } },
+      { startedAt: null, completedAt: { $exists: false } },
+      { startedAt: { $exists: false }, completedAt: null },
+      { startedAt: null, completedAt: null }
+    ]
+    const cursor = MyCourses.collection().find(query)
     if (cursor.count() === 0) return null
     return cursor
   },
@@ -98,6 +101,7 @@ Template.myClasses.events({
   },
   'click .update-course' (event, templateInstance) {
     event.preventDefault()
+    console.log(templateInstance.$(event.currentTarget).data())
     const courseId = templateInstance.$(event.currentTarget).data('course')
     const clickedCourseData = MyCourses.collection().findOne(courseId)
     templateInstance.courseDoc.set(clickedCourseData)
@@ -116,13 +120,15 @@ Template.myClasses.events({
   },
   'click .delete-course-icon' (event, templateInstance) {
     event.preventDefault()
-    clickedCourse = event.currentTarget.parentElement.previousElementSibling.innerHTML
+    const courseId = templateInstance.$(event.currentTarget).data('course')
+    const clickedCourseData = MyCourses.collection().findOne(courseId)
+    templateInstance.courseDoc.set(clickedCourseData)
     templateInstance.$('#delete-course-modal').modal('show')
   },
   'click .delete-course-button' (event, templateInstance) {
     event.preventDefault()
-    const clickedCourseData = MyCourses.collection().find({ title: clickedCourse }).fetch()[0]
-    MyCourses.api.remove(clickedCourseData._id)
+    const courseDoc = templateInstance.courseDoc.get()
+    MyCourses.api.remove(courseDoc._id)
     templateInstance.$('#delete-course-modal').modal('hide')
   },
   'hidden.bs.modal #edit-course-modal' () {

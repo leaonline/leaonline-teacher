@@ -39,8 +39,6 @@
             {{/each}}
         {{/listgroup}}
 
-<!--        {{> quickForm template="bootstrap4-inline" schema = courseSchema id="insertCourseForm" type="normal"}}-->
-
         {{#modal id="add-course-modal" centered=true large=true}}
             {{>modalheader title="Add Course" dismiss=true class="bg-warning"}}
             {{#modalbody}}
@@ -71,7 +69,6 @@
         {{#modal id="edit-course-modal" centered=true large=true}}
             {{>modalheader title="Edit Course" dismiss=true class="bg-success"}}
             {{#modalbody}}
-<!--                {{> quickForm template="bootstrap4-inline" doc=getClickedCourse  collection=getCollection schema=courseSchema id="editCourseForm" type="normal"}}-->
                 {{#autoForm template="bootstrap4"  doc=getClickedCourse  collection=getCollection schema=courseSchema
                     id="editCourseForm" type="normal"}}
                     <fieldset>
@@ -122,7 +119,7 @@
                 {{#button data-course=course._id data-toggle="modal" data-target="#edit-course-modal" size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons update-course"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
-                {{#button size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons delete-course-icon"}}
+                {{#button data-course=course._id size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons delete-course-icon"}}
                     <span class="fa fas fa-fw fa-trash"></span>
                 {{/button}}
             </div>
