@@ -40,38 +40,30 @@ const componentsLoaded = componentsLoader.loaded
 const courseSchema = Schema.create(MyCourses.schema)
 const collection = MyCourses.collection()
 
-// let clickedCourse = null
-const notExists = field => ({
-  $or: [
-    { [field]: { $exists: false } },
-    { [field]: null }
-  ]
-})
+const isMongoDate = { $type: 9 }
+const isNotMongoDate = { $not: isMongoDate }
 
 Template.myClasses.helpers({
   componentsLoaded () {
     return componentsLoaded.get()
   },
   runningCourses () {
-    const query = { startedAt: { $exists: true } }
-    Object.assign(query, notExists('completedAt'))
+    const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }
     const cursor = MyCourses.collection().find(query)
     if (cursor.count() === 0) return null
+    console.log(cursor.fetch())
     return cursor
   },
   completedCourses () {
-    const cursor = MyCourses.collection().find({ startedAt: { $exists: true }, completedAt: { $exists: true } })
+    const cursor = MyCourses.collection().find({ startedAt: isMongoDate, completedAt: isMongoDate })
     if (cursor.count() === 0) return null
+    console.log(cursor.fetch())
     return cursor
   },
   notStartedCourses () {
     const query = {}
-    query.$or = [
-      { startedAt: { $exists: false }, completedAt: { $exists: false } },
-      { startedAt: null, completedAt: { $exists: false } },
-      { startedAt: { $exists: false }, completedAt: null },
-      { startedAt: null, completedAt: null }
-    ]
+    query.startedAt = isNotMongoDate
+    query.completedAt = isNotMongoDate
     const cursor = MyCourses.collection().find(query)
     if (cursor.count() === 0) return null
     return cursor
@@ -101,7 +93,6 @@ Template.myClasses.events({
   },
   'click .update-course' (event, templateInstance) {
     event.preventDefault()
-    console.log(templateInstance.$(event.currentTarget).data())
     const courseId = templateInstance.$(event.currentTarget).data('course')
     const clickedCourseData = MyCourses.collection().findOne(courseId)
     templateInstance.courseDoc.set(clickedCourseData)
@@ -110,7 +101,6 @@ Template.myClasses.events({
     event.preventDefault()
     const updateDoc = formIsValid('editCourseForm', courseSchema, { isUpdate: true })
     if (!updateDoc) return
-
     const courseDoc = templateInstance.courseDoc.get()
     const transformedDoc = transformUpdateDoc(updateDoc)
     const cleanedDoc = cleanUpdateDoc(transformedDoc, courseDoc)

@@ -60,7 +60,7 @@ MyCourses.schema = {
     max: 5,
     autoform: {
       label: false,
-      placeHolder: 'ID',
+      placeHolder: reactiveTranslate('common.userId'),
       afFormGroup: {
         class: ''
       }
@@ -70,7 +70,7 @@ MyCourses.schema = {
     type: String,
     autoform: {
       label: false,
-      placeHolder: 'First Name',
+      placeHolder: reactiveTranslate('common.firstName'),
       afFormGroup: {
         class: ''
       }
@@ -80,7 +80,7 @@ MyCourses.schema = {
     type: String,
     autoform: {
       label: false,
-      placeHolder: 'Last Name',
+      placeHolder: reactiveTranslate('common.lastName'),
       afFormGroup: {
         class: ''
       }

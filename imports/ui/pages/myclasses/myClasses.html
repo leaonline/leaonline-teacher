@@ -1,12 +1,14 @@
 <template name="myClasses">
     {{#onLoaded loaded=componentsLoaded}}
-        <div class="row d-flex justify-content-end align-items-center mr-1">
-            {{# button data-toggle="modal" data-target="#add-course-modal" size="sm" class="add-new-course-button"}}
+        <div class="row d-flex justify-content-end align-items-center mr-1 ">
+            {{# button data-toggle="modal" data-target="#add-course-modal" size="sm"
+                       class="add-new-course-button"}}
                 <span>{{i18n "pages.myClasses.addNew"}}</span>
             {{/button}}
         </div>
 
-        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.running"}}</span></h4>
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n
+                "pages.myClasses.running"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in runningCourses}}
                 {{> cardItems course=document}}
@@ -17,7 +19,8 @@
             {{/each}}
         {{/listgroup}}
 
-        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.completed"}}</span></h4>
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n
+                "pages.myClasses.completed"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in completedCourses}}
                 {{> cardItems course=document}}
@@ -28,7 +31,8 @@
             {{/each}}
         {{/listgroup}}
 
-        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n "pages.myClasses.upcoming"}}</span></h4>
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n
+                "pages.myClasses.upcoming"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in notStartedCourses}}
                 {{> cardItems course=document}}
@@ -40,11 +44,11 @@
         {{/listgroup}}
 
         {{#modal id="add-course-modal" centered=true large=true}}
-            {{>modalheader title="Add Course" dismiss=true class="bg-warning"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-warning "}}
             {{#modalbody}}
                 {{#autoForm template="bootstrap4" schema = courseSchema id="insertCourseForm" type="normal"}}
                     <fieldset>
-                        <span>Course Title</span>
+                        <span>{{i18n "pages.myClasses.modal.body.addCourse.title"}}</span>
                         <div class="row">
                             <div class="col-md-6">
                                 {{> afQuickField name='title' }}
@@ -61,18 +65,18 @@
                 {{/autoForm}}
             {{/modalbody}}
             {{#modalfooter}}
-                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
-                {{> button type="submit" form="insertCourseForm" colortype="primary" label="Insert" class="insert"}}
+                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
+                {{> button type="submit" form="insertCourseForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
             {{/modalfooter}}
         {{/modal}}
 
         {{#modal id="edit-course-modal" centered=true large=true}}
-            {{>modalheader title="Edit Course" dismiss=true class="bg-success"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-success"}}
             {{#modalbody}}
                 {{#autoForm template="bootstrap4"  doc=getClickedCourse  collection=getCollection schema=courseSchema
-                    id="editCourseForm" type="normal"}}
+                            id="editCourseForm" type="normal"}}
                     <fieldset>
-                        <span>Course Title</span>
+                        <span>{{i18n "pages.myClasses.modal.body.editCourse.title"}}</span>
                         <div class="row">
                             <div class="col-md-6">
                                 {{> afQuickField name='title' }}
@@ -89,19 +93,19 @@
                 {{/autoForm}}
             {{/modalbody}}
             {{#modalfooter}}
-                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
-                {{> button type="submit" colortype="primary" label="Save changes" class="save-changes" form="editCourseForm"}}
+                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
+                {{> button type="submit" colortype="primary" label=(i18n "actions.update") class="save-changes" form="editCourseForm"}}
             {{/modalfooter}}
         {{/modal}}
 
         {{#modal id="delete-course-modal" centered=true}}
-            {{>modalheader title="Delete Course" dismiss=true class="bg-danger"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.deleteCourse.title") dismiss=true class="bg-danger"}}
             {{#modalbody}}
-                <div>Are you sure you want to delete this course? This action cannot be reversed.</div>
+                <div>{{i18n "pages.myClasses.modal.body.deleteCourse"}}</div>
             {{/modalbody}}
             {{#modalfooter}}
-                {{> button colortype="secondary" label="Close" data-dismiss="modal" }}
-                {{> button type="submit" colortype="primary" label="Delete" class="delete-course-button"}}
+                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
+                {{> button type="submit" colortype="primary" label=(i18n "actions.delete") class="delete-course-button"}}
             {{/modalfooter}}
         {{/modal}}
     {{/onLoaded}}
@@ -116,10 +120,12 @@
                 {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}
-                {{#button data-course=course._id data-toggle="modal" data-target="#edit-course-modal" size="sm"  colortype="success" outline=true class="mr-2 course-items-icon-buttons update-course"}}
+                {{#button data-course=course._id data-toggle="modal" data-target="#edit-course-modal" size="sm"
+                          colortype="success" outline=true class="mr-2 course-items-icon-buttons update-course"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
-                {{#button data-course=course._id size="sm" colortype="danger" outline=true class="mr-1 course-items-icon-buttons delete-course-icon"}}
+                {{#button data-course=course._id size="sm" colortype="danger" outline=true
+                          class="mr-1 course-items-icon-buttons delete-course-icon"}}
                     <span class="fa fas fa-fw fa-trash"></span>
                 {{/button}}
             </div>
