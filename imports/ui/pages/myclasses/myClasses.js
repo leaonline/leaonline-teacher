@@ -24,7 +24,7 @@ Template.myClasses.onCreated(function () {
   this.courseDoc = new ReactiveVar(0)
 })
 
-AutoFormBootstrap4.load().then(() => console.log('hello')).catch(e => console.error(e))
+AutoFormBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -51,13 +51,11 @@ Template.myClasses.helpers({
     const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }
     const cursor = MyCourses.collection().find(query)
     if (cursor.count() === 0) return null
-    console.log(cursor.fetch())
     return cursor
   },
   completedCourses () {
     const cursor = MyCourses.collection().find({ startedAt: isMongoDate, completedAt: isMongoDate })
     if (cursor.count() === 0) return null
-    console.log(cursor.fetch())
     return cursor
   },
   notStartedCourses () {
