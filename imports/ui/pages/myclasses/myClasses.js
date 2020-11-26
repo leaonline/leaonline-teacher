@@ -49,12 +49,15 @@ Template.myClasses.helpers({
   },
   runningCourses () {
     const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }
-    const cursor = MyCourses.collection().find(query)
+    const transform = { sort: { startedAt: -1 } }
+    const cursor = MyCourses.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
   completedCourses () {
-    const cursor = MyCourses.collection().find({ startedAt: isMongoDate, completedAt: isMongoDate })
+    const query = { startedAt: isMongoDate, completedAt: isMongoDate }
+    const transform = { sort: { completedAt: -1 } }
+    const cursor = MyCourses.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
@@ -62,7 +65,8 @@ Template.myClasses.helpers({
     const query = {}
     query.startedAt = isNotMongoDate
     query.completedAt = isNotMongoDate
-    const cursor = MyCourses.collection().find(query)
+    const transform = { sort: { title: -1 } }
+    const cursor = MyCourses.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
