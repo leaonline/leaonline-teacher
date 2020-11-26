@@ -11,7 +11,11 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then(cacheNames => Promise.all(cacheNames.map((cacheName) => {
-      if (version !== cacheName) return caches.delete(cacheName)
+      if (version !== cacheName) {
+        return caches.delete(cacheName)
+      } else {
+        return false
+      }
     }))).then(self.clients.claim())
   )
 })

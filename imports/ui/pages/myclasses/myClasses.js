@@ -24,7 +24,7 @@ Template.myClasses.onCreated(function () {
   this.courseDoc = new ReactiveVar(0)
 })
 
-AutoFormBootstrap4.load().then(() => console.log('hello')).catch(e => console.error(e))
+AutoFormBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -40,36 +40,33 @@ const componentsLoaded = componentsLoader.loaded
 const courseSchema = Schema.create(MyCourses.schema)
 const collection = MyCourses.collection()
 
-let clickedCourse = null
-const notExists = field => ({
-  $or: [
-    { [field]: { $exists: false } },
-    { [field]: null },
-  ]
-})
+const isMongoDate = { $type: 9 }
+const isNotMongoDate = { $not: isMongoDate }
 
 Template.myClasses.helpers({
   componentsLoaded () {
     return componentsLoaded.get()
   },
   runningCourses () {
-    const query = { startedAt: { $exists: true }}
-    Object.assign(query, notExists('completedAt'))
-
-    const cursor = MyCourses.collection().find(query)
+    const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }
+    const transform = { sort: { startedAt: -1 } }
+    const cursor = MyCourses.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
   completedCourses () {
-    const cursor = MyCourses.collection().find({ startedAt: { $exists: true }, completedAt: { $exists: true } })
+    const query = { startedAt: isMongoDate, completedAt: isMongoDate }
+    const transform = { sort: { completedAt: -1 } }
+    const cursor = MyCourses.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
   notStartedCourses () {
     const query = {}
-    Object.assign(query, notExists('startedAt'), notExists('completedAt'))
-
-    const cursor = MyCourses.collection().find()
+    query.startedAt = isNotMongoDate
+    query.completedAt = isNotMongoDate
+    const transform = { sort: { title: -1 } }
+    const cursor = MyCourses.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
@@ -106,7 +103,6 @@ Template.myClasses.events({
     event.preventDefault()
     const updateDoc = formIsValid('editCourseForm', courseSchema, { isUpdate: true })
     if (!updateDoc) return
-
     const courseDoc = templateInstance.courseDoc.get()
     const transformedDoc = transformUpdateDoc(updateDoc)
     const cleanedDoc = cleanUpdateDoc(transformedDoc, courseDoc)
@@ -116,13 +112,15 @@ Template.myClasses.events({
   },
   'click .delete-course-icon' (event, templateInstance) {
     event.preventDefault()
-    clickedCourse = event.currentTarget.parentElement.previousElementSibling.innerHTML
+    const courseId = templateInstance.$(event.currentTarget).data('course')
+    const clickedCourseData = MyCourses.collection().findOne(courseId)
+    templateInstance.courseDoc.set(clickedCourseData)
     templateInstance.$('#delete-course-modal').modal('show')
   },
   'click .delete-course-button' (event, templateInstance) {
     event.preventDefault()
-    const clickedCourseData = MyCourses.collection().find({ title: clickedCourse }).fetch()[0]
-    MyCourses.api.remove(clickedCourseData._id)
+    const courseDoc = templateInstance.courseDoc.get()
+    MyCourses.api.remove(courseDoc._id)
     templateInstance.$('#delete-course-modal').modal('hide')
   },
   'hidden.bs.modal #edit-course-modal' () {
