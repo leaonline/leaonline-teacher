@@ -99,9 +99,9 @@
         {{/modal}}
 
         {{#modal id="delete-course-modal" centered=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.deleteCourse.title") dismiss=true class="bg-danger"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.deleteCourse") dismiss=true class="bg-danger"}}
             {{#modalbody}}
-                <div>{{i18n "pages.myClasses.modal.body.deleteCourse"}}</div>
+                <div>{{i18n "pages.myClasses.modal.body.deleteCourse.title"}}</div>
             {{/modalbody}}
             {{#modalfooter}}
                 {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
