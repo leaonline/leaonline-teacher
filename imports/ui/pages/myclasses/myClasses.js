@@ -22,7 +22,6 @@ Template.myClasses.onCreated(function () {
     Session.currentParticipant(null)
   }
   this.courseDoc = new ReactiveVar(0)
-
 })
 
 AutoFormBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
