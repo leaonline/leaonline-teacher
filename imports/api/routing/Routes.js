@@ -197,7 +197,11 @@ Routes.myClasses = {
   },
   target: null,
   template: 'myClasses',
-  data: null
+  data: {
+    getEntryRoute () {
+      return Routes.class
+    }
+  }
 }
 
 /**

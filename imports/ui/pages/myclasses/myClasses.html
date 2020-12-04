@@ -11,7 +11,7 @@
                 "pages.myClasses.running"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in runningCourses}}
-                {{> cardItems course=document}}
+                {{> cardItems course=document courseRoute=getEntryRoute}}
             {{else}}
                 {{# item class="d-flex align-items-center"}}
                     {{i18n "pages.myClasses.notFound"}}
@@ -23,7 +23,7 @@
                 "pages.myClasses.completed"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in completedCourses}}
-                {{> cardItems course=document}}
+                {{> cardItems course=document courseRoute=getEntryRoute}}
             {{else}}
                 {{# item class="d-flex align-items-center"}}
                     {{i18n "pages.myClasses.notFound"}}
@@ -35,7 +35,7 @@
                 "pages.myClasses.upcoming"}}</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in notStartedCourses}}
-                {{> cardItems course=document}}
+                {{> cardItems course=document courseRoute=getEntryRoute}}
             {{else}}
                 {{# item class="d-flex align-items-center"}}
                     {{i18n "pages.myClasses.notFound"}}
@@ -115,7 +115,11 @@
 <template name="cardItems">
     <li class="list-group-item">
         <div class="row">
-            <div class="col d-flex align-items-center text-secondary">{{course.title}}</div>
+            <div class="col d-flex align-items-center text-secondary">
+                <a href="{{route courseRoute course._id}}">
+                    {{course.title}}
+                </a>
+            </div>
             <div class="col d-flex justify-content-end align-items-center">
                 {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>

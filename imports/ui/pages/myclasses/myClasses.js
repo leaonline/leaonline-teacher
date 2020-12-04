@@ -83,6 +83,9 @@ Template.myClasses.helpers({
   },
   getClickedCourse () {
     return Template.instance().courseDoc.get()
+  },
+  getEntryRoute () {
+    return Template.instance().data.getEntryRoute()
   }
 })
 
