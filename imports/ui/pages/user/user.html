@@ -1,2 +1,23 @@
 <template name="user">
+    {{#each document in competencyCategories}}
+        <h4>{{document.title}}</h4>
+        {{#card class="mb-5 border-0 rounded-lg shadow-sm"}}
+            {{>cardheader class="border-0" style="background-color: lightgrey"}}
+            <div class="row">
+                <div class="col-sm-3">
+                    {{#card class="ml-3 mb-3 mr-0"}}
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    {{/card}}
+                </div>
+            </div>
+        {{/card}}
+    {{else}}
+        {{# item class="d-flex align-items-center"}}
+            {{i18n "pages.myClasses.notFound"}}
+        {{/item}}
+    {{/each}}
 </template>

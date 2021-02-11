@@ -4,7 +4,7 @@ import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
-import { AutoFormBootstrap4 } from 'meteor/jkuester:autoform-bootstrap4'
+// import { AutoFormThemeBootstrap4 } from 'meteor/communitypackages:autoform-bootstrap4'
 import { AutoForm } from 'meteor/aldeed:autoform'
 import { Schema } from '../../../api/schema/Schema'
 import { transformUpdateDoc } from '../../utils/form/transformUpdateDoc'
@@ -24,7 +24,7 @@ Template.myClasses.onCreated(function () {
   this.courseDoc = new ReactiveVar(0)
 })
 
-AutoFormBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
+// AutoFormThemeBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -86,6 +86,9 @@ Template.myClasses.helpers({
   },
   getEntryRoute () {
     return Template.instance().data.getEntryRoute()
+  },
+  getUserRoute () {
+    return Template.instance().data.getUserRoute()
   }
 })
 
