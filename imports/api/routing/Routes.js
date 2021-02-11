@@ -200,6 +200,9 @@ Routes.myClasses = {
   data: {
     getEntryRoute () {
       return Routes.class
+    },
+    getUserRoute () {
+      return Routes.user
     }
   }
 }

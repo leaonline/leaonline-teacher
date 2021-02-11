@@ -43,6 +43,11 @@
             {{/each}}
         {{/listgroup}}
 
+        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">Users</span></h4>
+        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
+            <a href="{{route getUserRoute}}">User 1</a>
+        {{/listgroup}}
+
         {{#modal id="add-course-modal" centered=true large=true}}
             {{>modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-warning "}}
             {{#modalbody}}
