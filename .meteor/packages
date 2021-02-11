@@ -70,4 +70,4 @@ meteortesting:mocha
 #========================================
 audit-argument-checks@1.0.7
 force-ssl@1.1.0
-jkuester:autoform-bootstrap4
+communitypackages:autoform-bootstrap4
