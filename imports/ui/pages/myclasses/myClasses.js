@@ -1,18 +1,17 @@
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
-import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
-// import { AutoFormThemeBootstrap4 } from 'meteor/communitypackages:autoform-bootstrap4'
-import { AutoForm } from 'meteor/aldeed:autoform'
+import { Form } from '../../../api/form/Form'
 import { Schema } from '../../../api/schema/Schema'
+import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { transformUpdateDoc } from '../../utils/form/transformUpdateDoc'
 import { formIsValid } from '../../utils/form/formIsValid'
 import { resetForm } from '../../utils/form/resetForm'
+import { cleanUpdateDoc } from '../../utils/form/cleanUpdateDoc'
 import './myClasses.html'
 import './scss/myClasses.scss'
-import { cleanUpdateDoc } from '../../utils/form/cleanUpdateDoc'
 
 Template.myClasses.onCreated(function () {
   if (Session.currentClass()) {
@@ -36,6 +35,8 @@ const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.modal.load()
 ])
 
+const formLoaded = Form.initialize()
+
 const componentsLoaded = componentsLoader.loaded
 const courseSchema = Schema.create(MyCourses.schema)
 const collection = MyCourses.collection()
@@ -45,7 +46,7 @@ const isNotMongoDate = { $not: isMongoDate }
 
 Template.myClasses.helpers({
   componentsLoaded () {
-    return componentsLoaded.get()
+    return componentsLoaded.get() && formLoaded.get()
   },
   runningCourses () {
     const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }

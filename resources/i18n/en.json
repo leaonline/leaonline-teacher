@@ -51,10 +51,10 @@
         },
         "body": {
           "addCourse": {
-            "title": "Course Title"
+            "title": "Adds a new course to the list of courses."
           },
           "editCourse": {
-            "title": "Course Title"
+            "title": "Edits the current course."
           },
           "deleteCourse": {
             "title": "Are you sure you want to delete this course? This action cannot be reversed."
