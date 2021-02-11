@@ -40,7 +40,7 @@ MyCourses.schema = {
     autoform: {
       afFormGroup: {
         class: 'border-0 bg-danger',
-        'formgroup-class': 'border-0',
+        'formgroup-class': 'border-0'
       }
     }
   },

@@ -2,6 +2,7 @@
 import { ReactiveVar } from 'meteor/reactive-var'
 import 'meteor/aldeed:autoform/dynamic'
 import { AutoFormThemeBootstrap4 } from 'meteor/communitypackages:autoform-bootstrap4/dynamic'
+
 export const Form = {}
 
 /**
@@ -24,3 +25,5 @@ async function initialize () {
   await AutoFormThemeBootstrap4.load()
   await AutoForm.setDefaultTemplate('bootstrap4')
 }
+
+Form.getFormValues = (formId, templateInstance) => AutoForm.getFormValues(formId, templateInstance)

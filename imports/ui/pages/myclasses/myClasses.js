@@ -23,8 +23,6 @@ Template.myClasses.onCreated(function () {
   this.courseDoc = new ReactiveVar(0)
 })
 
-// AutoFormThemeBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
-
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
   BlazeBootstrap.button.load(),
@@ -96,7 +94,7 @@ Template.myClasses.helpers({
 Template.myClasses.events({
   'submit #insertCourseForm' (event, templateInstance) {
     event.preventDefault()
-    const formValues = AutoForm.getFormValues('insertCourseForm')
+    const formValues = Form.getFormValues('insertCourseForm')
     MyCourses.api.insert(formValues.insertDoc)
     templateInstance.$('#add-course-modal').modal('hide')
   },
