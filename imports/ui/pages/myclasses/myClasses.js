@@ -3,12 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { Session } from '../../../api/session/Session'
 import { MyCourses } from '../../../api/collections/MyCourses'
-<<<<<<< HEAD
-// import { AutoFormThemeBootstrap4 } from 'meteor/communitypackages:autoform-bootstrap4'
-import { AutoForm } from 'meteor/aldeed:autoform'
-=======
 import { Form } from '../../../api/form/Form'
->>>>>>> ffa29c14edb957573124e62af87baf1b7a72ff9e
 import { Schema } from '../../../api/schema/Schema'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { transformUpdateDoc } from '../../utils/form/transformUpdateDoc'
@@ -28,11 +23,6 @@ Template.myClasses.onCreated(function () {
   this.courseDoc = new ReactiveVar(0)
 })
 
-<<<<<<< HEAD
-// AutoFormThemeBootstrap4.load().then(() => console.log('AutoFormBootstrap4 loaded')).catch(e => console.error(e))
-
-=======
->>>>>>> ffa29c14edb957573124e62af87baf1b7a72ff9e
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
   BlazeBootstrap.button.load(),
