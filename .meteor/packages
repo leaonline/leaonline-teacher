@@ -54,7 +54,8 @@ service-configuration@1.0.11
 reactive-dict@1.3.0
 fourseven:scss
 seba:minifiers-autoprefixer
-aldeed:autoform
+aldeed:autoform@7.0.0!
+communitypackages:autoform-bootstrap4
 ostrio:flow-router-extra
 ostrio:i18n
 jkuester:template-states
@@ -70,4 +71,7 @@ meteortesting:mocha
 #========================================
 audit-argument-checks@1.0.7
 force-ssl@1.1.0
+<<<<<<< HEAD
 communitypackages:autoform-bootstrap4
+=======
+>>>>>>> ffa29c14edb957573124e62af87baf1b7a72ff9e

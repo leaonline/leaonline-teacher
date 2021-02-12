@@ -39,7 +39,8 @@ MyCourses.schema = {
     label: false,
     autoform: {
       afFormGroup: {
-        class: 'border-0 bg-danger'
+        class: 'border-0 bg-danger',
+        'formgroup-class': 'border-0'
       }
     }
   },
@@ -51,7 +52,7 @@ MyCourses.schema = {
         class: 'border-0 bg-danger'
       },
       afObjectField: {
-        bodyClass: 'row border-0'
+        bodyClass: 'row border-0 p-0'
       }
     }
   },
@@ -62,7 +63,7 @@ MyCourses.schema = {
       label: false,
       placeHolder: reactiveTranslate('common.userId'),
       afFormGroup: {
-        class: ''
+        'formgroup-class': 'col-4'
       }
     }
   },
@@ -72,7 +73,7 @@ MyCourses.schema = {
       label: false,
       placeHolder: reactiveTranslate('common.firstName'),
       afFormGroup: {
-        class: ''
+        'formgroup-class': 'col-4'
       }
     }
   },
@@ -82,7 +83,7 @@ MyCourses.schema = {
       label: false,
       placeHolder: reactiveTranslate('common.lastName'),
       afFormGroup: {
-        class: ''
+        'formgroup-class': 'col-4'
       }
     }
   }

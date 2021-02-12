@@ -15,7 +15,11 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer,dynamic-import --settings=settings.json"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@babel/runtime": "^7.12.5",
+=======
+    "@babel/runtime": "^7.12.13",
+>>>>>>> ffa29c14edb957573124e62af87baf1b7a72ff9e
     "bcrypt": "^5.0.0",
     "meteor-node-stubs": "^1.0.1",
     "simpl-schema": "^1.10.1"
@@ -30,13 +34,21 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "bootstrap": "^4.6.0",
+<<<<<<< HEAD
     "chai": "^4.2.0",
+=======
+    "chai": "^4.3.0",
+>>>>>>> ffa29c14edb957573124e62af87baf1b7a72ff9e
     "jquery": "^3.5.1",
     "markdown-cli": "^1.6.0",
     "markdown-notes-tree": "^1.10.2",
     "markdownlint-cli": "^0.26.0",
     "popper.js": "^1.16.1",
+<<<<<<< HEAD
     "puppeteer": "^5.5.0",
+=======
+    "puppeteer": "^7.0.4",
+>>>>>>> ffa29c14edb957573124e62af87baf1b7a72ff9e
     "sinon": "^9.2.4",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",

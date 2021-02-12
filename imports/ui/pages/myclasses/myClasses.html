@@ -51,7 +51,7 @@
         {{#modal id="add-course-modal" centered=true large=true}}
             {{>modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-warning "}}
             {{#modalbody}}
-                {{#autoForm template="bootstrap4" schema = courseSchema id="insertCourseForm" type="normal"}}
+                {{#autoForm schema=courseSchema id="insertCourseForm" type="normal"}}
                     <fieldset>
                         <span>{{i18n "pages.myClasses.modal.body.addCourse.title"}}</span>
                         <div class="row">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </fieldset>
-                    {{> afArrayField name='users'}}
+                    {{> afArrayField name='users' class="border-0"}}
                 {{/autoForm}}
             {{/modalbody}}
             {{#modalfooter}}
@@ -76,10 +76,9 @@
         {{/modal}}
 
         {{#modal id="edit-course-modal" centered=true large=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-success"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-primary"}}
             {{#modalbody}}
-                {{#autoForm template="bootstrap4"  doc=getClickedCourse  collection=getCollection schema=courseSchema
-                            id="editCourseForm" type="normal"}}
+                {{#autoForm doc=getClickedCourse  schema=courseSchema id="editCourseForm" type="normal"}}
                     <fieldset>
                         <span>{{i18n "pages.myClasses.modal.body.editCourse.title"}}</span>
                         <div class="row">
