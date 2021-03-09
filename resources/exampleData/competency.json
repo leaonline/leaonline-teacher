@@ -1,7 +1,8 @@
 [
-  { "title": "", "competencyCategory": "", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "", "competencyCategory": "", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "", "competencyCategory": "", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "", "competencyCategory": "", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "", "competencyCategory": "", "description": "", "help": "", "alphaLevel": "" }
+  { "title": "competency1", "competencyCategory": "ferfddd", "description": "", "help": "", "alphaLevel": "" },
+  { "title": "competency2", "competencyCategory": "fedddrf", "description": "", "help": "", "alphaLevel": "" },
+  { "title": "competency3", "competencyCategory": "fef", "description": "", "help": "", "alphaLevel": "" },
+  { "title": "competency4", "competencyCategory": "efe", "description": "", "help": "", "alphaLevel": "" },
+  { "title": "competency5", "competencyCategory": "fe", "description": "", "help": "", "alphaLevel": "" },
+  { "title": "competency6", "competencyCategory": "fe", "description": "", "help": "", "alphaLevel": "" }
 ]
