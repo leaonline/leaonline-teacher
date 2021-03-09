@@ -1,23 +1,48 @@
 <template name="user">
-    {{#each document in competencyCategories}}
-        <h4>{{document.title}}</h4>
-        {{#card class="mb-5 border-0 rounded-lg shadow-sm"}}
-            {{>cardheader class="border-0" style="background-color: lightgrey"}}
-            <div class="row">
-                <div class="col-sm-3">
-                    {{#card class="ml-3 mb-3 mr-0"}}
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <div class="row">
+        <div class="col-sm-1 bg-dark" ></div>
+        <div class="col-sm-10">
+            {{#each document in competencyCategories}}
+                <div class="card mb-5 px-2 shadow-sm" style="background: #e2e5e7">
+                    <div class="card-header border-0" style="background: #e2e5e7">
+                        <div>{{document.title}}</div>
+                    </div>
+                    <div class="card-body border-0 pt-0">
+                        <div class="row ">
+                            {{#each document in competencies}}
+                                <div class="col-sm-3 pl-0">
+                                    <div class="flip-card card ml-3 mb-3 rounded rounded-lg shadow-sm d-flex bg-white" >
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <div class="card-header border-bottom d-flex p-2 align-items-center bg-white">
+                                                    <div class="">α-level</div>
+                                                    {{> link icon="info" class="ml-auto info-icon"}}
+                                                </div>
+                                                <div class="card-body border-bottom">
+                                                    <p>This is a wider card with supporting text </p>
+                                                </div>
+                                                <div class="card-footer d-flex p-2 align-items-center bg-white">
+                                                    <span class="fa fas fa-fw fa-arrow-right text-primary"></span>
+                                                </div>
+                                            </div>
+                                            <div class="flip-card-back">
+                                                <div class="card-header border-bottom d-flex p-2 align-items-center">
+                                                    {{> link icon="info" class="ml-auto info-icon"}}
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>Flipped Card</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
                         </div>
-                    {{/card}}
+                    </div>
                 </div>
-            </div>
-        {{/card}}
-    {{else}}
-        {{# item class="d-flex align-items-center"}}
-            {{i18n "pages.myClasses.notFound"}}
-        {{/item}}
-    {{/each}}
+            {{/each}}
+        </div>
+        <div class="col-sm-1" style="background-color: #D2D5D8"></div>
+    </div>
 </template>
+
