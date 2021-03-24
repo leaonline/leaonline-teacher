@@ -42,20 +42,6 @@ const componentsLoader = bbsComponentLoader([
 
 const componentsLoaded = componentsLoader.loaded
 // const competencyCategoriesSchema = Schema.create(CompetencyCategories.schema)
-// const collection = CompetencyCategories.collection()
-
-const cursor = CompetencyCategories.collection().find({}, { fields: { title: 0 } }).fetch()
-console.log(cursor)
-
-const competency = Competency.collection().find().fetch()
-
-cursor.forEach(function (cursorDoc) {
-  competency.forEach(function (document) {
-    Competency.collection().update(document._id, { $set: { competencyCategory: cursorDoc._id } })
-  })
-})
-
-console.log(Competency.collection().find().fetch())
 
 Template.user.helpers({
   componentsLoaded () {
@@ -68,10 +54,17 @@ Template.user.helpers({
     return cursor
   },
   competencies () {
-    const cursor = Competency.collection().find()
-    // console.log(cursor.fetch())
-    if (cursor.count() === 0) return null
-    return cursor
+    const CompetencyCategoriesArray = CompetencyCategories.collection().find({}, { fields: { title: 0 } }).fetch()
+    const competencyArray = Competency.collection().find().fetch()
+    competencyArray.forEach(function (val, index) {
+      Object.assign(competencyArray[index], { competencyCategoryId: CompetencyCategoriesArray[index]._id })
+    })
+    return competencyArray
+  },
+  competencyCategoryIdCheck (CompetencyCategoryId, competencyCategoryIdInCompetency) {
+    if (CompetencyCategoryId === competencyCategoryIdInCompetency) {
+      return true
+    }
   }
 })
 
