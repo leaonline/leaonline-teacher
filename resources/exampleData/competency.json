@@ -1,8 +1,8 @@
 [
-  { "title": "competency1", "competencyCategory": "ferfddd", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "competency2", "competencyCategory": "fedddrf", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "competency3", "competencyCategory": "fef", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "competency4", "competencyCategory": "efe", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "competency5", "competencyCategory": "fe", "description": "", "help": "", "alphaLevel": "" },
-  { "title": "competency6", "competencyCategory": "fe", "description": "", "help": "", "alphaLevel": "" }
+  { "title": "competency1", "description": "description text", "help": "Help Text", "alphaLevel": "" },
+  { "title": "competency2", "description": "description text", "help": "Help Text", "alphaLevel": "" },
+  { "title": "competency3", "description": "description text", "help": "Help Text", "alphaLevel": "" },
+  { "title": "competency4", "description": "description text", "help": "Help Text", "alphaLevel": "" },
+  { "title": "competency5", "description": "description text", "help": "Help Text", "alphaLevel": "" },
+  { "title": "competency6", "description": "description text", "help": "Help Text", "alphaLevel": "" }
 ]
