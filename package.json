@@ -15,10 +15,10 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer,dynamic-import --settings=settings.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.12.13",
-    "bcrypt": "^5.0.0",
-    "meteor-node-stubs": "^1.0.1",
-    "simpl-schema": "^1.10.1"
+    "@babel/runtime": "^7.14.0",
+    "bcrypt": "^5.0.1",
+    "meteor-node-stubs": "^1.0.3",
+    "simpl-schema": "^1.12.0"
   },
   "meteor": {
     "mainModule": {
@@ -28,20 +28,20 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "bootstrap": "^4.6.0",
-    "chai": "^4.3.0",
-    "jquery": "^3.5.1",
+    "chai": "^4.3.4",
+    "jquery": "^3.6.0",
     "markdown-cli": "^1.6.0",
     "markdown-notes-tree": "^1.10.2",
-    "markdownlint-cli": "^0.26.0",
+    "markdownlint-cli": "^0.27.1",
     "popper.js": "^1.16.1",
-    "puppeteer": "^7.0.4",
-    "sinon": "^9.2.4",
+    "puppeteer": "^9.1.1",
+    "sinon": "^11.1.0",
     "snazzy": "^9.0.0",
     "standard": "^16.0.3",
-    "stylelint": "^13.9.0",
-    "stylelint-config-sass-guidelines": "^7.1.0",
-    "stylelint-config-standard": "^20.0.0"
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-standard": "^22.0.0"
   }
 }

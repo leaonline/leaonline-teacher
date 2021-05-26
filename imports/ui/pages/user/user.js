@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating'
-import { Session } from '../../../api/session/Session'
+import { State } from '../../../api/session/State'
 import { classExists } from '../../utils/classExists'
 import { userExists } from '../../utils/userExists'
 import { CompetencyCategories } from '../../../api/collections/competencyCategories'
@@ -15,17 +15,17 @@ Template.user.onCreated(function () {
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
-    const currentClass = Session.currentClass()
+    const currentClass = State.currentClass()
 
     if (classExists(classId) && currentClass !== classId) {
-      Session.currentClass(classId)
+      State.currentClass(classId)
     }
 
     const { userId } = data.params
-    const currentUser = Session.currentParticipant()
+    const currentUser = State.currentParticipant()
 
     if (userExists(userId) && currentUser !== userId) {
-      Session.currentParticipant(userId)
+      State.currentParticipant(userId)
     }
   })
 })

@@ -4,7 +4,7 @@ import { ReactiveDict } from 'meteor/reactive-dict'
  * Global representation of current selected class, user, etc.
  */
 
-export const Session = {}
+export const State = {}
 
 const state = new ReactiveDict()
 
@@ -19,7 +19,7 @@ state.set({
  * @return {*}
  */
 
-Session.currentParticipant = (value) => {
+State.currentParticipant = (value) => {
   if (typeof value !== 'undefined') {
     state.set({ currentParticipant: value })
   }
@@ -32,7 +32,7 @@ Session.currentParticipant = (value) => {
  * @return {*}
  */
 
-Session.currentClass = (value) => {
+State.currentClass = (value) => {
   if (typeof value !== 'undefined') {
     state.set({ currentClass: value })
   }

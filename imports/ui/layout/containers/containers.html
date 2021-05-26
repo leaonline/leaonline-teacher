@@ -14,8 +14,8 @@
 <template name="main-render-target">
     {{> navTop}}
     <wrapper class="container-fluid d-flex flex-row p-0">
-        {{> navSide}}
-        <main role="main" class="col-md-11 col-lg-11 pt-3 main-container">
+        {{> navSide class="d-none d-md-block"}}
+        <main role="main" class="col-12 col-md-11 p-3 main-container">
             <h1>{{routeLabel}}</h1>
             {{> yield}}
         </main>

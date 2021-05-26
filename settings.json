@@ -2,6 +2,11 @@
   "public": {
     "app": {
       "name": "lea.online teacher"
+    },
+    "hosts": {
+      "otulea": {
+        "url": "localhost:3000"
+      }
     }
   },
   "oauth": {

@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../../utils/bbsComponentLoader'
-import { Session } from '../../../../api/session/Session'
+import { State } from '../../../../api/session/State'
 import './navSide.html'
 import './scss/navSlide.scss'
 
@@ -19,15 +19,15 @@ Template.navSide.helpers({
     return componentsLoaded.get()
   },
   currentClass () {
-    return Session.currentClass()
+    return State.currentClass()
   },
   currentParticipant () {
-    return Session.currentParticipant()
+    return State.currentParticipant()
   },
   classRouteDisabled () {
-    return !Session.currentClass()
+    return !State.currentClass()
   },
   userRouteDisabled () {
-    return !Session.currentClass() || !Session.currentParticipant()
+    return !State.currentClass() || !State.currentParticipant()
   }
 })

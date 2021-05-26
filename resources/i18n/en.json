@@ -5,7 +5,8 @@
     "submit": "Submit",
     "insert": "Insert",
     "update": "Update",
-    "delete": "Delete"
+    "delete": "Delete",
+    "logout": "Sign out"
   },
   "common": {
     "loading": "Loading",

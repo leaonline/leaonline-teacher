@@ -1,6 +1,6 @@
 /* global ServiceConfiguration */
 import { Meteor } from 'meteor/meteor'
-import { rateLimitAccounts } from '../../factories/rateLimit'
+import { rateLimitAccounts } from '../../infrastructure/factories/ratelimit/rateLimit'
 
 rateLimitAccounts()
 

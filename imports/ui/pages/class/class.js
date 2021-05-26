@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating'
-import { Session } from '../../../api/session/Session'
+import { State } from '../../../api/session/State'
 import { classExists } from '../../utils/classExists'
 import './class.html'
 
@@ -8,14 +8,14 @@ Template.class.onCreated(function () {
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
-    const currentClass = Session.currentClass()
+    const currentClass = State.currentClass()
 
     if (classExists() && currentClass !== classId) {
-      Session.currentClass(classId)
+      State.currentClass(classId)
     }
 
-    if (Session.currentParticipant()) {
-      Session.currentParticipant(null)
+    if (State.currentParticipant()) {
+      State.currentParticipant(null)
     }
   })
 })

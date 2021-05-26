@@ -1,19 +1,33 @@
 <template name="myClasses">
+    {{#unless dataComplete}}
+        {{> loading}}
+    {{/unless}}
+
+    {{#each course in courses}}
+        <div class="w-100">{{course.title}}</div>
+    {{/each}}
+
     {{#onLoaded loaded=componentsLoaded}}
-        <div class="row d-flex justify-content-end align-items-center mr-1 ">
-            {{# button data-toggle="modal" data-target="#add-course-modal" size="sm"
-                       class="bg-primary border-primary"}}
-                <span>{{i18n "pages.myClasses.addNew"}}</span>
-            {{/button}}
+        <div class="d-flex justify-content-end w-100">
+            {{> button
+                    data-toggle="modal"
+                    data-target="#add-course-modal"
+                    colortype="primary"
+                    sm=true
+                    label=(i18n "pages.myClasses.addNew")}}
         </div>
 
-        <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n
-                "pages.myClasses.running"}}</span></h4>
+        <h4>
+            <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
+                {{i18n "pages.myClasses.running"}}
+            </span>
+        </h4>
+
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
             {{#each document in runningCourses}}
                 {{> cardItems course=document courseRoute=getEntryRoute}}
             {{else}}
-                {{# item class="d-flex align-items-center"}}
+                {{# item class="d-flex align-items-center p-3 bg-light text-muted"}}
                     {{i18n "pages.myClasses.notFound"}}
                 {{/item}}
             {{/each}}
@@ -25,7 +39,7 @@
             {{#each document in completedCourses}}
                 {{> cardItems course=document courseRoute=getEntryRoute}}
             {{else}}
-                {{# item class="d-flex align-items-center"}}
+                {{# item class="d-flex align-items-center p-3 bg-light text-muted"}}
                     {{i18n "pages.myClasses.notFound"}}
                 {{/item}}
             {{/each}}
@@ -37,7 +51,7 @@
             {{#each document in notStartedCourses}}
                 {{> cardItems course=document courseRoute=getEntryRoute}}
             {{else}}
-                {{# item class="d-flex align-items-center"}}
+                {{# item class="d-flex align-items-center p-3 bg-light text-muted"}}
                     {{i18n "pages.myClasses.notFound"}}
                 {{/item}}
             {{/each}}
@@ -45,28 +59,48 @@
 
         <h4><span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">Users</span></h4>
         {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm" style=" overflow: hidden;"}}
-            <a href="{{route getUserRoute}}">User 1</a>
+            {{#each document in activeUsers}}
+                <li class="list-group-item p-3">
+                    <div class="row">
+                        <div class="col d-flex align-items-center text-secondary no-wrap">
+                            <a href="{{route getUserRoute document.courseId document.id}}">
+                                {{document.id}}
+                            </a>
+                        </div>
+                        <div class="col d-flex justify-content-end align-items-center no-wrap">
+                            {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
+                                <span class="fa fas fa-fw fa-eye"></span>
+                            {{/button}}
+                        </div>
+                    </div>
+                </li>
+            {{else}}
+                {{# item class="d-flex align-items-center p-3 bg-light text-muted"}}
+                    {{i18n "pages.myClasses.notFound"}}
+                {{/item}}
+            {{/each}}
         {{/listgroup}}
 
         {{#modal id="add-course-modal" centered=true large=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-warning "}}
+            {{> modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-primary text-white"}}
             {{#modalbody}}
                 {{#autoForm schema=courseSchema id="insertCourseForm" type="normal"}}
                     <fieldset>
-                        <span>{{i18n "pages.myClasses.modal.body.addCourse.title"}}</span>
+                        <p>{{i18n "pages.myClasses.modal.body.addCourse.title"}}</p>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12 py-2">
                                 {{> afQuickField name='title' }}
                             </div>
-                            <div class="col-md-3">
-                                {{> afQuickField name='startedAt'}}
+                            <div class="col-md-6 py-2">
+                                {{> afQuickField name='startsAt' label="myClasses.startsAt"}}
                             </div>
-                            <div class="col-md-3">
-                                {{> afQuickField name='completedAt'}}
+                            <div class="col-md-6 py-2">
+                                {{> afQuickField name='completesAt' label="myClasses.completesAt"}}
                             </div>
                         </div>
                     </fieldset>
-                    {{> afArrayField name='users' class="border-0"}}
+                    <div class="mt-4"></div>
+                    {{> afArrayField name='users' class="mt-4"}}
                 {{/autoForm}}
             {{/modalbody}}
             {{#modalfooter}}
@@ -76,7 +110,7 @@
         {{/modal}}
 
         {{#modal id="edit-course-modal" centered=true large=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-primary"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-primary text-white"}}
             {{#modalbody}}
                 {{#autoForm doc=getClickedCourse  schema=courseSchema id="editCourseForm" type="normal"}}
                     <fieldset>
@@ -86,10 +120,10 @@
                                 {{> afQuickField name='title' }}
                             </div>
                             <div class="col-md-3">
-                                {{> afQuickField name='startedAt'}}
+                                {{> afQuickField name='startsAt' label="myClasses.startsAt"}}
                             </div>
                             <div class="col-md-3">
-                                {{> afQuickField name='completedAt'}}
+                                {{> afQuickField name='completesAt' label="myClasses.completesAt"}}
                             </div>
                         </div>
                     </fieldset>
@@ -117,14 +151,14 @@
 </template>
 
 <template name="cardItems">
-    <li class="list-group-item">
+    <li class="list-group-item p-3">
         <div class="row">
-            <div class="col d-flex align-items-center text-secondary">
+            <div class="col d-flex align-items-center text-secondary no-wrap">
                 <a href="{{route courseRoute course._id}}">
                     {{course.title}}
                 </a>
             </div>
-            <div class="col d-flex justify-content-end align-items-center">
+            <div class="col d-flex justify-content-end align-items-center no-wrap">
                 {{#button size="sm" colortype="secondary" outline=true class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}

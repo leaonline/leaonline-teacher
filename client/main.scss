@@ -5,3 +5,17 @@ wrapper {
 .autoform-array-item-body > .card {
   border: 0 !important;
 }
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+[data-required] label:after {content: '*'}
+
+form ul, form ul li, form .card {
+  border: none !important;
+}
+
+form ul li {
+  padding: 0 !important;
+}

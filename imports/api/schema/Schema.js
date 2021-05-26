@@ -5,8 +5,18 @@ SimpleSchema.extendOptions(['autoform'])
 
 export const Schema = {}
 
-Schema.create = function (schemaDefinition, options) {
-  const fullOptions = Object.assign({}, options, { tracker: Tracker })
+let defaultSchema = undefined
+
+Schema.setDefault = schema => {
+  defaultSchema = schema
+}
+
+Schema.withDefault = (schema, options) => {
+  return Schema.create({ ...defaultSchema, ...schema }, options)
+}
+
+Schema.create = function (schemaDefinition, options = {}) {
+  const fullOptions = { tracker: Meteor.isClient ? Tracker : undefined, ...options }
   return new SimpleSchema(schemaDefinition, fullOptions)
 }
 
