@@ -24,7 +24,9 @@ const formLoaded = Form.initialize()
 const courseSchema = Schema.create(Courses.schema(reactiveTranslate))
 const isMongoDate = { $type: 9 }
 const isNotMongoDate = { $not: isMongoDate }
-
+const byName = (a, b) =>
+  (a.lastName || '').localeCompare(b.lastName || '') +
+  (a.firstName || '').localeCompare(b.firstName || '')
 Template.myClasses.onCreated(function () {
   const instance = this
   const API = instance.init({
@@ -59,7 +61,7 @@ Template.myClasses.onCreated(function () {
           allUsers.add(user)
         })
       })
-    instance.state.set('activeUsers', Array.from(allUsers))
+    instance.state.set('activeUsers', Array.from(allUsers).sort(byName))
   })
 
   this.courseDoc = new ReactiveVar(0)
@@ -118,6 +120,9 @@ Template.myClasses.helpers({
   },
   getUserRoute () {
     return Template.instance().data.getUserRoute()
+  },
+  getCourse (id) {
+    return Courses.collection().findOne(id)
   }
 })
 

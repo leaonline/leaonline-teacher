@@ -87,11 +87,7 @@ Courses.schema = (translate = x => x) => ({
     max: 5,
     optional: true,
     autoform: {
-      label: false,
-      placeHolder: translate('common.userId'),
-      afFormGroup: {
-        'formgroup-class': 'border-0 col-12 mt-4'
-      }
+      type: 'hidden'
     }
   }
 })

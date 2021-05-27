@@ -62,9 +62,12 @@
             {{#each document in activeUsers}}
                 <li class="list-group-item p-3">
                     <div class="row">
-                        <div class="col d-flex align-items-center text-secondary no-wrap">
+                        <div class="col d-flex justify-content-between align-items-center text-secondary no-wrap">
                             <a href="{{route getUserRoute document.courseId document.id}}">
-                                {{document.id}}
+                                {{document.lastName}} {{document.firstName}} {{#if document.id}}({{document.id}}){{/if}}
+                            </a>
+                            <a href="{{route getClickedCourse document.courseId}}">
+                                {{#with getCourse document.courseId}}{{this.title}}{{/with}}
                             </a>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center no-wrap">
@@ -116,18 +119,19 @@
                     <fieldset>
                         <span>{{i18n "pages.myClasses.modal.body.editCourse.title"}}</span>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-12 py-2">
                                 {{> afQuickField name='title' }}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6 py-2">
                                 {{> afQuickField name='startsAt' label="myClasses.startsAt"}}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6 py-2">
                                 {{> afQuickField name='completesAt' label="myClasses.completesAt"}}
                             </div>
                         </div>
                     </fieldset>
-                    {{> afArrayField name='users'}}
+                    <div class="mt-4"></div>
+                    {{> afArrayField name='users' class="mt-4"}}
                 {{/autoForm}}
             {{/modalbody}}
             {{#modalfooter}}
