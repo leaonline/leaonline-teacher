@@ -51,8 +51,8 @@ cd ./leaonline-teacher
 ./run.sh
 ```
 
-Finally, open your browser and go to `localhost:5555` to load the client app.
-You can login with `admin` / `password` to continue to the teacher dashboard.
+Finally, open your browser at [`http://localhost:5555`](http://localhost:5555) to load the client app.
+You can login with one of the [initially created accounts](https://github.com/leaonline/leaonline-accounts/#initial-accounts-in-development) to continue to the teacher dashboard.
 
 ## Development and contribution to this project
 
@@ -88,10 +88,7 @@ Please note, that we follow a certain workflow for contributions.
 
 4. **Review**
 
-   There will be always two reviewers for a PR, one from a code perspective and one from a UI/UX
-   perspective. If any of the reviewers reject the PR there will be also the `fixes required` label assigned.
-   On approve the PR is ready for being merged.
-
+   There will be always reviewes for a PR from externals.
    Reviews should reject the pull request, in case of any changes required. However, there may the case of
    neglectable changes ("nice to have"), which may not affect the approval of the pull request.
    In such a case, an issue should be opened and referenced in the comment, while the pull request can be approved.
@@ -178,15 +175,17 @@ the `lint:markdown` script.
 
 ### UI Components
 
-We use [Meteor Blaze Bootstrap](https://github.com/jankapunkt/meteor-blaze-bs4) as UI components library.
-Please read it's documentation, if you are interested to contribute to the UI part.
+~~We use [Meteor Blaze Bootstrap](https://github.com/jankapunkt/meteor-blaze-bs4) as UI components library.
+Please read it's documentation, if you are interested to contribute to the UI part.~~
+
+Note: we will migrate to Bootstrap 5 soon so consider to use plain HTML components with Boostrap classes.
 
 ### Styleguide
 
 This project uses several style rules, enforced by different linters. The following table shows the styles and their
 respective tools and commands (scripts, see [package.json](./package.json)):
 
-|Category|Style|Tool|Command|
+|Category|Style|Tool|NPM Script|
 |--------|-----|----|-------|
 |JS|[Javascript standard style](https://standardjs.com/)|`standard`|`lint:code`|
 |SCSS|[Sass Guidelines](https://sass-guidelin.es/)|`stylelint`|`lint:style`|

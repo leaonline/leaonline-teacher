@@ -62,6 +62,14 @@ Courses.schema = (translate = x => x) => ({
       }
     }
   },
+  'users.$._id': {
+    type: String,
+    max: 17,
+    optional: true,
+    autoform: {
+      type: 'hidden'
+    }
+  },
   'users.$.lastName': {
     type: String,
     autoform: {
@@ -82,14 +90,14 @@ Courses.schema = (translate = x => x) => ({
       }
     }
   },
-  'users.$.id': {
+  'users.$.code': {
     type: String,
     max: 5,
     optional: true,
     autoform: {
       type: 'hidden'
     }
-  }
+  },
 })
 
 Courses.api = {}

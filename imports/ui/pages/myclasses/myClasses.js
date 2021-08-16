@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
+import { Random } from 'meteor/random'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { State } from '../../../api/session/State'
 import { Courses } from '../../../api/collections/Courses'
@@ -7,8 +8,11 @@ import { Form } from '../../../api/form/Form'
 import { Schema } from '../../../api/schema/Schema'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
+import { dataTarget } from '../../utils/dataTarget'
 import './myClasses.html'
 import './scss/myClasses.scss'
+import { generateUser } from '../../../api/accounts/generateUser'
+
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -45,7 +49,7 @@ Template.myClasses.onCreated(function () {
 
 
   instance.autorun(() => {
-    const sub = Meteor.subscribe(Courses.publications.my.name)
+    const sub = instance.subscribe(Courses.publications.my.name)
     if (sub.ready()) {
       console.debug(Courses.collection().find().fetch())
     }
@@ -136,6 +140,10 @@ Template.myClasses.events({
 
     if (!insertDoc) return
 
+    ;(insertDoc.users || []).forEach(user => {
+      user._id = Random.id()
+    })
+
     Courses.api.insert(insertDoc)
       .then(insertDocId => {
         templateInstance.api.debug('inserted', insertDocId)
@@ -183,6 +191,25 @@ Template.myClasses.events({
         templateInstance.$('#delete-course-modal').modal('hide')
       })
       .catch(e => console.error(e))
+  },
+  'click .generate-userid-button': async function (event, templateInstance) {
+    event.preventDefault()
+    const { debug } = templateInstance.api
+    const courseId = dataTarget(event, 'course')
+    const userId = dataTarget(event, 'user')
+    debug({ courseId, userId })
+    const courseDoc = Courses.collection().findOne(courseId)
+    const index = courseDoc.users.findIndex(user => user._id === userId)
+    const userDoc = await generateUser()
+    const updateDoc = {
+      _id: courseId,
+      $set: {
+        [`users.${index}._id`]: userDoc._id,
+        [`users.${index}.code`]: userDoc.username
+      }
+    }
+    await Courses.api.update(updateDoc)
+    debug('updated', courseDoc._id)
   },
   'hidden.bs.modal' (event) {
     const targetId = event.target.id

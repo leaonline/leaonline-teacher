@@ -7,7 +7,9 @@ const debug = (...args) => console.debug('[otu.lea]:', ...args)
 const { otulea } = Meteor.settings.public.hosts
 
 export const OtuLea = {}
-otulea.connection = () => connection
+
+OtuLea.connection = () => connection
+OtuLea.connected = () => connection.status().connected
 
 const connection = DDP.connect(otulea.url, {
   onConnected: function (err) {
