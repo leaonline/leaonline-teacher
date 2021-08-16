@@ -17,9 +17,11 @@ Router.go = function (value, ...optionalArgs) {
   const type = typeof value
   if (type === 'object' && value !== null) {
     return FlowRouter.go(value.path(...optionalArgs))
-  } else if (type === 'string') {
+  }
+  else if (type === 'string') {
     return FlowRouter.go(value)
-  } else {
+  }
+  else {
     throw new Error(`Unexpected format: [${typeof type}], expected string or object`)
   }
 }
@@ -156,7 +158,8 @@ function createRoute (routeDef, onError) {
       routeCache.set(routeDef)
       try {
         this.render(routeDef.target || _defaultTarget, routeDef.template, data)
-      } catch (e) {
+      }
+      catch (e) {
         console.error(e)
         if (typeof onError === 'function') {
           onError(e)

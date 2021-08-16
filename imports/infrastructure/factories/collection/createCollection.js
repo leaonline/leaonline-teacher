@@ -12,10 +12,10 @@ const collectionFactory = createCollectionFactory({
         getAutoValues: true,
         removeEmptyStrings: false,
         removeNullsFromArrays: false,
-        trimStrings: false,
+        trimStrings: false
       },
       humanizeAutoLabels: false,
-      requiredByDefault: true,
+      requiredByDefault: true
     })
   }
 })

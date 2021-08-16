@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { Blaze } from 'meteor/blaze'
 
 Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [], onComplete, onError }) {
@@ -39,13 +40,15 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
   // if any context is added we initialize it immediately sync-style
   try {
     contexts.forEach(ctx => initClientContext(ctx))
-  } catch (error) {
+  }
+  catch (error) {
     handleError(error)
   }
 
   if (allComplete.length === 0) {
     onComplete(api)
-  } else {
+  }
+  else {
     instance.autorun(c => {
       if (allComplete.every(rv => rv.get())) {
         c.stop()

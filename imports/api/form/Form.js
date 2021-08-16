@@ -1,7 +1,7 @@
 /* global AutoForm */
 import { ReactiveVar } from 'meteor/reactive-var'
 import 'meteor/aldeed:autoform/dynamic'
-import { formIsValid, formReset, validateFormData } from 'meteor/leaonline:corelib/utils/form'
+import { formIsValid } from 'meteor/leaonline:corelib/utils/form'
 import { AutoFormThemeBootstrap4 } from 'meteor/communitypackages:autoform-bootstrap4/dynamic'
 import { resetForm } from '../../ui/utils/form/resetForm'
 

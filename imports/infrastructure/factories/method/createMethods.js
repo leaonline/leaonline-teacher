@@ -3,7 +3,6 @@ import { environmentExtensionMixin } from '../../mixins/environmentExtensionMixi
 import { checkPermissions } from '../../mixins/checkPermissions'
 import { Schema } from '../../../api/schema/Schema'
 
-
 export const createMethod = createMethodFactory({
   schemaFactory: Schema.create,
   mixins: [environmentExtensionMixin, checkPermissions]

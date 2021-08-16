@@ -35,7 +35,7 @@ the feedback data already.
 ]
 ```
 
-**example**
+### Example
 
 ```js
 [

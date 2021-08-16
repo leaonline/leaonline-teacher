@@ -1,4 +1,4 @@
-import { Meteor } from "meteor/meteor"
+import { Meteor } from 'meteor/meteor'
 import { onServer } from '../utils/arch'
 
 export const Users = {

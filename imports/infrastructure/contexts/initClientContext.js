@@ -11,7 +11,7 @@ export const initClientContext = context => {
     const collection = createCollection(context)
     context.collection = () => collection
   }
-  
+
   created.add(context.name)
 
   return context

@@ -13,7 +13,6 @@ import './myClasses.html'
 import './scss/myClasses.scss'
 import { generateUser } from '../../../api/accounts/generateUser'
 
-
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
   BlazeBootstrap.button.load(),
@@ -33,7 +32,7 @@ const byName = (a, b) =>
   (a.firstName || '').localeCompare(b.firstName || '')
 Template.myClasses.onCreated(function () {
   const instance = this
-  const API = instance.init({
+  instance.init({
     contexts: [Courses],
     onComplete () {
       instance.state.set('initComplete', true)
@@ -46,7 +45,6 @@ Template.myClasses.onCreated(function () {
   if (State.currentParticipant()) {
     State.currentParticipant(null)
   }
-
 
   instance.autorun(() => {
     const sub = instance.subscribe(Courses.publications.my.name)
@@ -76,9 +74,9 @@ Template.myClasses.helpers({
     return Template.getState('coursePublicationComplete')
   },
   componentsLoaded () {
-    return componentsLoader.loaded.get()
-      && formLoaded.get()
-      && Template.getState('initComplete')
+    return componentsLoader.loaded.get() &&
+      formLoaded.get() &&
+      Template.getState('initComplete')
   },
   runningCourses () {
     const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }

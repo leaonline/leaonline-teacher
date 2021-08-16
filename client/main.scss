@@ -10,10 +10,12 @@ wrapper {
   white-space: nowrap;
 }
 
-[data-required] label:after {content: '*'}
+[data-required] label::after {content: '*';}
 
-form ul, form ul li, form .card {
-  border: none !important;
+form ul,
+form ul li,
+form .card {
+  border: 0 !important;
 }
 
 form ul li {

@@ -30,7 +30,8 @@ Template.logout.onCreated(function () {
         view: states.hasError,
         error: error
       })
-    } else {
+    }
+    else {
       onLoggedOut(instance)
     }
   })

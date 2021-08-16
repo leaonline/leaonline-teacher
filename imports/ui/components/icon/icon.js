@@ -1,3 +1,4 @@
+import { Tracker } from 'meteor/tracker'
 import { Template } from 'meteor/templating'
 import './icon.html'
 
@@ -8,7 +9,6 @@ Template.icon.onCreated(function () {
     console.debug('autorun')
     const data = Template.currentData()
     const atts = { ...data }
-
 
     // build class names from flags
     const fw = atts.fw ? 'fa-fw' : ''
@@ -28,7 +28,6 @@ Template.icon.onCreated(function () {
       console.debug(atts.class)
       console.debug(current.class)
     }
-
 
     delete atts.fw
     delete atts.color

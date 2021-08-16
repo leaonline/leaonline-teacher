@@ -8,7 +8,7 @@ export default [
     sessionId: 'hgg379262r3vghse',
     testCycle: 'jhehgv32976ftugv',
     timestamp: '01.08.2021',
-    alphaLevels:  [
+    alphaLevels: [
       {
         alphaLevelId: 'KyFETESi4m7R4Wdfe',
         title: 'Alpha-Level 1',
@@ -38,7 +38,7 @@ export default [
         level: 4,
         percent: 0.25,
         grade: 'Nicht Erfüllt'
-      },
+      }
       // level 5 is not graded
     ]
   },
@@ -50,7 +50,7 @@ export default [
     sessionId: 'hgg379262r3vghse',
     testCycle: 'jhehgv32976ftugv',
     timestamp: '04.08.2021',
-    alphaLevels:  [
+    alphaLevels: [
       {
         alphaLevelId: 'KyFETESi4m7R4Wdfe',
         title: 'Alpha-Level 1',
@@ -80,7 +80,7 @@ export default [
         level: 4,
         percent: 0.51,
         grade: 'Teilweise Erfüllt'
-      },
+      }
       // level 5 is not graded
     ]
   }

@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { Tracker } from 'meteor/tracker'
 import SimpleSchema from 'simpl-schema'
 
@@ -5,7 +6,7 @@ SimpleSchema.extendOptions(['autoform'])
 
 export const Schema = {}
 
-let defaultSchema = undefined
+let defaultSchema
 
 Schema.setDefault = schema => {
   defaultSchema = schema

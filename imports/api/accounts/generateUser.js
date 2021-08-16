@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { OtuLea } from '../../startup/client/remote'
 
 const generateUserMethodName = Meteor.settings.public.hosts.otulea.methods.generateUser
@@ -17,7 +18,8 @@ export const generateUser = () => {
 
     try {
       OtuLea.connection().call(generateUserMethodName, callback)
-    } catch (e) {
+    }
+    catch (e) {
       reject(e)
     }
   })

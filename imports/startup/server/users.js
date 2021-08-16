@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { Users } from '../../contexts/Users'
 import { createMethods } from '../../infrastructure/factories/method/createMethods'
 

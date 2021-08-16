@@ -97,7 +97,7 @@ Courses.schema = (translate = x => x) => ({
     autoform: {
       type: 'hidden'
     }
-  },
+  }
 })
 
 Courses.api = {}

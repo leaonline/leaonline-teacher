@@ -14,8 +14,6 @@ const allMethods = Object.values(Courses.methods)
 createMethods(allMethods)
 rateLimitMethods(allMethods)
 
-
 const allPubs = Object.values(Courses.publications)
 createPublications(allPubs)
 rateLimitPublications(allPubs)
-

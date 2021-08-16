@@ -13,7 +13,7 @@ PORT=5566
 WATCH_MODE=1
 RUN_ONCE=''
 VERBOSE_MODE=0
-PACKAGE_DIRS="${PROJECT_ROOT}/lib:${PROJECT_ROOT}/libnpm:${PROJECT_ROOT}/liboauth"
+PACKAGE_DIRS="../lib:../libnpm:../liboauth:./github:../libext"
 
 # ------------------------------------------
 #

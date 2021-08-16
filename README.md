@@ -52,7 +52,8 @@ cd ./leaonline-teacher
 ```
 
 Finally, open your browser at [`http://localhost:5555`](http://localhost:5555) to load the client app.
-You can login with one of the [initially created accounts](https://github.com/leaonline/leaonline-accounts/#initial-accounts-in-development) to continue to the teacher dashboard.
+You can login with one of the [initially created accounts](https://github.com/leaonline/leaonline-accounts/#initial-accounts-in-development)
+to continue to the teacher dashboard.
 
 ## Development and contribution to this project
 

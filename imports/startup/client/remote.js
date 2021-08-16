@@ -18,17 +18,16 @@ const connection = DDP.connect(otulea.url, {
   }
 })
 
-
 const loginWithLea = () => {
   Tracker.autorun(computation => {
     // skip this computation if there is
     // currently no logged in backend user
     if (!Meteor.user() && !Meteor.userId()) {
-      // clear localStorage entries from previous
+      // clear window.localStorage entries from previous
       // login results to avoid follow-up 403 errors
-      localStorage.removeItem(`${otulea.url}/lea/userId`)
-      localStorage.removeItem(`${otulea.url}/lea/loginToken`)
-      localStorage.removeItem(`${otulea.url}/lea/loginTokenExpires`)
+      window.localStorage.removeItem(`${otulea.url}/lea/userId`)
+      window.localStorage.removeItem(`${otulea.url}/lea/loginToken`)
+      window.localStorage.removeItem(`${otulea.url}/lea/loginTokenExpires`)
       // logout connection if still connected
       if (connection.userId()) {
         connection.call('logout')
@@ -54,12 +53,12 @@ const loginWithLea = () => {
         if (err) {
           Meteor.logout()
           return console.error(err)
-        } else {
+        }
+        else {
           debug('logged in with token', !!res)
           computation.stop()
         }
       })
     })
-
   })
 }

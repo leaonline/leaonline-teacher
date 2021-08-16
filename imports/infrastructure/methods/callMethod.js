@@ -47,7 +47,7 @@ export const callMethod = ({ name, args, prepare, receive, success, failure, con
 
   promise.catch(error => {
     if (typeof failure === 'function') {
-      failure()
+      failure(error)
     }
   })
 
