@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating'
 import { State } from '../../../api/session/State'
 import { classExists } from '../../utils/classExists'
 import visualizationData from './data/visualization'
+import competenciesData from './data/competencies'
 import './class.html'
 
 Template.class.onCreated(function () {
@@ -67,4 +68,10 @@ Template.class.onRendered(function () {
 
   // method c: use a 3rd party library, don't forget to import it
   // Plotly.newPlot('visualization-target', visualizationData)
+})
+
+Template.class.helpers({
+  classCompetencies () {
+    return competenciesData
+  }
 })

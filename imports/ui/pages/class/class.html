@@ -1,18 +1,21 @@
 <template name="class">
-    <h4>{{i18n "dashboard.timeline"}}</h4>
+    <h4>{{i18n "pages.class.timeline"}}</h4>
 
     <div id="visualization-target"></div>
     <canvas id="visualization-canvas"></canvas>
 
-    <h4>{{i18n "dashboard.competencies"}}</h4>
+    <h4>{{i18n "pages.class.competencies"}}</h4>
 
-    {{#each competencyCategory in allCategories}}
-        {{> competencyCategoryForCourse competencyCategory}}
+    {{#each entry in classCompetencies}}
+        {{> competencyCategoryForCourse entry}}
     {{/each}}
 </template>
 
 <template name="competencyCategoryForCourse">
-    competency category
+    <div>{{i18n "pages.class.compCategory"}}: {{this.competencyCategory}}</div>
+    <div>{{i18n "pages.class.competencies"}}: {{this.compCount}}</div>
+    <div>{{i18n "common.progress"}}: {{this.progress}}</div>
+    <div>{{i18n "common.users"}}: {{this.userCount}}</div>
 
     {{#each competency in this.competencies}}
         {{> competencyForCourse competency}}
@@ -20,5 +23,11 @@
 </template>
 
 <template name="competencyForCourse">
-    competency
+    <div>{{i18n "alphaLevel.title"}}: {{this.alphaLevel}}</div>
+    <div>{{i18n "common.description"}}: {{this.description}}</div>
+    <div>{{i18n "common.progress"}}: {{this.progress}}</div>
+    {{#each entry in this.users}}
+        <div>{{i18n "common.user"}}: {{entry.name}}</div>
+        <div>{{i18n "common.progress"}}: {{entry.progress}}</div>
+    {{/each}}
 </template>

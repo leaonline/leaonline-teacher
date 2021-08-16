@@ -9,13 +9,20 @@
     "logout": "Sign out"
   },
   "common": {
-    "loading": "Loading",
     "title": "Title",
+    "description": "Description",
+    "loading": "Loading",
     "startedAt": "Begin",
     "completedAt": "End",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "userId": "User ID"
+    "userId": "User ID",
+    "user": "User",
+    "users": "Users",
+    "progress": "Progress"
+  },
+  "alphaLevel": {
+    "title": "Alpha-Level"
   },
   "error": {
     "title": "Error",
@@ -62,6 +69,11 @@
           }
         }
       }
+    },
+    "class": {
+      "title":"Dashboard",
+      "timeline": "Visualization",
+      "competencies": "Competencies"
     }
   }
 }
