@@ -32,7 +32,6 @@
     "@fortawesome/fontawesome-free": "^5.15.3",
     "bootstrap": "^4.6.0",
     "chai": "^4.3.4",
-    "markdown-cli": "^1.6.0",
     "markdown-notes-tree": "^1.11.0",
     "markdownlint-cli": "^0.27.1",
     "popper.js": "^1.16.1",
