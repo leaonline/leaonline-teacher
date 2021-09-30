@@ -41,6 +41,7 @@ For the teacher app you need to clone this repo and run the `./run.sh` script:
 ```bash
 git clone git@github.com:leaonline/leaonline-teacher.git
 cd ./leaonline-teacher
+./install.sh
 ./run.sh
 ```
 
