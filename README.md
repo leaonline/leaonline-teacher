@@ -17,7 +17,7 @@ Tests develop:
 
 ## Install and run
 
-We use Meteor for our application to fetch and display data in near realtime.
+We use [Meteor](https://meteor.com) for our application to fetch and display data in near realtime.
 To install Meteor run the install script:
 
 ```bash
