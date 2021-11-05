@@ -124,6 +124,7 @@
                                         document.courseId}}{{this.title}}{{/with}}
                             </a>
                         </td>
+                        {{!--
                         <td class="d-flex justify-content-end">
                             {{#button size="sm" colortype="secondary"
                                       outline=true
@@ -131,6 +132,7 @@
                                 <span class="fa fas fa-fw fa-eye"></span>
                             {{/button}}
                         </td>
+                        --}}
                     </tr>
                 {{/each}}
                 </tbody>
@@ -222,10 +224,12 @@
                 </a>
             </div>
             <div class="col d-flex justify-content-end align-items-center no-wrap">
+                {{!--
                 {{#button size="sm" colortype="secondary" outline=true
                           class="mr-2 course-items-icon-buttons"}}
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}
+                --}}
                 {{#button data-course=course._id data-toggle="modal"
                           data-target="#edit-course-modal" size="sm"
                           colortype="success" outline=true
