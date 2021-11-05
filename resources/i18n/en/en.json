@@ -44,32 +44,6 @@
       "title": "404 - Page not found",
       "backToRoot": "Back to home"
     },
-    "myClasses": {
-      "title": "My Classes",
-      "running": "Running Courses",
-      "completed": "Completed Courses",
-      "upcoming": "Courses not started yet",
-      "notFound": "Entries not found",
-      "addNew": "Add new class",
-      "modal": {
-        "header": {
-          "addCourse": "Add New Course",
-          "editCourse": "Edit Course",
-          "deleteCourse": "Delete Course"
-        },
-        "body": {
-          "addCourse": {
-            "title": "Adds a new course to the list of courses."
-          },
-          "editCourse": {
-            "title": "Edits the current course."
-          },
-          "deleteCourse": {
-            "title": "Are you sure you want to delete this course? This action cannot be reversed."
-          }
-        }
-      }
-    },
     "class": {
       "title":"Dashboard",
       "timeline": "Visualization",

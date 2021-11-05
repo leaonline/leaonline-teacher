@@ -22,7 +22,7 @@ Template.icon.onCreated(function () {
     // and delete the flag attributes
     atts.class = `fa fas ${fw} ${spinning} ${pulse} fa-${name} ${actualClass} ${colorClass}`
 
-    const current = Tracker.nonreactive(() => instance.state.get('atts'))
+    const current = Tracker.nonreactive(() => instance.state.get('atts')) || {}
     if (current.class !== atts.class) {
       console.warn('mismatch')
       console.debug(atts.class)

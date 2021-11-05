@@ -1,23 +1,25 @@
 import { i18n } from '../../api/i18n/I18n'
-import defaultRoutes from '../../../resources/i18n/routes'
+import defaultRoutes from '../../../resources/i18n/de/routes'
+
 
 const config = {
   settings: { // --> Config object
-    defaultLocale: 'en',
+    defaultLocale: 'de',
     en: {
-      code: 'en',
-      isoCode: 'en-US',
-      name: 'English'
+      code: 'de',
+      isoCode: 'de-DE',
+      name: 'Deutsch'
     }
   },
-  en: defaultRoutes
+  de: defaultRoutes
 }
 
 i18n.load(config)
 
-import('../../../resources/i18n/en.json')
-  .then(en => {
+// load base translation
+import('../../../resources/i18n/de/de.json')
+  .then(de => {
     // add content after loading
-    i18n.add('en', en)
+    i18n.add('de', de)
   })
   .catch(e => console.error(e))

@@ -3,15 +3,15 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import { Random } from 'meteor/random'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { State } from '../../../api/session/State'
-import { Courses } from '../../../api/collections/Courses'
+import { Course } from '../../../contexts/courses/Course'
 import { Form } from '../../../api/form/Form'
 import { Schema } from '../../../api/schema/Schema'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
+import { generateUser } from '../../../api/accounts/generateUser'
 import './myClasses.html'
 import './scss/myClasses.scss'
-import { generateUser } from '../../../api/accounts/generateUser'
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -24,19 +24,29 @@ const componentsLoader = bbsComponentLoader([
 ])
 
 const formLoaded = Form.initialize()
-const courseSchema = Schema.create(Courses.schema(reactiveTranslate))
+const courseSchema = Schema.create(Course.schema(reactiveTranslate))
 const isMongoDate = { $type: 9 }
 const isNotMongoDate = { $not: isMongoDate }
 const byName = (a, b) =>
   (a.lastName || '').localeCompare(b.lastName || '') +
   (a.firstName || '').localeCompare(b.firstName || '')
+
 Template.myClasses.onCreated(function () {
   const instance = this
   instance.init({
-    contexts: [Courses],
+    contexts: [Course],
     onComplete () {
       instance.state.set('initComplete', true)
-    }
+    },
+    language: lang => {
+      switch (lang) {
+        case 'de':
+          return import('./i18n/de')
+        default:
+          throw new Error(`Language not supported: ${lang}`)
+      }
+    },
+    debug: true
   })
 
   if (State.currentClass()) {
@@ -47,19 +57,20 @@ Template.myClasses.onCreated(function () {
   }
 
   instance.autorun(() => {
-    const sub = instance.subscribe(Courses.publications.my.name)
+    const sub = instance.subscribe(Course.publications.my.name)
     if (sub.ready()) {
-      console.debug(Courses.collection().find().fetch())
+      instance.state.set({ coursePublicationComplete: true })
     }
   })
 
   instance.autorun(() => {
     const allUsers = new Set()
-    Courses.collection()
+    Course.collection()
       .find({ completedAt: isNotMongoDate })
       .forEach(doc => {
-        (doc.users || []).forEach(user => {
+        (doc.users || []).forEach((user, index) => {
           user.courseId = doc._id
+          user.index = index
           allUsers.add(user)
         })
       })
@@ -81,14 +92,14 @@ Template.myClasses.helpers({
   runningCourses () {
     const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }
     const transform = { sort: { startedAt: -1 } }
-    const cursor = Courses.collection().find(query, transform)
+    const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
   completedCourses () {
     const query = { startedAt: isMongoDate, completedAt: isMongoDate }
     const transform = { sort: { completedAt: -1 } }
-    const cursor = Courses.collection().find(query, transform)
+    const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
@@ -97,9 +108,12 @@ Template.myClasses.helpers({
     query.startedAt = isNotMongoDate
     query.completedAt = isNotMongoDate
     const transform = { sort: { title: -1 } }
-    const cursor = Courses.collection().find(query, transform)
+    const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
+  },
+  noCourses () {
+    return Course.collection().find().count() === 0
   },
   activeUsers () {
     return Template.getState('activeUsers')
@@ -112,7 +126,7 @@ Template.myClasses.helpers({
     return courseSchema
   },
   getCollection () {
-    return Courses.collection()
+    return Course.collection()
   },
   getClickedCourse () {
     return Template.instance().courseDoc.get()
@@ -124,7 +138,10 @@ Template.myClasses.helpers({
     return Template.instance().data.getUserRoute()
   },
   getCourse (id) {
-    return Courses.collection().findOne(id)
+    return Course.collection().findOne(id)
+  },
+  generatingCode () {
+    return Template.getState('generatingCode')
   }
 })
 
@@ -142,7 +159,7 @@ Template.myClasses.events({
       user._id = Random.id()
     })
 
-    Courses.api.insert(insertDoc)
+    Course.api.insert(insertDoc)
       .then(insertDocId => {
         templateInstance.api.debug('inserted', insertDocId)
         templateInstance.$('#add-course-modal').modal('hide')
@@ -152,7 +169,7 @@ Template.myClasses.events({
   'click .update-course' (event, templateInstance) {
     event.preventDefault()
     const courseId = templateInstance.$(event.currentTarget).data('course')
-    const clickedCourseData = Courses.collection().findOne(courseId)
+    const clickedCourseData = Course.collection().findOne(courseId)
     templateInstance.courseDoc.set(clickedCourseData)
   },
   'submit #editCourseForm' (event, templateInstance) {
@@ -166,7 +183,7 @@ Template.myClasses.events({
     if (!updateDoc) return
     const courseDoc = templateInstance.courseDoc.get()
     updateDoc._id = courseDoc._id
-    Courses.api.update(updateDoc)
+    Course.api.update(updateDoc)
       .catch(e => console.error(e))
       .then(updated => {
         templateInstance.api.debug('updated', courseDoc._id, !!updated)
@@ -176,41 +193,44 @@ Template.myClasses.events({
   'click .delete-course-icon' (event, templateInstance) {
     event.preventDefault()
     const courseId = templateInstance.$(event.currentTarget).data('course')
-    const clickedCourseData = Courses.collection().findOne(courseId)
+    const clickedCourseData = Course.collection().findOne(courseId)
     templateInstance.courseDoc.set(clickedCourseData)
     templateInstance.$('#delete-course-modal').modal('show')
   },
   'click .delete-course-button' (event, templateInstance) {
     event.preventDefault()
     const courseDoc = templateInstance.courseDoc.get()
-    Courses.api.remove(courseDoc._id)
+    Course.api.remove(courseDoc._id)
       .then(removed => {
         templateInstance.api.debug('removed', courseDoc._id, !!removed)
         templateInstance.$('#delete-course-modal').modal('hide')
       })
       .catch(e => console.error(e))
   },
-  'click .generate-userid-button': async function (event, templateInstance) {
+  'hidden.bs.modal' (event, templateInstance) {
+    const targetId = event.target.id
+    Form.reset(targetId)
+    templateInstance.state.set('addUserCode', null)
+  },
+  'click .add-usercode-button': async function (event, templateInstance) {
     event.preventDefault()
-    const { debug } = templateInstance.api
+    templateInstance.state.set('generating', true)
+    const userIndex = dataTarget(event, 'user')
     const courseId = dataTarget(event, 'course')
-    const userId = dataTarget(event, 'user')
-    debug({ courseId, userId })
-    const courseDoc = Courses.collection().findOne(courseId)
-    const index = courseDoc.users.findIndex(user => user._id === userId)
+    const courseDoc = Course.collection().findOne(courseId)
     const userDoc = await generateUser()
+    templateInstance.api.debug({ userDoc })
     const updateDoc = {
       _id: courseId,
       $set: {
-        [`users.${index}._id`]: userDoc._id,
-        [`users.${index}.code`]: userDoc.username
+        [`users.${userIndex}._id`]: userDoc._id,
+        [`users.${userIndex}.code`]: userDoc.username
       }
     }
-    await Courses.api.update(updateDoc)
-    debug('updated', courseDoc._id)
-  },
-  'hidden.bs.modal' (event) {
-    const targetId = event.target.id
-    Form.reset(targetId)
+
+    await Course.api.update(updateDoc)
+    templateInstance.api.debug('updated', courseDoc._id)
+
+    templateInstance.state.set('generating', false)
   }
 })

@@ -1,4 +1,4 @@
-import { Courses } from '../../api/collections/Courses'
+import { Course } from '../../contexts/courses/Course'
 import { createCollection } from '../../infrastructure/factories/collection/createCollection'
 import { createMethods } from '../../infrastructure/factories/method/createMethods'
 import { createPublications } from '../../infrastructure/factories/publication/createPublication'
@@ -7,13 +7,13 @@ import {
   rateLimitPublications
 } from '../../infrastructure/factories/ratelimit/rateLimit'
 
-const collection = createCollection(Courses)
-Courses.collection = () => collection
+const collection = createCollection(Course)
+Course.collection = () => collection
 
-const allMethods = Object.values(Courses.methods)
+const allMethods = Object.values(Course.methods)
 createMethods(allMethods)
 rateLimitMethods(allMethods)
 
-const allPubs = Object.values(Courses.publications)
+const allPubs = Object.values(Course.publications)
 createPublications(allPubs)
 rateLimitPublications(allPubs)

@@ -1,0 +1,32 @@
+{
+  "pages": {
+    "myClasses": {
+      "title": "Meine Kurse",
+      "running": "Laufende Kurse",
+      "completed": "Abgeschlossene Kurse",
+      "upcoming": "Ausstehende Kurse",
+      "notFound": "Noch keiune Einträge vorhanden",
+      "addNew": "Neuen Kurs hinzufügen",
+      "users": "Alle Teilnehmenden",
+      "generateCode": "Login Code generieren",
+      "modal": {
+        "header": {
+          "addCourse": "Einen neuen Kurs hinzufügen",
+          "editCourse": "Kurs bearbeiten",
+          "deleteCourse": "Kurs löschen"
+        },
+        "body": {
+          "addCourse": {
+            "title": "Fügt einen neuen Kurs hinzu. Wenn die Teilnehmenden noch nicht bekannt sind, können Sie diese zunächst auch auslassen."
+          },
+          "editCourse": {
+            "title": "Den ausgewählten Kurs bearbeiten."
+          },
+          "deleteCourse": {
+            "title": "Sind Sie sicher, dass Sie den ausgewählten Kurs archivieren möchten?"
+          }
+        }
+      }
+    }
+  }
+}

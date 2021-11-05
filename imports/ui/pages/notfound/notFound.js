@@ -8,10 +8,26 @@ const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.card.load(),
   BlazeBootstrap.jumbotron.load()
 ])
-const componentsLoaded = componentsLoader.loaded
+
+Template.notFound.onCreated(function () {
+  const instance = this
+  instance.init({
+    language: lang => {
+      switch (lang) {
+        case 'de':
+          return import('./i18n/de')
+        default:
+          throw new Error(`Language not supported: ${lang}`)
+      }
+    },
+    onComplete () {
+      instance.state.set('initComplete', true)
+    }
+  })
+})
 
 Template.notFound.helpers({
   componentsLoaded () {
-    return componentsLoaded.get()
+    return componentsLoader.loaded.get() && Template.getState('initComplete')
   }
 })

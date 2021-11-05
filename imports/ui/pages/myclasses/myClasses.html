@@ -3,13 +3,15 @@
         {{> loading}}
     {{/unless}}
 
-    {{#each course in courses}}
-        <div class="w-100">{{course.title}}</div>
-    {{/each}}
-
     {{#onLoaded loaded=componentsLoaded}}
-        <div class="d-flex justify-content-end w-100">
+        <div class="d-flex justify-content-end w-100 align-items-baseline {{#if
+                noCourses}}alert alert-warning{{/if}}">
+            {{#if noCourses}}
+                <span class="px-4">{{i18n
+                        "pages.myClasses.noCoursesYet"}}</span>
+            {{/if}}
             {{> button
+                    class="ml-auto"
                     data-toggle="modal"
                     data-target="#add-course-modal"
                     colortype="primary"
@@ -17,98 +19,125 @@
                     label=(i18n "pages.myClasses.addNew")}}
         </div>
 
-        <h4>
+
+
+        {{! RUNNING COURSES }}
+        {{#with runningCourses}}
+            <h4>
+        <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
+            {{i18n "pages.myClasses.running"}}
+        </span>
+            </h4>
+
+            {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
+                         style=" overflow: hidden;"}}
+                {{#each document in ..}}
+                    {{> cardItems course=document courseRoute=getEntryRoute}}
+                {{else}}
+                    {{#item class="d-flex align-items-center p-3 bg-light text-muted"}}
+                        {{i18n "pages.myClasses.notFound"}}
+                    {{/item}}
+                {{/each}}
+            {{/listgroup}}
+        {{/with}}
+
+
+        {{! COMPLETED COURSES }}
+        {{#with completedCourses}}
+            <h4>
+        <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
+            {{i18n "pages.myClasses.completed"}}
+        </span>
+            </h4>
+
+            {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
+                         style=" overflow: hidden;"}}
+                {{#each document in ..}}
+                    {{> cardItems course=document courseRoute=getEntryRoute}}
+                {{else}}
+                    {{# item
+                            class="d-flex align-items-center p-3 bg-light text-muted"}}
+                        {{i18n "pages.myClasses.notFound"}}
+                    {{/item}}
+                {{/each}}
+            {{/listgroup}}
+        {{/with}}
+
+        {{! UPCOMING COURSES }}
+        {{#with notStartedCourses}}
+            <h4>
             <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
-                {{i18n "pages.myClasses.running"}}
+                {{i18n "pages.myClasses.upcoming"}}
             </span>
+            </h4>
+
+            {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
+                         style=" overflow: hidden;"}}
+                {{#each document in ..}}
+                    {{> cardItems course=document courseRoute=getEntryRoute}}
+                {{else}}
+                    {{# item
+                            class="d-flex align-items-center p-3 bg-light text-muted"}}
+                        {{i18n "pages.myClasses.notFound"}}
+                    {{/item}}
+                {{/each}}
+            {{/listgroup}}
+        {{/with}}
+
+        {{! ALL USERS }}
+        <h4>
+        <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
+            {{i18n "pages.myClasses.users"}}
+        </span>
         </h4>
 
-        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                     style=" overflow: hidden;"}}
-            {{#each document in runningCourses}}
-                {{> cardItems course=document courseRoute=getEntryRoute}}
-            {{else}}
-                {{# item
-                        class="d-flex align-items-center p-3 bg-light text-muted"}}
-                    {{i18n "pages.myClasses.notFound"}}
-                {{/item}}
-            {{/each}}
-        {{/listgroup}}
-
-        <h4><span
-                class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n
-                "pages.myClasses.completed"}}</span></h4>
-        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                     style=" overflow: hidden;"}}
-            {{#each document in completedCourses}}
-                {{> cardItems course=document courseRoute=getEntryRoute}}
-            {{else}}
-                {{# item
-                        class="d-flex align-items-center p-3 bg-light text-muted"}}
-                    {{i18n "pages.myClasses.notFound"}}
-                {{/item}}
-            {{/each}}
-        {{/listgroup}}
-
-        <h4><span
-                class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">{{i18n
-                "pages.myClasses.upcoming"}}</span></h4>
-        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                     style=" overflow: hidden;"}}
-            {{#each document in notStartedCourses}}
-                {{> cardItems course=document courseRoute=getEntryRoute}}
-            {{else}}
-                {{# item
-                        class="d-flex align-items-center p-3 bg-light text-muted"}}
-                    {{i18n "pages.myClasses.notFound"}}
-                {{/item}}
-            {{/each}}
-        {{/listgroup}}
-
-        <h4><span
-                class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">Users</span>
-        </h4>
-        {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                     style=" overflow: hidden;"}}
-            {{#each document in activeUsers}}
-                <li class="list-group-item p-3">
-                    <div class="row">
-                        <div class="col d-flex justify-content-between align-items-center text-secondary no-wrap">
-                            <a href="{{route getUserRoute document.courseId document.code}}">
-                                {{document.lastName}} {{document.firstName}} {{#if document.code}}({{document.code}}){{/if}}
+        <div class="table-responsive mt-3 shadow-sm">
+            <table class="table table-hover m-0">
+                <tbody>
+                {{#each document in activeUsers}}
+                    <tr class="bg-white">
+                        <td>
+                            <a href="{{route getUserRoute document.courseId
+                                             document.code}}">
+                                {{document.lastName}}, {{document.firstName}}
                             </a>
-                            <a href="{{route getClickedCourse document.courseId}}">
-                                {{#with getCourse document.courseId}}{{this.title}}{{/with}}
+                        </td>
+                        <td>
+                            {{#if document.code}}
+                                <code>{{document.code}}</code>
+                            {{else}}
+                                {{#unless generatingCode}}
+                                    <button class="btn btn-sm btn-primary add-usercode-button"
+                                            data-user="{{document.index}}"
+                                            data-course="{{document.courseId}}">
+                                        {{i18n "pages.myClasses.generateCode"}}
+                                    </button>
+                                {{else}}
+                                    {{> loading}}
+                                {{/unless}}
+                            {{/if}}
+                        </td>
+                        <td>
+                            <a href="{{route getEntryRoute
+                                             document.courseId}}">
+                                {{#with getCourse
+                                        document.courseId}}{{this.title}}{{/with}}
                             </a>
-                        </div>
-                        <div class="col d-flex justify-content-end align-items-center no-wrap">
+                        </td>
+                        <td class="d-flex justify-content-end">
                             {{#button size="sm" colortype="secondary"
                                       outline=true
                                       class="mr-2 course-items-icon-buttons"}}
                                 <span class="fa fas fa-fw fa-eye"></span>
                             {{/button}}
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
 
-                            {{#unless document.code}}
-                                {{#button size="sm" colortype="success"
-                                          outline=true
-                                          class="mr-2 course-items-icon-buttons generate-userid-button"
-                                          disabled=document.id
-                                          data-course=document.courseId
-                                          data-user=document._id}}
-                                    <span class="fa fas fa-plus"></span>
-                                {{/button}}
-                             {{/unless}}
-                        </div>
-                    </div>
-                </li>
-            {{else}}
-                {{# item
-                        class="d-flex align-items-center p-3 bg-light text-muted"}}
-                    {{i18n "pages.myClasses.notFound"}}
-                {{/item}}
-            {{/each}}
-        {{/listgroup}}
-
+        {{! MODALS }}
         {{#modal id="add-course-modal" centered=true large=true}}
             {{> modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-primary text-white"}}
             {{#modalbody}}
@@ -133,9 +162,9 @@
                     {{> afArrayField name='users' class="mt-4"}}
                 {{/autoForm}}
             {{/modalbody}}
-            {{#modalfooter}}
-                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
+            {{#modalfooter class="d-flex justify-content-between"}}
                 {{> button type="submit" form="insertCourseForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
+                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
             {{/modalfooter}}
         {{/modal}}
 

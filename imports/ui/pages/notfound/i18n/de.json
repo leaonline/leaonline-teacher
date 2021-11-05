@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "notFound": {
+      "title": "404 - Seite wurde nicht gefunden",
+      "backToRoot": "Zurück zur Startseite"
+    }
+  }
+}

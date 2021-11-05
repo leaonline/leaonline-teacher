@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor'
 import { Blaze } from 'meteor/blaze'
+import { addLanguage } from '../../api/i18n/addLanguage'
 
-Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [], onComplete, onError }) {
+Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [], debug = false, language, onComplete, onError }) {
   import { initClientContext } from '../../infrastructure/contexts/initClientContext'
 
   const handleError = error => {
@@ -19,13 +20,14 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
   instance.api = api
 
   api.debug = (...args) => {
-    if (!Meteor.isDevelopment) return
+    if (!Meteor.isDevelopment || !debug) return
     console.debug(`[${instance.view.name}]:`, ...args)
   }
 
   api.subscribe = ({ name, args = {}, onReady }) => {
     const finalName = typeof name === 'object' ? name.name : name
     api.debug('subscribe', finalName)
+
     return instance.subscribe(finalName, args, {
       onReady: () => {
         api.debug('ready', finalName)
@@ -45,14 +47,21 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
     handleError(error)
   }
 
+  if (language) {
+    api.debug('load language')
+    allComplete.push(addLanguage(language, api.debug))
+  }
+
   if (allComplete.length === 0) {
+    api.debug('skip deps; template init complete')
     onComplete(api)
   }
+
   else {
     instance.autorun(c => {
       if (allComplete.every(rv => rv.get())) {
         c.stop()
-        api.info('call dependencies onComplete')
+        api.debug('template init complete')
         onComplete(api)
       }
     })

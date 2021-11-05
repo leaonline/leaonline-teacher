@@ -1,0 +1,50 @@
+{
+  "actions": {
+    "continue": "Foretsetzen",
+    "close": "Schließen",
+    "submit": "Senden",
+    "insert": "Erstellen",
+    "update": "Aktualisieren",
+    "delete": "Löschen",
+    "logout": "Abmelden"
+  },
+  "common": {
+    "title": "Titel",
+    "description": "Beschreibung",
+    "loading": "Lade...",
+    "startedAt": "Gestartet am",
+    "completedAt": "Beendet am",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "userId": "Benutzer ID",
+    "user": "Teilnehmende",
+    "users": "Teilnehmende",
+    "progress": "Fortschritt",
+    "code": "Login Code"
+  },
+  "alphaLevel": {
+    "title": "Alpha-Level"
+  },
+  "error": {
+    "title": "Error",
+    "occurred": "Es ist ein Fehler aufgetreten"
+  },
+  "pages": {
+    "login": {
+      "title": "Login",
+      "login": "Login to the app",
+      "loggingIn": "Logging in...",
+      "loggedIn": "Login successful!"
+    },
+    "logout": {
+      "logout": "Logout",
+      "loggingOut": "Logging out...",
+      "loggedOut": "Successfully logged out!"
+    },
+    "class": {
+      "title":"Dashboard",
+      "timeline": "Visualization",
+      "competencies": "Competencies"
+    }
+  }
+}

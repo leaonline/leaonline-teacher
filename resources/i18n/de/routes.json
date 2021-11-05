@@ -1,0 +1,10 @@
+{
+  "routes": {
+    "notFound": "seite-nicht-gefunden",
+    "login": "login",
+    "logout": "ausloggen",
+    "myClasses": "meine-kurse",
+    "class": "kurs",
+    "user": "person"
+  }
+}
