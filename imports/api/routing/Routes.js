@@ -1,6 +1,7 @@
 import { createLoggedinTrigger, createLoginTrigger, createNotFoundTrigger } from './triggers'
 import { translateRoute } from './translateRoute'
 import { createRedirect } from './createRedirect'
+import { reactiveTranslate } from '../i18n/reactiveTranslate'
 
 /**
  * Routes are static definitions of pages that the {Router} uses to navigate.
@@ -68,7 +69,7 @@ let toMyClasses
 
 Routes.root = {
   path: () => '/',
-  label: 'routes.redirecting',
+  label: reactiveTranslate('routes.redirecting'),
   triggersEnter: () => {
     if (!rootLoginTrigger) {
       rootLoginTrigger = createLoginTrigger(Routes.login)
@@ -95,7 +96,7 @@ Routes.notFound = {
     const notFound = translateRoute(Routes.notFound)
     return `/${notFound}`
   },
-  label: 'pages.notFound.title',
+  label: reactiveTranslate('pages.notFound.title'),
   triggersEnter: () => [],
   async load () {
     return import('../../ui/pages/notfound/notFound')
@@ -115,7 +116,7 @@ Routes.notFound = {
 
 Routes.fallback = {
   path: () => '*',
-  label: 'routes.redirecting',
+  label: reactiveTranslate('routes.redirecting'),
   triggersEnter: () => {
     if (!notFoundTrigger) notFoundTrigger = createNotFoundTrigger(Routes.notFound)
     return [notFoundTrigger]
@@ -137,7 +138,7 @@ Routes.login = {
     const path = translateRoute(Routes.login)
     return `/${path}`
   },
-  label: 'pages.login.title ',
+  label: reactiveTranslate('pages.login.title'),
   triggersEnter: () => {
     if (!myClassesTrigger) myClassesTrigger = createLoggedinTrigger(Routes.myClasses)
     return [myClassesTrigger]
@@ -166,7 +167,7 @@ Routes.logout = {
     const path = translateRoute(Routes.logout)
     return `/${path}`
   },
-  label: 'pages.logout.title',
+  label: reactiveTranslate('pages.logout.title'),
   triggersEnter: () => [],
   async load () {
     return import('../../ui/pages/logout/logout')
@@ -187,7 +188,7 @@ Routes.myClasses = {
     const path = translateRoute(Routes.myClasses)
     return `/${path}`
   },
-  label: 'pages.myClasses.title',
+  label: reactiveTranslate('pages.myClasses.title'),
   triggersEnter: () => {
     if (!rootLoginTrigger) rootLoginTrigger = createLoginTrigger(Routes.login)
     return [rootLoginTrigger]
@@ -216,7 +217,7 @@ Routes.class = {
     const path = translateRoute(Routes.class)
     return `/${path}/${classId}`
   },
-  label: 'pages.class.title',
+  label: reactiveTranslate('pages.class.title'),
   triggersEnter: () => {
     if (!rootLoginTrigger) rootLoginTrigger = createLoginTrigger(Routes.login)
     return [rootLoginTrigger]
@@ -240,7 +241,7 @@ Routes.user = {
     const userPath = translateRoute(Routes.user)
     return `/${classPath}/${classId}/${userPath}/${userId}`
   },
-  label: 'pages.user.title',
+  label: reactiveTranslate('pages.user.title'),
   triggersEnter: () => {
     if (!rootLoginTrigger) rootLoginTrigger = createLoginTrigger(Routes.login)
     return [rootLoginTrigger]

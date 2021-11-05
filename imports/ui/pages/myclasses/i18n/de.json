@@ -1,7 +1,6 @@
 {
   "pages": {
     "myClasses": {
-      "title": "Meine Kurse",
       "running": "Laufende Kurse",
       "completed": "Abgeschlossene Kurse",
       "upcoming": "Ausstehende Kurse",

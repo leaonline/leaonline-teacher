@@ -14,7 +14,7 @@ export const resolveRoute = function resolve (key, ...optionalArgs) {
 
 export const routeLabel = function () {
   const cachedRoute = Router.cache()
-  return cachedRoute && i18n.get(cachedRoute.label)
+  return cachedRoute && cachedRoute.label()
 }
 
 export const currentRoute = function (key) {

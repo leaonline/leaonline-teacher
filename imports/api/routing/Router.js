@@ -105,16 +105,17 @@ const paths = {}
     .triggersExit() hooks
  */
 function createRoute (routeDef, onError) {
-  const label = typeof routeDef.label === 'function'
+  const label = () => typeof routeDef.label === 'function'
     ? routeDef.label()
     : routeDef.label
+
   return {
     name: routeDef.key,
     whileWaiting () {
       // we render by default a "loading" template if the Template has not been loaded yet
       // which can be explicitly prevented by switching showLoading to false
       if (!Template[routeDef.template] && routeDef.showLoading !== false) {
-        this.render(routeDef.target || _defaultTarget, _loadingTemplate, { title: label })
+        this.render(routeDef.target || _defaultTarget, _loadingTemplate, { title: label() })
       }
     },
     waitOn () {
@@ -138,7 +139,7 @@ function createRoute (routeDef, onError) {
       // just skip the action and wait for the next rendering cycle
       if (!Template[routeDef.template]) {
         console.warn('[Router]: skipping yet undefined template', routeDef.template)
-        document.title = `${_defaultLabel} ${label}`
+        Router.setTitle(label())
         return setTimeout(() => {
           Router.refresh(routeDef.target || _defaultTarget, _loadingTemplate)
         }, 50)
@@ -153,8 +154,7 @@ function createRoute (routeDef, onError) {
       data.params = params
       data.queryParams = queryParams
 
-      document.title = `${_defaultLabel} ${label}`
-      _currentLabel.set(label)
+      Router.setTitle(label())
       routeCache.set(routeDef)
       try {
         this.render(routeDef.target || _defaultTarget, routeDef.template, data)
@@ -188,4 +188,9 @@ Router.reload = function () {
 
 Router.refresh = function (target, template) {
   return FlowRouter.refresh(target, template)
+}
+
+Router.setTitle = function (label) {
+  _currentLabel.set(label)
+  document.title = `${_defaultLabel} - ${label}`
 }

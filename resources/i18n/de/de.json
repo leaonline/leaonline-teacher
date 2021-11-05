@@ -30,6 +30,9 @@
     "occurred": "Es ist ein Fehler aufgetreten"
   },
   "pages": {
+    "myClasses": {
+      "title": "Meine Kurse"
+    },
     "login": {
       "title": "Login",
       "login": "Login to the app",

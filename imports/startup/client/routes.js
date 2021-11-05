@@ -1,9 +1,10 @@
+import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Router } from '../../api/routing/Router'
 import { Routes } from '../../api/routing/Routes'
 import { currentRoute, resolveRoute, routeLabel } from '../../api/routing/routeHelpers'
 
-Router.setDefaultLabel('teacher app')
+Router.setDefaultLabel(Meteor.settings.public.app.name)
 Router.setDefaultTarget('main-render-target')
 Router.setLoadingTemplate('loading')
 
