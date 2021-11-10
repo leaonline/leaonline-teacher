@@ -26,6 +26,7 @@ async function initialize () {
   await AutoForm.load()
   await AutoFormThemeBootstrap4.load()
   await AutoForm.setDefaultTemplate('bootstrap4')
+  await import('../../ui/forms/usercode/usercode')
 }
 
 Form.getFormValues = ({ formId, schema, templateInstance, isUpdate }) => {

@@ -3,6 +3,7 @@ import { callMethod } from '../../infrastructure/methods/callMethod'
 import { createMyPublication } from '../../api/decorators/createMyPublication'
 import { createRemoveMethod } from '../../api/decorators/createRemoveMethod'
 import { createUpdateMethod } from '../../api/decorators/createUpdateMethod'
+import { createGetMethod } from '../../api/decorators/createGetMethod'
 
 export const Course = {
   name: 'course',
@@ -13,37 +14,15 @@ export const Course = {
 Course.schema = (translate = x => x) => ({
   title: {
     type: String,
-    autoform: {
-      placeHolder: translate('common.title')
-    }
+    label: translate('common.title')
   },
   startsAt: {
     type: Date,
-    optional: true,
-    autoform: {
-      placeHolder: translate('course.startsAt')
-    }
-  },
-  startedAt: {
-    type: Date,
-    optional: true,
-    autoform: {
-      placeHolder: translate('course.startedAt')
-    }
+    label: translate('course.startsAt')
   },
   completesAt: {
     type: Date,
-    optional: true,
-    autoform: {
-      placeHolder: translate('course.startedAt')
-    }
-  },
-  completedAt: {
-    type: Date,
-    optional: true,
-    autoform: {
-      placeHolder: translate('course.completedAt')
-    }
+    label: translate('course.completesAt')
   },
 
   // users array example data:
@@ -51,58 +30,47 @@ Course.schema = (translate = x => x) => ({
   users: {
     type: Array,
     optional: true,
-    label:  translate('common.users'),
+    label: translate('course.users')
   },
   'users.$': {
     type: Object,
-    label:false,
+    label: false,
     autoform: {
-      afObjectField: {
-        bodyClass: 'row border-0 py-0 pl-2, pr-0'
+      type: 'usercode',
+      codeLength: 5
+    },
+    custom () {
+      if (!this.isSet || this.value.valid === true) {
+        return // all good if not defined or valid
       }
+      console.debug('invalid', this.key)
+      const label = translate('accounts.invalidCode')
+      return typeof label === 'function'
+        ? label()
+        : label
     }
   },
   'users.$._id': {
     type: String,
     max: 17,
-    optional: true,
-    autoform: {
-      type: 'hidden'
-    }
+    optional: true
+  },
+  'users.$.valid': {
+    type: Boolean,
+    optional: true
   },
   'users.$.code': {
     type: String,
     max: 5,
-    optional: true,
-    autoform: {
-      label: false,
-      placeHolder: translate('common.code'),
-      afFormGroup: {
-        'formgroup-class': 'col-md-2'
-      }
-    }
+    optional: true
   },
   'users.$.lastName': {
     type: String,
-    optional: true,
-    autoform: {
-      label: false,
-      placeHolder: translate('common.lastName'),
-      afFormGroup: {
-        'formgroup-class': 'col-md-5'
-      }
-    }
+    optional: true
   },
   'users.$.firstName': {
     type: String,
-    optional: true,
-    autoform: {
-      label: false,
-      placeHolder: translate('common.firstName'),
-      afFormGroup: {
-        'formgroup-class': 'col-md-5'
-      }
-    }
+    optional: true
   }
 })
 
@@ -130,6 +98,7 @@ Course.api.remove = async (_id) => {
 }
 
 Course.methods = {}
+Course.methods.get = createGetMethod({ context: Course })
 Course.methods.insert = createInsertMethod({ context: Course })
 Course.methods.update = createUpdateMethod({ context: Course })
 Course.methods.remove = createRemoveMethod({ context: Course })
@@ -141,4 +110,8 @@ Course.publications.all = {
   name: 'courses.publications.all',
   schema: {},
   run: () => Course.collection().find()
+}
+
+Course.language = {
+  de: () => import('./i18n/de')
 }

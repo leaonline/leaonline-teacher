@@ -1,7 +1,6 @@
 import { i18n } from '../../api/i18n/I18n'
 import defaultRoutes from '../../../resources/i18n/de/routes'
 
-
 const config = {
   settings: { // --> Config object
     defaultLocale: 'de',

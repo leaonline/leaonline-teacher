@@ -1,14 +1,21 @@
 <template name="class">
-    <h4>{{i18n "pages.class.timeline"}}</h4>
+    <h2>{{title}}</h2>
 
-    <div id="visualization-target"></div>
-    <canvas id="visualization-canvas"></canvas>
+    {{#onLoaded loaded=loadComplete}}
+        <select class="form-control border-{{color}} text-{{color}}"
+                id="dimension-select">
+            <option value="">{{i18n "form.selectOne"}}</option>
+            {{#each dimension in dimensions}}
+                <option value="{{dimension._id}}">{{dimension.title}}</option>
+            {{/each}}
+        </select>
+    {{/onLoaded}}
 
-    <h4>{{i18n "pages.class.competencies"}}</h4>
+    {{#if dimensionDoc}}
+        {{#onLoaded loaded=sessionsLoaded}}
 
-    {{#each entry in classCompetencies}}
-        {{> competencyCategoryForCourse entry}}
-    {{/each}}
+        {{/onLoaded}}
+    {{/if}}
 </template>
 
 <template name="competencyCategoryForCourse">

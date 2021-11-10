@@ -1,77 +1,110 @@
-/* global $ */
 import { Template } from 'meteor/templating'
 import { State } from '../../../api/session/State'
-import { classExists } from '../../utils/classExists'
-import visualizationData from './data/visualization'
-import competenciesData from './data/competencies'
+import { Course } from '../../../contexts/courses/Course'
+import { ColorType } from '../../../contexts/color/ColorType'
+import { ContentServer } from '../../../api/remotes/ContentServer'
+import { OtuLea } from '../../../startup/client/remote'
+import { Dimension } from '../../../contexts/dimension/Dimension'
+import classLanguage from './i18n/classLanguage'
+import { callMethod } from '../../../infrastructure/methods/callMethod'
 import './class.html'
 
 Template.class.onCreated(function () {
   const instance = this
+
+  instance.init({
+    contexts: [Course, Dimension],
+    useLanguage: [classLanguage],
+    debug: true,
+    onComplete () {
+      instance.state.set('initComplete', true)
+    }
+  })
+
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
     const currentClass = State.currentClass()
 
-    if (classExists() && currentClass !== classId) {
+    if (currentClass !== classId) {
       State.currentClass(classId)
     }
 
     if (State.currentParticipant()) {
       State.currentParticipant(null)
     }
+
+    callMethod({
+      name: Course.methods.get,
+      args: { _id: classId },
+      prepare: () => instance.api.debug('load course doc'),
+      failure: error => console.error(error),
+      success: courseDoc => {
+        instance.api.debug('course doc loaded')
+        instance.state.set({
+          courseDoc,
+          title: courseDoc.title
+        })
+      }
+    })
+  })
+
+  instance.autorun(() => {
+    const courseDoc = instance.state.get('courseDoc')
+    if (!courseDoc) return
+
+    instance.api.debug('load dimensions')
+    ContentServer.loadAllContentDocs(Dimension, {}, instance.api.debug)
+      .then(dimensionDocs => {
+        instance.api.debug('dimensions loaded', { dimensionDocs })
+        instance.state.set('dimensionsLoaded', dimensionDocs.length > 0)
+      })
+      .catch(e => console.error(e))
+  })
+
+  instance.autorun(() => {
+    const dimensionDoc = instance.state.get('dimensionDoc')
+    const courseDoc = instance.state.get('courseDoc')
+    if (!courseDoc || !dimensionDoc) return
+
+    const users = courseDoc.users.map(u => u._id)
+    OtuLea.call({
+      name: 'session.methods.getForUsers', // TODO define in settings
+      args: { users },
+      failure: e => console.error(e),
+      success: ({ session }) => {
+        console.debug(session)
+      }
+    })
   })
 })
 
-// use this hook to inject dynamic html or canvas usage or whatever after
-// the template has been created and it's DOM tree has been rendered at least
-// once
-// you can either use jQuery or standard DOM methods
-// please don't forget to remove this example code
-Template.class.onRendered(function () {
-  // method a: jQuery
-  const $target = $('#visualization-target')
-  $target.html(`<pre><code>${JSON.stringify(visualizationData[0], null, 2)}</code></pre>`)
-
-  // method b: standards
-  const canvas = document.querySelector('#visualization-canvas')
-  const context = canvas.getContext('2d')
-  const centerX = canvas.width / 2
-  const centerY = canvas.height / 2
-  const radius = 70
-  const eyeRadius = 10
-  const eyeXOffset = 25
-
-  // draw the yellow circle
-  context.beginPath()
-  context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false)
-  context.fillStyle = 'yellow'
-  context.fill()
-  context.lineWidth = 5
-  context.strokeStyle = 'black'
-  context.stroke()
-
-  // draw the eyes
-  context.beginPath()
-  let eyeX = centerX - eyeXOffset
-  const eyeY = centerY - eyeXOffset
-  context.arc(eyeX, eyeY, eyeRadius, 0, 2 * Math.PI, false)
-  eyeX = centerX + eyeXOffset
-  context.arc(eyeX, eyeY, eyeRadius, 0, 2 * Math.PI, false)
-  context.fillStyle = 'black'
-  context.fill()
-
-  // draw the mouth
-  context.beginPath()
-  context.arc(centerX, centerY, 50, 0, Math.PI, false)
-  context.stroke()
-
-  // method c: use a 3rd party library, don't forget to import it
-  // Plotly.newPlot('visualization-target', visualizationData)
+Template.class.helpers({
+  loadComplete () {
+    return Template.getState('initComplete') && Template.getState('dimensionsLoaded')
+  },
+  title () {
+    return Template.getState('title')
+  },
+  dimensions () {
+    return Dimension.collection().find()
+  },
+  dimensionDoc () {
+    return Template.getState('dimensionDoc')
+  },
+  color () {
+    return Template.getState('color')
+  }
 })
 
-Template.class.helpers({
-  classCompetencies () {
-    return competenciesData
+Template.class.events({
+  'change #dimension-select' (event, templateInstance) {
+    event.preventDefault()
+
+    const selectedDimension = templateInstance.$(event.currentTarget).val() || null
+    const dimensionDoc = Dimension.collection().findOne(selectedDimension)
+    const color = ColorType.byIndex(dimensionDoc.colorType)?.type
+
+    templateInstance.state.set({ dimensionDoc, color })
   }
 })

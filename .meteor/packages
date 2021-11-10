@@ -24,6 +24,7 @@ shell-server@0.5.0            # Server-side component of the `meteor shell` comm
 #========================================
 leaonline:corelib
 leaonline:ratelimit-factory
+jkuester:http
 
 #========================================
 # Collections
@@ -50,6 +51,7 @@ alanning:roles
 leaonline:accounts-lea
 leaonline:ddp-login
 service-configuration@1.0.11
+leaonline:service-registry
 
 #========================================
 # UI

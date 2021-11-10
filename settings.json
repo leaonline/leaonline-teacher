@@ -7,8 +7,12 @@
       "otulea": {
         "url": "localhost:3000",
         "methods": {
-          "generateUser": "users.methods.generate"
+          "generateUser": "users.methods.generate",
+          "userExists": "user.methods.exist"
         }
+      },
+      "content": {
+        "url": "http://localhost:3030"
       }
     }
   },

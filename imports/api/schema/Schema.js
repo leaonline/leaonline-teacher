@@ -1,8 +1,10 @@
 import { Meteor } from 'meteor/meteor'
 import { Tracker } from 'meteor/tracker'
 import SimpleSchema from 'simpl-schema'
+import { ServiceRegistry } from '../ServiceRegistry'
 
-SimpleSchema.extendOptions(['autoform'])
+const schemaOptions = Object.keys(ServiceRegistry.schemaOptions)
+SimpleSchema.extendOptions(schemaOptions)
 
 export const Schema = {}
 

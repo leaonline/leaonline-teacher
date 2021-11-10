@@ -1,0 +1,67 @@
+<template name="afUserCode">
+    <div class="py-0 px-1 mb-4">
+        <input type="hidden" class="id-input"
+               data-schema-key="{{key "_id"}}">
+
+        <input type="hidden" class="valid-input"
+               data-schema-key="{{key "valid"}}">
+
+        {{! firstName, lastName }}
+        <div class="row p-0 mb-2">
+            {{! firstname}}
+            <div class="col-12 col-md-6 text-monospace">
+                <input type="text" class="form-control first-name-input"
+                       data-schema-key="{{key "firstName"}}"
+                       placeholder="{{i18n "accounts.firstName"}}">
+            </div>
+            {{! lastname}}
+            <div class="col-12 col-md-6 text-monospace">
+                <input type="text" class="form-control last-name-input"
+                       name="lastName"
+                       data-schema-key="{{key "lastName"}}"
+                       placeholder="{{i18n "accounts.lastName"}}">
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                {{#if checking}}
+                    <span class="input-group-text bg-transparent">
+                        {{> icon name="spinner" pulse=true}}
+                    </span>
+                {{else if isValid}}
+                    <span class="input-group-text bg-transparent">
+                        {{> icon name="check"}}
+                    </span>
+                {{else if isInvalid}}
+                    <span class="input-group-text bg-transparent text-danger">
+                        {{> icon name="times"}}
+                    </span>
+                {{else}}
+                    <span class="input-group-text bg-transparent">
+                        {{> icon name="edit" regular=true}}
+                    </span>
+                {{/if}}
+            </div>
+            <input type="text"
+                   class="form-control text-monospace text-uppercase code-input {{atts.class}}"
+                   id="input-group01"
+                   placeholder="{{i18n "accounts.code"}}"
+                   aria-label="accounts.code"
+                   data-schema-key="{{key "code"}}"
+                   maxlength="{{atts.codeLength}}"
+                   aria-describedby="button-addon4">
+            <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-outline-secondary
+                               {{#unless generating}}code-gen-btn{{/unless}}"
+                        type="button" title="{{i18n "accounts.generateCode"}}">
+                    {{#unless generating}}
+                        {{> icon name="dice"}}
+                    {{else}}
+                        {{> icon name="spinner" pulse=true}}
+                    {{/unless}}
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

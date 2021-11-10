@@ -10,6 +10,7 @@ import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
 import { generateUser } from '../../../api/accounts/generateUser'
+import myClassesLanguages from './i18n/myClassesLanguages'
 import './myClasses.html'
 import './scss/myClasses.scss'
 
@@ -24,29 +25,23 @@ const componentsLoader = bbsComponentLoader([
 ])
 
 const formLoaded = Form.initialize()
-const courseSchema = Schema.create(Course.schema(reactiveTranslate))
-const isMongoDate = { $type: 9 }
-const isNotMongoDate = { $not: isMongoDate }
+const courseSchemaDef = Course.schema(reactiveTranslate)
+delete courseSchemaDef.startedAt
+delete courseSchemaDef.completedAt
+
+const courseSchema = Schema.create(courseSchemaDef)
 const byName = (a, b) =>
-  (a.lastName || '').localeCompare(b.lastName || '') +
+  (2 * (a.lastName || '').localeCompare(b.lastName || '')) +
   (a.firstName || '').localeCompare(b.firstName || '')
 
 Template.myClasses.onCreated(function () {
   const instance = this
   instance.init({
     contexts: [Course],
+    useLanguage: [myClassesLanguages],
     onComplete () {
       instance.state.set('initComplete', true)
-    },
-    language: lang => {
-      switch (lang) {
-        case 'de':
-          return import('./i18n/de')
-        default:
-          throw new Error(`Language not supported: ${lang}`)
-      }
-    },
-    debug: true
+    }
   })
 
   if (State.currentClass()) {
@@ -66,7 +61,7 @@ Template.myClasses.onCreated(function () {
   instance.autorun(() => {
     const allUsers = new Set()
     Course.collection()
-      .find({ completedAt: isNotMongoDate })
+      .find()
       .forEach(doc => {
         (doc.users || []).forEach((user, index) => {
           user.courseId = doc._id
@@ -90,23 +85,24 @@ Template.myClasses.helpers({
       Template.getState('initComplete')
   },
   runningCourses () {
-    const query = { startedAt: isMongoDate, completedAt: isNotMongoDate }
-    const transform = { sort: { startedAt: -1 } }
+    const now = new Date()
+    const query = { startsAt: { $lte: now }, completesAt: { $gte: now } }
+    const transform = { sort: { startsAt: -1 } }
     const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
   completedCourses () {
-    const query = { startedAt: isMongoDate, completedAt: isMongoDate }
-    const transform = { sort: { completedAt: -1 } }
+    const now = new Date()
+    const query = { completesAt: { $lt: now } }
+    const transform = { sort: { completesAt: -1 } }
     const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
     return cursor
   },
   notStartedCourses () {
-    const query = {}
-    query.startedAt = isNotMongoDate
-    query.completedAt = isNotMongoDate
+    const now = new Date()
+    const query = { startsAt: { $gt: now } }
     const transform = { sort: { title: -1 } }
     const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
@@ -148,6 +144,7 @@ Template.myClasses.helpers({
 Template.myClasses.events({
   'submit #insertCourseForm' (event, templateInstance) {
     event.preventDefault()
+
     const insertDoc = Form.getFormValues({
       formId: 'insertCourseForm',
       schema: courseSchema
@@ -174,6 +171,7 @@ Template.myClasses.events({
   },
   'submit #editCourseForm' (event, templateInstance) {
     event.preventDefault()
+
     const updateDoc = Form.getFormValues({
       formId: 'editCourseForm',
       schema: courseSchema,

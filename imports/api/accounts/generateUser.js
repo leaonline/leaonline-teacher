@@ -2,25 +2,14 @@ import { Meteor } from 'meteor/meteor'
 import { OtuLea } from '../../startup/client/remote'
 
 const generateUserMethodName = Meteor.settings.public.hosts.otulea.methods.generateUser
+const userExistsMethodName = Meteor.settings.public.hosts.otulea.methods.userExists
 
-export const generateUser = () => {
-  return new Promise((resolve, reject) => {
-    if (!OtuLea.connected()) {
-      return reject(new Error('Cannot create user, remote is not connected'))
-    }
+export const generateUser = () => OtuLea.call({
+  name: generateUserMethodName,
+  args: {}
+})
 
-    const callback = (err, res) => {
-      if (err) {
-        return reject(err)
-      }
-      resolve(res)
-    }
-
-    try {
-      OtuLea.connection().call(generateUserMethodName, callback)
-    }
-    catch (e) {
-      reject(e)
-    }
-  })
-}
+export const userExists = ({ code }) => OtuLea.call({
+  name: userExistsMethodName,
+  args: { code }
+})

@@ -96,119 +96,86 @@
                 <tbody>
                 {{#each document in activeUsers}}
                     <tr class="bg-white">
-                        <td>
-                            <a href="{{route getUserRoute document.courseId
-                                             document.code}}">
-                                {{document.lastName}}, {{document.firstName}}
-                            </a>
-                        </td>
-                        <td>
+                        <td class="text-center px-4">
                             {{#if document.code}}
                                 <code>{{document.code}}</code>
                             {{else}}
-                                {{#unless generatingCode}}
-                                    <button class="btn btn-sm btn-primary add-usercode-button"
-                                            data-user="{{document.index}}"
-                                            data-course="{{document.courseId}}">
-                                        {{i18n "pages.myClasses.generateCode"}}
-                                    </button>
-                                {{else}}
-                                    {{> loading}}
-                                {{/unless}}
+                                <small class="text-light">
+                                    {{> icon name="exclamation-triangle"}}
+                                </small>
                             {{/if}}
                         </td>
-                        <td>
+                        <td class="text-left px-4">
+                            <a href="{{route getUserRoute document.courseId
+                                             document.code}}">
+                                {{document.lastName}}
+                            </a>
+                        </td>
+                        <td class="text-left px-4">
+                            <a href="{{route getUserRoute document.courseId
+                                             document.code}}">
+                                {{document.firstName}}
+                            </a>
+                        </td>
+                        <td class="w-100">
                             <a href="{{route getEntryRoute
                                              document.courseId}}">
                                 {{#with getCourse
                                         document.courseId}}{{this.title}}{{/with}}
                             </a>
                         </td>
-                        {{!--
-                        <td class="d-flex justify-content-end">
-                            {{#button size="sm" colortype="secondary"
-                                      outline=true
-                                      class="mr-2 course-items-icon-buttons"}}
-                                <span class="fa fas fa-fw fa-eye"></span>
-                            {{/button}}
+
+                        <td class="text-right">
+                            <button class="btn btn-sm btn-outline-success edit-user-btn">
+                                {{> icon name="edit"}}
+                            </button>
                         </td>
-                        --}}
                     </tr>
                 {{/each}}
                 </tbody>
             </table>
         </div>
 
-        {{! MODALS }}
+        {{! INSERT MODAL }}
         {{#modal id="add-course-modal" centered=true large=true}}
             {{> modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-primary text-white"}}
             {{#modalbody}}
-                {{#autoForm schema=courseSchema id="insertCourseForm"
-                            type="normal"}}
-                    <fieldset>
-                        <p>{{i18n
-                                "pages.myClasses.modal.body.addCourse.title"}}</p>
-                        <div class="row">
-                            <div class="col-12 py-2">
-                                {{> afQuickField name='title' }}
-                            </div>
-                            <div class="col-md-6 py-2">
-                                {{> afQuickField name='startsAt' label="myClasses.startsAt"}}
-                            </div>
-                            <div class="col-md-6 py-2">
-                                {{> afQuickField name='completesAt' label="myClasses.completesAt"}}
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div class="mt-4"></div>
-                    {{> afArrayField name='users' class="mt-4"}}
-                {{/autoForm}}
-            {{/modalbody}}
-            {{#modalfooter class="d-flex justify-content-between"}}
-                {{> button type="submit" form="insertCourseForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
-                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
-            {{/modalfooter}}
-        {{/modal}}
-
-        {{#modal id="edit-course-modal" centered=true large=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-primary text-white"}}
-            {{#modalbody}}
-                {{#autoForm doc=getClickedCourse  schema=courseSchema
-                            id="editCourseForm" type="normal"}}
-                    <fieldset>
-                        <span>{{i18n
-                                "pages.myClasses.modal.body.editCourse.title"}}</span>
-                        <div class="row">
-                            <div class="col-12 py-2">
-                                {{> afQuickField name='title' }}
-                            </div>
-                            <div class="col-md-6 py-2">
-                                {{> afQuickField name='startsAt' label="myClasses.startsAt"}}
-                            </div>
-                            <div class="col-md-6 py-2">
-                                {{> afQuickField name='completesAt' label="myClasses.completesAt"}}
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div class="mt-4"></div>
-                    {{> afArrayField name='users' class="mt-4"}}
-                {{/autoForm}}
+                {{> quickForm id="insertCourseForm" schema=courseSchema type="normal" buttonClasses="d-none"}}
             {{/modalbody}}
             {{#modalfooter}}
-                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
-                {{> button type="submit" colortype="primary" label=(i18n "actions.update") class="save-changes" form="editCourseForm"}}
+                <div class="d-flex justify-content-between w-100">
+                    {{> button type="submit" form="insertCourseForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
+                    {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                </div>
             {{/modalfooter}}
         {{/modal}}
 
+        {{! UPDATE MODAL }}
+        {{#modal id="edit-course-modal" centered=true large=true}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-success text-white"}}
+            {{#modalbody}}
+                {{> quickForm id="editCourseForm" schema=courseSchema type="normal" buttonClasses="d-none" doc=getClickedCourse}}
+            {{/modalbody}}
+            {{#modalfooter}}
+                <div class="d-flex justify-content-between w-100">
+                    {{> button type="submit" colortype="success" label=(i18n "actions.update") class="save-changes" form="editCourseForm"}}
+                    {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                </div>
+            {{/modalfooter}}
+        {{/modal}}
+
+        {{! REMOVE MODAL }}
         {{#modal id="delete-course-modal" centered=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.deleteCourse") dismiss=true class="bg-danger"}}
+            {{>modalheader title=(i18n "pages.myClasses.modal.header.deleteCourse") dismiss=true class="bg-danger text-white"}}
             {{#modalbody}}
                 <div>{{i18n
                         "pages.myClasses.modal.body.deleteCourse.title"}}</div>
             {{/modalbody}}
             {{#modalfooter}}
-                {{> button colortype="secondary" data-dismiss="modal" label=(i18n "actions.close")}}
-                {{> button type="submit" colortype="primary" label=(i18n "actions.delete") class="delete-course-button"}}
+                <div class="d-flex justify-content-between w-100">
+                    {{> button type="submit" colortype="danger" label=(i18n "actions.archive") class="delete-course-button"}}
+                    {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                </div>
             {{/modalfooter}}
         {{/modal}}
     {{/onLoaded}}

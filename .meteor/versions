@@ -48,6 +48,7 @@ http@1.4.4
 id-map@1.1.1
 inter-process-messaging@0.1.1
 jkuester:blaze-bs4@0.16.2
+jkuester:http@2.0.1
 jkuester:template-states@0.3.1
 jquery@3.0.0
 lai:collection-extensions@0.3.0
@@ -61,6 +62,7 @@ leaonline:method-factory@1.1.0
 leaonline:oauth-lea@2.0.0
 leaonline:publication-factory@1.0.0
 leaonline:ratelimit-factory@1.0.0
+leaonline:service-registry@1.0.0
 leaonline:theme@1.0.0
 livedata@1.0.18
 lmieulet:meteor-coverage@3.2.0

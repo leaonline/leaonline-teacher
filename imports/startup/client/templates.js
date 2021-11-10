@@ -2,8 +2,11 @@ import { Meteor } from 'meteor/meteor'
 import { Blaze } from 'meteor/blaze'
 import { addLanguage } from '../../api/i18n/addLanguage'
 
-Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [], debug = false, language, onComplete, onError }) {
-  import { initClientContext } from '../../infrastructure/contexts/initClientContext'
+Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
+  import {
+    initClientContext,
+    contextHasInitialized
+  } from '../../infrastructure/contexts/initClientContext'
 
   const handleError = error => {
     if (onError) {
@@ -13,10 +16,12 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
       console.error(error)
     }
   }
+
+  const languages = []
   const instance = this
   const allComplete = []
-
   const api = {}
+
   instance.api = api
 
   api.debug = (...args) => {
@@ -41,15 +46,32 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
 
   // if any context is added we initialize it immediately sync-style
   try {
-    contexts.forEach(ctx => initClientContext(ctx))
+    contexts.forEach(ctx => {
+      if (!contextHasInitialized(ctx)) {
+        initClientContext(ctx)
+
+        if (ctx.language) {
+          languages.push(ctx.language)
+        }
+      }
+    })
   }
   catch (error) {
     handleError(error)
   }
 
-  if (language) {
-    api.debug('load language')
-    allComplete.push(addLanguage(language, api.debug))
+  if (useLanguage) {
+    if (Array.isArray(useLanguage)) {
+      languages.push(...useLanguage)
+    }
+    else {
+      languages.push(useLanguage)
+    }
+  }
+
+  if (languages.length > 0) {
+    api.debug(`load ${languages.length} languages`)
+    languages.forEach(language => allComplete.push(addLanguage(language, api.debug)))
   }
 
   if (allComplete.length === 0) {

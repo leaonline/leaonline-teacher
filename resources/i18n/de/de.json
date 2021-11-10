@@ -6,7 +6,15 @@
     "insert": "Erstellen",
     "update": "Aktualisieren",
     "delete": "Löschen",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "cancel": "Abbrechen",
+    "archive": "Archivieren"
+  },
+  "accounts": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "code": "Login Code",
+    "generateCode": "Code generieren"
   },
   "common": {
     "title": "Titel",
@@ -14,13 +22,13 @@
     "loading": "Lade...",
     "startedAt": "Gestartet am",
     "completedAt": "Beendet am",
-    "firstName": "Vorname",
-    "lastName": "Nachname",
     "userId": "Benutzer ID",
     "user": "Teilnehmende",
     "users": "Teilnehmende",
-    "progress": "Fortschritt",
-    "code": "Login Code"
+    "progress": "Fortschritt"
+  },
+  "form": {
+    "selectOne": "(Bitte wählen)"
   },
   "alphaLevel": {
     "title": "Alpha-Level"
@@ -45,9 +53,12 @@
       "loggedOut": "Successfully logged out!"
     },
     "class": {
-      "title":"Dashboard",
+      "title":"Kurs-Dashboard",
       "timeline": "Visualization",
       "competencies": "Competencies"
+    },
+    "user": {
+      "title": "Personen-Dashboard"
     }
   }
 }

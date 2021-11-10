@@ -12,6 +12,7 @@ Template.icon.onCreated(function () {
 
     // build class names from flags
     const fw = atts.fw ? 'fa-fw' : ''
+    const category = atts.regular ? 'far' : 'fas'
     const pulse = atts.pulse ? 'fa-pulse' : ''
     const spinning = atts.spinning ? 'fa-spinning' : ''
     const actualClass = atts.class || ''
@@ -20,7 +21,7 @@ Template.icon.onCreated(function () {
 
     // rebuilding the class attribute
     // and delete the flag attributes
-    atts.class = `fa fas ${fw} ${spinning} ${pulse} fa-${name} ${actualClass} ${colorClass}`
+    atts.class = `fa ${category} ${fw} ${spinning} ${pulse} fa-${name} ${actualClass} ${colorClass}`
 
     const current = Tracker.nonreactive(() => instance.state.get('atts')) || {}
     if (current.class !== atts.class) {

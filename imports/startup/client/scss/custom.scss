@@ -1,1 +1,9 @@
 @import '{leaonline:theme}/theme.scss';
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

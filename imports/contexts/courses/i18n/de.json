@@ -1,0 +1,8 @@
+{
+  "course": {
+    "title": "Kurs",
+    "startsAt":"Wird starten am",
+    "completesAt":"Wird enden am",
+    "users": "Kursteilnehmende"
+  }
+}
