@@ -16,7 +16,12 @@ Meteor.startup(() => {
         dialogUrl: oauth.dialogUrl,
         accessTokenUrl: oauth.accessTokenUrl,
         identityUrl: oauth.identityUrl,
-        redirectUrl: oauth.redirectUrl
+        redirectUrl: oauth.redirectUrl,
+        extraFields: [
+          'firstName',
+          'lastName',
+          'roles'
+        ]
       }
     }
   )

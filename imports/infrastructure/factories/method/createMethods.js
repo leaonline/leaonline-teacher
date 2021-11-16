@@ -8,7 +8,12 @@ export const createMethod = createMethodFactory({
   mixins: [environmentExtensionMixin, checkPermissions]
 })
 
-export const createMethods = methods => methods.forEach(methodDef => {
-  console.info(`[methodFactory]: create ${methodDef.name}`)
-  createMethod(methodDef)
-})
+export const createMethods = methods => {
+  const allMethods = Array.isArray(methods)
+    ? methods
+    : Object.values(methods)
+  allMethods.forEach(methodDef => {
+    console.info(`[methodFactory]: create ${methodDef.name}`)
+    createMethod(methodDef)
+  })
+}

@@ -2,8 +2,8 @@ import { Template } from 'meteor/templating'
 import { State } from '../../../api/session/State'
 import { classExists } from '../../utils/classExists'
 import { userExists } from '../../utils/userExists'
-import { CompetencyCategories } from '../../../api/collections/competencyCategories'
-import { Competency } from '../../../api/collections/competency'
+import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
+import { Competency } from '../../../contexts/content/competency/Competency'
 // import { Schema } from '../../../api/schema/Schema'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
@@ -48,13 +48,13 @@ Template.user.helpers({
     return componentsLoaded.get()
   },
   competencyCategories () {
-    const cursor = CompetencyCategories.collection().find()
+    const cursor = CompetencyCategory.collection().find()
     // console.log(cursor.fetch())
     if (cursor.count() === 0) return null
     return cursor
   },
   competencies () {
-    const CompetencyCategoriesArray = CompetencyCategories.collection().find({}, { fields: { title: 0 } }).fetch()
+    const CompetencyCategoriesArray = CompetencyCategory.collection().find({}, { fields: { title: 0 } }).fetch()
     const competencyArray = Competency.collection().find().fetch()
     competencyArray.forEach(function (val, index) {
       Object.assign(competencyArray[index], { competencyCategoryId: CompetencyCategoriesArray[index]._id })

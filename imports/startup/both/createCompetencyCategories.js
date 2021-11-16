@@ -1,9 +1,9 @@
 import { Mongo } from 'meteor/mongo'
-import { CompetencyCategories } from '../../api/collections/competencyCategories'
+import { CompetencyCategory } from '../../contexts/content/competency/CompetencyCategory'
 import { Schema } from '../../api/schema/Schema'
 
 const collection = new Mongo.Collection(null)
-const competencyCategoriesSchema = Schema.create(CompetencyCategories.schema)
+const competencyCategoriesSchema = Schema.create(CompetencyCategory.schema)
 collection.attachSchema(competencyCategoriesSchema)
 
-CompetencyCategories.collection = () => collection
+CompetencyCategory.collection = () => collection

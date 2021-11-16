@@ -1,7 +1,40 @@
+import { Meteor } from 'meteor/meteor'
+import { DDP } from 'meteor/ddp-client'
 import { toContentServerURL } from './toContentServerUrl'
 import { asyncHTTP } from '../../infrastructure/http/asyncHTTP'
+import { callMethod } from '../../infrastructure/methods/callMethod'
+import { OAuth } from 'meteor/oauth'
 
 export const ContentServer = {}
+
+const { content } = Meteor.settings.hosts
+const connection = DDP.connect(content.url)
+
+ContentServer.isAvailable = () => connection.status().connected
+
+ContentServer.getAll = ({ context }) => {
+  const method = `${context.name}.${content.methods.getAll}`
+  console.debug('[ContentServer]:', method)
+  return callMethod({
+    name: method,
+    args: {},
+    connection
+  })
+}
+
+ContentServer.login = async (userId) => {
+  const user = Meteor.users.findOne(userId)
+  const accessToken = OAuth.sealSecret(user?.services?.lea?.accessToken)
+  const options = { accessToken }
+  console.debug('[ContentServer]: login')
+  return await DDP.loginWithLea(connection, options)
+}
+
+
+ContentServer.logout = async () => {
+  console.debug('[ContentServer]: logout')
+  return await DDP.logout(connection)
+}
 
 /**
  * Loads all docs from the content-server by given params.
@@ -57,7 +90,7 @@ ContentServer.loadAllContentDocs = async (context, params, debug = () => {}) => 
     }
     const docId = doc._id
     delete doc._id
-    delete doc.meta
+    delete doc.meta // TODO add meta to schema
 
     collection.upsert(doc._id, { $set: doc })
     doc._id = docId

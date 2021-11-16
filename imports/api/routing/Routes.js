@@ -254,3 +254,19 @@ Routes.user = {
   template: 'user',
   data: null
 }
+
+Routes.admin = {
+  path: () => `/${translateRoute(Routes.admin)}`,
+  label: reactiveTranslate('pages.admin.title'),
+  triggersEnter: () => {
+    if (!rootLoginTrigger) rootLoginTrigger = createLoginTrigger(Routes.login)
+    return [rootLoginTrigger]
+  },
+  async load () {
+    return import('../../ui/pages/admin/admin')
+  },
+  parent: null,
+  target: null,
+  template: 'admin',
+  data: null
+}

@@ -5,6 +5,7 @@
     "logout": "ausloggen",
     "myClasses": "meine-kurse",
     "class": "kurs-dashboard",
-    "user": "personen-dashboard"
+    "user": "personen-dashboard",
+    "admin": "administrator"
   }
 }

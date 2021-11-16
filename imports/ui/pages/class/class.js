@@ -1,10 +1,9 @@
 import { Template } from 'meteor/templating'
 import { State } from '../../../api/session/State'
 import { Course } from '../../../contexts/courses/Course'
-import { ColorType } from '../../../contexts/color/ColorType'
-import { ContentServer } from '../../../api/remotes/ContentServer'
+import { ColorType } from '../../../contexts/content/color/ColorType'
 import { OtuLea } from '../../../startup/client/remote'
-import { Dimension } from '../../../contexts/dimension/Dimension'
+import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import classLanguage from './i18n/classLanguage'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import './class.html'
@@ -54,12 +53,16 @@ Template.class.onCreated(function () {
     if (!courseDoc) return
 
     instance.api.debug('load dimensions')
+
+    /*
+    TODO: callMethod -> Dimension.methods.get
     ContentServer.loadAllContentDocs(Dimension, {}, instance.api.debug)
       .then(dimensionDocs => {
         instance.api.debug('dimensions loaded', { dimensionDocs })
         instance.state.set('dimensionsLoaded', dimensionDocs.length > 0)
       })
       .catch(e => console.error(e))
+     */
   })
 
   instance.autorun(() => {

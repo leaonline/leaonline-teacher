@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo'
-import { Competency } from '../../api/collections/competency'
+import { Competency } from '../../contexts/content/competency/Competency'
 import { Schema } from '../../api/schema/Schema'
 
 const collection = new Mongo.Collection(null)

@@ -10,9 +10,6 @@
           "generateUser": "users.methods.generate",
           "userExists": "user.methods.exist"
         }
-      },
-      "content": {
-        "url": "http://localhost:3030"
       }
     }
   },
@@ -24,5 +21,13 @@
     "authorizeUrl": "http://localhost:9090/oauth/authorize",
     "identityUrl": "http://localhost:9090/oauth/ident",
     "redirectUrl": "http://localhost:5555/_oauth/lea"
+  },
+  "hosts": {
+    "content": {
+      "url": "http://localhost:3030",
+      "methods": {
+        "getAll": "methods.getAll"
+      }
+    }
   }
 }

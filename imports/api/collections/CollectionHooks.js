@@ -2,10 +2,10 @@ export const CollectionHooks = {}
 
 CollectionHooks.beforeInsert = function (userId, doc) {
   const timestamp = new Date()
-  doc.createdBy = userId
-  doc.updatedBy = userId
-  doc.createdAt = timestamp
-  doc.updatedAt = timestamp
+  doc.meta.createdBy = doc.meta.createdBy || userId
+  doc.meta.updatedBy = userId
+  doc.meta.createdAt = doc.meta.createdAt || timestamp
+  doc.meta.updatedAt = timestamp
 }
 
 CollectionHooks.beforeUpdate = function (userId, modifier) {
@@ -13,6 +13,6 @@ CollectionHooks.beforeUpdate = function (userId, modifier) {
     modifier.$set = {}
   }
 
-  modifier.$set.updatedBy = userId
-  modifier.$set.updatedAt = new Date()
+  modifier.$set['meta.updatedBy'] = userId
+  modifier.$set['meta.updatedAt'] = new Date()
 }

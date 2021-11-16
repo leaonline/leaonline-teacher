@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { encodeQueryParams } from '../../infrastructure/http/encodeQueryParams'
 
-const contentServer = Meteor.settings.public.hosts.content
+const contentServer = Meteor.settings.hosts.content
 const contentRoot = contentServer.url
 
 /**
