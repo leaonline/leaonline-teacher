@@ -1,12 +1,14 @@
 import { Meteor } from 'meteor/meteor'
 import { Blaze } from 'meteor/blaze'
-import { addLanguage } from '../../api/i18n/addLanguage'
 
-Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
+Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes= null, subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
   import {
     initClientContext,
     contextHasInitialized
   } from '../../infrastructure/contexts/initClientContext'
+  import { Notify } from '../../ui/components/notifications/Notify'
+  import { reactiveTranslate } from '../../api/i18n/reactiveTranslate'
+  import { addLanguage } from '../../api/i18n/addLanguage'
 
   const handleError = error => {
     if (onError) {
@@ -23,6 +25,27 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
   const api = {}
 
   instance.api = api
+  instance.api.notify = value => {
+    if (value instanceof Error) {
+      console.error(value)
+      return Notify.add({
+        type: 'danger',
+        title: value.name,
+        message: value.message,
+        icon: 'exclamation-triangle'
+      })
+    }
+
+    if (value === true) {
+      return Notify.add({
+        type: 'success',
+        title: 'actions.success',
+        icon: 'check'
+      })
+    }
+
+    Notify.add(value)
+  }
 
   api.debug = (...args) => {
     if (!Meteor.isDevelopment || !debug) return
@@ -69,6 +92,16 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
     }
   }
 
+  if (remotes) {
+    let allRemotes = Array.isArray(remotes)
+      ? remotes
+      : [remotes]
+
+    allRemotes.forEach(remote => {
+      allComplete.push(connectRemote(remote))
+    })
+  }
+
   if (languages.length > 0) {
     api.debug(`load ${languages.length} languages`)
     languages.forEach(language => allComplete.push(addLanguage(language, api.debug)))
@@ -90,4 +123,19 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], subscribe = [
   }
 
   return api
+}
+
+const connectRemote = remote => {
+  const connected = new ReactiveVar(false)
+  remote.connect()
+
+  Tracker.autorun(async (computation) => {
+    if (remote.isConnected()) {
+      computation.stop()
+
+      await remote.login(Meteor.user())
+      connected.set(true)
+    }
+  })
+  return connected
 }

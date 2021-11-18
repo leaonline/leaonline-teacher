@@ -1,0 +1,12 @@
+{
+  "actions": {
+    "successful": "Aktion erfolgreich!"
+  },
+  "pages": {
+    "content": {
+      "title": "Inhalte",
+      "syncCollections": "Daten Synchronisieren",
+      "updated": "Erfolgreich {{updated}} Dokument(e) aktualisiert"
+    }
+  }
+}

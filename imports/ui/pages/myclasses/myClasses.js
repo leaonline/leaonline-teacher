@@ -6,6 +6,7 @@ import { State } from '../../../api/session/State'
 import { Course } from '../../../contexts/courses/Course'
 import { Form } from '../../../api/form/Form'
 import { Schema } from '../../../api/schema/Schema'
+import { OtuLea } from '../../../api/remotes/OtuLea'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
@@ -36,9 +37,11 @@ const byName = (a, b) =>
 
 Template.myClasses.onCreated(function () {
   const instance = this
+
   instance.init({
     contexts: [Course],
     useLanguage: [myClassesLanguages],
+    remotes: [OtuLea],
     onComplete () {
       instance.state.set('initComplete', true)
     }

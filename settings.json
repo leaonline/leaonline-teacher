@@ -5,11 +5,17 @@
     },
     "hosts": {
       "otulea": {
+        "name": "Otu.lea",
+        "debug": true,
         "url": "localhost:3000",
         "methods": {
           "generateUser": "users.methods.generate",
-          "userExists": "user.methods.exist"
+          "userExists": "user.methods.exist",
+          "getFeedback": "feedback.methods.getForUsers"
         }
+      },
+      "content": {
+        "role": "content"
       }
     }
   },
@@ -24,6 +30,8 @@
   },
   "hosts": {
     "content": {
+      "name": "Content",
+      "debug": true,
       "url": "http://localhost:3030",
       "methods": {
         "getAll": "methods.getAll"

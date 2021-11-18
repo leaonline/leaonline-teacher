@@ -6,6 +6,6 @@
     "myClasses": "meine-kurse",
     "class": "kurs-dashboard",
     "user": "personen-dashboard",
-    "admin": "administrator"
+    "content": "content-sync"
   }
 }

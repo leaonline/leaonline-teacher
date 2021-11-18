@@ -1,7 +1,8 @@
 {
   "pages": {
     "class": {
-      "title": "Kursübersicht"
+      "title": "Kursübersicht",
+      "noFeedback": "Es existieren noch keine Ergebnisse für diese Dimension für diesen Kurs."
     }
   }
 }

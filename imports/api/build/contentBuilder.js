@@ -18,6 +18,7 @@ const functions = [
   // methods
   createMethodsDecorator({
     get: true,
+    all: true,
     insert: true,
     update: true,
     remove: true

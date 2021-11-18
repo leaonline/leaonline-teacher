@@ -2,78 +2,117 @@
 
 set -e
 
-# ------------------------------------------
+# This is the complete test suite kit, that allows to run multiple test
+# scenarios during development of our app.
 #
-# Variable declarations
-#
-# ------------------------------------------
+# We try to abstract most commends into a few options and defined the following
+# behavior:
 
-PROJECT_ROOT=$(pwd)
-PORT=5566
-WATCH_MODE=1
-RUN_ONCE=''
-VERBOSE_MODE=0
-PACKAGE_DIRS="../lib:../libnpm:../liboauth:./github:../libext"
+# defaults:
 
-# ------------------------------------------
-#
-# Read args from script call
-#
-# ------------------------------------------
+T_BROWSER="puppeteer"   # uses headless browser for client tests
+T_COVERAGE=0            # has coverage disabled
+T_FILTER=""             # runs all defined tests
+T_RUN_ONCE=""           # runs in watch mode
+T_VERBOSE=0             # no extra verbosity
+T_SERVER=1              # runs server tests
+T_CLIENT=1              # runs client tests
 
-while getopts "vc" opt; do
+# options:
+
+SCRIPT_USAGE="
+Usage: $(basename $0) [OPTIONS]
+
+Options:
+  -a <String>     Filter architecture, allowed values: 'server' or 'client'
+  -b              Use a real browser for client tests (default is headless)
+  -c              Activate code-coverage reports
+  -g <RegExp>     Filter tests by a given RegExp (uses Mocha-grep)
+  -h              Show help
+  -o              Runs the tests only once (default is watch-mode)
+  -v              Verbose mode with extra prints
+"
+
+
+while getopts "a:bcg:hov" opt; do
   case $opt in
+    a)
+      if [ "$OPTARG" = "client" ]
+      then
+        T_CLIENT=1
+        T_SERVER=0
+      elif [ "$OPTARG" = "server" ]
+      then
+        T_CLIENT=0
+        T_SERVER=1
+      else
+        echo "Invalid parameter value for -a: $OPTARG"
+        echo "$SCRIPT_USAGE"
+        exit 1
+      fi
+      ;;
+    b)
+      T_BROWSER=""
+      ;;
+    g)
+      T_FILTER=${OPTARG}
+      ;;
     v)
-	  VERBOSE_MODE=1
+	  T_VERBOSE=1
       ;;
     c)
-      WATCH_MODE=0
-      RUN_ONCE='--once'
+      T_COVERAGE=1
+      ;;
+    o)
+      T_RUN_ONCE="--once"
+      ;;
+    h)
+      echo "$SCRIPT_USAGE"
+      exit 1
       ;;
     \?)
-      echo "Invalid option: -$OPTARG" >&2
+      echo "$SCRIPT_USAGE"
       exit 1
       ;;
   esac
 done
 
-# ------------------------------------------
-#
-# Print variables on verbose mode
-#
-# ------------------------------------------
+# build paths:
 
-if [ "$VERBOSE_MODE" -eq "1" ];
+PROJECT_PATH=$(pwd)
+T_PACKAGE_DIRS="../lib:../libnpm:../liboauth:../libext:../meteor-collection2/package:./github"
+
+PORT=3099
+
+if [ "$T_VERBOSE" -eq "1" ];
 then
-    PROJECT_NAME=`basename "$PROJECT_ROOT"`
-	echo "=> Test: $PROJECT_NAME"
-	echo "=> Path: [${PROJECT_ROOT}]"
+	echo "=> Test LEAONLINE-TEACHER"
+	echo "=> Root path: [${PROJECT_PATH}]"
 	echo "=> Port: [${PORT}]"
-	echo "=> Lib path(s): [${PACKAGE_DIRS}]"
-	echo "=> Watch mode: [${WATCH_MODE}] ${RUN_ONCE}"
+	echo "=> Lib path(s): [${T_PACKAGE_DIRS}]"
+	echo "=> Run once? [${T_RUN_ONCE}]"
+	echo "=> grep pattern: [${T_FILTER}]"
+	echo "=> coverage: [${T_COVERAGE}]"
+	echo "=> Browser: [${T_BROWSER}]"
+	echo "=> Arch: [server: ${T_SERVER}, client: ${T_CLIENT}]"
 fi
 
+# create command:
 
-if [ "$WATCH_MODE" -eq "0" ];
-then
-    # ---------------------------------------------------------------
-    # in cli mode we use a headless browser to include client tests
-    # and we activate the coverage reporting functionality
-    # ---------------------------------------------------------------
-    METEOR_PACKAGE_DIRS=${PACKAGE_DIRS} \
+METEOR_PACKAGE_DIRS=${T_PACKAGE_DIRS}  \
+    TEST_BROWSER_DRIVER=${T_BROWSER} \
+    TEST_SERVER=${T_SERVER} \
+    TEST_CLIENT=${T_CLIENT} \
+    MOCHA_GREP=${T_FILTER} \
     BABEL_ENV=COVERAGE \
-    TEST_BROWSER_DRIVER=puppeteer \
-    COVERAGE=1 \
+    COVERAGE=${T_COVERAGE} \
     COVERAGE_OUT_HTML=1 \
+    COVERAGE_OUT_TEXT_SUMMARY=1 \
     COVERAGE_OUT_JSON_SUMMARY=1 \
     COVERAGE_APP_FOLDER=$PWD/ \
-    COVERAGE_VERBOSE_MODE=${VERBOSE_MODE} \
-            meteor test --driver-package=meteortesting:mocha --settings=settings.json --port=${PORT} --once
-    else
-    # ---------------------------------------------------------------
-    # in watch mode we neither use a browser driver, nor coverage
-    # se we speed up the test reload in the development phase
-    # ---------------------------------------------------------------
-    METEOR_PACKAGE_DIRS=${PACKAGE_DIRS} \
-        meteor test --driver-package=meteortesting:mocha --settings=settings.json --port=${PORT}
-fi
+    COVERAGE_VERBOSE_MODE=${T_VERBOSE} \
+    meteor test \
+        ${T_RUN_ONCE} \
+        --driver-package=meteortesting:mocha \
+        --settings=settings.json \
+        --port=${PORT}

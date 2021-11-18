@@ -69,7 +69,7 @@ jkuester:blaze-bs4@0.16.2
 leaonline:theme
 hot-module-replacement@0.4.0
 blaze-hot
-
+jkuester:reactive-queue
 
 #========================================
 # TESTING

@@ -2,8 +2,9 @@ import { createGetMethod } from './createGetMethod'
 import { createInsertMethod } from './createInsertMethod'
 import { createUpdateMethod } from './createUpdateMethod'
 import { createRemoveMethod } from './createRemoveMethod'
+import { createAllMethod } from './createAllMethod'
 
-export const createMethodsDecorator = ({ get, insert, update, remove }) => context => {
+export const createMethodsDecorator = ({ get, all, insert, update, remove }) => context => {
   context.methods = context.method || {}
 
   if (get) {
@@ -12,6 +13,10 @@ export const createMethodsDecorator = ({ get, insert, update, remove }) => conte
 
   if (insert) {
     context.methods.insert = createInsertMethod({ context })
+  }
+
+  if (all) {
+    context.methods.all = createAllMethod({ context })
   }
 
   if (update) {

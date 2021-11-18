@@ -1,0 +1,18 @@
+<template name="content">
+    {{#if loadComplete}}
+    <h2>{{i18n "pages.content.syncCollections"}}</h2>
+    {{/if}}
+
+    <ul class="list-group">
+        {{#each ctx in content}}
+            <li class="list-group-item d-flex justify-content-between">
+                <span>{{i18n ctx.label}}</span>
+                <span>
+                    <button class="btn btn-outline-secondary sync-button"  data-target="{{ctx.name}}">
+                        {{> icon name="sync" spinning=(syncing ctx.name)}}
+                    </button>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
+</template>
