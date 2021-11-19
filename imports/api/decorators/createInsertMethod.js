@@ -6,15 +6,13 @@ export const createInsertMethod = ({ context, schema, run, ...additional }) => {
     ? context.schema()
     : context.schema
 
-  const defaultRun = onServer(function (insertDoc) {
-    CollectionHooks.beforeInsert(this.userId, insertDoc)
-    return context.collection().insert(insertDoc)
-  })
-
   return {
     name: `${context.name}.methods.insert`,
     schema: finalSchema,
-    run: onServer(run || defaultRun),
+    run: onServer(run || function (insertDoc) {
+      CollectionHooks.beforeInsert(this.userId, insertDoc)
+      return context.collection().insert(insertDoc)
+    }),
     ...additional
   }
 }

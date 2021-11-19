@@ -28,7 +28,7 @@ export const createUpdateMethod = ({ context, schema, timeInterval, numRequests,
 
       const { _id, ...modifier } = updateDoc
 
-      if (Collection.find({ _id, createdBy: this.userId }).count() < 1) {
+      if (Collection.find({ _id, 'meta.createdBy': this.userId }).count() < 1) {
         throw new Meteor.Error('update.error', 'errors.docNotFound', { name, _id })
       }
 
