@@ -2,6 +2,7 @@ export const CollectionHooks = {}
 
 CollectionHooks.beforeInsert = function (userId, doc) {
   const timestamp = new Date()
+  doc.meta = doc.meta || {}
   doc.meta.createdBy = doc.meta.createdBy || userId
   doc.meta.updatedBy = userId
   doc.meta.createdAt = doc.meta.createdAt || timestamp

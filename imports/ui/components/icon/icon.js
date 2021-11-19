@@ -6,7 +6,6 @@ Template.icon.onCreated(function () {
   const instance = this
 
   instance.autorun(() => {
-    console.debug('autorun')
     const data = Template.currentData()
     const atts = { ...data }
 
@@ -24,10 +23,11 @@ Template.icon.onCreated(function () {
     atts.class = `fa ${category} ${fw} ${spinning} ${pulse} fa-${name} ${actualClass} ${colorClass}`
 
     const current = Tracker.nonreactive(() => instance.state.get('atts')) || {}
+
     if (current.class !== atts.class) {
-      console.warn('mismatch')
-      console.debug(atts.class)
-      console.debug(current.class)
+      //console.warn('mismatch')
+      //console.debug(atts.class)
+      //console.debug(current.class)
     }
 
     delete atts.fw

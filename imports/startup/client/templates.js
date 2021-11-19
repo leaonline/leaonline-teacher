@@ -22,10 +22,30 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes= null
   const languages = []
   const instance = this
   const allComplete = []
-  const api = {}
+  const subscriptions = new Set()
 
+  // ---------------------------------------------------------------------------
+
+  const api = {}
   instance.api = api
-  instance.api.notify = value => {
+
+  // ---------------------------------------------------------------------------
+
+  api.debug = (...args) => {
+    if (!Meteor.isDevelopment || !debug) return
+    console.debug(`[${instance.view.name}]:`, ...args)
+  }
+
+  // ---------------------------------------------------------------------------
+
+  api.destroy = () => {
+    api.debug('destroy')
+    subscriptions.forEach(sub => sub.stop())
+  }
+
+  // ---------------------------------------------------------------------------
+
+  api.notify = value => {
     if (value instanceof Error) {
       console.error(value)
       return Notify.add({
@@ -47,25 +67,38 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes= null
     Notify.add(value)
   }
 
-  api.debug = (...args) => {
-    if (!Meteor.isDevelopment || !debug) return
-    console.debug(`[${instance.view.name}]:`, ...args)
-  }
+  // ---------------------------------------------------------------------------
 
-  api.subscribe = ({ name, args = {}, onReady }) => {
+  const modalAction = (name, isClass, action) => {
+    const prefix = isClass ? '.' : '#'
+    instance.$(`${prefix}${name}`).modal(action)
+  }
+  api.showModal = (name, isClass = false) => modalAction(name, isClass, 'show')
+  api.hideModal = (name, isClass = false) => modalAction(name, isClass, 'hide')
+
+  // ---------------------------------------------------------------------------
+
+  api.subscribe = ({ name, args = {}, onReady, onError }) => {
     const finalName = typeof name === 'object' ? name.name : name
     api.debug('subscribe', finalName)
 
-    return instance.subscribe(finalName, args, {
+    const sub = instance.subscribe(finalName, args, {
       onReady: () => {
         api.debug('ready', finalName)
         if (onReady) onReady()
       },
       onError (err) {
-        handleError(err)
+        if (onError) {
+          onError(err)
+        }
+        else {
+          handleError(err)
+        }
       }
     })
   }
+
+  // ---------------------------------------------------------------------------
 
   // if any context is added we initialize it immediately sync-style
   try {

@@ -1,17 +1,24 @@
 import { Template } from 'meteor/templating'
 import { State } from '../../../api/session/State'
+import { Course } from '../../../contexts/courses/Course'
 import { classExists } from '../../utils/classExists'
 import { userExists } from '../../utils/userExists'
 import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
 import { Competency } from '../../../contexts/content/competency/Competency'
-// import { Schema } from '../../../api/schema/Schema'
-import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
-import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
+import { Dimension } from '../../../contexts/content/dimension/Dimension'
+import './user.scss'
 import './user.html'
-import './scss/user.scss'
 
 Template.user.onCreated(function () {
   const instance = this
+
+  instance.init({
+    contexts: [Course, Competency, Dimension],
+    onComplete() {
+      instance.state.set('initComplete', true)
+    }
+  })
+
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
@@ -30,22 +37,9 @@ Template.user.onCreated(function () {
   })
 })
 
-const componentsLoader = bbsComponentLoader([
-  BlazeBootstrap.link.load(),
-  BlazeBootstrap.button.load(),
-  BlazeBootstrap.listgroup.load(),
-  BlazeBootstrap.item.load(),
-  BlazeBootstrap.card.load(),
-  BlazeBootstrap.badge.load(),
-  BlazeBootstrap.modal.load()
-])
-
-const componentsLoaded = componentsLoader.loaded
-// const competencyCategoriesSchema = Schema.create(CompetencyCategories.schema)
-
 Template.user.helpers({
-  componentsLoaded () {
-    return componentsLoaded.get()
+  loadComplete () {
+    return Template.getState('initComplete')
   },
   competencyCategories () {
     const cursor = CompetencyCategory.collection().find()

@@ -27,10 +27,11 @@ export const createCollection = (context) => {
     ? context.schema()
     : context.schema
 
-  if (context.isLocalCollection && Meteor.isClient) {
+  if (context.isLocalCollection) {
     const local = new Mongo.Collection(null)
-    const override = { collection: local, schema }
-    return collectionFactory({ ...context, ...override })
+    //const override = { collection: local, schema }
+    //return collectionFactory({ ...context, ...override })
+    return local
   }
 
   return collectionFactory({ ...context, schema })

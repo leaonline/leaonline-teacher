@@ -28,7 +28,13 @@
                     <ul class="list-group">
                         {{#each entry in this.alphaLevels}}
                         <li class="list-group-item">
-                            {{entry.id}}: {{entry.score}} ({{entry.count}})
+                            <span>
+                                {{#with alphaLevelDoc entry.id}}
+                                    {{this.description}}
+                                {{else}}
+                                    {{entry.id}}
+                                {{/with}}
+                            </span>: {{entry.score}} ({{entry.count}})
                         </li>
                         {{/each}}
                     </ul>

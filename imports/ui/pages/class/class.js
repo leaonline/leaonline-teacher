@@ -3,20 +3,19 @@ import { State } from '../../../api/session/State'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { Course } from '../../../contexts/courses/Course'
 import { Competency } from '../../../contexts/content/competency/Competency'
+import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import classLanguage from './i18n/classLanguage'
 import './class.html'
-
-const LocalDimensionsCollection = new Mongo.Collection(null)
-const LocalCompetencyCollection = new Mongo.Collection(null)
+import { processFeedback } from './helpers/processFeedback'
 
 Template.class.onCreated(function () {
   const instance = this
 
   instance.init({
-    contexts: [Course, Dimension, Competency],
+    contexts: [Course, Dimension, Competency, AlphaLevel],
     useLanguage: [classLanguage],
     remotes: [OtuLea],
     debug: true,
@@ -64,10 +63,10 @@ Template.class.onCreated(function () {
       args: {},
       failure: error => console.error(error),
       success: (dimensionDocs) => {
-        instance.api.debug('dimensions loaded', { dimensionDocs })
         dimensionDocs.forEach(doc => {
-          LocalDimensionsCollection.upsert(doc._id, { $set: doc })
+          Dimension.localCollection().upsert(doc._id, { $set: doc })
         })
+
         instance.state.set('dimensionsLoaded', dimensionDocs.length > 0)
       }
     })
@@ -77,7 +76,6 @@ Template.class.onCreated(function () {
     const dimensionDoc = instance.state.get('dimensionDoc')
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc || !dimensionDoc) return
-
 
     const users = courseDoc.users.map(u => u._id)
     const dimension = dimensionDoc._id
@@ -93,51 +91,35 @@ Template.class.onCreated(function () {
           })
         }
 
-        const alphaLevels = new Map()
-        const alphaLevelIds = new Set()
-        const competencies = new Map()
-        const competencyIds = new Set()
-        const addToMap = (map, idSet, idName) => (entry) => {
-          if (!entry.isGraded) return
-
-          const perc = entry.perc
-          const id = entry[idName]
-          const existingScore = map.get(id) || { id, score: 0, sum: 0, count: 0 }
-
-          existingScore.count++
-          existingScore.sum += existingScore.sum + perc
-          existingScore.score = existingScore.sum / existingScore.count
-          map.set(id, existingScore)
-          idSet.add(id)
-        }
-
-        const addToAlpha = addToMap(alphaLevels, alphaLevelIds, 'alphaLevelId')
-        const addToComps = addToMap(competencies, competencyIds, 'competencyId')
-
-        feedback.forEach(entry => {
-          (entry.alphaLevels || []).forEach(addToAlpha)
-          ;(entry.competencies || []).forEach(addToComps)
-        })
+        const processed = processFeedback({ feedback })
 
         // load alpha docs
         callMethod({
-          name: Competency.methods.get,
-          args: { ids: Array.from(competencyIds) },
+          name: AlphaLevel.methods.get,
+          args: { ids: processed.alphaLevelIds },
           failure: instance.api.notify,
-          success: (competencyDocs = []) => {
-            competencyDocs.forEach(doc => {
-              LocalCompetencyCollection.upsert(doc._id, { $set: doc })
+          success: (alphaLevelDocs = []) => {
+            instance.api.debug({ alphaLevelDocs })
+            alphaLevelDocs.forEach(doc => {
+              AlphaLevel.localCollection().upsert(doc._id, { $set: doc })
             })
-            instance.state.set('competencyDocsLoaded', true)
+            instance.state.set('alphaLevelDocsLoaded', true)
           }
         })
 
         // load competency docs
-
-        const processed = {
-          alphaLevels: Array.from(alphaLevels.values()),
-          competencies: Array.from(competencies.values())
-        }
+        callMethod({
+          name: Competency.methods.get,
+          args: { ids: processed.competencyIds },
+          failure: instance.api.notify,
+          success: (competencyDocs = []) => {
+            instance.api.debug({ competencyDocs })
+            competencyDocs.forEach(doc => {
+              Competency.localCollection().upsert(doc._id, { $set: doc })
+            })
+            instance.state.set('competencyDocsLoaded', true)
+          }
+        })
 
         instance.state.set({
           hasFeedback: true,
@@ -162,7 +144,7 @@ Template.class.helpers({
     return Template.getState('title')
   },
   dimensions () {
-    return LocalDimensionsCollection.find()
+    return Dimension.localCollection().find()
   },
   dimensionDoc () {
     return Template.getState('dimensionDoc')
@@ -184,7 +166,11 @@ Template.class.helpers({
   },
   competencyDoc (id) {
     return Template.getState('competencyDocsLoaded') &&
-      LocalCompetencyCollection.findOne(id)
+      Competency.localCollection().findOne(id)
+  },
+  alphaLevelDoc (id) {
+    return Template.getState('alphaLevelDocsLoaded') &&
+      AlphaLevel.localCollection().findOne(id)
   }
 })
 
@@ -193,7 +179,7 @@ Template.class.events({
     event.preventDefault()
 
     const selectedDimension = templateInstance.$(event.currentTarget).val() || null
-    const dimensionDoc = LocalDimensionsCollection.findOne(selectedDimension)
+    const dimensionDoc = Dimension.localCollection().findOne(selectedDimension)
     const color = ColorType.byIndex(dimensionDoc.colorType)?.type
 
     templateInstance.state.set({ dimensionDoc, color })

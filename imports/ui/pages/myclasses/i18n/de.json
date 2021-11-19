@@ -4,15 +4,25 @@
       "running": "Laufende Kurse",
       "completed": "Abgeschlossene Kurse",
       "upcoming": "Ausstehende Kurse",
-      "notFound": "Noch keiune Einträge vorhanden",
+      "notFound": "Keine Einträge vorhanden",
       "addNew": "Neuen Kurs hinzufügen",
       "users": "Alle Teilnehmenden",
+      "archived": "{{name}}: Archivierte Einträge",
       "generateCode": "Login Code generieren",
+      "addUser": "TN neu anlegen",
+      "archivedClasses": "Archivierte Kurse",
+      "archivedUsers": "Archivierte Teilnehmer*innen",
+      "noCoursesYet": "Es sind noch keine Kurse angelegt",
+      "all": "Alle Kurse",
+      "types": {
+        "course": "Kurs",
+        "user": "Teilnehmer*in"
+      },
       "modal": {
         "header": {
-          "addCourse": "Einen neuen Kurs hinzufügen",
-          "editCourse": "Kurs bearbeiten",
-          "deleteCourse": "Kurs löschen"
+          "add": "{{name}} neu anlegen",
+          "edit": "{{name}} bearbeiten",
+          "delete": "{{name}} löschen"
         },
         "body": {
           "addCourse": {
@@ -21,8 +31,11 @@
           "editCourse": {
             "title": "Den ausgewählten Kurs bearbeiten."
           },
-          "deleteCourse": {
-            "title": "Sind Sie sicher, dass Sie den ausgewählten Kurs archivieren möchten?"
+          "delete": {
+            "courseHint": "Sind Sie sicher, dass Sie den ausgewählten Kurs mitsamt seiner Teilnehmer*innen löschen möchten?",
+            "userHint": "Sind Sie sicher, dass Sie die Ausgewählte Person löschen, und aus allen assoziierten Kursen entfernen möchten?",
+            "all": "Kurs und Teilnehmer*innen löschen",
+            "course": "Nur Kurs löschen"
           }
         }
       }

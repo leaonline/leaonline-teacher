@@ -1,16 +1,17 @@
 import { Template } from 'meteor/templating'
-import { ReactiveVar } from 'meteor/reactive-var'
 import { Random } from 'meteor/random'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { State } from '../../../api/session/State'
 import { Course } from '../../../contexts/courses/Course'
+import { User } from '../../../contexts/users/User'
 import { Form } from '../../../api/form/Form'
 import { Schema } from '../../../api/schema/Schema'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
-import { generateUser } from '../../../api/accounts/generateUser'
+import { callMethod } from '../../../infrastructure/methods/callMethod'
+import { createUserSchema } from './helpers/createUserSchema'
 import myClassesLanguages from './i18n/myClassesLanguages'
 import './myClasses.html'
 import './scss/myClasses.scss'
@@ -26,25 +27,51 @@ const componentsLoader = bbsComponentLoader([
 ])
 
 const formLoaded = Form.initialize()
-const courseSchemaDef = Course.schema(reactiveTranslate)
-delete courseSchemaDef.startedAt
-delete courseSchemaDef.completedAt
 
-const courseSchema = Schema.create(courseSchemaDef)
+const Types = {
+  course: {
+    name: 'course',
+    label: 'pages.myClasses.types.course',
+    collection: () => Course.collection(),
+    schema: Schema.create( Course.schema(reactiveTranslate)),
+    context: Course
+  },
+  user: {
+    name: 'user',
+    label: 'pages.myClasses.types.user',
+    collection: () => User.collection(),
+    schema: Schema.create(User.schema(reactiveTranslate)),
+    context: User
+  }
+}
+
 const byName = (a, b) =>
   (2 * (a.lastName || '').localeCompare(b.lastName || '')) +
   (a.firstName || '').localeCompare(b.firstName || '')
 
 Template.myClasses.onCreated(function () {
   const instance = this
-
   instance.init({
-    contexts: [Course],
+    contexts: [Course, User],
     useLanguage: [myClassesLanguages],
     remotes: [OtuLea],
     onComplete () {
       instance.state.set('initComplete', true)
-    }
+    },
+    onError (err) {
+      instance.api.notify(err)
+    },
+    debug: true
+  })
+
+  instance.api.subscribe({
+    name: Course.publications.my.name,
+    onReady: () => instance.state.set('coursePublicationComplete', true)
+  })
+
+  instance.api.subscribe({
+    name: User.publications.my.name,
+    onReady: () => instance.state.set('userPublicationComplete', true)
   })
 
   if (State.currentClass()) {
@@ -54,42 +81,42 @@ Template.myClasses.onCreated(function () {
     State.currentParticipant(null)
   }
 
-  instance.autorun(() => {
-    const sub = instance.subscribe(Course.publications.my.name)
-    if (sub.ready()) {
-      instance.state.set({ coursePublicationComplete: true })
-    }
-  })
 
   instance.autorun(() => {
     const allUsers = new Set()
+    User.collection()
+      .find()
+      .forEach(user => {
+        allUsers.add(user)
+      })
+
     Course.collection()
       .find()
       .forEach(doc => {
-        (doc.users || []).forEach((user, index) => {
-          user.courseId = doc._id
-          user.index = index
-          allUsers.add(user)
-        })
+
       })
     instance.state.set('activeUsers', Array.from(allUsers).sort(byName))
   })
+})
 
-  this.courseDoc = new ReactiveVar(0)
+Template.myClasses.onDestroyed(function () {
+  const instance = this
+  instance.api.destroy()
 })
 
 Template.myClasses.helpers({
   dataComplete () {
-    return Template.getState('coursePublicationComplete')
+    return Template.getState('coursePublicationComplete') &&
+      Template.getState('userPublicationComplete')
   },
   componentsLoaded () {
     return componentsLoader.loaded.get() &&
       formLoaded.get() &&
       Template.getState('initComplete')
   },
-  runningCourses () {
+  activeCourses () {
     const now = new Date()
-    const query = { startsAt: { $lte: now }, completesAt: { $gte: now } }
+    const query = { completesAt: { $gte: now } }
     const transform = { sort: { startsAt: -1 } }
     const cursor = Course.collection().find(query, transform)
     if (cursor.count() === 0) return null
@@ -103,32 +130,35 @@ Template.myClasses.helpers({
     if (cursor.count() === 0) return null
     return cursor
   },
-  notStartedCourses () {
-    const now = new Date()
-    const query = { startsAt: { $gt: now } }
-    const transform = { sort: { title: -1 } }
-    const cursor = Course.collection().find(query, transform)
-    if (cursor.count() === 0) return null
-    return cursor
-  },
   noCourses () {
     return Course.collection().find().count() === 0
   },
   activeUsers () {
-    return Template.getState('activeUsers')
+    // TODO get inactive courses and filter users
+    return User.collection().find()
   },
-  addField () {
-    const template = Template.instance()
-    return template.courseDoc.get()
+  insertSchema () {
+    const type = Template.getState('type')
+    return type && Types[type].schema
   },
-  courseSchema () {
-    return courseSchema
+  userSchema () {
+    return userSchema
+  },
+  formAction (name) {
+    return Template.getState('action') === name
+  },
+  isType (name) {
+    return Template.getState('type') === name
+  },
+  typeLabel () {
+    const type = Types[Template.getState('type')]
+    return type?.label
   },
   getCollection () {
     return Course.collection()
   },
-  getClickedCourse () {
-    return Template.instance().courseDoc.get()
+  editFormDoc () {
+    return Template.getState('doc')
   },
   getEntryRoute () {
     return Template.instance().data.getEntryRoute()
@@ -141,97 +171,123 @@ Template.myClasses.helpers({
   },
   generatingCode () {
     return Template.getState('generatingCode')
+  },
+  waiting () {
+    return Template.getState('waiting')
+  }
+})
+
+Template.cardItems.helpers({
+  isRunning (courseDoc = {}) {
+    const now = Date.now()
+    const starts = new Date(courseDoc.startsAt).getTime()
+    return starts < now
+  },
+  isComplete (courseDoc = {}) {
+    const now = Date.now()
+    const ends = new Date(courseDoc.completesAt).getTime()
+    return ends < now
   }
 })
 
 Template.myClasses.events({
-  'submit #insertCourseForm' (event, templateInstance) {
+  'submit #insertForm' (event, templateInstance) {
     event.preventDefault()
 
+    const type = Types[templateInstance.state.get('type')]
     const insertDoc = Form.getFormValues({
-      formId: 'insertCourseForm',
-      schema: courseSchema
+      formId: 'insertForm',
+      schema: type.schema
     })
 
     if (!insertDoc) return
 
-    ;(insertDoc.users || []).forEach(user => {
-      user._id = Random.id()
-    })
-
-    Course.api.insert(insertDoc)
-      .then(insertDocId => {
+    callMethod({
+      name: type.context.methods.insert,
+      args: insertDoc,
+      prepare: () => templateInstance.state.set('waiting', true),
+      receive: () => templateInstance.state.set('waiting', false),
+      failure: templateInstance.api.notify,
+      success: insertDocId => {
         templateInstance.api.debug('inserted', insertDocId)
-        templateInstance.$('#add-course-modal').modal('hide')
-      })
-      .catch(e => console.error(e))
+        templateInstance.api.hideModal('form-modal')
+      }
+    })
   },
-  'click .update-course' (event, templateInstance) {
-    event.preventDefault()
-    const courseId = templateInstance.$(event.currentTarget).data('course')
-    const clickedCourseData = Course.collection().findOne(courseId)
-    templateInstance.courseDoc.set(clickedCourseData)
-  },
-  'submit #editCourseForm' (event, templateInstance) {
+  'submit #updateForm' (event, templateInstance) {
     event.preventDefault()
 
+    const type = Types[templateInstance.state.get('type')]
     const updateDoc = Form.getFormValues({
-      formId: 'editCourseForm',
-      schema: courseSchema,
+      formId: 'updateForm',
+      schema: type.schema,
       isUpdate: true
     })
 
     if (!updateDoc) return
-    const courseDoc = templateInstance.courseDoc.get()
-    updateDoc._id = courseDoc._id
-    Course.api.update(updateDoc)
-      .catch(e => console.error(e))
-      .then(updated => {
-        templateInstance.api.debug('updated', courseDoc._id, !!updated)
-        templateInstance.$('#edit-course-modal').modal('hide')
-      })
+
+    const currentDoc = templateInstance.state.get('doc')
+    updateDoc._id = currentDoc._id
+
+    callMethod({
+      name: type.context.methods.update,
+      args: updateDoc,
+      prepare: () => templateInstance.state.set('waiting', true),
+      receive: () => templateInstance.state.set('waiting', false),
+      failure: templateInstance.api.notify,
+      success: updated => {
+        if (!!updated) {
+          templateInstance.api.notify(true)
+        }
+        templateInstance.api.debug('updated', currentDoc._id, !!updated)
+        templateInstance.api.hideModal('form-modal')
+      }
+    })
   },
-  'click .delete-course-icon' (event, templateInstance) {
+  'click .delete-button' (event, templateInstance) {
     event.preventDefault()
-    const courseId = templateInstance.$(event.currentTarget).data('course')
-    const clickedCourseData = Course.collection().findOne(courseId)
-    templateInstance.courseDoc.set(clickedCourseData)
-    templateInstance.$('#delete-course-modal').modal('show')
+
+    const type = Types[templateInstance.state.get('type')]
+    const currentDoc = templateInstance.state.get('doc')
+
+    callMethod({
+      name: type.context.methods.remove,
+      args: { _id: currentDoc._id },
+      prepare: () => templateInstance.state.set('waiting', true),
+      receive: () => templateInstance.state.set('waiting', false),
+      failure: templateInstance.api.notify,
+      success: removed => {
+        templateInstance.api.debug('removed', currentDoc._id, !!removed)
+        templateInstance.api.hideModal('form-modal')
+        if (!!removed) {
+          templateInstance.api.notify(true)
+        }
+      }
+    })
   },
-  'click .delete-course-button' (event, templateInstance) {
+  'click .modal-trigger' (event, templateInstance) {
     event.preventDefault()
-    const courseDoc = templateInstance.courseDoc.get()
-    Course.api.remove(courseDoc._id)
-      .then(removed => {
-        templateInstance.api.debug('removed', courseDoc._id, !!removed)
-        templateInstance.$('#delete-course-modal').modal('hide')
-      })
-      .catch(e => console.error(e))
+
+    const action = dataTarget(event)
+    const type = dataTarget(event, 'type')
+    const docId = dataTarget(event, 'id')
+
+    let doc = null
+    if (docId) {
+      doc = Types[type].collection().findOne(docId)
+    }
+
+    templateInstance.state.set({ type, doc, action })
+    templateInstance.api.showModal('form-modal')
   },
   'hidden.bs.modal' (event, templateInstance) {
     const targetId = event.target.id
     Form.reset(targetId)
-    templateInstance.state.set('addUserCode', null)
-  },
-  'click .add-usercode-button': async function (event, templateInstance) {
-    event.preventDefault()
-    templateInstance.state.set('generating', true)
-    const userIndex = dataTarget(event, 'user')
-    const courseId = dataTarget(event, 'course')
-    const courseDoc = Course.collection().findOne(courseId)
-    const userDoc = await generateUser()
-    templateInstance.api.debug({ userDoc })
-    const updateDoc = {
-      _id: courseId,
-      $set: {
-        [`users.${userIndex}._id`]: userDoc._id,
-        [`users.${userIndex}.code`]: userDoc.username
-      }
-    }
-
-    await Course.api.update(updateDoc)
-    templateInstance.api.debug('updated', courseDoc._id)
-
-    templateInstance.state.set('generating', false)
+    templateInstance.state.set({
+      addUserCode: null,
+      type: null,
+      action: null,
+      doc: null
+    })
   }
 })

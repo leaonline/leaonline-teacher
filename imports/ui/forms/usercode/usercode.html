@@ -6,23 +6,6 @@
         <input type="hidden" class="valid-input"
                data-schema-key="{{key "valid"}}">
 
-        {{! firstName, lastName }}
-        <div class="row p-0 mb-2">
-            {{! firstname}}
-            <div class="col-12 col-md-6 text-monospace">
-                <input type="text" class="form-control first-name-input"
-                       data-schema-key="{{key "firstName"}}"
-                       placeholder="{{i18n "accounts.firstName"}}">
-            </div>
-            {{! lastname}}
-            <div class="col-12 col-md-6 text-monospace">
-                <input type="text" class="form-control last-name-input"
-                       name="lastName"
-                       data-schema-key="{{key "lastName"}}"
-                       placeholder="{{i18n "accounts.lastName"}}">
-            </div>
-        </div>
-
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 {{#if checking}}

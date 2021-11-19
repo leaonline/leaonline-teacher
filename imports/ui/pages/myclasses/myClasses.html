@@ -1,182 +1,273 @@
 <template name="myClasses">
     {{#unless dataComplete}}
-        {{> loading}}
+        <div class="alert alert-info">
+            {{> loading}}
+        </div>
     {{/unless}}
 
     {{#onLoaded loaded=componentsLoaded}}
-        <div class="d-flex justify-content-end w-100 align-items-baseline {{#if
-                noCourses}}alert alert-warning{{/if}}">
-            {{#if noCourses}}
-                <span class="px-4">{{i18n
-                        "pages.myClasses.noCoursesYet"}}</span>
-            {{/if}}
-            {{> button
-                    class="ml-auto"
-                    data-toggle="modal"
-                    data-target="#add-course-modal"
-                    colortype="primary"
-                    sm=true
-                    label=(i18n "pages.myClasses.addNew")}}
+
+    {{! we display the myclasses page in a split view:
+        on the left side we display the courses and on
+        the right side we display the users. }}
+
+        <div class="row mt-4">
+
+            {{! LEFT SIDE : MY COURSES }}
+            <div class="col-12 col-md-6">
+                <h2 class="d-flex justify-content-between mb-3">
+                    <span class="text-primary">
+                        {{i18n "pages.myClasses.all"}}
+                    </span>
+
+                    {{> button
+                            class="ml-auto modal-trigger"
+                            data-target="insert"
+                            data-type="course"
+                            colortype="primary"
+                            sm=true
+                            label=(i18n "pages.myClasses.addNew")}}
+                </h2>
+
+                {{#listgroup flush=true
+                             class="mb-5 border-0 rounded-lg shadow-sm"
+                             style="overflow: hidden;"}}
+                    {{#with activeCourses}}
+                        {{#each document in this}}
+                            {{> cardItems course=document courseRoute=getEntryRoute}}
+                        {{else}}
+                            {{#item class="d-flex align-items-center p-3 bg-light text-muted"}}
+                                {{i18n "pages.myClasses.notFound"}}
+                            {{/item}}
+                        {{/each}}
+                    {{else}}
+                        {{#item class="d-flex align-items-center p-3 text-muted"}}
+                            {{i18n "pages.myClasses.notFound"}}
+                        {{/item}}
+                    {{/with}}
+                {{/listgroup}}
+
+                {{#if completedCourses}}
+                    {{> button
+                            class="modal-trigger"
+                            data-target="archived"
+                            data-type="course"
+                            colortype="secondary"
+                            sm=true
+                            label=(i18n "pages.myClasses.archivedClasses")}}
+                {{/if}}
+            </div>
+
+
+            {{! RIGHT SIDE: MY USERS }}
+            <div class="col-12 col-md-6">
+                <h2 class="d-flex justify-content-between mb-3">
+                    <span class="text-primary">
+                        {{i18n "pages.myClasses.users"}}
+                    </span>
+
+                    {{> button
+                            class="ml-auto modal-trigger"
+                            data-target="insert"
+                            data-type="user"
+                            colortype="primary"
+                            sm=true
+                            label=(i18n "pages.myClasses.addUser")}}
+                </h2>
+
+                {{#with activeUsers}}
+                    <div class="table-responsive mt-3 shadow-sm mb-5">
+                        <table class="table table-hover m-0">
+                            <tbody>
+                            {{#each user in this}}
+                                <tr class="bg-white">
+                                    <td class="text-center px-4">
+                                        {{#if user.account.code}}
+                                            <code>{{user.account.code}}</code>
+                                        {{else}}
+                                            <small class="text-light">
+                                                {{> icon name="exclamation-triangle"}}
+                                            </small>
+                                        {{/if}}
+                                    </td>
+                                    <td class="text-left px-4">
+                                        <a href="{{route getUserRoute
+                                                         user.courseId
+                                                         user.code}}">
+                                            {{user.lastName}}
+                                        </a>
+                                    </td>
+                                    <td class="text-left px-4">
+                                        <a href="{{route getUserRoute
+                                                         user.courseId
+                                                         user.code}}">
+                                            {{user.firstName}}
+                                        </a>
+                                    </td>
+                                    <td class="w-100">
+                                        <a href="{{route getEntryRoute
+                                                         user.courseId}}">
+                                            {{#with getCourse
+                                                    user.courseId}}{{this.title}}{{/with}}
+                                        </a>
+                                    </td>
+
+                                    <td class="text-right no-wrap">
+                                        <button class="btn btn-sm btn-outline-success modal-trigger"
+                                                data-type="user"
+                                                data-id="{{user._id}}"
+                                                data-target="update">
+                                            {{> icon name="edit"}}
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger modal-trigger"
+                                                data-type="user"
+                                                data-id="{{user._id}}"
+                                                data-target="delete">
+                                            {{> icon name="trash"}}
+                                        </button>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                {{else}}
+                    <ul class="list-group mb-5 border-0 rounded-lg shadow-sm">
+                        <li class="list-group-item p-3 border-0 text-muted">
+                            {{i18n "pages.myClasses.notFound"}}
+                        </li>
+                    </ul>
+                {{/with}}
+
+                {{#if completedCourses}}
+                    {{> button
+                            class="modal-trigger"
+                            data-target="archived"
+                            data-type="user"
+                            colortype="secondary"
+                            sm=true
+                            label=(i18n "pages.myClasses.archivedUsers")}}
+                {{/if}}
+            </div>
         </div>
 
+        {{#if noCourses}}
+            <div class="alert alert-warning rounded-lg shadow-sm">
+                <span>{{i18n "pages.myClasses.noCoursesYet"}}</span>
+            </div>
+        {{/if}}
 
 
-        {{! RUNNING COURSES }}
-        {{#with runningCourses}}
-            <h4>
-        <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
-            {{i18n "pages.myClasses.running"}}
-        </span>
-            </h4>
-
-            {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                         style=" overflow: hidden;"}}
-                {{#each document in ..}}
-                    {{> cardItems course=document courseRoute=getEntryRoute}}
-                {{else}}
-                    {{#item class="d-flex align-items-center p-3 bg-light text-muted"}}
-                        {{i18n "pages.myClasses.notFound"}}
-                    {{/item}}
-                {{/each}}
-            {{/listgroup}}
-        {{/with}}
 
 
-        {{! COMPLETED COURSES }}
-        {{#with completedCourses}}
-            <h4>
-        <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
-            {{i18n "pages.myClasses.completed"}}
-        </span>
-            </h4>
+        {{! FORM MODAL - Display multiple form states in one modal }}
+        {{#modal id="form-modal" large=true}}
+        {{! COMPLETED COURSES (ARCHIVED) }}
+            {{#if formAction "archived"}}
+                {{> modalheader title=(i18n "pages.myClasses.archived" name=(i18n typeLabel)) dismiss=true class="bg-secondary text-white"}}
 
-            {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                         style=" overflow: hidden;"}}
-                {{#each document in ..}}
-                    {{> cardItems course=document courseRoute=getEntryRoute}}
-                {{else}}
-                    {{# item
-                            class="d-flex align-items-center p-3 bg-light text-muted"}}
-                        {{i18n "pages.myClasses.notFound"}}
-                    {{/item}}
-                {{/each}}
-            {{/listgroup}}
-        {{/with}}
-
-        {{! UPCOMING COURSES }}
-        {{#with notStartedCourses}}
-            <h4>
-            <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
-                {{i18n "pages.myClasses.upcoming"}}
-            </span>
-            </h4>
-
-            {{#listgroup flush=true class="mb-5 border-0 rounded-lg shadow-sm"
-                         style=" overflow: hidden;"}}
-                {{#each document in ..}}
-                    {{> cardItems course=document courseRoute=getEntryRoute}}
-                {{else}}
-                    {{# item
-                            class="d-flex align-items-center p-3 bg-light text-muted"}}
-                        {{i18n "pages.myClasses.notFound"}}
-                    {{/item}}
-                {{/each}}
-            {{/listgroup}}
-        {{/with}}
-
-        {{! ALL USERS }}
-        <h4>
-        <span class="ml-5 badge badge-secondary shadow-sm bg-white text-secondary course-badge">
-            {{i18n "pages.myClasses.users"}}
-        </span>
-        </h4>
-
-        <div class="table-responsive mt-3 shadow-sm">
-            <table class="table table-hover m-0">
-                <tbody>
-                {{#each document in activeUsers}}
-                    <tr class="bg-white">
-                        <td class="text-center px-4">
-                            {{#if document.code}}
-                                <code>{{document.code}}</code>
+                {{#if isType "course"}}
+                    {{#with completedCourses}}
+                        {{#listgroup }}
+                            {{#each document in ..}}
+                                {{> cardItems course=document courseRoute=getEntryRoute}}
                             {{else}}
-                                <small class="text-light">
-                                    {{> icon name="exclamation-triangle"}}
-                                </small>
-                            {{/if}}
-                        </td>
-                        <td class="text-left px-4">
-                            <a href="{{route getUserRoute document.courseId
-                                             document.code}}">
-                                {{document.lastName}}
-                            </a>
-                        </td>
-                        <td class="text-left px-4">
-                            <a href="{{route getUserRoute document.courseId
-                                             document.code}}">
-                                {{document.firstName}}
-                            </a>
-                        </td>
-                        <td class="w-100">
-                            <a href="{{route getEntryRoute
-                                             document.courseId}}">
-                                {{#with getCourse
-                                        document.courseId}}{{this.title}}{{/with}}
-                            </a>
-                        </td>
+                                {{# item
+                                        class="d-flex align-items-center p-3 bg-light text-muted"}}
+                                    {{i18n "pages.myClasses.notFound"}}
+                                {{/item}}
+                            {{/each}}
+                        {{/listgroup}}
+                    {{/with}}
+                {{/if}}
 
-                        <td class="text-right">
-                            <button class="btn btn-sm btn-outline-success edit-user-btn">
-                                {{> icon name="edit"}}
-                            </button>
-                        </td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
-        </div>
+                {{#if isType "user"}}
+                    <div class="modal-body">archived users</div>
+                {{/if}}
+            {{/if}}
 
-        {{! INSERT MODAL }}
-        {{#modal id="add-course-modal" centered=true large=true}}
-            {{> modalheader title=(i18n "pages.myClasses.modal.header.addCourse") dismiss=true class="bg-primary text-white"}}
-            {{#modalbody}}
-                {{> quickForm id="insertCourseForm" schema=courseSchema type="normal" buttonClasses="d-none"}}
-            {{/modalbody}}
-            {{#modalfooter}}
-                <div class="d-flex justify-content-between w-100">
-                    {{> button type="submit" form="insertCourseForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
-                    {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
-                </div>
-            {{/modalfooter}}
-        {{/modal}}
+            {{! INSERT FORM }}
+            {{#if formAction "insert"}}
+                {{> modalheader title=(i18n "pages.myClasses.modal.header.add" name=(i18n typeLabel)) dismiss=true class="bg-primary text-white"}}
+                {{#modalbody}}
+                    {{> quickForm id="insertForm" schema=insertSchema type="normal" buttonClasses="d-none"}}
+                {{/modalbody}}
+                {{#modalfooter}}
+                    <div class="d-flex justify-content-between w-100">
+                        {{> button type="submit" form="insertForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
+                        {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                    </div>
+                {{/modalfooter}}
+            {{/if}}
 
-        {{! UPDATE MODAL }}
-        {{#modal id="edit-course-modal" centered=true large=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.editCourse") dismiss=true class="bg-success text-white"}}
-            {{#modalbody}}
-                {{> quickForm id="editCourseForm" schema=courseSchema type="normal" buttonClasses="d-none" doc=getClickedCourse}}
-            {{/modalbody}}
-            {{#modalfooter}}
-                <div class="d-flex justify-content-between w-100">
-                    {{> button type="submit" colortype="success" label=(i18n "actions.update") class="save-changes" form="editCourseForm"}}
-                    {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
-                </div>
-            {{/modalfooter}}
-        {{/modal}}
+            {{! UPDATE FORM }}
+            {{#if formAction "update"}}
+                {{>modalheader title=(i18n "pages.myClasses.modal.header.edit" name=(i18n typeLabel)) dismiss=true class="bg-success text-white"}}
+                {{#modalbody}}
+                    {{> quickForm id="updateForm" schema=insertSchema type="normal" buttonClasses="d-none" doc=editFormDoc}}
+                {{/modalbody}}
+                {{#modalfooter}}
+                    <div class="d-flex justify-content-between w-100">
+                        {{> button type="submit" colortype="success" label=(i18n "actions.update") class="save-changes" form="updateForm"}}
+                        {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                    </div>
+                {{/modalfooter}}
+            {{/if}}
 
-        {{! REMOVE MODAL }}
-        {{#modal id="delete-course-modal" centered=true}}
-            {{>modalheader title=(i18n "pages.myClasses.modal.header.deleteCourse") dismiss=true class="bg-danger text-white"}}
-            {{#modalbody}}
-                <div>{{i18n
-                        "pages.myClasses.modal.body.deleteCourse.title"}}</div>
-            {{/modalbody}}
-            {{#modalfooter}}
-                <div class="d-flex justify-content-between w-100">
-                    {{> button type="submit" colortype="danger" label=(i18n "actions.archive") class="delete-course-button"}}
-                    {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
-                </div>
-            {{/modalfooter}}
+            {{! DELETE FORM }}
+            {{#if formAction "delete"}}
+                {{>modalheader title=(i18n "pages.myClasses.modal.header.delete" name=(i18n typeLabel)) dismiss=true class="bg-danger text-white"}}
+
+                {{#if isType "course"}}
+                    {{#modalbody}}
+                        {{i18n "pages.myClasses.modal.body.delete.courseHint"}}
+                    {{/modalbody}}
+                    {{#modalfooter}}
+                        <div class="d-flex justify-content-between w-100">
+                                <span>
+                                {{> button
+                                        type="button"
+                                        colortype="danger"
+                                        data-flag="all"
+                                        label=(i18n "pages.myClasses.modal.body.delete.all")
+                                        class="delete-button"}}
+                                    {{> button
+                                            type="button"
+                                            colortype="danger"
+                                            data-flag="course"
+                                            label=(i18n "pages.myClasses.modal.body.delete.course")
+                                            class="delete-button"}}
+                                    </span>
+                            {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                        </div>
+                    {{/modalfooter}}
+                {{/if}}
+
+                {{#if isType "user"}}
+                    {{#modalbody}}
+                        <div class="text-center">
+                            {{#with editFormDoc}}
+                                {{this.account.code}} {{this.firstName}} {{this.lastName}}
+                            {{/with}}
+                        </div>
+                        {{i18n "pages.myClasses.modal.body.delete.userHint"}}
+                    {{/modalbody}}
+                    {{#modalfooter}}
+                        <div class="d-flex justify-content-between w-100">
+                                <span>
+                                    {{> button
+                                            type="button"
+                                            colortype="danger"
+                                            data-delete="all"
+                                            label=(i18n "actions.delete")
+                                            class="delete-button"}}
+                                </span>
+                            {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                        </div>
+                    {{/modalfooter}}
+                {{/if}}
+            {{/if}}
+
         {{/modal}}
     {{/onLoaded}}
 
@@ -187,7 +278,16 @@
         <div class="row">
             <div class="col d-flex align-items-center text-secondary no-wrap">
                 <a href="{{route courseRoute course._id}}">
-                    {{course.title}}
+                    {{#if isComplete course}}
+                        {{> icon name="archive"}}
+                    {{else if isRunning course}}
+                        {{> icon name="play-circle"}}
+                    {{else}}
+                        {{> icon name="clock" regular=true}}
+                    {{/if}}
+                    <span class="ml-2">
+                        {{course.title}}
+                    </span>
                 </a>
             </div>
             <div class="col d-flex justify-content-end align-items-center no-wrap">
@@ -197,15 +297,23 @@
                     <span class="fa fas fa-fw fa-eye"></span>
                 {{/button}}
                 --}}
-                {{#button data-course=course._id data-toggle="modal"
-                          data-target="#edit-course-modal" size="sm"
-                          colortype="success" outline=true
-                          class="mr-2 course-items-icon-buttons update-course"}}
+                {{#button data-id=course._id
+                          data-type="course"
+                          data-target="update"
+                          size="sm"
+                          colortype="success"
+                          outline=true
+                          class="mr-2 course-items-icon-buttons modal-trigger"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
-                {{#button data-course=course._id size="sm" colortype="danger"
-                          outline=true
-                          class="mr-1 course-items-icon-buttons delete-course-icon"}}
+                {{#button
+                        data-id=course._id
+                        data-type="course"
+                        data-target="delete"
+                        size="sm"
+                        colortype="danger"
+                        outline=true
+                        class="mr-1 course-items-icon-buttons modal-trigger"}}
                     <span class="fa fas fa-fw fa-trash"></span>
                 {{/button}}
             </div>

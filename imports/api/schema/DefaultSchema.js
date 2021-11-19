@@ -22,5 +22,22 @@ export const DefaultSchema = {
   'meta.updatedAt': {
     type: Date,
     optional: true
+  },
+  'meta.sharedWith': {
+    type: Array,
+    optional: true
+  },
+  'meta.sharedWith.$': {
+    type: String,
+    custom () {
+      if (Meteor.users.find(this.value).count() > 0) {
+        return // user exists
+      }
+
+      const label = translate('accounts.invalidAccount')
+      return typeof label === 'function'
+        ? label()
+        : label
+    }
   }
 }
