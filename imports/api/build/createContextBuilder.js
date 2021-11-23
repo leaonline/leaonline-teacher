@@ -1,6 +1,4 @@
 
-
-
 export const createContextBuilder = ({ functions = [] }) => {
   return ctx => {
     console.debug('[contextBuilder]: build', ctx.name)

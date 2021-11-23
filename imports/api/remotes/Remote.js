@@ -1,9 +1,216 @@
 import { DDP } from 'meteor/ddp-client'
+import { ReactiveDict } from 'meteor/reactive-dict'
 import { callMethod } from '../../infrastructure/methods/callMethod'
 import { isomorphic } from '../../utils/arch'
 
+export const createRemote = ({ name, url, debug }) => {
+  return new Remote({ name, url, debug })
+}
+
 const connections = new WeakMap()
 const getConnection = remote => connections.get(remote)
+
+/**
+ * Represents a state between this (server / client) and a remote server.
+ *
+ * It hold states about
+ * - connection
+ *
+ * - created (no connection initialized yet)
+ * - connecting
+ * - connection failed
+ * - connection timed out
+ * - connected
+ * - logging in
+ * - login successful
+ * - login failed
+ *
+ */
+class Remote {
+  constructor ({ name, url, debug, defaultTimeout = 3 }) {
+    this.name = name
+    this.url = url
+    this.defaultTimeout = defaultTimeout
+
+    this.loginStatus = new ReactiveDict({
+      loggedIn: false,
+      loggingIn: false,
+      loginError: null,
+      loggingOut: false,
+      logoutError: null
+    })
+
+    this.debugName = `[${this.name}]:`
+    this.debug = debug
+      ? (...args) => console.debug(this.debugName, ...args)
+      : () => {}
+  }
+
+  state () {
+    const connection = getConnection(this)
+    const loginStatus = this.loginStatus.all()
+
+    if (!connection) {
+      return {
+        status: 'created',
+        connected: false,
+        connecting: false,
+        timedOut: false,
+        retryCount: -1,
+        retryTime: -1,
+        ...loginStatus
+      }
+    }
+
+    const { status, retryCount, connected, retryTime, reason } = connection.status()
+    const timedOut = !connected && retryCount > this.defaultTimeout
+    const connecting = ['connecting', 'waiting'].includes(status)
+
+    return {
+      status: status,
+      connected: connected,
+      connecting: connecting,
+      timedOut: timedOut,
+      retryCount: retryCount,
+      retryTime: retryTime,
+      ...loginStatus
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // PART A - Connection
+  // ---------------------------------------------------------------------------
+
+  connect ({ reconnect = false } = {}) {
+    this.debug('connect', this.url)
+
+    const existingConnection = getConnection(this)
+    if (existingConnection) {
+      if (reconnect) {
+        existingConnection.reconnect()
+      }
+
+      return
+    }
+
+    const connection = DDP.connect(this.url)
+    connections.set(this, connection)
+  }
+
+  isConnected () {
+    const status = this.state()
+    return status.connected
+  }
+
+  disconnect () {
+    const connection = getConnection(this)
+    if (!connection || !connection.status().connected) {
+      throw new Error('remote.notConnected')
+    }
+
+    connection.disconnect()
+    connections.delete(this)
+  }
+
+  // ---------------------------------------------------------------------------
+  // PART B - Login
+  // ---------------------------------------------------------------------------
+
+  async login (user) {
+    this.debug('logout')
+    if (!this.isConnected()) {
+      throw new Error('remote.notConnected')
+    }
+
+    if (this.loginStatus.get('loggedIn')) {
+      this.debug('already logged in')
+      return false
+    }
+
+    this.loginStatus.set('loggingIn', true)
+
+    let loggedIn
+
+    try {
+    // support isomorphic code so we have an external login method to call
+      loggedIn = await login.call(this, user)
+      this.loginStatus.set({ loggedIn })
+    }
+
+    catch (loginError) {
+      loggedIn = false
+      const reason = loginError.reason || loginError.message
+      this.loginStatus.set({ loginError, loggedIn, reason })
+    }
+
+    finally {
+      this.loginStatus.set('loggingIn', false)
+    }
+
+    return loggedIn
+  }
+
+  isLoggedIn () {
+    return this.loginStatus.get('loggedIn')
+  }
+
+  async logout () {
+    this.debug('logout')
+
+    if (!this.isConnected()) {
+      throw new Error('remote.notConnected')
+    }
+
+    if (this.loginStatus.get('loggedOut') || !this.loginStatus.get('loggedIn')) {
+      this.debug('already logged out / not logged in')
+      return false
+    }
+
+    this.loginStatus.set('loggingOut', true)
+
+    const connection = getConnection(this)
+
+    let loggedOut
+    try {
+      loggedOut = await DDP.logout(connection)
+      this.loginStatus.set('loggedIn', !loggedOut)
+    }
+
+    catch (logoutError) {
+      loggedOut = false
+      const reason = logoutError.reason || logoutError.message
+      this.loginStatus.set({ logoutError, loggedOut, reason })
+    }
+
+    finally {
+      this.loginStatus.set('loggingOut', false)
+    }
+
+    return loggedOut
+  }
+
+  // ---------------------------------------------------------------------------
+  // PART C - Communication
+  // ---------------------------------------------------------------------------
+
+  async call ({ name, args }) {
+    this.debug('call', name, { args })
+    if (!this.isConnected()) {
+      throw new Error('remote.notConnected')
+    }
+
+    const connection = getConnection(this)
+    return await callMethod({ name, args, connection })
+  }
+
+  // TODO: async subscribe () {}
+}
+
+/**
+ * @private
+ */
+
+
 const login = isomorphic({
   server: function () {
     import { OAuth } from 'meteor/oauth'
@@ -25,6 +232,7 @@ const login = isomorphic({
 
     return function (user) {
       const remote = this
+
       return new Promise((resolve, reject) => {
         const connection = getConnection(remote)
         if (!remote.isConnected()) {
@@ -65,85 +273,3 @@ const login = isomorphic({
     }
   }
 })
-
-class Remote {
-  constructor ({ name, url, debug }) {
-    this.name = name
-    this.url = url
-    this.loggedIn =false
-    this.debugName = `[${this.name}]:`
-    this.debug = debug
-      ? (...args) => console.debug(this.debugName, ...args)
-      : () => {}
-  }
-
-  connect () {
-    this.debug('connect', this.url)
-    if (getConnection(this)) return
-
-    const connection = DDP.connect(this.url)
-    connections.set(this, connection)
-  }
-
-  isConnected () {
-    const connection = getConnection(this)
-    if (!connection) {
-      return false
-    }
-
-    return connection.status().connected
-  }
-
-  disconnect () {
-    const connection = getConnection(this)
-    if (!connection || !connection.status().connected) {
-      throw new Error('remote.notConnected')
-    }
-
-    connection.disconnect()
-    connections.delete(this)
-  }
-
-  async login (user) {
-    if (this.loggedIn) {
-      this.debug('already logged in')
-      return this.loggedIn
-    }
-
-    // support isomorphic code so we have an external login method to call
-    this.loggedIn = await login.call(this, user)
-    return this.loggedIn
-  }
-
-  isLoggedIn () {
-    return this.loggedIn
-  }
-
-  async logout () {
-    this.debug('logout')
-    if (!this.isConnected()) {
-      throw new Error('remote.notConnected')
-    }
-
-    const connection = getConnection(this)
-    const loggedOut = await DDP.logout(connection)
-    this.loggedIn = !loggedOut
-    return loggedOut
-  }
-
-  async call ({ name, args }) {
-    this.debug('call', name, { args })
-    if (!this.isConnected()) {
-      throw new Error('remote.notConnected')
-    }
-
-    const connection = getConnection(this)
-    return await callMethod({ name, args, connection })
-  }
-
-  // TODO: async subscribe () {}
-}
-
-export const createRemote = ({ name, url, debug  }) => {
-  return new Remote({ name, url, debug })
-}

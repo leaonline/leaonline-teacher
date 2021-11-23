@@ -25,9 +25,9 @@ Template.icon.onCreated(function () {
     const current = Tracker.nonreactive(() => instance.state.get('atts')) || {}
 
     if (current.class !== atts.class) {
-      //console.warn('mismatch')
-      //console.debug(atts.class)
-      //console.debug(current.class)
+      // console.warn('mismatch')
+      // console.debug(atts.class)
+      // console.debug(current.class)
     }
 
     delete atts.fw

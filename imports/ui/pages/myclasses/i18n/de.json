@@ -14,6 +14,7 @@
       "archivedUsers": "Archivierte Teilnehmer*innen",
       "noCoursesYet": "Es sind noch keine Kurse angelegt",
       "all": "Alle Kurse",
+      "noCourses ": "Allein / Kein Kurs",
       "types": {
         "course": "Kurs",
         "user": "Teilnehmer*in"

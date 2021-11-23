@@ -28,15 +28,15 @@ Course.schema = (translate = x => x) => ({
   users: {
     type: Array,
     optional: true,
+    label: null,
     autoform: {
-      // type: 'users'
+      type: 'courseUsers'
     }
   },
   'users.$': {
     type: String
   }
 })
-
 
 Course.methods = {}
 Course.methods.get = createGetMethod({ context: Course })

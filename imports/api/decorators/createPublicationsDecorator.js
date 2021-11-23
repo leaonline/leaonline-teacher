@@ -4,7 +4,7 @@ export const createPublicationsDecorator = ({ my }) => context => {
   context.publications = context.publications || {}
 
   if (my) {
-    context.publications.my = createMyPublication({ context  })
+    context.publications.my = createMyPublication({ context })
   }
 
   return context

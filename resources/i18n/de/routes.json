@@ -4,8 +4,8 @@
     "login": "login",
     "logout": "ausloggen",
     "myClasses": "meine-kurse",
-    "class": "kurs-dashboard",
-    "user": "personen-dashboard",
+    "class": "kurs",
+    "user": "person",
     "content": "content-sync"
   }
 }

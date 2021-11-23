@@ -91,28 +91,26 @@
                                         {{/if}}
                                     </td>
                                     <td class="text-left px-4">
-                                        <a href="{{route getUserRoute
-                                                         user.courseId
-                                                         user.code}}">
-                                            {{user.lastName}}
-                                        </a>
+                                        {{user.lastName}}
                                     </td>
                                     <td class="text-left px-4">
-                                        <a href="{{route getUserRoute
-                                                         user.courseId
-                                                         user.code}}">
-                                            {{user.firstName}}
-                                        </a>
+                                        {{user.firstName}}
                                     </td>
                                     <td class="w-100">
-                                        <a href="{{route getEntryRoute
-                                                         user.courseId}}">
-                                            {{#with getCourse
-                                                    user.courseId}}{{this.title}}{{/with}}
-                                        </a>
+                                        {{#each course in user.courses}}
+
+                                        {{else}}
+                                            <span class="text-muted">
+                                                {{i18n "pages.myClasses.noCourses"}}
+                                            </span>
+                                        {{/each}}
                                     </td>
 
                                     <td class="text-right no-wrap">
+                                        <a href="{{route getUserRoute user._id}}"
+                                           class="btn btn-sm btn-outline-secondary">
+                                            {{> icon name="eye"}}
+                                        </a>
                                         <button class="btn btn-sm btn-outline-success modal-trigger"
                                                 data-type="user"
                                                 data-id="{{user._id}}"

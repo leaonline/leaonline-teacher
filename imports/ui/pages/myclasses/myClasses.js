@@ -11,7 +11,6 @@ import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
-import { createUserSchema } from './helpers/createUserSchema'
 import myClassesLanguages from './i18n/myClassesLanguages'
 import './myClasses.html'
 import './scss/myClasses.scss'
@@ -33,7 +32,7 @@ const Types = {
     name: 'course',
     label: 'pages.myClasses.types.course',
     collection: () => Course.collection(),
-    schema: Schema.create( Course.schema(reactiveTranslate)),
+    schema: Schema.create(Course.schema(reactiveTranslate)),
     context: Course
   },
   user: {
@@ -81,21 +80,42 @@ Template.myClasses.onCreated(function () {
     State.currentParticipant(null)
   }
 
+  const now = new Date()
+  const activeCoursesQuery = { completesAt: { $gte: now } }
 
   instance.autorun(() => {
-    const allUsers = new Set()
+    const allUsers = new Map()
+
+    // first we go through all active courses and find their users
+    Course.collection()
+      .find({ completesAt: { $gte: now } })
+      .forEach(doc => {
+        if (!doc.users?.length) { return }
+
+        // found users will get linked with the courses so we don't
+        // have to do this on DB-Level or in the templates
+        User.collection().find({ _id: { $in: doc.users } }).forEach(userDoc => {
+          if (!allUsers.has(userDoc._id)) {
+            userDoc.courses =  []
+            allUsers.set(userDoc._id, userDoc)
+          }
+
+          const cachedUserDoc = allUsers.get(userDoc._id)
+          cachedUserDoc.courses.push(doc)
+          allUsers.set(userDoc._id, cachedUserDoc)
+        })
+      })
+
+    // additionally find users that have no courses at all
     User.collection()
       .find()
-      .forEach(user => {
-        allUsers.add(user)
+      .forEach(userDoc => {
+        if (Course.collection().find({ users: userDoc._id }).count() === 0) {
+          if (allUsers.has(userDoc._id)) throw new Error()
+          allUsers.set(userDoc._id, userDoc)
+        }
       })
-
-    Course.collection()
-      .find()
-      .forEach(doc => {
-
-      })
-    instance.state.set('activeUsers', Array.from(allUsers).sort(byName))
+    instance.state.set('activeUsers', Array.from(allUsers.values()).sort(byName))
   })
 })
 
@@ -134,8 +154,7 @@ Template.myClasses.helpers({
     return Course.collection().find().count() === 0
   },
   activeUsers () {
-    // TODO get inactive courses and filter users
-    return User.collection().find()
+    return Template.getState('activeUsers')
   },
   insertSchema () {
     const type = Template.getState('type')
@@ -236,7 +255,7 @@ Template.myClasses.events({
       receive: () => templateInstance.state.set('waiting', false),
       failure: templateInstance.api.notify,
       success: updated => {
-        if (!!updated) {
+        if (updated) {
           templateInstance.api.notify(true)
         }
         templateInstance.api.debug('updated', currentDoc._id, !!updated)
@@ -259,7 +278,7 @@ Template.myClasses.events({
       success: removed => {
         templateInstance.api.debug('removed', currentDoc._id, !!removed)
         templateInstance.api.hideModal('form-modal')
-        if (!!removed) {
+        if (removed) {
           templateInstance.api.notify(true)
         }
       }

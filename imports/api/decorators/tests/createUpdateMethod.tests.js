@@ -27,14 +27,13 @@ describe(createUpdateMethod.name, function () {
     expect(() => validate({})).to.throw('ID is required')
     expect(() => validate({ _id: Random.id(), modifier: {} }))
       .to.throw('Expected \'modifier\' to be a modifier operator like \'$set\'')
-    expect(() => validate({ _id: Random.id(), modifier: { $foo: { bar: 1 }} }))
+    expect(() => validate({ _id: Random.id(), modifier: { $foo: { bar: 1 } } }))
       .to.throw('Expected \'modifier\' to be a modifier operator like \'$set\'')
-    expect(() => validate({ _id: Random.id(), $set: { baz: { bar: 1 }} }))
+    expect(() => validate({ _id: Random.id(), $set: { baz: { bar: 1 } } }))
       .to.throw('baz is not allowed by the schema')
 
-    validate({ _id: Random.id(), $set: { title: 'bar' }})
+    validate({ _id: Random.id(), $set: { title: 'bar' } })
   })
-
 
   if (Meteor.isClient) {
     it('returns no function on the client', function () {

@@ -8,7 +8,7 @@ export const createMyPublication = ({ context }) => {
       return context.collection().find({
         $or: [
           { 'meta.createdBy': this.userId },
-          { 'meta.sharedWith': this.userId },
+          { 'meta.sharedWith': this.userId }
         ]
       })
     })

@@ -77,6 +77,7 @@ Template.class.onCreated(function () {
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc || !dimensionDoc) return
 
+    console.debug(courseDoc) // TODO fix when course has no users :-(
     const users = courseDoc.users.map(u => u._id)
     const dimension = dimensionDoc._id
 

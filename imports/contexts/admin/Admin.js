@@ -45,9 +45,11 @@ Admin.methods = {
             const upsert = collection.upsert(docId, { $set: doc })
             updated += upsert.numberAffected
           })
-        } catch (e) {
+        }
+        catch (e) {
           error = e
-        } finally {
+        }
+        finally {
           await ContentServer.logout()
         }
 

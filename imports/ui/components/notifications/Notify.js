@@ -12,9 +12,21 @@ const defaults = {
   autohide: true,
   delay: 3000,
   animation: true,
-  icon: 'information',
+  icon: 'information'
 }
 
+/**
+ * Add a new notification to the query
+ * @param notification {Object}
+ * @param notification.type {String}
+ * @param notification.subtitle {String|undefined}
+ * @param notification.title {String|Function|undefined}
+ * @param notification.icon {String|undefined}
+ * @param notification.message {String|Function|undefined}
+ * @param notification.autohide {Boolean|undefined}
+ * @param notification.delay {Number|undefined}
+ * @param notification.animation {Boolean|undefined}
+ */
 Notify.add = (notification) => {
   check(notification, Match.ObjectIncluding({
     type: String,

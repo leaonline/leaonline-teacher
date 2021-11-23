@@ -15,7 +15,7 @@ export const User = {
   icon: 'user'
 }
 
-User.schema =  (translate = x => x) => ({
+User.schema = (translate = x => x) => ({
   firstName: {
     type: String,
     optional: true,

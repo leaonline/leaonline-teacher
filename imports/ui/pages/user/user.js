@@ -14,7 +14,7 @@ Template.user.onCreated(function () {
 
   instance.init({
     contexts: [Course, Competency, Dimension],
-    onComplete() {
+    onComplete () {
       instance.state.set('initComplete', true)
     }
   })

@@ -1,14 +1,14 @@
 import { Meteor } from 'meteor/meteor'
 import { Blaze } from 'meteor/blaze'
 
-Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes= null, subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
+Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes = null, subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
   import {
     initClientContext,
     contextHasInitialized
   } from '../../infrastructure/contexts/initClientContext'
   import { Notify } from '../../ui/components/notifications/Notify'
-  import { reactiveTranslate } from '../../api/i18n/reactiveTranslate'
   import { addLanguage } from '../../api/i18n/addLanguage'
+  import { connectRemote } from '../../api/remotes/connectRemote'
 
   const handleError = error => {
     if (onError) {
@@ -126,7 +126,7 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes= null
   }
 
   if (remotes) {
-    let allRemotes = Array.isArray(remotes)
+    const allRemotes = Array.isArray(remotes)
       ? remotes
       : [remotes]
 
@@ -156,19 +156,4 @@ Blaze.TemplateInstance.prototype.init = function ({ contexts = [], remotes= null
   }
 
   return api
-}
-
-const connectRemote = remote => {
-  const connected = new ReactiveVar(false)
-  remote.connect()
-
-  Tracker.autorun(async (computation) => {
-    if (remote.isConnected()) {
-      computation.stop()
-
-      await remote.login(Meteor.user())
-      connected.set(true)
-    }
-  })
-  return connected
 }
