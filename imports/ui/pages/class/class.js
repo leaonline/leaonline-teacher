@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating'
 import { State } from '../../../api/session/State'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { Course } from '../../../contexts/courses/Course'
+import { User } from '../../../contexts/users/User'
 import { Competency } from '../../../contexts/content/competency/Competency'
 import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { ColorType } from '../../../contexts/content/color/ColorType'
@@ -15,7 +16,7 @@ Template.class.onCreated(function () {
   const instance = this
 
   instance.init({
-    contexts: [Course, Dimension, Competency, AlphaLevel],
+    contexts: [Course, Dimension, Competency, AlphaLevel, User],
     useLanguage: [classLanguage],
     remotes: [OtuLea],
     debug: true,
@@ -52,16 +53,23 @@ Template.class.onCreated(function () {
     })
   })
 
+  // load all selectable dimensions
+
   instance.autorun(() => {
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc) return
+
+
+    if (!courseDoc.users?.length) {
+      // TODO fix when course has no users :-(
+    }
 
     instance.api.debug('load dimensions')
 
     callMethod({
       name: Dimension.methods.all,
       args: {},
-      failure: error => console.error(error),
+      failure: instance.api.notify,
       success: (dimensionDocs) => {
         dimensionDocs.forEach(doc => {
           Dimension.localCollection().upsert(doc._id, { $set: doc })
@@ -70,16 +78,28 @@ Template.class.onCreated(function () {
         instance.state.set('dimensionsLoaded', dimensionDocs.length > 0)
       }
     })
+
+    instance.api.debug('load users')
+
+    callMethod({
+      name: User.methods.get,
+      args: { ids: courseDoc.users },
+      failure: instance.api.notify,
+      success: (users = []) => {
+        instance.state.set({ users })
+      }
+    })
   })
 
   instance.autorun(() => {
     const dimensionDoc = instance.state.get('dimensionDoc')
     const courseDoc = instance.state.get('courseDoc')
-    if (!courseDoc || !dimensionDoc) return
+    const userDocs = instance.state.get('users')
 
-    console.debug(courseDoc) // TODO fix when course has no users :-(
-    const users = courseDoc.users.map(u => u._id)
+    if (!courseDoc || !dimensionDoc || !userDocs) { return }
+
     const dimension = dimensionDoc._id
+    const users = userDocs.map(userDoc => userDoc.account._id)
 
     OtuLea.getFeedback({ users, dimension })
       .then(feedback => {
@@ -95,6 +115,7 @@ Template.class.onCreated(function () {
         const processed = processFeedback({ feedback })
 
         // load alpha docs
+
         callMethod({
           name: AlphaLevel.methods.get,
           args: { ids: processed.alphaLevelIds },
@@ -109,6 +130,7 @@ Template.class.onCreated(function () {
         })
 
         // load competency docs
+
         callMethod({
           name: Competency.methods.get,
           args: { ids: processed.competencyIds },

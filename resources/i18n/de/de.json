@@ -39,6 +39,7 @@
   },
   "remote": {
     "loggedIn": "Erfolgreich verbunden",
+    "notConnected": "Keine Verbindung",
     "timedOut": "Nicht verbunden, Zeit abgelaufen."
   },
   "pages": {

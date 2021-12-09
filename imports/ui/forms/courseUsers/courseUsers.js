@@ -16,9 +16,11 @@ AutoForm.addInputType('courseUsers', {
 
 // map-functions
 const toUserId = user => user._id
-const byAddedUser = user => entry => entry.accounts && user.accounts &&
-  (entry.accounts.code === user.accounts.code) ||
-  (entry.accounts._id === user.accounts._id)
+const byAddedUser = user => entry => {
+  if (!entry.accounts || !user.accounts) { return false }
+
+  return (entry.accounts._id === user.accounts._id) || (entry.accounts.code === user.accounts.code)
+}
 
 const userSchemaDef = {
   ...User.schema(reactiveTranslate),
