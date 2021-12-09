@@ -289,12 +289,10 @@
                 </a>
             </div>
             <div class="col d-flex justify-content-end align-items-center no-wrap">
-                {{!--
-                {{#button size="sm" colortype="secondary" outline=true
-                          class="mr-2 course-items-icon-buttons"}}
-                    <span class="fa fas fa-fw fa-eye"></span>
-                {{/button}}
-                --}}
+                 <a href="{{route courseRoute course._id}}"
+                    class="btn btn-outline-secondary btn-sm mr-2 course-items-icon-buttons">
+                     {{> icon name="eye"}}
+                 </a>
                 {{#button data-id=course._id
                           data-type="course"
                           data-target="update"
