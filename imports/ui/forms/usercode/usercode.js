@@ -64,7 +64,7 @@ Template.afUserCode.events({
   },
   'input .code-input': debounce(function (event, templateInstance) {
     templateInstance.state.set('checking', true)
-    const code = templateInstance.$(event.currentTarget).val() || ''
+    const code = (templateInstance.$(event.currentTarget).val() || '').toUpperCase()
     let isValid
 
     if (code.length === 0) {
