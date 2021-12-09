@@ -37,6 +37,10 @@
     "title": "Error",
     "occurred": "Es ist ein Fehler aufgetreten"
   },
+  "remote": {
+    "loggedIn": "Erfolgreich verbunden",
+    "timedOut": "Nicht verbunden, Zeit abgelaufen."
+  },
   "pages": {
     "myClasses": {
       "title": "Meine Kurse"

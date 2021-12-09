@@ -1,4 +1,5 @@
 import { Notify } from '../../ui/components/notifications/Notify'
+import { getRemoteMessage } from './getRemoteMessage'
 
 const lastKeys = new Map()
 
@@ -28,12 +29,8 @@ const getColorType = ({ loggedIn, timedOut, reason }) => {
   return 'info'
 }
 
-const getRemoteMessage = ({ loggedIn, timedOut, reason }) => {
-  if (reason) return reason
-  if (timedOut) return 'remote.timedOut'
-  if (loggedIn) return 'remote.loggedIn'
-  return ''
-}
+
+
 const simpleHash = str => {
   let out = ''
 

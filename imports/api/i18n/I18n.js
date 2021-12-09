@@ -34,3 +34,7 @@ i18n.getLocale = function () {
 i18n.loaded = function () {
   return _loaded.get()
 }
+
+const translationPattern = /^.+\..+$/ig
+
+i18n.isTranslationString = str => translationPattern.test(str)

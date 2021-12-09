@@ -12,7 +12,7 @@ const defaults = {
   autohide: true,
   delay: 3000,
   animation: true,
-  icon: 'information'
+  icon: 'info'
 }
 
 /**

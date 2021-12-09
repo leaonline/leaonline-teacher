@@ -8,6 +8,7 @@
         "name": "Otu.lea",
         "debug": true,
         "url": "localhost:3000",
+        "icon": "edit",
         "methods": {
           "generateUser": "users.methods.generate",
           "userExists": "user.methods.exist",
