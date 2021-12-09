@@ -2,26 +2,31 @@
     <meta charset="utf-8">
     <meta name="application-name" content="lea.teacher">
     <meta name="description" content="Kursleitenden Dashboard">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=5, minimum-scale=-5"/>
+    <meta name="viewport"
+          content="initial-scale=1, maximum-scale=5, minimum-scale=-5"/>
     <meta name="theme-color" content="#FF00AA">
     <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
-    <link rel="shortcut icon" type="image/png" href="/icon/favicon.png?v1" sizes="16x16 32x32 64x64">
-    <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-precomposed.png">
-    <link rel="fluid-icon" href="/icon/favicon.png?v1" title="otu.lea icon">
+
+    <link rel="icon" href="/icons/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png">
+    <link rel="icon" type="image/png" size="192x192" href="/icons/favicon-192.png">
+    <link rel="mask-icon" href="/icons/mask-icon.svg" color="#f5f5f5">
+    <link rel="fluid-icon" href="/icons/fluidicon.png" title="otu.lea">
+
     <title>leaonline-teacher</title>
+
     <noscript>
         <style>
-            body:before { content: "Sorry, your browser does not support JavaScript!"; }
+            body:lang(de):before {
+                content: "Diese Anwendung benötigt JavaScript!";
+            }
+
+            body:lang(en):before {
+                content: "This application requires JavaScript!";
+            }
         </style>
     </noscript>
+    <meteor-bundled-js/>
 </head>
 
-<body>
-<noscript>Sorry, your browser does not support JavaScript!</noscript>
-<style>
-    @font-face {
-        font-family: 'Semikolon';
-        font-display: fallback;
-    }
-</style>
-</body>
+<body></body>
