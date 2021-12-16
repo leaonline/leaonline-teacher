@@ -180,7 +180,67 @@
                 {{/if}}
 
                 {{#if isType "user"}}
-                    <div class="modal-body">archived users</div>
+                    {{#with archivedUsers}}
+                        <div class="table-responsive mt-3 shadow-sm mb-5">
+                            <table class="table table-hover m-0">
+                                <tbody>
+                                {{#each user in this}}
+                                    <tr class="bg-white">
+                                        <td class="text-center px-4">
+                                            {{#if user.account.code}}
+                                                <code>{{user.account.code}}</code>
+                                            {{else}}
+                                                <code class="text-muted">
+                                                    {{> icon name="asterisk" title=(i18n "pages.myClasses.noCode")}}
+                                                </code>
+                                            {{/if}}
+                                        </td>
+                                        <td class="text-left px-4">
+                                            {{user.lastName}}
+                                        </td>
+                                        <td class="text-left px-4">
+                                            {{user.firstName}}
+                                        </td>
+                                        <td class="w-100">
+                                            {{#each course in user.courses}}
+
+                                            {{else}}
+                                                <span class="text-muted">
+                                                    {{i18n "pages.myClasses.noCourses"}}
+                                                </span>
+                                            {{/each}}
+                                        </td>
+
+                                        <td class="text-right no-wrap">
+                                            <a href="{{route getUserRoute user._id}}"
+                                               class="btn btn-sm btn-outline-secondary">
+                                                {{> icon name="eye"}}
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-success modal-trigger"
+                                                    data-type="user"
+                                                    data-id="{{user._id}}"
+                                                    data-target="update">
+                                                {{> icon name="edit"}}
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger modal-trigger"
+                                                    data-type="user"
+                                                    data-id="{{user._id}}"
+                                                    data-target="delete">
+                                                {{> icon name="trash"}}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    {{else}}
+                        <ul class="list-group mb-5 border-0 rounded-lg shadow-sm">
+                            <li class="list-group-item p-3 border-0 text-muted">
+                                {{i18n "pages.myClasses.notFound"}}
+                            </li>
+                        </ul>
+                    {{/with}}
                 {{/if}}
             {{/if}}
 

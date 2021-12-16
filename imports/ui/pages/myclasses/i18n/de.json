@@ -15,6 +15,7 @@
       "noCoursesYet": "Es sind noch keine Kurse angelegt",
       "all": "Alle Kurse",
       "noCourses": "* Allein / Kein Kurs",
+      "noUsers": "Bisher keine Teilnehmer*innen vorhanden",
       "noCode": "Noch kein Zugangscode hinzugefügt",
       "types": {
         "course": "Kurs",

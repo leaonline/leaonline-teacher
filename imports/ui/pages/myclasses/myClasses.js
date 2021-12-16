@@ -84,7 +84,8 @@ Template.myClasses.onCreated(function () {
   const activeCoursesQuery = { completesAt: { $gte: now } }
 
   instance.autorun(() => {
-    const allUsers = new Map()
+    const activeUsers = new Map()
+    const archivedUsers = new Map()
 
     // first we go through all active courses and find their users
     Course.collection()
@@ -95,14 +96,37 @@ Template.myClasses.onCreated(function () {
         // found users will get linked with the courses so we don't
         // have to do this on DB-Level or in the templates
         User.collection().find({ _id: { $in: doc.users } }).forEach(userDoc => {
-          if (!allUsers.has(userDoc._id)) {
+          if (!activeUsers.has(userDoc._id)) {
             userDoc.courses =  []
-            allUsers.set(userDoc._id, userDoc)
+            activeUsers.set(userDoc._id, userDoc)
           }
 
-          const cachedUserDoc = allUsers.get(userDoc._id)
+          const cachedUserDoc = activeUsers.get(userDoc._id)
           cachedUserDoc.courses.push(doc)
-          allUsers.set(userDoc._id, cachedUserDoc)
+          activeUsers.set(userDoc._id, cachedUserDoc)
+        })
+      })
+
+    // then we go through all archived courses
+    Course.collection()
+      .find({ completesAt: { $lt: now } })
+      .forEach(doc => {
+        if (!doc.users?.length) { return }
+
+        // found users need to be second-checked against active users
+        // because we only want to show them in archived if they do not appear
+        // in active courses
+        User.collection().find({ _id: { $in: doc.users } }).forEach(userDoc => {
+          if (activeUsers.has(userDoc._id)) { return }
+
+          if (!archivedUsers.has(userDoc._id)) {
+            userDoc.courses =  []
+            archivedUsers.set(userDoc._id, userDoc)
+          }
+
+          const cachedUserDoc = archivedUsers.get(userDoc._id)
+          cachedUserDoc.courses.push(doc)
+          archivedUsers.set(userDoc._id, cachedUserDoc)
         })
       })
 
@@ -111,11 +135,20 @@ Template.myClasses.onCreated(function () {
       .find()
       .forEach(userDoc => {
         if (Course.collection().find({ users: userDoc._id }).count() === 0) {
-          if (allUsers.has(userDoc._id)) throw new Error()
-          allUsers.set(userDoc._id, userDoc)
+          // this should never occur
+          if (activeUsers.has(userDoc._id)) {
+            throw new Error(`Unexpected: user ${userDoc._id} should not be in a course`)
+          }
+
+          activeUsers.set(userDoc._id, userDoc)
         }
       })
-    instance.state.set('activeUsers', Array.from(allUsers.values()).sort(byName))
+
+
+    instance.state.set({
+      activeUsers: Array.from(activeUsers.values()).sort(byName),
+      archivedUsers: Array.from(archivedUsers.values()).sort(byName)
+    })
   })
 })
 
@@ -155,6 +188,9 @@ Template.myClasses.helpers({
   },
   activeUsers () {
     return Template.getState('activeUsers')
+  },
+  archivedUsers () {
+    return Template.getState('archivedUsers')
   },
   insertSchema () {
     const type = Template.getState('type')
