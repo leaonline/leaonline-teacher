@@ -85,9 +85,9 @@
                                         {{#if user.account.code}}
                                             <code>{{user.account.code}}</code>
                                         {{else}}
-                                            <small class="text-light">
-                                                {{> icon name="exclamation-triangle"}}
-                                            </small>
+                                            <code class="text-muted">
+                                                {{> icon name="asterisk" title=(i18n "pages.myClasses.noCode")}}
+                                            </code>
                                         {{/if}}
                                     </td>
                                     <td class="text-left px-4">

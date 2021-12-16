@@ -1,53 +1,14 @@
 <template name="user">
-    <div class="row">
-        <div class="col-sm-1 bg-dark" ></div>
-        <div class="col-sm-10">
-            {{#each document in competencyCategories}}
-                {{!--  cc is competencCategories here --}}
-                {{#let ccTitle=document.title ccId=document._id}}
-                    <div class="card mb-5 px-2 shadow-sm" style="background: #e2e5e7">
-                        <div class="card-header border-0" style="background: #e2e5e7">
-                            <div>{{ccTitle}}</div>
-                        </div>
-                        <div class="card-body border-0 pt-0">
-                            <div class="row ">
-                                {{#each competency in competencies}}
-                                    {{#if competencyCategoryIdCheck competency.competencyCategoryId ccId}}
-                                        <div class="col-sm-3 pl-0">
-                                            <div class="flip-card card ml-3 mb-3 rounded rounded-lg shadow-sm d-flex bg-white" >
-                                                <div class="flip-card-inner">
-                                                    <div class="flip-card-front">
-                                                        <div class="card-header border-bottom d-flex p-2 align-items-center bg-white">
-                                                            <div class="">α-level</div>
-                                                            {{> link icon="info" class="ml-auto info-icon"}}
-                                                        </div>
-                                                        <div class="card-body border-bottom">
-                                                            <p>{{competency.description}}</p>
-                                                        </div>
-                                                        <div class="card-footer d-flex p-2 align-items-center bg-white">
-                                                            <span class="fa fas fa-fw fa-arrow-right text-primary"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flip-card-back">
-                                                        <div class="card-header border-bottom d-flex p-2 align-items-center">
-                                                            {{> link icon="info" class="ml-auto info-icon"}}
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <p>{{competency.help}}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {{/if}}
-                                {{/each}}
-                            </div>
-                        </div>
-                    </div>
-                {{/let}}
+    {{#onLoaded loaded=loadComplete}}
+    <div class="float-right">
+        <select id="date-select" class="form-control">
+            <option value="">{{i18n "form.selectOne"}}</option>
+            <option value="all">{{i18n "pages.user.allDates"}}</option>
+            {{#each entry in sessionDocs}}
+                <option value="{{entry._id}}">{{toLocaleDate entry.completedAt}}</option>
             {{/each}}
-        </div>
-        <div class="col-sm-1" style="background-color: #D2D5D8"></div>
+        </select>
     </div>
+    {{/onLoaded}}
 </template>
 

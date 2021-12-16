@@ -9,8 +9,8 @@ import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import classLanguage from './i18n/classLanguage'
+import { processFeedback } from '../../../api/feedback/processFeedback'
 import './class.html'
-import { processFeedback } from './helpers/processFeedback'
 
 Template.class.onCreated(function () {
   const instance = this
@@ -19,7 +19,7 @@ Template.class.onCreated(function () {
     contexts: [Course, Dimension, Competency, AlphaLevel, User],
     useLanguage: [classLanguage],
     remotes: [OtuLea],
-    debug: true,
+    debug: false,
     onComplete () {
       instance.state.set('initComplete', true)
     }
