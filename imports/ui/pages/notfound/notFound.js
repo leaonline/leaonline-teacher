@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
+import notFoundLanguage from './i18n/notFoundLanguage'
 import './notFound.html'
 
 const componentsLoader = bbsComponentLoader([
@@ -12,14 +13,7 @@ const componentsLoader = bbsComponentLoader([
 Template.notFound.onCreated(function () {
   const instance = this
   instance.init({
-    language: lang => {
-      switch (lang) {
-        case 'de':
-          return import('./i18n/de')
-        default:
-          throw new Error(`Language not supported: ${lang}`)
-      }
-    },
+    useLanguage: [notFoundLanguage],
     onComplete () {
       instance.state.set('initComplete', true)
     }
