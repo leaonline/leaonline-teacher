@@ -1,10 +1,20 @@
 <template name="login">
+    <div class="container">
+        <img src="/logo/welcome-1110x624.png"
+             width=1110
+             height=624
+             alt="lea. logo"
+             class="rounded lea-main-logo autoscale shadow"/>
+    </div>
+
     <div class="row my-5">
         <div class="col col-sm-12 col-md-6 col-lg-4 ml-auto mr-auto">
             {{#if login}}
                 <div class="w-100 {{#if loggingIn}}d-unavailable{{/if}}">
-                    <button class="btn btn-primary btn-block login-button">
-                        {{i18n "pages.login.login"}}
+                    <button class="btn btn-lg btn-primary btn-block login-button">
+                        {{#onLoaded loaded=loadComplete}}
+                            {{i18n "pages.login.login"}}
+                        {{/onLoaded}}
                     </button>
                 </div>
             {{/if}}
@@ -12,7 +22,9 @@
             {{#if loggingIn}}
                 <div class="w-100 text-center">
                     <span class="spinner-border text-primary"></span>
-                    <span>{{i18n "pages.login.loggingIn"}}</span>
+                    {{#onLoaded loaded=loadComplete}}
+                        <span>{{i18n "pages.login.loggingIn"}}</span>
+                    {{/onLoaded}}
                 </div>
             {{/if}}
 
@@ -37,11 +49,16 @@
 
             {{#if loggedIn}}
                 <div class="alert alert-info">
-                    <strong class="alert-heading">{{i18n "pages.login.loggedIn"}}</strong>
+                    {{#onLoaded loaded=loadComplete}}
+                        <strong class="alert-heading">{{i18n
+                                "pages.login.loggedIn"}}</strong>
+                    {{/onLoaded}}
                 </div>
 
                 <a class="btn btn-primary btn-block" href="{{next}}">
-                    {{i18n "actions.continue"}}
+                    {{#onLoaded loaded=loadComplete}}
+                        {{i18n "actions.continue"}}
+                    {{/onLoaded}}
                 </a>
             {{/if}}
         </div>

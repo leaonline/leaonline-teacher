@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { loggedIn } from '../../../api/utils/accountUtils'
+import loginLanguages from './i18n/loginLanguages'
 import './login.html'
 
 const states = {
@@ -10,6 +11,17 @@ const states = {
 
 Template.login.onCreated(function () {
   const instance = this
+
+  instance.init({
+    useLanguage: [loginLanguages],
+    onComplete () {
+      instance.state.set('initComplete', true)
+    },
+    onError (err) {
+      instance.state.set('loginError', err)
+    }
+  })
+
   instance.autorun(() => {
     const view = instance.state.get('view')
 
@@ -37,6 +49,9 @@ Template.login.helpers({
   },
   loggingIn () {
     return Template.getState('loggingIn')
+  },
+  loadComplete () {
+    return Template.getState('initComplete')
   }
 })
 
@@ -51,6 +66,12 @@ Template.login.events({
     Meteor.loginWithLea((err, res) => {
       templateInstance.state.set('loggingIn', false)
       if (err) {
+        console.error(err)
+
+        if (err.name === 'Accounts.LoginCancelledError') {
+          err.reason = 'pages.login.cancelled'
+        }
+
         return templateInstance.state.set('loginError', err)
       }
 

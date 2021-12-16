@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "continue": "Fortsetzen"
+  },
+  "error": {
+    "occurred": "Es ist ein Fehler aufgetreten"
+  },
+  "pages": {
+    "login": {
+      "login": "Mit meinem lea. Account anmelden",
+      "loggingIn": "Sie werden angemeldet",
+      "loggedIn": "Sie wurden erfolgreich angemeldet",
+      "cancelled": "Die Anmeldung wurde agbebrochen"
+    }
+  }
+}
