@@ -2,6 +2,7 @@ import { Schema } from '../../../api/schema/Schema'
 import { User } from '../../../contexts/users/User'
 import { Form } from '../../../api/form/Form'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
+import courseUsersLang from './i18n/courseUsersLang'
 import './courseUsers.html'
 import { dataTarget } from '../../utils/dataTarget'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
@@ -40,6 +41,14 @@ const addUserSchema = Schema.create(userSchemaDef)
 
 Template.afCourseUsers.onCreated(function () {
   const instance = this
+
+  instance.init({
+    useLanguage: [courseUsersLang],
+    onComplete () {
+      instance.state.set('initComplete', true)
+    }
+  })
+
   instance.users = new Mongo.Collection(null)
   instance.state.set('viewState', 'showUsers')
   instance.updateValue = () => {
@@ -65,6 +74,9 @@ Template.afCourseUsers.onRendered(function () {
 })
 
 Template.afCourseUsers.helpers({
+  loadComplete () {
+    return Template.getState('initComplete')
+  },
   addUserSchema () {
     return addUserSchema
   },
@@ -73,7 +85,7 @@ Template.afCourseUsers.helpers({
   },
   allUsers () {
     const localUsers = Template.instance().users.find().map(toUserId)
-    return User.collection().find({ _id: { $nin: localUsers } })
+    return User.collection().find({ _id: { $nin: localUsers } }, { sort: { lastName: 1, firstName: 1 }})
   },
   dataSchemaKey () {
     return Template.instance().data.atts['data-schema-key']

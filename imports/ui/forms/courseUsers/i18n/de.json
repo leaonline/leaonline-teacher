@@ -1,0 +1,9 @@
+{
+  "courseUsers": {
+    "title": "Kurs Teilnehmer:innen",
+    "noUsers": "(Noch) keine Teilnehmer:innen vorhanden",
+    "select": "Bestehende Teilnehmer:innen auswählen",
+    "noCode": "Ohne login code",
+    "add": "Hinzufügen"
+  }
+}

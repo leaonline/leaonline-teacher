@@ -1,6 +1,7 @@
 <template name="afCourseUsers">
     {{!-- ERRORS, VALIDATION ETC, --}}
-    <div class="{{#unless isInvalid}}d-block{{else}}d-block{{/unless}} help-block text-danger">
+    <div class="{{#unless
+            isInvalid}}d-block{{else}}d-block{{/unless}} help-block text-danger">
         <small>{{afFieldMessage name=name}}</small>
     </div>
 
@@ -9,14 +10,20 @@
         {{! COURSE USERS }}
         <div class="card col-12">
             <div class="card-header d-flex justify-content-between">
-                <span>course users</span>
+                <span>
+                    {{#onLoaded loaded=loadComplete}}
+                        {{i18n "courseUsers.title"}}
+                    {{/onLoaded}}
+                </span>
                 <span>
                     {{#unless state "selectUser"}}
-                    <button class="btn btn-sm btn-outline-secondary state-btn" data-target="selectUser">
-                        {{> icon name="list-ul"}}
-                    </button>
+                        <button class="btn btn-sm btn-outline-secondary state-btn"
+                                data-target="selectUser">
+                            {{> icon name="list-ul"}}
+                        </button>
                     {{else}}
-                        <button class="btn btn-sm btn-secondary state-btn" data-target="showUsers">
+                        <button class="btn btn-sm btn-secondary state-btn"
+                                data-target="showUsers">
                             {{> icon name="list-ul"}}
                         </button>
                     {{/unless}}
@@ -37,7 +44,11 @@
                                 {{#if user.account.code}}
                                     <code>{{user.account.code}}</code>
                                 {{else}}
-                                    <span class="text-muted">{{i18n "user.noCode"}}</span>
+                                    <span class="text-muted">
+                                        {{#onLoaded loaded=loadComplete}}
+                                            {{i18n "courseUsers.noCode"}}
+                                        {{/onLoaded}}
+                                    </span>
                                 {{/if}}
                             </td>
                             <td class="">
@@ -48,18 +59,21 @@
                             </td>
                         </tr>
                     {{else}}
-                    <tr>
-                        <td colspan="4" class="text-muted">
-                            {{i18n "courseUsers.noUsers"}}
-                        </td>
-                    </tr>
+                        <tr>
+                            <td colspan="4" class="text-muted">
+                                {{#onLoaded loaded=loadComplete}}
+                                    {{i18n "courseUsers.noUsers"}}
+                                {{/onLoaded}}
+                            </td>
+                        </tr>
                     {{/each}}
                     </tbody>
                 </table>
             </div>
             {{#unless state "selectUser"}}
                 <div class="card-body border">
-                    {{#autoForm id="add-user-form" schema=addUserSchema type="normal" class="pt-3"}}
+                    {{#autoForm id="add-user-form" schema=addUserSchema
+                                type="normal" class="pt-3"}}
                         <div class="row">
                             <div class="col-6">
                                 {{> afQuickField name="firstName" label=false}}
@@ -74,6 +88,11 @@
 
                         <button class="btn btn-primary">
                             {{> icon name="plus"}}
+                            <span>
+                                {{#onLoaded loaded=loadComplete}}
+                                    {{i18n "courseUsers.add"}}
+                                {{/onLoaded}}
+                            </span>
                         </button>
                     {{/autoForm}}
                 </div>
@@ -82,45 +101,55 @@
 
         {{! ALL USERS }}
         {{#if state "selectUser"}}
-        <div class="card col">
-            <div class="card-header bg-secondary text-white d-flex justify-content-between">
-                <span>select users</span>
-                <button class="btn btn-sm btn-outline-secondary text-white state-btn" data-target="showUsers">
-                     {{> icon name="times"}}
-                </button>
+            <div class="card col">
+                <div class="card-header bg-secondary text-white d-flex justify-content-between">
+                <span>
+                    {{#onLoaded loaded=loadComplete}}
+                        {{i18n "courseUsers.select"}}
+                    {{/onLoaded}}
+                </span>
+                    <button class="btn btn-sm btn-outline-secondary text-white state-btn"
+                            data-target="showUsers">
+                        {{> icon name="times"}}
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover border">
+                        <tbody>
+                        {{#each user in allUsers}}
+                            <tr>
+                                <td class="">
+                                    <button class="btn btn-sm btn-outline-secondary add-user-btn"
+                                            data-target="{{user._id}}">
+                                        {{> icon name="plus"}}
+                                    </button>
+                                </td>
+                                <td class="">
+                                    {{#if user.account.code}}
+                                        <code>{{user.account.code}}</code>
+                                    {{else}}
+                                        {{#onLoaded loaded=loadComplete}}
+                                            <span class="text-muted">
+                                                {{i18n "courseUsers.noCode"}}
+                                            </span>
+                                        {{/onLoaded}}
+                                    {{/if}}
+                                </td>
+                                <td class="">
+                                    {{user.firstName}}
+                                </td>
+                                <td class="">
+                                    {{user.lastName}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover border">
-                  <tbody>
-                  {{#each user in allUsers}}
-                      <tr>
-                          <td class="">
-                              <button class="btn btn-sm btn-outline-secondary add-user-btn"
-                                      data-target="{{user._id}}">
-                                  {{> icon name="plus"}}
-                              </button>
-                          </td>
-                          <td class="">
-                              {{#if user.account.code}}
-                                  <code>{{user.account.code}}</code>
-                              {{else}}
-                                  <span class="text-muted">{{i18n "user.noCode"}}</span>
-                              {{/if}}
-                          </td>
-                          <td class="">
-                              {{user.firstName}}
-                          </td>
-                          <td class="">
-                              {{user.lastName}}
-                          </td>
-                      </tr>
-                  {{/each}}
-                  </tbody>
-                </table>
-            </div>
-        </div>
         {{/if}}
     </div>
 
-    <input type="hidden" class="afCourseUsersHiddenInput" data-schema-key="{{dataSchemaKey}}"/>
+    <input type="hidden" class="afCourseUsersHiddenInput"
+           data-schema-key="{{dataSchemaKey}}"/>
 </template>
