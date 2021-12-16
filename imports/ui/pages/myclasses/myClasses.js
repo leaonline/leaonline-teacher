@@ -82,6 +82,7 @@ Template.myClasses.onCreated(function () {
 
   const now = new Date()
   const activeCoursesQuery = { completesAt: { $gte: now } }
+  const archivedCoursesQuery = { completesAt: { $lt: now } }
 
   instance.autorun(() => {
     const activeUsers = new Map()
@@ -89,7 +90,7 @@ Template.myClasses.onCreated(function () {
 
     // first we go through all active courses and find their users
     Course.collection()
-      .find({ completesAt: { $gte: now } })
+      .find(activeCoursesQuery)
       .forEach(doc => {
         if (!doc.users?.length) { return }
 
@@ -109,7 +110,7 @@ Template.myClasses.onCreated(function () {
 
     // then we go through all archived courses
     Course.collection()
-      .find({ completesAt: { $lt: now } })
+      .find(archivedCoursesQuery)
       .forEach(doc => {
         if (!doc.users?.length) { return }
 
@@ -149,6 +150,25 @@ Template.myClasses.onCreated(function () {
       activeUsers: Array.from(activeUsers.values()).sort(byName),
       archivedUsers: Array.from(archivedUsers.values()).sort(byName)
     })
+  })
+
+  instance.autorun(() => {
+    const activeUsers = instance.state.get('activeUsers')
+    if (!activeUsers?.length || !OtuLea.isLoggedIn()) { return }
+
+    const users = activeUsers.map(userDoc => userDoc.account?._id)
+
+    OtuLea.recentFeedback({ users })
+      .catch(instance.api.notify)
+      .then((sessionDocs) => {
+        if (!sessionDocs) { return }
+
+        const recentFeedback = sessionDocs.map(session => {
+          const user = User.collection().findOne({ 'account._id': session.userId })
+          return { session, user }
+        })
+        instance.state.set({ recentFeedback })
+      })
   })
 })
 
@@ -229,6 +249,9 @@ Template.myClasses.helpers({
   },
   waiting () {
     return Template.getState('waiting')
+  },
+  recentFeedback () {
+    return Template.getState('recentFeedback')
   }
 })
 

@@ -9,7 +9,7 @@ import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import classLanguage from './i18n/classLanguage'
-import { processFeedback } from '../../../api/feedback/processFeedback'
+import { denormalizeFeedback } from '../../../api/feedback/processFeedback'
 import './class.html'
 
 Template.class.onCreated(function () {
@@ -112,7 +112,7 @@ Template.class.onCreated(function () {
           })
         }
 
-        const processed = processFeedback({ feedback })
+        const processed = denormalizeFeedback({ feedback })
 
         // load alpha docs
 

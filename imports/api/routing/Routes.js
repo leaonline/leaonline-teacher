@@ -236,9 +236,13 @@ Routes.class = {
  */
 
 Routes.user = {
-  path: (userId = ':userId') => {
+  path: (userId = ':userId', session) => {
     const userPath = translateRoute(Routes.user)
-    return `/${userPath}/${userId}`
+    if (!session) {
+      return `/${userPath}/${userId}`
+    }
+
+    return `/${userPath}/${userId}?session=${encodeURIComponent(session)}`
   },
   label: reactiveTranslate('pages.user.title'),
   triggersEnter: () => {

@@ -10,5 +10,13 @@
         </select>
     </div>
     {{/onLoaded}}
+
+    {{#if noData}}
+        <div class="alert alert-warning p-5">
+        {{#onLoaded loaded=loadComplete}}
+            {{i18n "pages.user.noData"}}
+        {{/onLoaded}}
+        </div>
+    {{/if}}
 </template>
 

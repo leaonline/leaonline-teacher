@@ -17,6 +17,7 @@
       "noCourses": "* Allein / Kein Kurs",
       "noUsers": "Bisher keine Teilnehmer*innen vorhanden",
       "noCode": "Noch kein Zugangscode hinzugefügt",
+      "recentTests": "Letzte Testergebnisse",
       "types": {
         "course": "Kurs",
         "user": "Teilnehmer*in"

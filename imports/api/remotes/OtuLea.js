@@ -20,7 +20,17 @@ OtuLea.userExists = async ({ code }) => await OtuLea.call({
 })
 
 /**
- *
+ * Returns the last 5 feedbacks that were generated but only one for each user
+ * @param users {Array<String>} user ids
+ * @return {Promise<*>}
+ */
+OtuLea.recentFeedback = async ({ users }) => await OtuLea.call({
+  name: otulea.methods.recentFeedback,
+  args: { users }
+})
+
+/**
+ * Gets feedback incl. dependencies for given users
  * @param {Array<String>} users - the list of userIds
  * @param {string} dimension - the dimension id
  * @param {boolean} addSession - if session docs should be fetched, too

@@ -47,9 +47,26 @@
                     {{/with}}
                 {{/listgroup}}
 
+                {{#with recentFeedback}}
+                <div class="card-body border rounded border-secondary text-center">
+                    <h2 class="text-secondary">
+                        {{i18n "pages.myClasses.recentTests"}}:
+                    </h2>
+
+                    {{#each summary in this}}
+                        <a href="{{route "user" summary.user._id summary.session._id}}">
+                            {{toLocaleDate summary.session.completedAt "date"}}:
+                            {{summary.user.account.code}}
+                            {{summary.user.firstName}}
+                            {{summary.user.lastName}}
+                        </a>
+                    {{/each}}
+                </div>
+                {{/with}}
+
                 {{#if completedCourses}}
                     {{> button
-                            class="modal-trigger"
+                            class="modal-trigger mt-5"
                             data-target="archived"
                             data-type="course"
                             colortype="secondary"

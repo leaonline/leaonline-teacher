@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating'
-import { State } from '../../../api/session/State'
 import { Course } from '../../../contexts/courses/Course'
 import { User } from '../../../contexts/users/User'
 import { OtuLea } from '../../../api/remotes/OtuLea'
@@ -8,7 +7,7 @@ import { CompetencyCategory } from '../../../contexts/content/competency/Compete
 import { Competency } from '../../../contexts/content/competency/Competency'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
-import { processFeedback } from '../../../api/feedback/processFeedback'
+import { denormalizeFeedback } from '../../../api/feedback/denormalizeFeedback'
 import userLanguage from './i18n/userLanguage'
 import './user.scss'
 import './user.html'
@@ -27,13 +26,7 @@ Template.user.onCreated(function () {
 
   instance.autorun(() => {
     const data = Template.currentData()
-
     const { userId } = data.params
-    const currentUser = Tracker.nonreactive(() => State.currentParticipant())
-
-    if (currentUser !== userId) {
-      State.currentParticipant(userId)
-    }
 
     callMethod({
       name: User.methods.get,
@@ -48,17 +41,29 @@ Template.user.onCreated(function () {
   instance.autorun(() => {
     const userDoc = instance.state.get('userDoc')
 
-    if (!userDoc || !OtuLea.isLoggedIn()) return
+    // we can only continue if we have loaded the current user doc
+    // and the remote is connected AND logged-in
+    if (!userDoc || !OtuLea.isLoggedIn()) { return }
 
-    // load all feedbacks from all dimensions
+    // load all feedbacks from all dimensions here for full-access
     OtuLea.getFeedback({ users: [userDoc.account._id], addSession: true })
       .catch(instance.api.notify)
+
+      // we create a fallback to display in case no feedbacks are available
       .then(({ feedbackDocs = [], sessionDocs = [] }) => {
         instance.state.set({ feedbackDocs, sessionDocs })
 
-        return  processFeedback({ feedback: feedbackDocs })
+        if (feedbackDocs.length === 0) {
+          return instance.state.set('noData', true)
+        }
+
+        return  denormalizeFeedback({ feedback: feedbackDocs })
       })
+
+      // if we have denormalized feedback we load the respective alpha-levels
       .then((processed) => {
+        if (!processed) { return }
+
         callMethod({
           name: AlphaLevel.methods.get,
           args: { ids: processed.alphaLevelIds },
@@ -77,7 +82,11 @@ Template.user.onCreated(function () {
 
         return processed
       })
+
+      // if we have denormalized feedback we load the respective competencies
       .then((processed) => {
+        if (!processed) { return }
+
         callMethod({
           name: Competency.methods.get,
           args: { ids: processed.competencyIds },
@@ -123,6 +132,9 @@ Template.user.helpers({
   },
   sessionDocs () {
     return Template.getState('sessionDocs')
+  },
+  noData () {
+    return Template.getState('noData')
   }
 })
 

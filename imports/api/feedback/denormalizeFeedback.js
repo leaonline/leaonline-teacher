@@ -12,7 +12,7 @@ const addToMap = (map, idSet, idName) => (entry) => {
   idSet.add(id)
 }
 
-export const processFeedback = ({ feedback }) => {
+export const denormalizeFeedback = ({ feedback }) => {
   const alphaLevels = new Map()
   const alphaLevelIds = new Set()
   const competencies = new Map()

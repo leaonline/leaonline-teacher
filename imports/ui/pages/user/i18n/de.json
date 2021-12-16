@@ -1,7 +1,8 @@
 {
   "pages": {
     "user": {
-      "allDates": "Alle Testungen"
+      "allDates": "Alle Testungen",
+      "noData": "Es sind noch keine Testreihen von dieser Person abgeschlossen worden."
     }
   }
 }

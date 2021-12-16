@@ -12,7 +12,8 @@
         "methods": {
           "generateUser": "users.methods.generate",
           "userExists": "user.methods.exist",
-          "getFeedback": "feedback.methods.getForUsers"
+          "getFeedback": "feedback.methods.getForUsers",
+          "recentFeedback": "feedback.methods.recent"
         }
       },
       "content": {
