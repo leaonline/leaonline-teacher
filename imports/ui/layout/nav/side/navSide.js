@@ -28,6 +28,6 @@ Template.navSide.helpers({
     return !State.currentClass()
   },
   userRouteDisabled () {
-    return !State.currentClass() || !State.currentParticipant()
+    return !State.currentParticipant()
   }
 })

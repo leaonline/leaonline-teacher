@@ -1,5 +1,8 @@
 <template name="class">
-    <h2>{{title}}</h2>
+    <h1>
+        {{#onLoaded loaded=loadComplete}}{{i18n "pages.class.title"}}{{/onLoaded}}
+        {{title}}
+    </h1>
 
     {{#onLoaded loaded=loadComplete}}
         <select class="form-control border-{{color}} text-{{color}}"
@@ -57,6 +60,17 @@
             {{/unless}}
         {{/onLoaded}}
     {{/if}}
+
+    <div class="user-sidebar bg-dark">
+        {{#each user in users}}
+            <a class="btn btn-outline-primary col-1 border-secondary"
+                href="{{route "user" user._id "class" courseDoc._id}}">
+                <span class="font-weight-bold">
+                    {{user.firstName}} {{user.lastName}}
+                </span>
+            </a>
+        {{/each}}
+    </div>
 </template>
 
 <template name="competencyCategoryForCourse">

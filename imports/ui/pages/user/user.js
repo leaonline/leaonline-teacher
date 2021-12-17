@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating'
 import { Course } from '../../../contexts/courses/Course'
 import { User } from '../../../contexts/users/User'
 import { OtuLea } from '../../../api/remotes/OtuLea'
+import { State } from '../../../api/session/State'
 import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
 import { Competency } from '../../../contexts/content/competency/Competency'
@@ -27,16 +28,30 @@ Template.user.onCreated(function () {
   instance.autorun(() => {
     const data = Template.currentData()
     const { userId } = data.params
+    State.currentParticipant(userId)
+
+    // if we selected the participant from the course/class then we
+    // should update the sidebarState
+    const classId = data.queryParams.class || null
+    State.currentClass(classId)
+
+    // if we selected a specific session
+    // then we need the id for further filtering
+    const sessionId = data.queryParams.session || null
 
     callMethod({
       name: User.methods.get,
       args: { _id: userId },
       failure: instance.api.notify,
       success (userDoc) {
-        instance.state.set({ userDoc })
+        instance.state.set({ userDoc, sessionId })
       }
     })
   })
+
+  // for gathering the data we create a two-step process:
+  // 1. get all sessions by dimension and provide a select component
+  // 2. load the feedback doc(s) for the selected session or all sessions
 
   instance.autorun(() => {
     const userDoc = instance.state.get('userDoc')
@@ -111,30 +126,14 @@ Template.user.helpers({
   loadComplete () {
     return Template.getState('initComplete')
   },
-  competencyCategories () {
-    const cursor = CompetencyCategory.collection().find()
-    // console.log(cursor.fetch())
-    if (cursor.count() === 0) return null
-    return cursor
-  },
-  competencies () {
-    const CompetencyCategoriesArray = CompetencyCategory.collection().find({}, { fields: { title: 0 } }).fetch()
-    const competencyArray = Competency.collection().find().fetch()
-    competencyArray.forEach(function (val, index) {
-      Object.assign(competencyArray[index], { competencyCategoryId: CompetencyCategoriesArray[index]._id })
-    })
-    return competencyArray
-  },
-  competencyCategoryIdCheck (CompetencyCategoryId, competencyCategoryIdInCompetency) {
-    if (CompetencyCategoryId === competencyCategoryIdInCompetency) {
-      return true
-    }
-  },
   sessionDocs () {
     return Template.getState('sessionDocs')
   },
   noData () {
     return Template.getState('noData')
+  },
+  user () {
+    return Template.getState('userDoc')
   }
 })
 

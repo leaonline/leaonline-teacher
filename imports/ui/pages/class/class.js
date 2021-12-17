@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating'
-import { State } from '../../../api/session/State'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { Course } from '../../../contexts/courses/Course'
 import { User } from '../../../contexts/users/User'
@@ -9,8 +8,9 @@ import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import classLanguage from './i18n/classLanguage'
-import { denormalizeFeedback } from '../../../api/feedback/processFeedback'
+import { denormalizeFeedback } from '../../../api/feedback/denormalizeFeedback'
 import './class.html'
+import { State } from '../../../api/session/State'
 
 Template.class.onCreated(function () {
   const instance = this
@@ -28,15 +28,7 @@ Template.class.onCreated(function () {
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
-    const currentClass = State.currentClass()
-
-    if (currentClass !== classId) {
-      State.currentClass(classId)
-    }
-
-    if (State.currentParticipant()) {
-      State.currentParticipant(null)
-    }
+    State.currentClass(classId)
 
     callMethod({
       name: Course.methods.get,
@@ -194,6 +186,12 @@ Template.class.helpers({
   alphaLevelDoc (id) {
     return Template.getState('alphaLevelDocsLoaded') &&
       AlphaLevel.localCollection().findOne(id)
+  },
+  users () {
+    return Template.getState('users')
+  },
+  courseDoc () {
+    return Template.getState('courseDoc')
   }
 })
 
@@ -202,8 +200,8 @@ Template.class.events({
     event.preventDefault()
 
     const selectedDimension = templateInstance.$(event.currentTarget).val() || null
-    const dimensionDoc = Dimension.localCollection().findOne(selectedDimension)
-    const color = ColorType.byIndex(dimensionDoc.colorType)?.type
+    const dimensionDoc = selectedDimension && Dimension.localCollection().findOne(selectedDimension)
+    const color = selectedDimension && ColorType.byIndex(dimensionDoc.colorType)?.type
 
     templateInstance.state.set({ dimensionDoc, color })
   }

@@ -1,4 +1,13 @@
 <template name="user">
+    <h1 class="float-left">
+        {{#with user}}
+            {{#if this.account.code}}
+                {{this.account.code}} -
+            {{/if}}
+            {{this.firstName}} {{this.lastName}}
+        {{/with}}
+    </h1>
+
     {{#onLoaded loaded=loadComplete}}
     <div class="float-right">
         <select id="date-select" class="form-control">

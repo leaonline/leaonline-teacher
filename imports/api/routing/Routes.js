@@ -2,6 +2,7 @@ import { createLoggedinTrigger, createLoginTrigger, createNotFoundTrigger } from
 import { translateRoute } from './translateRoute'
 import { createRedirect } from './createRedirect'
 import { reactiveTranslate } from '../i18n/reactiveTranslate'
+import { arrayToQueryParams } from '../../ui/utils/arrayToQueryParams'
 
 /**
  * Routes are static definitions of pages that the {Router} uses to navigate.
@@ -236,13 +237,15 @@ Routes.class = {
  */
 
 Routes.user = {
-  path: (userId = ':userId', session) => {
+  path: (userId = ':userId', ...queryParams) => {
     const userPath = translateRoute(Routes.user)
-    if (!session) {
+
+    if (!queryParams.length) {
       return `/${userPath}/${userId}`
     }
 
-    return `/${userPath}/${userId}?session=${encodeURIComponent(session)}`
+    const queryParamsStr = arrayToQueryParams(queryParams)
+    return `/${userPath}/${userId}?${queryParamsStr}`
   },
   label: reactiveTranslate('pages.user.title'),
   triggersEnter: () => {
