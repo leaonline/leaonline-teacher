@@ -81,3 +81,11 @@ typings/
 .next
 
 /dist
+
+# ide
+.idea
+.vscode
+.atom
+
+# mup
+.deploy

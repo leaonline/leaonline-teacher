@@ -34,6 +34,7 @@
     "content": {
       "name": "Content",
       "debug": true,
+      "icon": "file",
       "url": "http://localhost:3030",
       "methods": {
         "getAll": "methods.getAll"
