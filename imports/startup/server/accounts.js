@@ -1,5 +1,6 @@
 /* global ServiceConfiguration */
 import { Meteor } from 'meteor/meteor'
+import { Accounts } from 'meteor/accounts-base'
 import { rateLimitAccounts } from '../../infrastructure/factories/ratelimit/rateLimit'
 
 rateLimitAccounts()
@@ -33,7 +34,7 @@ Accounts.config({
 
 Meteor.publish(null, function () {
   const { userId } = this
-  if (!this.userId) return this.ready()
+  if (!userId) return this.ready()
 
   return Meteor.users.find({ _id: this.userId }, {
     fields: {

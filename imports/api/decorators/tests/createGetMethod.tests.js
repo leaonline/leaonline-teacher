@@ -1,4 +1,6 @@
 /* eslint-env mocha */
+import { Meteor } from 'meteor/meteor'
+import { Mongo } from 'meteor/mongo'
 import { createGetMethod } from '../createGetMethod'
 import { expect } from 'chai'
 import { Random } from 'meteor/random'

@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor'
 import { Mongo } from 'meteor/mongo'
 import { createCollectionFactory } from 'meteor/leaonline:collection-factory'
 import { Schema } from '../../../api/schema/Schema'

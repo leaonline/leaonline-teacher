@@ -73,6 +73,7 @@ class Remote {
       timedOut: timedOut,
       retryCount: retryCount,
       retryTime: retryTime,
+      reason: reason,
       ...loginStatus
     }
   }
@@ -209,7 +210,6 @@ class Remote {
 /**
  * @private
  */
-
 
 const login = isomorphic({
   server: function () {

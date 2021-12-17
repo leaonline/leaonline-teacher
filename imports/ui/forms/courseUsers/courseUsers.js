@@ -1,3 +1,6 @@
+/* global AutoForm */
+import { Template } from 'meteor/templating'
+import { Mongo } from 'meteor/mongo'
 import { Schema } from '../../../api/schema/Schema'
 import { User } from '../../../contexts/users/User'
 import { Form } from '../../../api/form/Form'
@@ -24,7 +27,7 @@ const byAddedUser = user => entry => {
 }
 
 const userSchemaDef = {
-  ...User.schema(reactiveTranslate),
+  ...User.schema(reactiveTranslate)
 }
 
 userSchemaDef.firstName.autoform = userSchemaDef.firstName.autoform || {}
@@ -58,7 +61,7 @@ Template.afCourseUsers.onCreated(function () {
 
   const { value } = instance.data
   if (value && value.length > 0) {
-    User.collection().find({ _id: { $in: value }}).forEach(userDoc => instance.users.insert(userDoc))
+    User.collection().find({ _id: { $in: value } }).forEach(userDoc => instance.users.insert(userDoc))
   }
 
   instance.autorun(() => {
@@ -85,7 +88,7 @@ Template.afCourseUsers.helpers({
   },
   allUsers () {
     const localUsers = Template.instance().users.find().map(toUserId)
-    return User.collection().find({ _id: { $nin: localUsers } }, { sort: { lastName: 1, firstName: 1 }})
+    return User.collection().find({ _id: { $nin: localUsers } }, { sort: { lastName: 1, firstName: 1 } })
   },
   dataSchemaKey () {
     return Template.instance().data.atts['data-schema-key']

@@ -51,7 +51,6 @@ Template.class.onCreated(function () {
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc) return
 
-
     if (!courseDoc.users?.length) {
       // TODO fix when course has no users :-(
     }

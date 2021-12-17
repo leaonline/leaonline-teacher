@@ -4,7 +4,7 @@ import { User } from '../../../contexts/users/User'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { State } from '../../../api/session/State'
 import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
-import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
+// import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
 import { Competency } from '../../../contexts/content/competency/Competency'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
@@ -72,7 +72,7 @@ Template.user.onCreated(function () {
           return instance.state.set('noData', true)
         }
 
-        return  denormalizeFeedback({ feedback: feedbackDocs })
+        return denormalizeFeedback({ feedback: feedbackDocs })
       })
 
       // if we have denormalized feedback we load the respective alpha-levels
@@ -119,7 +119,6 @@ Template.user.onCreated(function () {
         })
       })
   })
-
 })
 
 Template.user.helpers({

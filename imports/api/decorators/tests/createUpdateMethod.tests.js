@@ -1,4 +1,6 @@
-/**//* eslint-env mocha */
+/* eslint-env mocha */
+import { Meteor } from 'meteor/meteor'
+import { Mongo } from 'meteor/mongo'
 import { createUpdateMethod } from '../createUpdateMethod'
 import { expect } from 'chai'
 import { Random } from 'meteor/random'

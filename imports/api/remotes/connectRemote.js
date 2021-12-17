@@ -1,4 +1,6 @@
-import { Meteor } from "meteor/meteor"
+import { Meteor } from 'meteor/meteor'
+import { ReactiveVar } from 'meteor/reactive-var'
+import { Tracker } from 'meteor/tracker'
 import { notifyRemoteState } from './notifyRemoteState'
 
 export const connectRemote = remote => {

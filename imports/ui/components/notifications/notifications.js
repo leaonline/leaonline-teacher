@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating'
+import { Blaze } from 'meteor/blaze'
 import { Notify } from './Notify'
 import './notifications.scss'
 import './notifications.html'

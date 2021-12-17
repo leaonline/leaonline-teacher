@@ -1,5 +1,4 @@
 import { Template } from 'meteor/templating'
-import { Random } from 'meteor/random'
 import { BlazeBootstrap } from '../../../api/blazebootstrap/BlazeBootstrap'
 import { State } from '../../../api/session/State'
 import { Course } from '../../../contexts/courses/Course'
@@ -98,7 +97,7 @@ Template.myClasses.onCreated(function () {
         // have to do this on DB-Level or in the templates
         User.collection().find({ _id: { $in: doc.users } }).forEach(userDoc => {
           if (!activeUsers.has(userDoc._id)) {
-            userDoc.courses =  []
+            userDoc.courses = []
             activeUsers.set(userDoc._id, userDoc)
           }
 
@@ -121,7 +120,7 @@ Template.myClasses.onCreated(function () {
           if (activeUsers.has(userDoc._id)) { return }
 
           if (!archivedUsers.has(userDoc._id)) {
-            userDoc.courses =  []
+            userDoc.courses = []
             archivedUsers.set(userDoc._id, userDoc)
           }
 
@@ -144,7 +143,6 @@ Template.myClasses.onCreated(function () {
           activeUsers.set(userDoc._id, userDoc)
         }
       })
-
 
     instance.state.set({
       activeUsers: Array.from(activeUsers.values()).sort(byName),
@@ -215,9 +213,6 @@ Template.myClasses.helpers({
   insertSchema () {
     const type = Template.getState('type')
     return type && Types[type].schema
-  },
-  userSchema () {
-    return userSchema
   },
   formAction (name) {
     return Template.getState('action') === name

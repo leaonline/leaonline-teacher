@@ -1,3 +1,4 @@
+import { Template } from 'meteor/templating'
 import { ContentDefinitions } from '../../../contexts/content/ContentDefinitions'
 import { Admin } from '../../../contexts/admin/Admin'
 import { dataTarget } from '../../utils/dataTarget'

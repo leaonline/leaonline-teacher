@@ -6,7 +6,9 @@ const lastKeys = new Map()
 // TODO read from user preference about what they want to be informed
 
 export const notifyRemoteState = (key, state) => {
-  if (state.connecting || !state.loggedIn && !state.reason && !state.timedOut) {
+  const notAvailable = !state.loggedIn && !state.reason && !state.timedOut
+
+  if (state.connecting || notAvailable) {
     return
   }
 
@@ -19,7 +21,6 @@ export const notifyRemoteState = (key, state) => {
     title: key,
     message: getRemoteMessage(state)
   })
-
 }
 
 const getColorType = ({ loggedIn, timedOut, reason }) => {
@@ -28,8 +29,6 @@ const getColorType = ({ loggedIn, timedOut, reason }) => {
   if (reason) return 'danger'
   return 'info'
 }
-
-
 
 const simpleHash = str => {
   let out = ''

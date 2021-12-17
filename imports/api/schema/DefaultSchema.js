@@ -28,7 +28,8 @@ export const DefaultSchema = {
     optional: true
   },
   'meta.sharedWith.$': {
-    type: String,
+    type: String
+    /*
     custom () {
       if (Meteor.users.find(this.value).count() > 0) {
         return // user exists
@@ -39,5 +40,6 @@ export const DefaultSchema = {
         ? label()
         : label
     }
+    */
   }
 }

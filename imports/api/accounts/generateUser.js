@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor'
 import { OtuLea } from '../remotes/OtuLea'
 
 export const generateUser = () => OtuLea.generateUser()

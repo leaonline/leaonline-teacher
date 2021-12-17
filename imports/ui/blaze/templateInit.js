@@ -81,7 +81,7 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
     const finalName = typeof name === 'object' ? name.name : name
     api.debug('subscribe', finalName)
 
-    const sub = instance.subscribe(finalName, args, {
+    instance.subscribe(finalName, args, {
       onReady: () => {
         api.debug('ready', finalName)
         if (onReady) onReady()
