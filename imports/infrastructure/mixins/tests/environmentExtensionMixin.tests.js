@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 import { Random } from 'meteor/random'
-import { environmentExtensionMixin } from './environmentExtensionMixin'
+import { environmentExtensionMixin } from '../environmentExtensionMixin'
 
 describe(environmentExtensionMixin.name, function () {
   it('returns the options if set to null', function () {

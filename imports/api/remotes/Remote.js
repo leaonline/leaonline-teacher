@@ -1,3 +1,4 @@
+import { check, Match } from 'meteor/check'
 import { DDP } from 'meteor/ddp-client'
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { callMethod } from '../../infrastructure/methods/callMethod'
@@ -27,7 +28,18 @@ const getConnection = remote => connections.get(remote)
  *
  */
 class Remote {
-  constructor ({ name, url, debug, defaultTimeout = 3 }) {
+  /**
+   * constructor
+   * @param {object} options construction options
+   *
+   */
+  constructor (options) {
+    check(options, Match.ObjectIncluding({
+      name: String,
+      url: String
+    }))
+
+    const { name, url, debug, defaultTimeout = 3 } = options
     this.name = name
     this.url = url
     this.defaultTimeout = defaultTimeout

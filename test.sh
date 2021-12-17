@@ -80,14 +80,14 @@ done
 # build paths:
 
 PROJECT_PATH=$(pwd)
-T_PACKAGE_DIRS="../lib:../libnpm:../liboauth:../libext:../meteor-collection2/package:./github"
+T_PACKAGE_DIRS="../lib:../liboauth:./github"
 
-PORT=3099
+PORT=5599
 
 if [ "$T_VERBOSE" -eq "1" ];
 then
-	echo "=> Test LEAONLINE-TEACHER"
-	echo "=> Root path: [${PROJECT_PATH}]"
+	echo "=> Test leaonline-teacher"
+	echo "=> Project path: [${PROJECT_PATH}]"
 	echo "=> Port: [${PORT}]"
 	echo "=> Lib path(s): [${T_PACKAGE_DIRS}]"
 	echo "=> Run once? [${T_RUN_ONCE}]"
@@ -106,11 +106,9 @@ METEOR_PACKAGE_DIRS=${T_PACKAGE_DIRS}  \
     MOCHA_GREP=${T_FILTER} \
     BABEL_ENV=COVERAGE \
     COVERAGE=${T_COVERAGE} \
-    COVERAGE_OUT_HTML=1 \
     COVERAGE_OUT_TEXT_SUMMARY=1 \
-    COVERAGE_OUT_JSON_SUMMARY=1 \
-    COVERAGE_APP_FOLDER=$PWD/ \
-    COVERAGE_VERBOSE_MODE=${T_VERBOSE} \
+    COVERAGE_APP_FOLDER=$(pwd)/ \
+    COVERAGE_VERBOSE=${T_VERBOSE} \
     meteor test \
         ${T_RUN_ONCE} \
         --driver-package=meteortesting:mocha \

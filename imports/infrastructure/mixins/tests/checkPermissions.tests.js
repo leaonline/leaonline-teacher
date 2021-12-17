@@ -2,8 +2,8 @@
 import { Meteor } from 'meteor/meteor'
 import { Random } from 'meteor/random'
 import { expect } from 'chai'
-import { checkPermissions } from './checkPermissions'
-import { stub, restoreAll } from '../../../tests/helpers.tests'
+import { checkPermissions } from '../checkPermissions'
+import { stub, restoreAll } from '../../../../tests/teacherStubs'
 
 describe(checkPermissions.name, function () {
   afterEach(function () {

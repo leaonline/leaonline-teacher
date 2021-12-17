@@ -1,6 +1,6 @@
 /* global AutoForm */
 import { Template } from 'meteor/templating'
-import { generateUser, userExists } from '../../../api/accounts/generateUser'
+import { OtuLea } from '../../../api/remotes/OtuLea'
 import { debounce } from '../../utils/debounce'
 import './usercode.html'
 
@@ -9,6 +9,13 @@ AutoForm.addInputType('usercode', { template: 'afUserCode' })
 Template.afUserCode.onCreated(function () {
   const instance = this
   const updateValue = (name, value) => instance.$(`.${name}`).val(value)
+
+  instance.init({
+    remotes: [OtuLea],
+    onComplete () {
+      instance.state.set('initComplete', true)
+    }
+  })
 
   instance.updateValues = ({ _id, username, code, firstName, lastName, valid }) => {
     if (_id) updateValue('id-input', _id)
@@ -46,6 +53,9 @@ Template.afUserCode.helpers({
   },
   checking () {
     return Template.getState('checking')
+  },
+  loadComplete () {
+    return Template.getState('initComplete')
   }
 })
 
@@ -54,7 +64,7 @@ Template.afUserCode.events({
     event.preventDefault()
 
     templateInstance.state.set('generating', true)
-    const userDoc = await generateUser()
+    const userDoc = await OtuLea.generateUser()
     userDoc.valid = true
 
     templateInstance.updateValues(userDoc)
@@ -84,7 +94,7 @@ Template.afUserCode.events({
     }
 
     else {
-      userExists({ code })
+      OtuLea.userExists({ code })
         .catch(e => {
           console.error(e)
           templateInstance.state.set({ isValid: false, checking: false })

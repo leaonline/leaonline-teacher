@@ -1,17 +1,12 @@
-const addToMap = (map, idSet, idName) => (entry) => {
-  if (!entry.isGraded) return
-
-  const perc = entry.perc
-  const id = entry[idName]
-  const existingScore = map.get(id) || { id, score: 0, sum: 0, count: 0 }
-
-  existingScore.count++
-  existingScore.sum += existingScore.sum + perc
-  existingScore.score = existingScore.sum / existingScore.count
-  map.set(id, existingScore)
-  idSet.add(id)
-}
-
+/**
+ *
+ * @param feedback
+ * @return {{
+ *   alphaLevels: [AlphaLevel],
+ *   alphaLevelIds: [String],
+ *   competencies: [Competency],
+ *   competencyIds: [String]}}
+ */
 export const denormalizeFeedback = ({ feedback }) => {
   const alphaLevels = new Map()
   const alphaLevelIds = new Set()
@@ -31,4 +26,18 @@ export const denormalizeFeedback = ({ feedback }) => {
     competencies: Array.from(competencies.values()),
     competencyIds: Array.from(competencyIds)
   }
+}
+
+const addToMap = (map, idSet, idName) => (entry) => {
+  if (!entry.isGraded) return
+
+  const perc = entry.perc
+  const id = entry[idName]
+  const existingScore = map.get(id) || { id, score: 0, sum: 0, count: 0 }
+
+  existingScore.count++
+  existingScore.sum += existingScore.sum + perc
+  existingScore.score = existingScore.sum / existingScore.count
+  map.set(id, existingScore)
+  idSet.add(id)
 }

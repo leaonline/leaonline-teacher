@@ -1,5 +1,6 @@
 <template name="afUserCode">
     <div class="py-0 px-1 mb-4">
+        {{#onLoaded loaded=loadComplete}}
         <input type="hidden" class="id-input"
                data-schema-key="{{key "_id"}}">
 
@@ -46,5 +47,6 @@
                 </button>
             </div>
         </div>
+        {{/onLoaded}}
     </div>
 </template>
