@@ -48,6 +48,14 @@ const settingsSchema = schema({
         getAll: String
       })
     })
+  }),
+  accounts: schema({
+    request: schema({
+      from: String,
+      subject: String, // TODO move to i18n
+      to: Array,
+      'to.$': SimpleSchema.RegEx.Email
+    })
   })
 })
 

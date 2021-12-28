@@ -1,0 +1,14 @@
+{
+  "request": {
+    "title": "Zugang anfordern",
+    "email": "Ihre Email-Adresse",
+    "firstName": "Ihr Vorname",
+    "lastName": "Ihr Nachname",
+    "institution": "Institution/Firma",
+    "comment": "Kommentar (optional)",
+    "send": "Absenden",
+    "cancel": "Abbrechen",
+    "sending": "Sende Anfrage",
+    "sendComplete": "Anfrage erfolgreich gesendet, wir werden uns umgehend bei Ihnen melden."
+  }
+}

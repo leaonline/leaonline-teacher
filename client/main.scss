@@ -21,3 +21,8 @@ form .card {
 form ul li {
   padding: 0 !important;
 }
+
+.d-unavailable {
+  pointer-events: none;
+  opacity: 0.65;
+}

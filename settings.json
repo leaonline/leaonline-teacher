@@ -40,5 +40,12 @@
         "getAll": "methods.getAll"
       }
     }
+  },
+  "accounts": {
+    "request": {
+      "from": "system@example.com",
+      "subject": "Anfrage für Zugang",
+      "to": ["admin@example.com"]
+    }
   }
 }

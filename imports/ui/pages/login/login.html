@@ -17,6 +17,13 @@
                         {{/onLoaded}}
                     </button>
                 </div>
+                <div class="d-block text-center p-4">
+                    <button class="btn btn-outline-secondary border-0 request-btn">
+                        {{#onLoaded loaded=loadComplete}}
+                            {{i18n "pages.login.request.title"}}
+                        {{/onLoaded}}
+                    </button>
+                </div>
             {{/if}}
 
             {{#if loggingIn}}
@@ -60,6 +67,12 @@
                         {{i18n "actions.continue"}}
                     {{/onLoaded}}
                 </a>
+            {{/if}}
+
+            {{#if view "requesting"}}
+                <div class="d-block">
+                    {{> requestAccount requestAccountData}}
+                </div>
             {{/if}}
         </div>
     </div>

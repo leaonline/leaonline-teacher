@@ -59,5 +59,9 @@
     "user": {
       "title": "Personen-Dashboard"
     }
+  },
+  "schema": {
+    "required": "{{label}} ist ein Pflichtfeld",
+    "EmailWithTLD": "muss eine gültige Email-Adresse sein"
   }
 }

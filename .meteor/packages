@@ -60,6 +60,7 @@ leaonline:accounts-lea
 leaonline:ddp-login
 service-configuration@1.3.0
 leaonline:service-registry
+email # use to send account requests
 
 #========================================
 # UI

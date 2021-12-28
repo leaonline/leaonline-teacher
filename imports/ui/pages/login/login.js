@@ -2,11 +2,13 @@ import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { loggedIn } from '../../../api/utils/accountUtils'
 import loginLanguages from './i18n/loginLanguages'
+import '../../components/request/requestAccount'
 import './login.html'
 
 const states = {
   login: 'login',
-  loggedIn: 'loggedIn'
+  loggedIn: 'loggedIn',
+  requesting: 'requesting'
 }
 
 Template.login.onCreated(function () {
@@ -40,7 +42,7 @@ Template.login.helpers({
   loginError () {
     return Template.getState('loginError')
   },
-  login (name) {
+  login () {
     return Template.getState('view') === states.login
   },
   loggedIn () {
@@ -52,6 +54,17 @@ Template.login.helpers({
   },
   loadComplete () {
     return Template.getState('initComplete')
+  },
+  view (name) {
+    return name && Template.getState('view') === states[name]
+  },
+  requestAccountData () {
+    return {
+      complete: function () {
+        const instance = this
+        instance.state.set('view', states.login)
+      }.bind(Template.instance())
+    }
   }
 })
 
@@ -77,5 +90,9 @@ Template.login.events({
 
       templateInstance.data.onSuccess(res)
     })
+  },
+  'click .request-btn': async (event, templateInstance) => {
+    event.preventDefault()
+    templateInstance.state.set('view', states.requesting)
   }
 })
