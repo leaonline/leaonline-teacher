@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating'
 import '../../components/notifications/notifications' // TODO lazy load
+import './containers.scss'
 import './containers.html'
 
 // TODO set default lang attribute using a default locale from Meteor.settings

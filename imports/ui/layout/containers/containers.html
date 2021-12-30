@@ -5,7 +5,6 @@
         <main class="w-100 main-container flex-fill">
             {{> yield}}
         </main>
-        {{> navBottom}}
     </wrapper>
     {{> notifications }}
 </template>
@@ -13,13 +12,15 @@
 <!-- the login render target is used for logged-in users -->
 
 <template name="main-render-target">
-    {{> navTop}}
-    <wrapper class="container-fluid d-flex flex-row p-0">
+    <!-- {{> navTop}}  -->
+    <div class="mainwrapper">
         {{> navSide class="d-none d-md-block"}}
-        <main role="main" class="col-12 col-md-11 p-3 main-container">
-            {{> yield}}
-        </main>
-    </wrapper>
-    {{> navBottom}}
+        <div class="contentwrapper w-100 vh-100 d-flex p-4">
+            <main role="main" class="w-100 h-100">
+                {{> yield}}
+            </main>
+        </div>
+        {{> navBottom}}
+    </div>
     {{> notifications }}
 </template>

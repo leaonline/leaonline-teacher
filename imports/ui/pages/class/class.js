@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { Course } from '../../../contexts/courses/Course'
 import { User } from '../../../contexts/users/User'
+import { State } from '../../../api/session/State'
 import { Competency } from '../../../contexts/content/competency/Competency'
 import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { ColorType } from '../../../contexts/content/color/ColorType'
@@ -9,11 +10,14 @@ import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import classLanguage from './i18n/classLanguage'
 import { denormalizeFeedback } from '../../../api/feedback/denormalizeFeedback'
+import './visualization/visualization.html'
 import './class.html'
-import { State } from '../../../api/session/State'
 
 Template.class.onCreated(function () {
   const instance = this
+
+  // reset current participant, in case we come from a participant page
+  State.currentParticipant(null)
 
   instance.init({
     contexts: [Course, Dimension, Competency, AlphaLevel, User],
@@ -28,7 +32,6 @@ Template.class.onCreated(function () {
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
-    State.currentClass(classId)
 
     callMethod({
       name: Course.methods.get,
@@ -39,7 +42,7 @@ Template.class.onCreated(function () {
         instance.api.debug('course doc loaded')
         instance.state.set({
           courseDoc,
-          title: courseDoc.title
+          title: courseDoc?.title
         })
       }
     })
@@ -50,6 +53,8 @@ Template.class.onCreated(function () {
   instance.autorun(() => {
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc) return
+
+    console.debug(courseDoc)
 
     if (!courseDoc.users?.length) {
       // TODO fix when course has no users :-(
@@ -77,6 +82,10 @@ Template.class.onCreated(function () {
       args: { ids: courseDoc.users },
       failure: instance.api.notify,
       success: (users = []) => {
+        if (courseDoc) {
+          courseDoc.users = users
+          State.currentClass(courseDoc)
+        }
         instance.state.set({ users })
       }
     })

@@ -1,0 +1,68 @@
+.largebtn {
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 30px;
+  border: 1px solid #f59d1d;
+  background-color: #ffffff;
+  color: #f59d1d;
+  padding: 10px;
+  text-align: center;
+  display: block;
+}
+
+.graphlistmain > div {
+  flex: 0 0 auto;
+  width: 107px;
+  padding-top: 5px;
+  padding-right: 7px;
+  font-size: 14px;
+  color: #275475;
+  font-weight: 500;
+}
+
+.titleslider.dashtitle {
+  width: 171px;
+  color: #275475;
+  margin-top: 5px !important;
+  text-transform: capitalize;
+  justify-content: flex-start;
+}
+
+.titleslider.dashtitle svg {
+  width: 13px;
+  margin-right: 10px;
+}
+
+.titleslider.dashtitle svg:last-child {
+  margin-left: 10px;
+}
+
+.graphwraper {
+  background-color: #ffffff;
+  padding: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+}
+
+.graphlist {
+  width: 100%;
+  overflow: auto;
+}
+
+/* scrollbar */
+
+@media (min-width: 992px) {
+  ::-webkit-scrollbar-track {
+    background-color: #c2c2c2;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: #c2c2c2;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #999999;
+  }
+}

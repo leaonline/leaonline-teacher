@@ -60,17 +60,6 @@
             {{/unless}}
         {{/onLoaded}}
     {{/if}}
-
-    <div class="user-sidebar bg-dark">
-        {{#each user in users}}
-            <a class="btn btn-outline-primary col-1 border-secondary"
-                href="{{route "user" user._id "class" courseDoc._id}}">
-                <span class="font-weight-bold">
-                    {{user.firstName}} {{user.lastName}}
-                </span>
-            </a>
-        {{/each}}
-    </div>
 </template>
 
 <template name="competencyCategoryForCourse">

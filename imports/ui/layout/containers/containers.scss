@@ -1,0 +1,50 @@
+.mainwrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contentwrapper {
+  height: 100vh;
+  overflow: auto;
+}
+
+.profiles img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.pro-captions {
+  /* TODO use scss variables for colors */
+  color: #ffffff;
+  background: #9f9f9f;
+  border: 1px solid #dddddd;
+  width: 200px;
+  margin: auto;
+  padding: 29px 5px 10px;
+  margin-top: -20px;
+}
+
+.pro-captions h5 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.pro-captions p {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.profiles:hover .pro-captions, .profiles.active .pro-captions {
+  /* TODO use scss variables for colors */
+  background-color: #f59d1d;
+  color: #ffffff !important;
+}
+
+.profiles:hover .pro-captions h5, .profiles.active .pro-captions h5 {
+  color: #ffffff !important;
+}

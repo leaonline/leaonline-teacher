@@ -21,7 +21,7 @@ state.set({
 
 State.currentParticipant = (value) => {
   if (typeof value !== 'undefined') {
-    state.set({ currentParticipant: value })
+    return state.set({ currentParticipant: value })
   }
   return state.get('currentParticipant')
 }
@@ -34,7 +34,7 @@ State.currentParticipant = (value) => {
 
 State.currentClass = (value) => {
   if (typeof value !== 'undefined') {
-    state.set({ currentClass: value })
+    return state.set({ currentClass: value })
   }
   return state.get('currentClass')
 }

@@ -33,7 +33,10 @@ Template.user.onCreated(function () {
     // if we selected the participant from the course/class then we
     // should update the sidebarState
     const classId = data.queryParams.class || null
-    State.currentClass(classId)
+    const currentClass = State.currentClass()
+    if (currentClass && classId !== currentClass._id) {
+      // fetch class and update in case we have no classDoc available
+    }
 
     // if we selected a specific session
     // then we need the id for further filtering
@@ -44,6 +47,7 @@ Template.user.onCreated(function () {
       args: { _id: userId },
       failure: instance.api.notify,
       success (userDoc) {
+        State.currentParticipant(userDoc)
         instance.state.set({ userDoc, sessionId })
       }
     })
