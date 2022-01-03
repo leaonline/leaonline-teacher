@@ -25,7 +25,7 @@ OtuLea.userExists = async ({ code }) => await OtuLea.call({
  * @return {Promise<*>}
  */
 OtuLea.recentFeedback = async ({ users }) => await OtuLea.call({
-  name: otulea.methods.recentFeedback,
+  name: otulea.methods.recentCompleted,
   args: { users }
 })
 
@@ -33,10 +33,9 @@ OtuLea.recentFeedback = async ({ users }) => await OtuLea.call({
  * Gets feedback incl. dependencies for given users
  * @param {Array<String>} users - the list of userIds
  * @param {string} dimension - the dimension id
- * @param {boolean} addSession - if session docs should be fetched, too
  * @return {Promise<Array>|Promise<Object>}
  */
-OtuLea.getFeedback = async ({ users, dimension = undefined, addSession = false }) => await OtuLea.call({
-  name: otulea.methods.getFeedback,
-  args: { users, dimension, addSession }
+OtuLea.getRecords = async ({ users, dimension }) => await OtuLea.call({
+  name: otulea.methods.getRecords,
+  args: { users, dimension }
 })

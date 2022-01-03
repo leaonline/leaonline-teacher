@@ -66,3 +66,708 @@
     background-color: #999999;
   }
 }
+
+/* class-page specific styles can be placed here */
+.js-plotly-plot .plotly .main-svg {
+  background: transparent !important;
+  // width: 100%;
+}
+
+.tableCell {
+  width: 25%;
+  height: 53%;
+}
+
+.tablestyle {
+  font-weight: bold;
+  color: green;
+}
+
+#myBar {
+  width: 45%;
+  height: 8px;
+  background-color: #04aa6d;
+  margin: 6px;
+}
+
+.cardwraper {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 15px;
+  padding: 10px 10px 30px;
+  padding-top: 26px;
+  position: relative;
+  margin-bottom: 50px;
+  .tittle {
+    font-size: 25px;
+  }
+  small {
+    font-weight: 500;
+  }
+  .titleName {
+    color: #777777;
+    font-size: 15px;
+    margin-top: 15px;
+  }
+}
+
+.titleForGraph {
+  position: absolute;
+  padding-top: 1px !important;
+  top: -20px;
+  width: 70%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #ffffff;
+  padding: 0px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+  h5 {
+    margin-top: 8px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #275475;
+    font-size: 16px;
+  }
+  .progress {
+    border-radius: 0px;
+  }
+}
+
+.row {
+  margin-top: 1%;
+}
+
+.levelName {
+  text-align: center;
+  color: white;
+}
+
+.levelName small {
+  padding: 5px;
+  font-size: 12px;
+  background-color: #275475;
+}
+
+.titleName {
+  text-align: center;
+}
+
+.graphlistmain {
+  display: flex;
+  border-bottom: 1px solid #275475;
+}
+
+.graphlistmain .graphwrapper {
+  flex: 0 0 auto;
+  width: 29%;
+  margin-right: 2.1%;
+}
+
+.graphlistmain .graphwrapper:last-child {
+  margin-right: 0px;
+}
+
+.graphlistmain > div:first-child {
+  border-right: 1px solid #275475;
+}
+
+.datetable {
+  width: calc(100% - 107px);
+  margin-left: 107px;
+}
+
+.datetable tr {
+  display: flex;
+}
+
+.datetable tr th {
+  text-align: center;
+  flex: 0 0 auto;
+  width: 33.33333%;
+}
+
+.expandicon {
+  width: 30px;
+  margin: auto;
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12px;
+  z-index: 100;
+  transition: all 0.3s ease-in-out 0s;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.expandicon img {
+  transform: rotate(180deg);
+}
+
+.expandicon.collapsed img {
+  transform: rotate(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.expandiconinner img {
+  transform: rotate(180deg);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.expandiconinner.collapsed img {
+  transform: rotate(0);
+}
+
+.expandiconinner {
+  width: 20px;
+  margin: auto;
+  display: block;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.progrewithcolps {
+  display: flex;
+  align-items: center;
+  .progress {
+    flex: 0 0 auto;
+    width: calc(100% - 30px);
+  }
+  .expandiconinner {
+    flex: 0 0 auto;
+    margin-left: 10px;
+  }
+}
+
+.progressInner {
+  width: 70%;
+  margin: auto;
+}
+
+.graphFooter {
+  color: #275475;
+  align-items: center;
+  select {
+    width: auto;
+    border: 1px solid #275475;
+    color: #777777;
+    padding: 4px 16px;
+    border-radius: 25px;
+    background-color: #ffffff;
+  }
+  button {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    background-color: #ffffff;
+    border: 1px solid #275475;
+    margin: 0px 3px;
+  }
+}
+
+body .select-control {
+  border: 1px solid #275475;
+  padding: 10px 12px;
+  color: #275475;
+  font-weight: 500;
+}
+
+// .plotly .svg-container {margin: auto !important;}
+
+// drop-down.
+div.multiselect,
+select#meal,
+button {
+  margin: 5px;
+}
+
+.multiselect {
+  width: 200px;
+  position: relative;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  position: absolute;
+  background: #ffff;
+  /* left: 0; */
+  width: 200px;
+  z-index: 1000;
+  padding: 9px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+// new graph -----------------------------------------------------------------------------------------------------------------------------------
+body {
+  background-color: #f0f0f0;
+  // padding-top: 60px;
+  font-family: "Roboto", Courier, monospace;
+}
+
+@media (min-width: 792px) and (max-width: 1200px) {
+  body .container {
+    max-width: 90% !important;
+  }
+}
+
+.graphcard {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+  padding: 15px;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.flexwraper {
+  display: flex;
+}
+
+@-webkit-keyframes animate-height {
+  0% {
+    height: 0;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@-moz-keyframes animate-height {
+  0% {
+    height: 0;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes animate-height {
+  0% {
+    height: 0;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+.graphtable {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.graph-wrapper {
+  display: table-row;
+  width: 100%;
+  align-items: center;
+  border-bottom: 1px solid #3a6491;
+  position: relative;
+}
+
+.graph-title {
+  position: relative;
+}
+
+.graph-title::after {
+  content: "";
+  width: 130px;
+  background-color: #3a6491;
+  height: 1px;
+  position: absolute;
+  bottom: -1px;
+}
+
+.graph-title::after {
+  right: -130px;
+}
+
+.lines-s .graph-title::after {
+  left: -130px;
+}
+
+.lines-s .graph-title {
+  border-right: 0px;
+  color: #ffffff;
+}
+
+.lines-s {
+  flex: 0 0 auto;
+  width: 10px;
+}
+
+.graph-bottom-navigation {
+  border-bottom: 0px !important;
+}
+
+.graph-bottom-navigation .date-lists {
+  padding: 15px 30px;
+  text-align: center;
+  padding-right: 40px;
+  display: table-cell;
+}
+
+.graphloop {
+  padding: 0px 30px;
+  display: table-cell;
+  padding-right: 50px;
+}
+
+.graph-group {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid #3a6491;
+}
+
+.graplist {
+  justify-content: space-between;
+  flex: 0 0 auto;
+  width: calc(100% - 255px);
+  margin: auto;
+  padding-bottom: 3px;
+}
+
+.graphtitle {
+  white-space: nowrap;
+  width: 115px;
+  font-weight: 600;
+  color: #3a6491;
+}
+
+.graph-title {
+  display: flex;
+  align-items: center;
+  height: 71px;
+  border-bottom: 1px solid #3a6491;
+  border-right: 1px solid #3a6491;
+}
+
+.barchart {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  align-items: flex-end;
+  padding-top: 10px;
+}
+
+.barline {
+  width: 20px;
+  position: relative;
+  height: 0px;
+  margin: 0px 4px;
+  background: rgb(25, 186, 113);
+  background: linear-gradient(
+          180deg,
+          rgba(25, 186, 113, 1) 40%,
+          rgba(47, 85, 70, 1) 100%
+  );
+  animation: animate-height;
+  -webkit-animation: animate-height;
+  -moz-animation: animate-height;
+  animation: animate-height;
+  animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  -webkit-animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  -moz-animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  animation-duration: 0.4s;
+  -webkit-animation-duration: 0.4s;
+  -moz-animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+// .barline:hover {
+//   background: rgb(226, 149, 56);
+//   background: linear-gradient(
+//     180deg,
+//     rgba(226, 149, 56, 1) 40%,
+//     rgba(246, 229, 70, 1) 100%
+//   );
+// }
+.hover {
+  background: rgb(226, 149, 56);
+  background: linear-gradient(
+          180deg,
+          rgba(226, 149, 56, 1) 40%,
+          rgba(246, 229, 70, 1) 100%
+  );
+}
+
+// .hoverbox {
+//   position: absolute;
+//   top: -10px;
+//   background-color: #fff;
+//   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+//   min-width: 120px;
+//   z-index: 100;
+//   left: 23px;
+//   padding: 3px;
+//   transition: all 0.2s ease-in-out 0s;
+//   opacity: 0;
+//   border: 1px solid black;
+//   display: none;
+//   border-radius: 10px;
+// }
+// .hoverbox {
+//   position: absolute;
+//   top: -10px;
+//   background-color: #fff;
+//   box-shadow: 1px 1px 30px rgba(0,0,0,0.22);
+//   min-width: 160px;
+//   z-index: 100;
+//   left: 23px;
+//   padding: 10px;
+//   transition: all 0.2s ease-in-out 0s;
+//   border: 1px solid #777;
+//   border-radius: 15px;
+// }
+.hoverbox {
+  position: absolute;
+  top: -10px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.22);
+  min-width: 185px;
+  z-index: 100;
+  left: 23px;
+  padding: 10px;
+  transition: all 0.2s ease-in-out 0s;
+  border: 1px solid #777777;
+  border-radius: 15px;
+  display: none;
+}
+
+.graphtable .graph-wrapper:nth-last-child(2) .hoverbox {
+  top: inherit;
+  bottom: 0 !important;
+}
+
+.graphtable .graph-wrapper:nth-last-child(3) .hoverbox {
+  top: inherit;
+  bottom: 0 !important;
+}
+
+.graph-wrapper .graphloop:last-child .hoverbox {
+  left: inherit;
+  right: 25px;
+}
+
+.hoverbox .arrow {
+  display: none;
+}
+
+.barline:hover .hoverbox {
+  opacity: 1;
+  display: block;
+}
+
+.hoverbox p {
+  font-size: 14px;
+  margin-bottom: 2px;
+  color: #000000;
+  font-weight: 400;
+}
+
+.hoverbox .arrow {
+  position: absolute;
+  display: block;
+  width: 1rem;
+  height: 0.5rem;
+  margin: 0 0.3rem;
+}
+
+.hoverbox .arrow::after,
+.hoverbox .arrow::before {
+  position: absolute;
+  display: block;
+  content: "";
+  border-color: transparent;
+  border-style: solid;
+  left: -17px;
+  top: 8px;
+  border-right-color: rgba(0, 0, 0, 0.25);
+  border-width: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.hoverbox .arrow::after {
+  border-right-color: #ffffff;
+  left: -16px;
+  top: 7px;
+}
+
+/*
+ *  STYLE 2
+ */
+
+.customscroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: none;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #3a6491;
+}
+
+.customscroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #f5f5f5;
+}
+
+.customscroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: none;
+  background-color: #3a6491;
+  border: 1px solid #3a6491;
+}
+
+.dropdownmenu {
+  position: relative;
+  border: 1px solid #3a6491;
+  padding: 6px 12px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  .dropdown-menu {
+    top: 0;
+    min-width: 200px;
+  }
+}
+
+.dropdownmenu svg {
+  padding-left: 6px;
+  margin-left: 5px;
+  border-left: 1px solid #3a6491;
+  width: 21px;
+}
+
+.labelvalue {
+  cursor: pointer;
+  color: #777777;
+  font-weight: 400;
+}
+
+.selctmenu {
+  position: absolute;
+  bottom: 26px;
+}
+
+.selctmenu .dropdown-menu {
+  transform: translate3d(5px, 35px, 0px) !important;
+}
+
+.dropdownmenu .dropdown-item {
+  padding: 6px 10px;
+  color: #000000;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+:checked + label {
+  color: #5abf83;
+}
+
+.zoombtn {
+  position: absolute;
+  right: 7px;
+  bottom: 26px;
+}
+
+.zoombtn #zoombar {
+  display: flex;
+  align-items: center;
+}
+
+.zoombtn span {
+  font-size: 13px;
+  font-weight: 300;
+  color: #3a6491;
+  margin: 0px 2px;
+}
+
+.zoombtn button {
+  background-color: #ffff;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 14px;
+  color: #3a6491;
+  border: 1px solid #3a6491;
+  border-radius: 50%;
+}
+
+.zoombtn button:hover {
+  background-color: #3a6491;
+  color: #ffffff;
+}
+
+.zoombtn button:focus {
+  outline: none;
+}
+
+.graphtable.zoomin1 .barline {
+  width: 15px;
+}
+
+.graphtable.zoomin1 .graphloop {
+  padding: 0px 6px;
+  padding-right: 40px;
+}
+
+.graphtable.zoomin1 .barchart {
+  justify-content: center;
+}
+
+.graphtable.zoomin1 .graph-bottom-navigation .date-lists {
+  padding-left: 5px;
+  padding-right: 40px;
+}
+
+/* .graphtable.zoomin1 .graph-wrapper::after {
+  content: "";
+  width: 110px;
+  background-color: #3a6491;
+  height: 1px;
+  position: absolute;
+  bottom: -1px;
+}
+ @media (min-width: 1600px) {
+  .graphtable.zoomin1 .graph-wrapper::after {
+    width: 300px;
+  }
+} */
+.graphtable.zoomin1 .graph-bottom-navigation.graph-wrapper::after {
+  display: none;
+}

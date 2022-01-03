@@ -17,8 +17,8 @@ const settingsSchema = schema({
         methods: schema({
           generateUser: String,
           userExists: String,
-          getFeedback: String,
-          recentFeedback: String
+          getRecords: String,
+          recentCompleted: String
         })
       }),
       content: schema({

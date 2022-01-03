@@ -8,9 +8,10 @@ import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
+import { getUserName } from '../../utils/getUserName'
 import classLanguage from './i18n/classLanguage'
-import { denormalizeFeedback } from '../../../api/feedback/denormalizeFeedback'
-import './visualization/visualization.html'
+import visualizationData from './data/visualization'
+import './visualization/visualization'
 import './class.html'
 
 Template.class.onCreated(function () {
@@ -101,61 +102,77 @@ Template.class.onCreated(function () {
     const dimension = dimensionDoc._id
     const users = userDocs.map(userDoc => userDoc.account._id)
 
-    OtuLea.getFeedback({ users, dimension })
-      .then(feedback => {
-        // if no docs have been found then these users have not completed tests
-        // for this dimension yet; we need to communicate this
-        if (!feedback || feedback.length === 0) {
-          return instance.state.set({
-            hasFeedback: false,
-            feedbackLoaded: true
-          })
-        }
+    OtuLea.getRecords({ users, dimension })
+      .then((records) => instance.state.set({ records }))
+      .catch(instance.api.notify)
+  })
 
-        const processed = denormalizeFeedback({ feedback })
+  const byNewestDate = (a, b) => new Date(b.completedAt) - new Date(a.completedAt)
 
-        // load alpha docs
+  instance.autorun(() => {
+    const records = instance.state.get('records')
+    const userDocs = instance.state.get('users')
 
-        callMethod({
-          name: AlphaLevel.methods.get,
-          args: { ids: processed.alphaLevelIds },
-          failure: instance.api.notify,
-          success: (alphaLevelDocs = []) => {
-            instance.api.debug({ alphaLevelDocs })
-            alphaLevelDocs.forEach(doc => {
-              AlphaLevel.localCollection().upsert(doc._id, { $set: doc })
-            })
-            instance.state.set('alphaLevelDocsLoaded', true)
-          }
+    if (!userDocs?.length || !records?.length) { return }
+
+    const userMap = new Map()
+    userDocs.forEach(user => userMap.set(user.account._id, user))
+
+    let id = 0
+
+    const recordsByUser = new Map()
+    records.forEach(record => {
+      if (!recordsByUser.has(record.userId)) {
+        const user = userMap.get(record.userId)
+        recordsByUser.set(record.userId, {
+          _id: record.userId,
+          name: getUserName(user),
+          allDate: []
         })
+      }
 
-        // load competency docs
+      const userRecords = recordsByUser.get(record.userId)
+      const levels = [
+        {
+          alpha: 'Alpha-Level 5',
+          value: 0,
+        },
+        {
+          alpha: 'Alpha-Level 4',
+          value: 0,
+        },
+        {
+          alpha: 'Alpha-Level 3',
+          value: 0,
+        },
+        {
+          alpha: 'Alpha-Level 2',
+          value: 0,
+        },
+        {
+          alpha: 'Alpha-Level 1',
+          value: 0,
+        },
+      ]
 
-        callMethod({
-          name: Competency.methods.get,
-          args: { ids: processed.competencyIds },
-          failure: instance.api.notify,
-          success: (competencyDocs = []) => {
-            instance.api.debug({ competencyDocs })
-            competencyDocs.forEach(doc => {
-              Competency.localCollection().upsert(doc._id, { $set: doc })
-            })
-            instance.state.set('competencyDocsLoaded', true)
-          }
-        })
-
-        instance.state.set({
-          hasFeedback: true,
-          feedbackLoaded: true,
-          processed: processed
-        })
+      record.alphaLevels.forEach(entry => {
+        const index = levels.length - entry.level
+        levels[index].value = Math.round(entry.perc * 10)
+        levels[index].alpha = entry.description
       })
-      .catch(e => {
-        instance.state.set({
-          feedbackLoaded: true
-        })
-        instance.api.notify(e)
+
+
+      userRecords.allDate.push({
+        id: `graph${++id}`,
+        date: new Date(record.completedAt).toLocaleDateString(),
+        level: levels
       })
+    })
+
+
+
+    const results = Array.from(recordsByUser.values()).filter(doc => doc.allDate.length > 0)
+    instance.state.set({ results, hasFeedback: results.length > 0 })
   })
 })
 
@@ -184,9 +201,6 @@ Template.class.helpers({
   hasFeedback () {
     return Template.getState('hasFeedback')
   },
-  processed () {
-    return Template.getState('processed')
-  },
   competencyDoc (id) {
     return Template.getState('competencyDocsLoaded') &&
       Competency.localCollection().findOne(id)
@@ -200,6 +214,10 @@ Template.class.helpers({
   },
   courseDoc () {
     return Template.getState('courseDoc')
+  },
+  visualizationData () {
+    const results = Template.getState('results')
+    return results && { results }
   }
 })
 

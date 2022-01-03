@@ -1,3 +1,46 @@
 <template name="visualization">
-    visualization here
+    {{#onLoaded loaded=loadComplete}}
+    <div>
+        <div class="block p-4">
+            <h4 class="mt-1 text-lightdark">Kurs August 2020</h4>
+            <p class="mt-4 text-lightdark">{{i18n "visualization.overview"}}</p>
+            <!-- <div id="simpleGraph"></div> -->
+            <div class="graphcard" id="graphcard"></div>
+            <!-- <div class="graphwraper"> -->
+            <!-- <div id="myDynamicTable" class="table mb-0"></div> -->
+            <!-- <div class="datetable">
+                <div id="setDate" class="date text-info"></div>
+              </div> -->
+            <!--JS-->
+            <!-- </div> -->
+            <!-- drop-down -->
+            <!-- <div id="container"></div>
+            <br />
+            <div>
+              <button id="generate">Generate</button>
+            </div> -->
+            <!-- end drop-down... -->
+            <div style="display: flex; justify-content: space-between">
+                <div style="margin-top: 30px; color: #777">
+                    {{i18n "visualization.description"}}
+                </div>
+                <div style="margin-top: 30px">
+                    <div class="d-flex align-items-center">
+                        <div style="color: #777">{{i18n "visualization.testDate"}}:</div>
+                        <div class="selectoption ml-3">
+                            <select class="form-control select-control">
+                                <option>Test Wom 29.09.2020</option>
+                                <option>Test Wom 30.09.2020</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="GraphCol" class="row mt-5"></div>
+        </div>
+
+    </div>
+    <canvas id="visualization-canvas"></canvas>
+    {{/onLoaded}}
 </template>

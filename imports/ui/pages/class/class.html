@@ -20,12 +20,17 @@
                 {{> loading title="otulea"}}
             </div>
         {{/unless}}
-        {{#onLoaded loaded=feedbackLoaded}}
+        {{#onLoaded loaded=visualizationData}}
             {{#unless hasFeedback}}
                 <div class="alert alert-warning mt-3">
                     {{i18n "pages.class.noFeedback"}}
                 </div>
             {{else}}
+                {{#if visualizationData}}
+                    {{> visualization visualizationData}}
+                {{/if}}
+
+
                 {{#with processed}}
                     <h3>AlphaLevels</h3>
                     <ul class="list-group">

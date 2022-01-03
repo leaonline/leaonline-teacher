@@ -65,13 +65,15 @@
                 {{/with}}
 
                 {{#if completedCourses}}
-                    {{> button
+                    {{#button
                             class="modal-trigger mt-5"
                             data-target="archived"
                             data-type="course"
                             colortype="secondary"
-                            sm=true
-                            label=(i18n "pages.myClasses.archivedClasses")}}
+                            sm=true}}
+                        <span>{{i18n "pages.myClasses.archivedClasses"}}</span>
+                        <span class="badge badge-light">{{completedCourses.count}}</span>
+                    {{/button}}
                 {{/if}}
             </div>
 
@@ -155,13 +157,15 @@
                 {{/with}}
 
                 {{#if completedCourses}}
-                    {{> button
+                    {{#button
                             class="modal-trigger"
                             data-target="archived"
                             data-type="user"
                             colortype="secondary"
-                            sm=true
-                            label=(i18n "pages.myClasses.archivedUsers")}}
+                            sm=true}}
+                        <span>{{i18n "pages.myClasses.archivedUsers"}}</span>
+                        <span class="badge badge-light">{{archivedUsers.length}}</span>
+                    {{/button}}
                 {{/if}}
             </div>
         </div>
