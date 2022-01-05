@@ -63,18 +63,7 @@ Template.class.onCreated(function () {
 
     instance.api.debug('load dimensions')
 
-    callMethod({
-      name: Dimension.methods.all,
-      args: {},
-      failure: instance.api.notify,
-      success: (dimensionDocs) => {
-        dimensionDocs.forEach(doc => {
-          Dimension.localCollection().upsert(doc._id, { $set: doc })
-        })
 
-        instance.state.set('dimensionsLoaded', dimensionDocs.length > 0)
-      }
-    })
 
     instance.api.debug('load users')
 

@@ -12,13 +12,10 @@
 <!-- the login render target is used for logged-in users -->
 
 <template name="main-render-target">
-    {{> navTop}}
     <div class="mainwrapper">
         {{> navSide class="d-none d-md-block"}}
-        <div class="contentwrapper w-100 vh-100 d-flex p-4">
-            <main role="main" class="w-100 h-100">
-                {{> yield}}
-            </main>
+        <div class="contentwrapper w-100 vh-100 d-flex">
+            <main role="main" class="w-100 h-100">{{> yield}}</main>
         </div>
         {{> navBottom}}
     </div>

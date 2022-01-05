@@ -29,8 +29,20 @@ Meteor.startup(() => {
 })
 
 Accounts.config({
-  forbidClientAccountCreation: true
+  forbidClientAccountCreation: true,
+  defaultFieldSelector: {
+    _id: 1,
+    firstName: 1,
+    lastName: 1,
+    roles: 1,
+    'services.lea.firstName': 1,
+    'services.lea.lastName': 1,
+    'services.lea.email': 1,
+    'services.lea.roles': 1
+  }
 })
+
+/* TODO remove when Accounts.config.defaultFieldSelector is fixed */
 
 Meteor.publish(null, function () {
   const { userId } = this

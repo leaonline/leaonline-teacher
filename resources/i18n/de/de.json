@@ -28,7 +28,8 @@
     "progress": "Fortschritt"
   },
   "form": {
-    "selectOne": "(Bitte wählen)"
+    "selectOne": "(Bitte wählen)",
+    "selectName": "({{name}} wählen)"
   },
   "alphaLevel": {
     "title": "Alpha-Level"

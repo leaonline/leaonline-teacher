@@ -35,6 +35,7 @@
                 {{/nav}}
             {{/onLoaded}}
         </div>
+        {{!--
         {{#if currentParticipant}}
         <div class="userinfo">
             <a class="toggleicon lefticonsidebar sidebar-left-toggle" href>
@@ -46,21 +47,23 @@
             </a>
 
             {{#unless hidden}}
-            <div class="sidebarwrapper">
-                {{#with currentParticipant}}
-                <div class="profiles w-100 text-center overflow-hidden">
-                    <img src="/images/user.png" alt="user" />
-                    <div class="pro-captions">
-                        <h5 class="text-white">{{this.firstName}} {{this.lastName}}</h5>
-                        <h5 class="text-white">{{this.account.code}}</h5>
-                        {{! TODO list courses}}
+                <div class="sidebarwrapper">
+                    {{#with currentParticipant}}
+                    <div class="profiles w-100 text-center overflow-hidden">
+                        <img src="/images/user.png" alt="user" />
+                        <div class="pro-captions">
+                            <h5 class="text-white">{{this.firstName}} {{this.lastName}}</h5>
+                            <h5 class="text-white">{{this.account.code}}</h5>
+                            {{! TODO list courses}}
+                        </div>
                     </div>
+                    {{/with}}
                 </div>
-                {{/with}}
-            </div>
+                <div id="user-filters"></div>
             {{/unless}}
         </div>
         {{/if}}
+        --}}
     </nav>
     </div>
 </template>

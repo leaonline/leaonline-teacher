@@ -7,7 +7,7 @@
     {{#onLoaded loaded=loadComplete}}
         <select class="form-control border-{{color}} text-{{color}}"
                 id="dimension-select">
-            <option value="">{{i18n "form.selectOne"}}</option>
+            <option value="">{{i18n "form.selectName" name=(i18n "dimensions.title")}}</option>
             {{#each dimension in dimensions}}
                 <option value="{{dimension._id}}">{{dimension.title}}</option>
             {{/each}}

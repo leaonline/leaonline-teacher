@@ -1,5 +1,100 @@
 <template name="user">
-    <h1 class="float-left">
+    <div class="user-container h-100 d-flex">
+    {{! ================== SIDEBAR ========================================}}
+    {{#unless sidebarHidden}}
+        <div class="user-sidebar bg-dark">
+        {{!--
+        <a class="toggleicon lefticonsidebar sidebar-left-toggle" href>
+            {{#unless hidden}}
+                {{> icon name="angle-left"}}
+            {{else}}
+                {{> icon name="angle-right"}}
+            {{/unless}}
+        </a>
+        --}}
+            <div class="user-sidebar-wrapper mt-4">
+                {{#with user}}
+                    <div class="profiles w-100 text-center overflow-hidden">
+                        <img src="/images/user.png" alt="user" />
+                        <div class="pro-captions">
+                            <h5 class="text-white">{{this.firstName}} {{this.lastName}}</h5>
+                            <h5 class="text-white">{{this.account.code}}</h5>
+                            {{! TODO list courses}}
+                        </div>
+                    </div>
+                {{/with}}
+            </div>
+
+            {{! ---------- filters ---------- }}
+
+            {{#if competenciesLoaded}}
+            <div id="user-filters text-center">
+
+                {{! alpha-levels }}
+                <div class="alpha-levels mt-3 px-2">
+                {{#each alphaLevel in alphaLevels}}
+                    <div class="form-check">
+                        <input class="form-check-input filter-input"
+                               id="checkbox-{{alphaLevel._id}}"
+                               type="checkbox"
+                               value=""
+                               data-target="alphaLevel"
+                               data-key="level"
+                               data-value="{{alphaLevel.level}}"
+                               checked="{{#if alphaLevel.active}}checked{{/if}}">
+                        <label class="form-check-label text-white" for="checkbox-{{alphaLevel._id}}">
+                            {{i18n "alphaLevel.title"}} {{alphaLevel.level}}
+                        </label>
+                    </div>
+                {{/each}}
+                </div>
+
+                {{! accomplishement level}}
+                <div class="accomplishment-levels mt-4 px-2">
+                {{#each level in accomplishments}}
+                    <div class="form-check">
+                        <input class="form-check-input filter-input"
+                               id="acc-checkbox-{{level.value}}"
+                               type="checkbox"
+                               value=""
+                               data-target="gradeName"
+                               data-value="{{level.value}}"
+                               checked="{{#if level.active}}checked{{/if}}">
+                        <label class="form-check-label text-white" for="acc-checkbox-{{level.value}}">
+                            {{i18n level.label}}
+                        </label>
+                    </div>
+                {{/each}}
+                </div>
+
+                {{! development status }}
+                <div class="development-status mt-4 px-2">
+                    {{#each status in development}}
+                        <div class="form-check">
+                            <input class="form-check-input filter-input"
+                                   id="dev-checkbox-{{status.value}}"
+                                   type="checkbox"
+                                   value=""
+                                   data-target="development"
+                                   data-value="{{status.value}}"
+                                   checked="{{#if status.active}}checked{{/if}}">
+                            <label class="form-check-label text-white" for="dev-checkbox-{{status.value}}">
+                                {{> icon name=status.icon class="text-primary"}}
+                                {{i18n status.label}}
+                            </label>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    {{/unless}}
+
+
+    {{! ================== CONTENT ========================================}}
+    <div class="user-page-content p-4 flex-fill h-100">
+    <div class="d-flex align-items-baseline">
+    <h1 class="mr-auto">
         {{#with user}}
             {{#if this.account.code}}
                 {{this.account.code}} -
@@ -9,23 +104,126 @@
     </h1>
 
     {{#onLoaded loaded=loadComplete}}
-    <div class="float-right">
-        <select id="date-select" class="form-control">
-            <option value="">{{i18n "form.selectOne"}}</option>
-            <option value="all">{{i18n "pages.user.allDates"}}</option>
-            {{#each entry in sessionDocs}}
-                <option value="{{entry._id}}">{{toLocaleDate entry.completedAt}}</option>
-            {{/each}}
-        </select>
-    </div>
+        <div class="ml-auto d-flex">
+            {{! dimension select}}
+            <select id="dimension-select"
+                    class="form-control border-{{color}} text-{{color}}">
+                <option value="">
+                    {{i18n "form.selectName" name=(i18n "dimension.title")}}
+                </option>
+                {{#each dimension in dimensions}}
+                    <option value="{{dimension._id}}">
+                        {{dimension.title}}
+                    </option>
+                {{/each}}
+            </select>
+
+            {{! test date select }}
+            {{#with recordDates}}
+                <select id="record-select" class="form-control">
+                    <option value="">
+                        {{i18n "form.selectName" name=(i18n "record.title")}}
+                    </option>
+                    <option value="all">
+                        {{i18n "pages.user.allDates"}}
+                    </option>
+                    {{#each entry in this}}
+                        <option value="{{@index}}">
+                            {{toLocaleDate entry "date"}}
+                        </option>
+                    {{/each}}
+                </select>
+            {{else}}
+                <select id="record-select"
+                        class="form-control disabled"
+                        disabled>
+                    <option value="">
+                        {{i18n "form.selectName" name=(i18n "record.title")}}
+                    </option>
+                </select>
+            {{/with}}
+        </div>
     {{/onLoaded}}
+    </div>
+
+    {{#if noRecords}}
+        <div class="alert alert-warning">
+            {{i18n "pages.user.noRecords"}}
+        </div>
+    {{/if}}
+
+
+    {{#if competencyCategories}}
+        {{#each category in competencyCategories}}
+            <div class="row bg-gray rounded m-0 p-3">
+                <h3 class="col-12 font-weight-bold text-light p-2">{{category.name}}</h3>
+
+                {{#each competency in category.entries}}
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 competency-card {{#unless competency.isActive}}d-none{{/unless}}"
+                        data-target="{{competency._id}}">
+                        {{#unless flipped competency._id}}
+                            <div class="card-wrapper bg-white rounded h-100">
+                            <div class="d-flex justify-content-between py-1 px-3">
+                                <span>
+                                    {{i18n "alphaLevel.title"}}
+                                    {{competency.alphaLevel.level}}
+                                </span>
+                                {{> icon name="info"}}
+                            </div>
+                            <hr>
+                            <div class="text-center p-2 font-weight-bold">
+                                {{competency.shortCode}}: {{competency.description}}
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                {{! left side: competency development status }}
+                                <span class="w-50">
+                                    <span class="d-block text-center text-primary">
+                                        {{#onLoaded loaded=competenciesLoaded}}
+                                            {{>icon name=competency.icon}}
+                                        {{/onLoaded}}
+                                    </span>
+                                    <span class="d-block text-center">
+                                        {{i18n competency.developmentLabel}}
+                                    </span>
+                                </span>
+
+                                {{! right side: competency accomplishement }}
+                                <span class="w-50 text-center">
+                                    <div class="progress" style="height: 0.5rem;">
+                                        <div class="progress-bar bg-success"
+                                             role="progressbar"
+                                             style="width: {{competency.perc}}%"
+                                             aria-valuenow="{{competency.perc}}"
+                                             aria-valuemin="0"
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                    {{i18n competency.gradeLabel}}
+                                </span>
+                            </div>
+                        </div>
+                        {{else}}
+                            <div class="card-wrapper bg-success rounded h-100">
+                                <div class="d-flex py-1 px-3">
+                                    Assumenda debitis autem soluta unde dolores. Quo nisi mollitia eos. Doloremque officia minima qui velit repudiandae consectetur a enim. Architecto est modi aut. Aut suscipit repellendus iste adipisci qui est voluptas dicta. Fugit et libero delectus commodi et voluptas autem autem.
+                                </div>
+                            </div>
+                        {{/unless}}
+                    </div>
+                {{/each}}
+            </div>
+        {{/each}}
+    {{/if}}
 
     {{#if noData}}
         <div class="alert alert-warning p-5">
-        {{#onLoaded loaded=loadComplete}}
-            {{i18n "pages.user.noData"}}
-        {{/onLoaded}}
+            {{#onLoaded loaded=loadComplete}}
+                {{i18n "pages.user.noData"}}
+            {{/onLoaded}}
         </div>
     {{/if}}
+    </div>
+    </div>
 </template>
 
