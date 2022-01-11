@@ -130,7 +130,8 @@ class Remote {
   // ---------------------------------------------------------------------------
 
   async login (user) {
-    this.debug('logout')
+    this.debug('login')
+
     if (!this.isConnected()) {
       throw new Error('remote.notConnected')
     }
@@ -140,12 +141,13 @@ class Remote {
       return false
     }
 
+    this.debug('logging in')
     this.loginStatus.set('loggingIn', true)
 
     let loggedIn
 
     try {
-    // support isomorphic code so we have an external login method to call
+      // support isomorphic code so we have an external login method to call
       loggedIn = await login.call(this, user)
       this.loginStatus.set({ loggedIn })
     }
@@ -186,6 +188,7 @@ class Remote {
     let loggedOut
     try {
       loggedOut = await DDP.logout(connection)
+      this.debug({ loggedOut })
       this.loginStatus.set('loggedIn', !loggedOut)
     }
 
@@ -228,15 +231,21 @@ const login = isomorphic({
     import { OAuth } from 'meteor/oauth'
 
     return async function (user) {
-      this.debug('login')
-      if (!this.isConnected()) {
+      const remote = this
+      remote.debug('login user', user?._id)
+
+      if (!remote.isConnected()) {
         throw new Error('remote.notConnected')
       }
 
+      remote.debug('services', user)
+      const loginTokens = OAuth.sealSecret(user?.services?.resume?.loginTokens)
+      const { hashedToken } = loginTokens.pop()
       const accessToken = OAuth.sealSecret(user?.services?.lea?.accessToken)
-      const options = { accessToken }
-      const connection = getConnection(this)
-      return await DDP.loginWithLea(connection, options)
+      const options = { accessToken, resume: hashedToken, debug: true }
+      const connection = getConnection(remote)
+
+      return DDP.loginWithLea(connection, options)
     }
   },
   client: function () {
@@ -244,9 +253,11 @@ const login = isomorphic({
 
     return function (user) {
       const remote = this
+      remote.debug('login user', user?._id)
 
       return new Promise((resolve, reject) => {
         const connection = getConnection(remote)
+
         if (!remote.isConnected()) {
           return reject(new Error('remote.notConnected'))
         }

@@ -9,13 +9,16 @@ import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import { getUserName } from '../../utils/getUserName'
+import { loadDimensions } from '../../loaders/loadDimensions'
+import { dataTarget } from '../../utils/dataTarget'
 import classLanguage from './i18n/classLanguage'
-import visualizationData from './data/visualization'
 import './visualization/visualization'
+import './class.scss'
 import './class.html'
 
 Template.class.onCreated(function () {
   const instance = this
+  instance.state.set('openCards', {})
 
   // reset current participant, in case we come from a participant page
   State.currentParticipant(null)
@@ -55,15 +58,13 @@ Template.class.onCreated(function () {
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc) return
 
-    console.debug(courseDoc)
-
     if (!courseDoc.users?.length) {
-      // TODO fix when course has no users :-(
+      return instance.state.set('noUsers', true)
     }
 
-    instance.api.debug('load dimensions')
-
-
+    loadDimensions()
+      .catch(instance.api.notify)
+      .finally(() => instance.state.set('dimensionsLoaded', true))
 
     instance.api.debug('load users')
 
@@ -96,7 +97,7 @@ Template.class.onCreated(function () {
       .catch(instance.api.notify)
   })
 
-  const byNewestDate = (a, b) => new Date(b.completedAt) - new Date(a.completedAt)
+  const byCreationDate = (a, b) => b.completedAt.getTime() - a.completedAt.getTime()
 
   instance.autorun(() => {
     const records = instance.state.get('records')
@@ -108,9 +109,15 @@ Template.class.onCreated(function () {
     userDocs.forEach(user => userMap.set(user.account._id, user))
 
     let id = 0
-
     const recordsByUser = new Map()
-    records.forEach(record => {
+    const competencyCategories = new Map()
+    const alphaLevels = new Map()
+    const userDateCompetencyKeys = new Set()
+
+    records.sort(byCreationDate).forEach(record => {
+      console.debug(record.completedAt.toLocaleDateString(), record.userId)
+      // first, check if there is no record yet
+      // for the current user and create one for her
       if (!recordsByUser.has(record.userId)) {
         const user = userMap.get(record.userId)
         recordsByUser.set(record.userId, {
@@ -120,48 +127,155 @@ Template.class.onCreated(function () {
         })
       }
 
+      // get the record and search all dates, if there is already a date
+      // entry => this is because, maybe someone has tested a dimension
+      // in multiple levels on the same day
       const userRecords = recordsByUser.get(record.userId)
-      const levels = [
-        {
-          alpha: 'Alpha-Level 5',
-          value: 0,
-        },
-        {
-          alpha: 'Alpha-Level 4',
-          value: 0,
-        },
-        {
-          alpha: 'Alpha-Level 3',
-          value: 0,
-        },
-        {
-          alpha: 'Alpha-Level 2',
-          value: 0,
-        },
-        {
-          alpha: 'Alpha-Level 1',
-          value: 0,
-        },
-      ]
+      const existingDate = userRecords.allDate.find(d => d.date === record.completedAt.toLocaleDateString())
 
-      record.alphaLevels.forEach(entry => {
-        const index = levels.length - entry.level
-        levels[index].value = Math.round(entry.perc * 10)
-        levels[index].alpha = entry.description
-      })
+      // existing dates will be directly updated in the data-structure
+      if (existingDate) {
+        record.alphaLevels.forEach(entry => {
+          const index = existingDate.level.length - entry.level
+          existingDate.level[index].value = Math.round(entry.perc * 10)
+          existingDate.level[index].alpha = entry.description
+        })
+      }
 
+      // existing dates will create a new data-structure
+      else {
+        const levels = [
+          {
+            alpha: 'Alpha-Level 5',
+            value: 0,
+          },
+          {
+            alpha: 'Alpha-Level 4',
+            value: 0,
+          },
+          {
+            alpha: 'Alpha-Level 3',
+            value: 0,
+          },
+          {
+            alpha: 'Alpha-Level 2',
+            value: 0,
+          },
+          {
+            alpha: 'Alpha-Level 1',
+            value: 0,
+          },
+        ]
 
-      userRecords.allDate.push({
-        id: `graph${++id}`,
-        date: new Date(record.completedAt).toLocaleDateString(),
-        level: levels
+        record.alphaLevels.forEach(entry => {
+          if (!alphaLevels.has(entry._id)) {
+            alphaLevels.set(entry._id, entry)
+          }
+
+          const index = levels.length - entry.level
+          levels[index].value = Math.round(entry.perc * 10)
+          levels[index].alpha = entry.description
+        })
+
+        userRecords.allDate.push({
+          id: `graph${++id}`,
+          date: record.completedAt.toLocaleDateString(),
+          level: levels
+        })
+      }
+
+      // additionally, process competencies for the list view
+      record.competencies.forEach(competency => {
+        const key = `${record.userId}-${competency._id}`
+
+        if (userDateCompetencyKeys.has(key)) {
+          console.debug('skip', key)
+          return
+        }
+        else {
+          userDateCompetencyKeys.add(key)
+        }
+
+        const categoryName = competency.category || 'undefined'
+
+        // we group them by their categories so we need
+        // a new entry for every new category, that occurs
+        if (!competencyCategories.has(categoryName)) {
+          competencyCategories.set(categoryName, {
+            name: categoryName,
+            entries: new Map(),
+            users: 0,
+            alphaAverage: 0
+          })
+        }
+
+        const category = competencyCategories.get(categoryName)
+
+        // the same applies for each new competency, that occurs
+        if (!category.entries.has(competency._id)) {
+          const alphaLevel = alphaLevels.get(competency.alphaLevel)
+
+          category.entries.set(competency._id, {
+            _id: competency._id,
+            description: competency.description,
+            shortCode: competency.shortCode,
+            perc: 0,
+            count: 0,
+            average: 0,
+            level: alphaLevel.level,
+            users: new Map()
+          })
+        }
+
+        // we need to sum up the perc values and create an average
+        // because we want a representation of the whole class
+        const entry = category.entries.get(competency._id)
+        entry.count++
+        entry.perc += competency.perc
+        entry.average = (entry.perc / entry.count) * 100
+        console.debug(competency.shortCode, key, entry.count, entry.perc, entry.average)
+
+        if (!entry.users.has(record.userId)) {
+          const user = userMap.get(record.userId)
+          entry.users.set(record.userId, {
+            _id: user._id,
+            name: getUserName(user),
+            perc: 0,
+            count: 0,
+            average: 0
+          })
+        }
+
+        const userDoc = entry.users.get(record.userId)
+        userDoc.perc = competency.perc * 100
+
+        if (entry.users.length > category.users) {
+          category.users = entry.users.length
+        }
       })
     })
 
+    const results = Array
+      .from(recordsByUser.values())
+      .filter(doc => doc.allDate.length > 0)
+    const hasFeedback = results.length > 0
 
+    // finally make maps to arrays
+    competencyCategories.forEach(category => {
+      category.entries = Array
+        .from(category.entries.values())
+        .map(entry => {
+          entry.users = Array.from(entry.users.values())
+          return entry
+        })
+    })
 
-    const results = Array.from(recordsByUser.values()).filter(doc => doc.allDate.length > 0)
-    instance.state.set({ results, hasFeedback: results.length > 0 })
+    instance.state.set({
+      results,
+      hasFeedback,
+      competencyCategories: Array.from(competencyCategories.values()),
+      openCards: {}
+    })
   })
 })
 
@@ -207,6 +321,18 @@ Template.class.helpers({
   visualizationData () {
     const results = Template.getState('results')
     return results && { results }
+  },
+  noUsers () {
+    return Template.getState('noUsers')
+  },
+  competencyCategories () {
+    return Template.getState('competencyCategories')
+  },
+  openCard (category, competency) {
+    const key = `${category}-${competency}`
+    const openCards = Template.getState('openCards')
+    console.debug(openCards[key])
+    return openCards[key]
   }
 })
 
@@ -219,5 +345,14 @@ Template.class.events({
     const color = selectedDimension && ColorType.byIndex(dimensionDoc.colorType)?.type
 
     templateInstance.state.set({ dimensionDoc, color })
+  },
+  'click .competency-entry' (event, templateInstance) {
+    event.preventDefault()
+    const category = dataTarget(event, 'category')
+    const competency = dataTarget(event, 'competency')
+    const key = `${category}-${competency}`
+    const openCards = templateInstance.state.get('openCards')
+    openCards[key] = !openCards[key]
+    templateInstance.state.set({openCards})
   }
 })

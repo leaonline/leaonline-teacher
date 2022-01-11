@@ -22,18 +22,9 @@ Template.visualization.onRendered(function () {
 
     // get max alpha level & date
     // TODO make this a module with API functions
-    var findMaxInAry = {
-      getMaxdatesInAry: 0,
-      getMaxlevelInAry: 0,
-      getMaxNameInAry: 0,
-      allDates: [],
-      allLevelsData: [],
-      allName: [],
-      datesHovers: [],
-    };
 
     setTimeout(() => {
-      setup(findMaxInAry, results)
+      const findMaxInAry = setup(results)
       addTable(findMaxInAry, results)
       setNewVerticalGraph({
         container: instance.$('#GraphCol')
@@ -52,7 +43,7 @@ Template.visualization.events({
 
 })
 
-function setup (findMaxInAry, resultData) {
+function setup (resultData) {
     var xAxisValue = [];
   setXaxisValue();
   function setXaxisValue() {
@@ -60,6 +51,16 @@ function setup (findMaxInAry, resultData) {
       xAxisValue.push(i);
     }
   }
+
+  const findMaxInAry = {
+    getMaxdatesInAry: 0,
+    getMaxlevelInAry: 0,
+    getMaxNameInAry: 0,
+    allDates: [],
+    allLevelsData: [],
+    allName: [],
+    datesHovers: [],
+  };
 
 
   for (let i = 0; i < resultData.length; i++) {
@@ -160,6 +161,8 @@ function setup (findMaxInAry, resultData) {
       }
     }
   }
+
+  return findMaxInAry
 }
 
 function addTable(findMaxInAry, resultData) {
@@ -212,6 +215,9 @@ function addTable(findMaxInAry, resultData) {
       var dropdownvalue = [];
       var trueValue = [];
       for (let i = 0; i < findMaxInAry.allName.length; i++) {
+        if (!resultData[i] || !resultData[i].allDate[date] || !resultData[i].allDate[date].level[level]) {
+          continue
+        }
         dropdownvalue.push(findMaxInAry.allName[i]);
         var barline = document.createElement("div");
         barline.classList.add("barline");

@@ -106,9 +106,9 @@ METEOR_PACKAGE_DIRS=${T_PACKAGE_DIRS}  \
     MOCHA_GREP=${T_FILTER} \
     BABEL_ENV=COVERAGE \
     COVERAGE=${T_COVERAGE} \
-    COVERAGE_OUT_TEXT_SUMMARY=1 \
-    COVERAGE_APP_FOLDER=$(pwd)/ \
-    COVERAGE_VERBOSE=${T_VERBOSE} \
+    COVERAGE_OUT_HTML=1 \
+    COVERAGE_APP_FOLDER=$PWD/ \
+    COVERAGE_VERBOSE_MODE=${T_VERBOSE} \
     meteor test \
         ${T_RUN_ONCE} \
         --driver-package=meteortesting:mocha \

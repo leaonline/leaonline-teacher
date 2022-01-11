@@ -58,7 +58,7 @@ launch-screen@1.3.0
 leaonline:accounts-lea@2.0.0
 leaonline:collection-factory@1.0.4
 leaonline:corelib@1.0.0
-leaonline:ddp-login@2.0.1
+leaonline:ddp-login@2.0.2
 leaonline:ejson-regexp@1.1.0
 leaonline:method-factory@1.1.0
 leaonline:oauth-lea@2.0.0

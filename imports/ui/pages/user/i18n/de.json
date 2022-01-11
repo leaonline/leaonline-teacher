@@ -15,6 +15,7 @@
   "competency": {
     "notAccomplished": "Nicht erfüllt",
     "accomplished": "Voll erfüllt",
+    "nearAccomplished": "Beinahe erfüllt",
     "partialAccomplished": "Teilweise erfüllt",
     "undefined": "Nicht bekannt",
     "new": "Zum ersten mal getestet",

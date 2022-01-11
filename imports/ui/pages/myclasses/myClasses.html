@@ -1,4 +1,5 @@
 <template name="myClasses">
+    <div class="myclasses-container p-4">
     {{#unless dataComplete}}
         <div class="alert alert-info">
             {{> loading}}
@@ -349,7 +350,7 @@
 
         {{/modal}}
     {{/onLoaded}}
-
+    </div>
 </template>
 
 <template name="cardItems">

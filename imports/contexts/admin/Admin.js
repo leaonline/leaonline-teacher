@@ -36,7 +36,8 @@ Admin.methods = {
         try {
           const user = Meteor.users.findOne(this.userId)
           const login = await ContentServer.login(user)
-          console.debug('[Admin]: logged in', login)
+
+          console.debug('[Admin]: logged in = ', login)
           const allDocs = await ContentServer.getAll({ context })
 
           allDocs[name].forEach(doc => {

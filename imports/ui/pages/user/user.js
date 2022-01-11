@@ -41,8 +41,8 @@ Template.user.onCreated(function () {
 
   instance.applyFilters = () => {
     const filters = instance.state.get('filters')
-    const hasKey =  typeof key === 'string'
     const competencyCategories = instance.state.get('competencyCategories')
+
     competencyCategories.forEach(category => {
       category.entries.forEach(competency => {
         const disabled = filters.some(({ target, hasKey, key, value }) => {
@@ -211,7 +211,7 @@ Template.user.events({
     templateInstance.state.set('competenciesLoaded', false)
     const records = templateInstance.state.get('records')
     const recordDates = templateInstance.state.get('recordDates')
-    const selected =  templateInstance.$(event.currentTarget).val()
+    const selected = templateInstance.$(event.currentTarget).val()
 
     if (!selected) {
       return templateInstance.state.set({
@@ -232,7 +232,6 @@ Template.user.events({
     const accomplishments = new Map()
     const development = new Map()
     const allCategory = i18n.get('competency.categories.all')
-
 
     selectedRecords.forEach(record => {
       record.alphaLevels.forEach(alphaLevel => {
@@ -310,7 +309,7 @@ Template.user.events({
     })
 
     setTimeout(() => {
-      templateInstance.state.set({competenciesLoaded: true })
+      templateInstance.state.set({ competenciesLoaded: true })
     }, 300)
   },
   'click .info-icon' (event, templateInstance) {
