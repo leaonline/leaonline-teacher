@@ -19,13 +19,17 @@ import { debounce } from '../../utils/debounce'
 import userLanguage from './i18n/userLanguage'
 import './user.scss'
 import './user.html'
+import { loadExampleTexts } from '../../loaders/loadExampleTexts'
 
 const toCompetencyTranslation = translationStringFactory('competency')
 
 Template.user.onCreated(function () {
   const instance = this
+
+  // set defaults to prevent access errors in helpers
   instance.state.set('filters', [])
   instance.state.set('flipped', {})
+  instance.state.set('exampleTexts', {})
 
   instance.init({
     contexts: [Course, Competency, CompetencyCategory, Dimension, AlphaLevel, User],
@@ -55,7 +59,7 @@ Template.user.onCreated(function () {
             competency.shortCode,
             competency.description,
             competency.example
-          ].some(target => target && target.includes(search))
+          ].some(target => target && target.toLowerCase().includes(search))
           disabled = !found
         }
 
@@ -143,15 +147,20 @@ Template.user.onCreated(function () {
     const userDoc = instance.state.get('userDoc')
     const dimensionDoc = instance.state.get('dimensionDoc')
 
+    // reset data to null to remove elements from DOM when user changes
+    instance.state.set({
+      records: null,
+      recordDates: null,
+      alphaLevels: null,
+      accomplishments: null,
+      development: null,
+      competencyCategories: null,
+      competenciesLoaded: null
+    })
+
     // we can only continue if we have loaded the current user doc
     // and the remote is connected AND logged-in
-    if (!dimensionDoc || !userDoc || !OtuLea.isLoggedIn()) {
-      return instance.state.set({
-        records: null,
-        recordDates: null,
-        competencyCategories: null
-      })
-    }
+    if (!dimensionDoc || !userDoc || !OtuLea.isLoggedIn()) { return }
 
     // load all feedbacks from all dimensions here for full-access
     OtuLea.getRecords({
@@ -209,6 +218,9 @@ Template.user.helpers({
   },
   development () {
     return Template.getState('development')
+  },
+  exampleText (_id) {
+    return _id && Template.getState('exampleTexts')[_id]
   },
   flipped (id) {
     return Template.getState('flipped')[id]
@@ -297,11 +309,20 @@ Template.user.events({
       })
     })
 
+    // use competencies map to load example texts
+    const ids = [...competencies.keys()]
+
+    if (ids.length > 0) {
+      loadExampleTexts(ids)
+        .then(exampleTexts => templateInstance.state.set({ exampleTexts }))
+        .catch(e => templateInstance.api.notify(e))
+    }
+
     const competencyCategories = new Map()
     competencies.forEach(comp => {
       const list = competencyCategories.has(comp.category)
         ? competencyCategories.get(comp.category)
-        : { name: comp.category, entries: [] }
+        : { name: comp.category, entries: [], active: true }
       list.entries.push(comp)
       competencyCategories.set(comp.category, list)
     })
@@ -368,7 +389,8 @@ Template.user.events({
     templateInstance.state.set({ flipped })
   },
   'input #search-input': debounce(function (event, templateInstance) {
-    const search = event.target.value
+    const search = (event.target.value || '').toLowerCase()
+    console.debug(search)
     templateInstance.state.set({ search })
     templateInstance.applyFilters()
   }, 300)

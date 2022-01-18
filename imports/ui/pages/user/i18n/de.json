@@ -29,6 +29,7 @@
     "improved": "Leistung verbessert",
     "declined": "Leistung verschlechtert",
     "categories": {
+      "title": "Kategorien an Kann-Beschreibungen",
       "all": "Ohne Kategorie"
     }
   },

@@ -4,7 +4,7 @@
     {{#unless sidebarHidden}}
         <div class="user-sidebar bg-dark">
         {{!--
-        <a class="toggleicon lefticonsidebar sidebar-left-toggle" href>
+        <a class="toggleic on lefticonsidebar sidebar-left-toggle" href>
             {{#unless hidden}}
                 {{> icon name="angle-left"}}
             {{else}}
@@ -28,10 +28,34 @@
             {{! ---------- filters ---------- }}
 
             {{#if competenciesLoaded}}
-            <div id="user-filters text-center">
+            <div id="user-filters text-center mt-4">
+
+                {{! competency categories }}
+                <div class="category-filters mt-3 px-3">
+                    <div class="text-white mb-1">
+                        {{i18n "competency.categories.title"}}
+                    </div>
+                    {{#each category in competencyCategories}}
+                        <div class="form-check">
+                            <input class="form-check-input filter-input"
+                                   id="checkbox-{{category.name}}"
+                                   type="checkbox"
+                                   value=""
+                                   data-target="category"
+                                   data-key="name"
+                                   data-value="{{category.name}}"
+                                   checked="{{#if category.active}}checked{{/if}}">
+                            <label class="form-check-label text-white font-weight-bold"
+                                   for="checkbox-{{category.name}}">
+                                {{category.name}}
+                            </label>
+                        </div>
+                    {{/each}}
+                </div>
+
 
                 {{! alpha-levels }}
-                <div class="alpha-levels mt-3 px-2">
+                <div class="alpha-levels mt-3 px-3">
                     <div class="text-white mb-1">
                         {{i18n "pages.user.filter.alphaLevel"}}
                     </div>
@@ -54,7 +78,7 @@
                 </div>
 
                 {{! accomplishement level}}
-                <div class="accomplishment-levels mt-4 px-2">
+                <div class="accomplishment-levels mt-4 px-3">
                     <div class="text-white mb-1">
                         {{i18n "pages.user.filter.accomplishments"}}
                     </div>
@@ -76,7 +100,7 @@
                 </div>
 
                 {{! development status }}
-                <div class="development-status mt-4 px-2">
+                <div class="development-status mt-4 px-3">
                     <div class="text-white mb-1">
                         {{i18n "pages.user.filter.development"}}
                     </div>
@@ -182,7 +206,7 @@
                 {{! competency-card = flip card }}
 
                 {{#each competency in category.entries}}
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 {{#if competency.example}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 {{#if exampleText competency._id}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
                         data-target="{{competency._id}}">
 
                         {{#unless flipped competency._id}}
@@ -193,7 +217,7 @@
                                     {{i18n "alphaLevel.title"}}
                                     {{competency.alphaLevel.level}}
                                 </span>
-                                {{#if competency.example}}
+                                {{#if exampleText competency._id}}
                                     {{> icon name="info"}}
                                 {{else}}
                                     <span></span>
@@ -236,7 +260,7 @@
                         {{! else render back page }}
                             <div class="card-wrapper bg-success rounded h-100">
                                 <div class="d-flex py-1 px-3">
-                                    {{competency.example}}
+                                    {{exampleText competency._id}}
                                 </div>
                             </div>
                         {{/unless}}
