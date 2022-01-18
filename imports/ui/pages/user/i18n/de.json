@@ -3,7 +3,12 @@
     "user": {
       "allDates": "Alle Testungen",
       "noData": "Es sind noch keine Testreihen von dieser Person abgeschlossen worden.",
-      "noRecords": "Es sind keine Einträge für diese Auswahl vorhanden."
+      "noRecords": "Es sind keine Einträge für diese Auswahl vorhanden.",
+      "filter": {
+        "alphaLevel": "Alpha-Level der Kann-Beschreibung",
+        "accomplishments": "Erfüllen der Kann-Beschreibung",
+        "development": "Vergleich zu vorherigen Leistungen"
+      }
     }
   },
   "dimension": {
@@ -14,6 +19,7 @@
   },
   "competency": {
     "notAccomplished": "Nicht erfüllt",
+    "notEnough": "Nicht genug getestet",
     "accomplished": "Voll erfüllt",
     "nearAccomplished": "Beinahe erfüllt",
     "partialAccomplished": "Teilweise erfüllt",
@@ -28,5 +34,8 @@
   },
   "alphaLevel": {
     "title": "α-Level"
+  },
+  "actions": {
+    "search": "Suchtext eingeben"
   }
 }

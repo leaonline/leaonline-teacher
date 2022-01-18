@@ -8,15 +8,17 @@ import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
 import { Competency } from '../../../contexts/content/competency/Competency'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
+import { ColorType } from '../../../contexts/content/color/ColorType'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import { loadDimensions } from '../../loaders/loadDimensions'
-import { ColorType } from '../../../contexts/content/color/ColorType'
 import { getCompetencyIcon } from '../../utils/competency/getCompetencyIcon'
-import userLanguage from './i18n/userLanguage'
 import { translationStringFactory } from '../../../api/i18n/translationStringFactory'
+import { dataTarget } from '../../utils/dataTarget'
+import { loadCompetencyCategories } from '../../loaders/loadCompetencyCategories'
+import { debounce } from '../../utils/debounce'
+import userLanguage from './i18n/userLanguage'
 import './user.scss'
 import './user.html'
-import { dataTarget } from '../../utils/dataTarget'
 
 const toCompetencyTranslation = translationStringFactory('competency')
 
@@ -40,21 +42,34 @@ Template.user.onCreated(function () {
   }
 
   instance.applyFilters = () => {
-    const filters = instance.state.get('filters')
+    const filters = instance.state.get('filters') || []
+    const search = instance.state.get('search') || ''
     const competencyCategories = instance.state.get('competencyCategories')
 
     competencyCategories.forEach(category => {
       category.entries.forEach(competency => {
-        const disabled = filters.some(({ target, hasKey, key, value }) => {
-          if (!competency[target]) return false
+        let disabled
 
-          const prop = hasKey
-            ? competency[target][key]
-            : competency[target]
+        if (search.length > 0) {
+          const found = [
+            competency.shortCode,
+            competency.description,
+            competency.example
+          ].some(target => target && target.includes(search))
+          disabled = !found
+        }
 
-          return prop == value // eslint-disable-line
-        })
+        else {
+         disabled = filters.some(({ target, hasKey, key, value }) => {
+            if (!competency[target]) return false
 
+            const prop = hasKey
+              ? competency[target][key]
+              : competency[target]
+
+            return prop == value // eslint-disable-line
+          })
+        }
         competency.isActive = !disabled
       })
     })
@@ -308,6 +323,25 @@ Template.user.events({
       flipped: {}
     })
 
+    const categoryIds = [...competencyCategories.keys()]
+
+    if (categoryIds.length > 0) {
+      loadCompetencyCategories(categoryIds)
+        .catch(e => templateInstance.api.notify(e))
+        .then(() => {
+          const categories = (templateInstance.state.get('competencyCategories') || []).map(cat => {
+            const catDoc = CompetencyCategory.localCollection().findOne(cat.name)
+            if (!catDoc) return cat
+
+            cat.name = catDoc.title
+            return cat
+          })
+          templateInstance.state.set({
+            competencyCategories: categories.sort((a, b) => a.name.localeCompare(b.name))
+          })
+        })
+    }
+
     setTimeout(() => {
       templateInstance.state.set({ competenciesLoaded: true })
     }, 300)
@@ -332,5 +366,10 @@ Template.user.events({
     const flipped = templateInstance.state.get('flipped')
     flipped[competencyId] = !flipped[competencyId]
     templateInstance.state.set({ flipped })
-  }
+  },
+  'input #search-input': debounce(function (event, templateInstance) {
+    const search = event.target.value
+    templateInstance.state.set({ search })
+    templateInstance.applyFilters()
+  }, 300)
 })

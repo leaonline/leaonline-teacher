@@ -32,7 +32,10 @@
 
                 {{! alpha-levels }}
                 <div class="alpha-levels mt-3 px-2">
-                {{#each alphaLevel in alphaLevels}}
+                    <div class="text-white mb-1">
+                        {{i18n "pages.user.filter.alphaLevel"}}
+                    </div>
+                    {{#each alphaLevel in alphaLevels}}
                     <div class="form-check">
                         <input class="form-check-input filter-input"
                                id="checkbox-{{alphaLevel._id}}"
@@ -42,16 +45,20 @@
                                data-key="level"
                                data-value="{{alphaLevel.level}}"
                                checked="{{#if alphaLevel.active}}checked{{/if}}">
-                        <label class="form-check-label text-white" for="checkbox-{{alphaLevel._id}}">
+                        <label class="form-check-label text-white font-weight-bold"
+                               for="checkbox-{{alphaLevel._id}}">
                             {{i18n "alphaLevel.title"}} {{alphaLevel.level}}
                         </label>
                     </div>
-                {{/each}}
+                    {{/each}}
                 </div>
 
                 {{! accomplishement level}}
                 <div class="accomplishment-levels mt-4 px-2">
-                {{#each level in accomplishments}}
+                    <div class="text-white mb-1">
+                        {{i18n "pages.user.filter.accomplishments"}}
+                    </div>
+                    {{#each level in accomplishments}}
                     <div class="form-check">
                         <input class="form-check-input filter-input"
                                id="acc-checkbox-{{level.value}}"
@@ -60,29 +67,34 @@
                                data-target="gradeName"
                                data-value="{{level.value}}"
                                checked="{{#if level.active}}checked{{/if}}">
-                        <label class="form-check-label text-white" for="acc-checkbox-{{level.value}}">
+                        <label class="form-check-label text-white font-weight-bold"
+                               for="acc-checkbox-{{level.value}}">
                             {{i18n level.label}}
                         </label>
                     </div>
-                {{/each}}
+                    {{/each}}
                 </div>
 
                 {{! development status }}
                 <div class="development-status mt-4 px-2">
+                    <div class="text-white mb-1">
+                        {{i18n "pages.user.filter.development"}}
+                    </div>
                     {{#each status in development}}
-                        <div class="form-check">
-                            <input class="form-check-input filter-input"
-                                   id="dev-checkbox-{{status.value}}"
-                                   type="checkbox"
-                                   value=""
-                                   data-target="development"
-                                   data-value="{{status.value}}"
-                                   checked="{{#if status.active}}checked{{/if}}">
-                            <label class="form-check-label text-white" for="dev-checkbox-{{status.value}}">
-                                {{> icon name=status.icon class="text-primary"}}
-                                {{i18n status.label}}
-                            </label>
-                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input filter-input"
+                               id="dev-checkbox-{{status.value}}"
+                               type="checkbox"
+                               value=""
+                               data-target="development"
+                               data-value="{{status.value}}"
+                               checked="{{#if status.active}}checked{{/if}}">
+                        <label class="form-check-label text-white font-weight-bold"
+                               for="dev-checkbox-{{status.value}}">
+                            {{> icon name=status.icon class="text-primary"}}
+                            {{i18n status.label}}
+                        </label>
+                    </div>
                     {{/each}}
                 </div>
             </div>
@@ -93,18 +105,27 @@
 
     {{! ================== CONTENT ========================================}}
     <div class="user-page-content p-4 flex-fill h-100">
-    <div class="d-flex align-items-baseline">
-    <h1 class="mr-auto">
-        {{#with user}}
-            {{#if this.account.code}}
-                {{this.account.code}} -
-            {{/if}}
-            {{this.firstName}} {{this.lastName}}
-        {{/with}}
-    </h1>
+    <div class="row mb-4">
+    <div class="col-12 col-lg-6">
+        {{#if competencyCategories}}
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            {{> icon name="search"}}
+                        </span>
+                    </div>
+                    <input id="search-input"
+                           type="search"
+                           class="form-control"
+                           placeholder="{{i18n "actions.search"}}">
+                </div>
+            </div>
+        {{/if}}
+    </div>
 
     {{#onLoaded loaded=loadComplete}}
-        <div class="ml-auto d-flex">
+        <div class="col-12 col-lg-6 d-flex">
             {{! dimension select}}
             <select id="dimension-select"
                     class="form-control border-{{color}} text-{{color}}">
@@ -155,20 +176,28 @@
 
     {{#if competencyCategories}}
         {{#each category in competencyCategories}}
-            <div class="row bg-gray rounded m-0 p-3">
-                <h3 class="col-12 font-weight-bold text-light p-2">{{category.name}}</h3>
+            <div class="row category-card rounded m-0 p-3 mb-4">
+                <h3 class="col-12 font-weight-bold text-secondary p-2">{{category.name}}</h3>
+
+                {{! competency-card = flip card }}
 
                 {{#each competency in category.entries}}
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 competency-card {{#unless competency.isActive}}d-none{{/unless}}"
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 {{#if competency.example}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
                         data-target="{{competency._id}}">
+
                         {{#unless flipped competency._id}}
-                            <div class="card-wrapper bg-white rounded h-100">
+                            {{! render front page if not flipped }}
+                            <div class="card-wrapper bg-white rounded h-100 shadow-sm">
                             <div class="d-flex justify-content-between py-1 px-3">
                                 <span>
                                     {{i18n "alphaLevel.title"}}
                                     {{competency.alphaLevel.level}}
                                 </span>
-                                {{> icon name="info"}}
+                                {{#if competency.example}}
+                                    {{> icon name="info"}}
+                                {{else}}
+                                    <span></span>
+                                {{/if}}
                             </div>
                             <hr>
                             <div class="text-center p-2 font-weight-bold">
@@ -204,9 +233,10 @@
                             </div>
                         </div>
                         {{else}}
+                        {{! else render back page }}
                             <div class="card-wrapper bg-success rounded h-100">
                                 <div class="d-flex py-1 px-3">
-                                    Assumenda debitis autem soluta unde dolores. Quo nisi mollitia eos. Doloremque officia minima qui velit repudiandae consectetur a enim. Architecto est modi aut. Aut suscipit repellendus iste adipisci qui est voluptas dicta. Fugit et libero delectus commodi et voluptas autem autem.
+                                    {{competency.example}}
                                 </div>
                             </div>
                         {{/unless}}

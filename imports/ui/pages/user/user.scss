@@ -1,5 +1,16 @@
 .user-sidebar {
   width: 15%;
+  min-width: 220px;
+  height: 100%;
+}
+
+.user-page-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.category-card {
+  background-color: #E2E4E7;
 }
 
 /* ========================================================================== */

@@ -36,11 +36,16 @@ Template.visualization.onRendered(function () {
 Template.visualization.helpers({
   loadComplete () {
     return Template.getState('initComplete')
+  },
+  flag () {
+    return Template.getState('flag')
   }
 })
 
 Template.visualization.events({
-
+  'click .some-class' (event, templateInstance) {
+    templateInstance.state.set('flag', true)
+  }
 })
 
 function setup (resultData) {
