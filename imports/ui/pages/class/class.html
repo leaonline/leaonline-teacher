@@ -81,11 +81,11 @@
            {{#each category in competencyCategories}}
                 <div class="col col-12 col-md-6 col-lg-4">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header text-center font-weight-bold text-secondary">
                             {{category.name}}
                         </div>
 
-                        <div class="card-body d-flex justify-content-center font-weight-bold">
+                        <div class="card-body d-flex justify-content-center font-weight-bold text-secondary">
                             <div class="mx-1">
                                 <h4 class="d-block text-center">&#8960;</h4>
                                 {{i18n "alphaLevel.title"}} {{category.alphaAverage}}
@@ -101,10 +101,18 @@
                                 {{i18n "users.title"}}
                             </div>
                         </div>
-
-                        <ul class="list-group">
+                        <div class="card-body category-collapse clickable text-center p-0 text-secondary"
+                             type="button"
+                             data-category="{{category.name}}"
+                             data-toggle="collapse"
+                             data-target="#collapse-category-{{category.name}}"
+                             aria-expanded="false"
+                             aria-controls="collapse-category-{{category.name}}">
+                            <h4 class="ml-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">&#9947;</h4>
+                        </div>
+                        <ul class="list-group collapse text-secondary" id="collapse-category-{{category.name}}">
                             {{#each competency in category.entries}}
-                                <li class="list-group-item clickable competency-entry"
+                                <li class="list-group-item clickable competency-entry text-secondary"
                                     type="button"
                                     data-category="{{category.name}}"
                                     data-competency="{{competency._id}}"

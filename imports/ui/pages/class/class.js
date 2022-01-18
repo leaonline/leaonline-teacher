@@ -19,6 +19,7 @@ import './class.html'
 Template.class.onCreated(function () {
   const instance = this
   instance.state.set('openCards', {})
+  instance.state.set('openCategories', {})
 
   // reset current participant, in case we come from a participant page
   State.currentParticipant(null)
@@ -233,7 +234,7 @@ Template.class.onCreated(function () {
         entry.count++
         entry.perc += competency.perc
         entry.average = (entry.perc / entry.count) * 100
-        console.debug(competency.shortCode, key, entry.count, entry.perc, entry.average)
+        // console.debug(competency.shortCode, key, entry.count, entry.perc, entry.average)
 
         if (!entry.users.has(record.userId)) {
           const user = userMap.get(record.userId)
@@ -333,6 +334,9 @@ Template.class.helpers({
     const openCards = Template.getState('openCards')
     console.debug(openCards[key])
     return openCards[key]
+  },
+  openCategory (category) {
+    return category && Template.getState('openCategories')[category]
   }
 })
 
@@ -346,6 +350,13 @@ Template.class.events({
 
     templateInstance.state.set({ dimensionDoc, color })
   },
+  'click .category-collapse' (event, templateInstance) {
+    event.preventDefault()
+    const category = dataTarget(event, 'category')
+    const openCategories = templateInstance.state.get('openCategories')
+    openCategories[category] = !openCategories[category]
+    templateInstance.state.set({ openCategories })
+  },
   'click .competency-entry' (event, templateInstance) {
     event.preventDefault()
     const category = dataTarget(event, 'category')
@@ -353,6 +364,6 @@ Template.class.events({
     const key = `${category}-${competency}`
     const openCards = templateInstance.state.get('openCards')
     openCards[key] = !openCards[key]
-    templateInstance.state.set({openCards})
+    templateInstance.state.set({ openCards })
   }
 })
