@@ -26,3 +26,13 @@ form ul li {
 .clickable {
   cursor: pointer;
 }
+
+@font-face {
+  font-family: 'Semikolon';
+  src: url('/SemikolonPlus-Regular.ttf') format('truetype');
+  font-display: auto;
+}
+
+p, div, span, h1, h2, h3, h4, h5, h6, button, label, a {
+  font-family: 'Semikolon', Arial, 'sans-serif';
+}
