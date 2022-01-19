@@ -5,7 +5,7 @@ import { createRemoveMethod } from './createRemoveMethod'
 import { createAllMethod } from './createAllMethod'
 
 export const createMethodsDecorator = ({ get, all, insert, update, remove }) => context => {
-  context.methods = context.method || {}
+  context.methods = context.methods || {}
 
   if (get) {
     context.methods.get = createGetMethod({ context })

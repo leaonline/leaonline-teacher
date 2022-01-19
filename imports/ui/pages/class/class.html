@@ -108,7 +108,9 @@
                              data-target="#collapse-category-{{category.name}}"
                              aria-expanded="false"
                              aria-controls="collapse-category-{{category.name}}">
-                            <h4 class="ml-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">&#9947;</h4>
+                            <h4 class="ml-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">
+                                {{> icon name="caret-down" }}
+                            </h4>
                         </div>
                         <ul class="list-group collapse text-secondary" id="collapse-category-{{category.name}}">
                             {{#each competency in category.entries}}
@@ -137,7 +139,9 @@
                                                  aria-valuemin="0"
                                                  aria-valuemax="100"></div>
                                         </div>
-                                        <div class="ml-2 caret-icon {{#if openCard category.name competency._id}}caret-open{{/if}}">&#9947;</div>
+                                        <div class="ml-2 caret-icon {{#if openCard category.name competency._id}}caret-open{{/if}}">
+                                            {{> icon name="caret-down"}}
+                                        </div>
                                     </div>
 
                                     {{! collapsible users }}

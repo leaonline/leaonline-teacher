@@ -12,7 +12,7 @@ import { ContextRegistry } from '../../contexts/ContextRegistry'
 
 export const contentBuilder = createPipeline({
   functions: [
-    ctx => {
+    (ctx) => {
       const collection = createCollection(ctx)
       ctx.collection = () => collection
     },
