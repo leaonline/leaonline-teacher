@@ -15,11 +15,11 @@ import { getCompetencyIcon } from '../../utils/competency/getCompetencyIcon'
 import { translationStringFactory } from '../../../api/i18n/translationStringFactory'
 import { dataTarget } from '../../utils/dataTarget'
 import { loadCompetencyCategories } from '../../loaders/loadCompetencyCategories'
+import { loadExampleTexts } from '../../loaders/loadExampleTexts'
 import { debounce } from '../../utils/debounce'
 import userLanguage from './i18n/userLanguage'
 import './user.scss'
 import './user.html'
-import { loadExampleTexts } from '../../loaders/loadExampleTexts'
 
 const toCompetencyTranslation = translationStringFactory('competency')
 
@@ -390,7 +390,6 @@ Template.user.events({
   },
   'input #search-input': debounce(function (event, templateInstance) {
     const search = (event.target.value || '').toLowerCase()
-    console.debug(search)
     templateInstance.state.set({ search })
     templateInstance.applyFilters()
   }, 300)
