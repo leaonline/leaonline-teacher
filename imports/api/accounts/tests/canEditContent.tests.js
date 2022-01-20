@@ -1,7 +1,7 @@
 /* eslint-env mocha */
+import { expect } from 'chai'
 import { Meteor } from 'meteor/meteor'
 import { canEditContent } from '../canEditContent'
-import { expect } from 'chai'
 
 const contentRole = Meteor.settings.public.hosts.content.role
 
