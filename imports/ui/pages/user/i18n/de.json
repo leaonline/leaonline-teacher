@@ -7,7 +7,8 @@
       "filter": {
         "alphaLevel": "Alpha-Level der Kann-Beschreibung",
         "accomplishments": "Erfüllen der Kann-Beschreibung",
-        "development": "Vergleich zu vorherigen Leistungen"
+        "development": "Vergleich zu vorherigen Leistungen",
+        "reset": "Filter zurücksetzen"
       }
     }
   },

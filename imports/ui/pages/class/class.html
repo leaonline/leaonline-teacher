@@ -26,7 +26,8 @@
                 {{> loading title="otulea"}}
             </div>
         {{/unless}}
-        {{#onLoaded loaded=visualizationData}}
+        {{#if hasRecords}}
+            {{#onLoaded loaded=visualizationData}}
             {{#unless hasFeedback}}
                 <div class="alert alert-warning mt-3">
                     {{i18n "pages.class.noFeedback"}}
@@ -70,27 +71,32 @@
                 {{/with}}
             {{/unless}}
         {{/onLoaded}}
-
+        {{/if}}
 
         {{! ---------------------------------------------- }}
         {{! competency category cards with collapse effect }}
         {{! ---------------------------------------------- }}
 
-        {{#onLoaded loaded=competencyCategories}}
+        {{#if loadRecords}}
+            {{> loading title=(i18n "pages.class.records")}}
+        {{/if}}
+
+        {{#unless hasRecords}}
+            <div class="alert alert-warning mt-4">
+                {{i18n "pages.class.noRecords"}}
+            </div>
+        {{/unless}}
+
+        {{#if competencyCategories}}
             <div class="row">
            {{#each category in competencyCategories}}
-                <div class="col col-12 col-md-6 col-lg-4">
+                <div class="col col-12 col-md-6 col-lg-4 mb-3">
                     <div class="card">
                         <div class="card-header text-center font-weight-bold text-secondary">
-                            {{category.name}}
+                            {{category.label}}
                         </div>
 
-                        <div class="card-body d-flex justify-content-center font-weight-bold text-secondary">
-                            <div class="mx-1">
-                                <h4 class="d-block text-center">&#8960;</h4>
-                                {{i18n "alphaLevel.title"}} {{category.alphaAverage}}
-                            </div>
-
+                        <div class="card-body d-flex justify-content-between font-weight-bold text-secondary">
                             <div class="mx-1">
                                 <h4 class="d-block text-center">{{category.entries.length}}</h4>
                                 {{i18n "competency.competencies"}}
@@ -105,14 +111,14 @@
                              type="button"
                              data-category="{{category.name}}"
                              data-toggle="collapse"
-                             data-target="#collapse-category-{{category.name}}"
+                             data-target="#collapse-category-{{@index}}"
                              aria-expanded="false"
-                             aria-controls="collapse-category-{{category.name}}">
+                             aria-controls="collapse-category-{{@index}}">
                             <h4 class="ml-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">
                                 {{> icon name="caret-down" }}
                             </h4>
                         </div>
-                        <ul class="list-group collapse text-secondary" id="collapse-category-{{category.name}}">
+                        <ul class="list-group collapse text-secondary" id="collapse-category-{{@index}}">
                             {{#each competency in category.entries}}
                                 <li class="list-group-item clickable competency-entry text-secondary"
                                     type="button"
@@ -120,12 +126,12 @@
                                     data-competency="{{competency._id}}"
                                     data-toggle="collapse" data-target="#collapse-{{category.name}}-{{@index}}">
                                     <div class="d-block text-center">
-                                        <span class="badge badge-secondary">
+                                        <span class="badge badge-secondary p-2 font-weight-bold">
                                             {{i18n "alphaLevel.title"}}
                                             {{competency.level}}
                                         </span>
                                     </div>
-                                    <div class="d-block text-center">
+                                    <div class="d-block text-center text-muted p-2">
                                         {{competency.shortCode}}
                                         {{competency.description}}
                                     </div>
@@ -170,7 +176,7 @@
                 </div>
            {{/each}}
             </div>
-        {{/onLoaded}}
+        {{/if}}
     {{/if}}
     </div>
 </template>

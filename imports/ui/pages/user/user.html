@@ -2,7 +2,7 @@
     <div class="user-container h-100 d-flex">
     {{! ================== SIDEBAR ========================================}}
     {{#unless sidebarHidden}}
-        <div class="user-sidebar bg-dark">
+        <div class="user-sidebar {{#if competencyCategories}}with-content{{/if}} bg-dark">
         {{!--
         <a class="toggleic on lefticonsidebar sidebar-left-toggle" href>
             {{#unless hidden}}
@@ -30,11 +30,17 @@
             {{#if competenciesLoaded}}
             <div id="user-filters text-center mt-4">
 
+                <div class="mt-3 px-3 text-center">
+                    <button class="btn btn-light text-secondary reset-filter-btn">
+                        {{i18n "pages.user.filter.reset"}}
+                    </button>
+                </div>
+
                 {{! competency categories }}
                 <div class="category-filters mt-3 px-3">
-                    <div class="text-white mb-1">
+                    <small class="text-white mb-1">
                         {{i18n "competency.categories.title"}}
-                    </div>
+                    </small>
                     {{#each category in competencyCategories}}
                         <div class="form-check">
                             <input class="form-check-input filter-input"
@@ -42,12 +48,11 @@
                                    type="checkbox"
                                    value=""
                                    data-target="category"
-                                   data-key="name"
                                    data-value="{{category.name}}"
                                    checked="{{#if category.active}}checked{{/if}}">
                             <label class="form-check-label text-white font-weight-bold"
                                    for="checkbox-{{category.name}}">
-                                {{category.name}}
+                                {{category.label}}
                             </label>
                         </div>
                     {{/each}}
@@ -56,9 +61,9 @@
 
                 {{! alpha-levels }}
                 <div class="alpha-levels mt-3 px-3">
-                    <div class="text-white mb-1">
+                    <small class="text-white mb-1">
                         {{i18n "pages.user.filter.alphaLevel"}}
-                    </div>
+                    </small>
                     {{#each alphaLevel in alphaLevels}}
                     <div class="form-check">
                         <input class="form-check-input filter-input"
@@ -79,9 +84,9 @@
 
                 {{! accomplishement level}}
                 <div class="accomplishment-levels mt-4 px-3">
-                    <div class="text-white mb-1">
+                    <small class="text-white mb-1">
                         {{i18n "pages.user.filter.accomplishments"}}
-                    </div>
+                    </small>
                     {{#each level in accomplishments}}
                     <div class="form-check">
                         <input class="form-check-input filter-input"
@@ -101,9 +106,9 @@
 
                 {{! development status }}
                 <div class="development-status mt-4 px-3">
-                    <div class="text-white mb-1">
+                    <small class="text-white mb-1">
                         {{i18n "pages.user.filter.development"}}
-                    </div>
+                    </small>
                     {{#each status in development}}
                     <div class="form-check">
                         <input class="form-check-input filter-input"
@@ -200,20 +205,21 @@
 
     {{#if competencyCategories}}
         {{#each category in competencyCategories}}
-            <div class="row category-card rounded m-0 p-3 mb-4">
-                <h3 class="col-12 font-weight-bold text-secondary p-2">{{category.name}}</h3>
+            <div class="row category-card rounded m-0 p-3 mb-4 text-secondary">
+                {{! header }}
+                <h3 class="col-12 font-weight-bold text-secondary p-2">{{category.label}}</h3>
 
                 {{! competency-card = flip card }}
 
                 {{#each competency in category.entries}}
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 {{#if exampleText competency._id}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
+                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 competency-container {{#if exampleText competency._id}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
                         data-target="{{competency._id}}">
 
                         {{#unless flipped competency._id}}
                             {{! render front page if not flipped }}
                             <div class="card-wrapper bg-white rounded h-100 shadow-sm">
                             <div class="d-flex justify-content-between py-1 px-3">
-                                <span>
+                                <span class="text-secondary">
                                     {{i18n "alphaLevel.title"}}
                                     {{competency.alphaLevel.level}}
                                 </span>
@@ -224,11 +230,13 @@
                                 {{/if}}
                             </div>
                             <hr>
-                            <div class="text-center p-2 font-weight-bold">
+                            <div class="text-center p-2 font-weight-bold text-secondary">
                                 {{competency.shortCode}}: {{competency.description}}
                             </div>
                             <hr>
-                            <div class="d-flex justify-content-between align-items-center">
+
+                                {{! card footer }}
+                            <div class="d-flex justify-content-between align-items-center px-2">
 
                                 {{! left side: competency development status }}
                                 <span class="w-50">
@@ -245,7 +253,7 @@
                                 {{! right side: competency accomplishement }}
                                 <span class="w-50 text-center">
                                     <div class="progress" style="height: 0.5rem;">
-                                        <div class="progress-bar bg-success"
+                                        <div class="progress-bar bg-{{#if competency.isGraded}}success{{else}}gray{{/if}}"
                                              role="progressbar"
                                              style="width: {{competency.perc}}%"
                                              aria-valuenow="{{competency.perc}}"
@@ -259,7 +267,7 @@
                         {{else}}
                         {{! else render back page }}
                             <div class="card-wrapper bg-success rounded h-100">
-                                <div class="d-flex py-1 px-3">
+                                <div class="d-flex py-2 px-3">
                                     {{exampleText competency._id}}
                                 </div>
                             </div>

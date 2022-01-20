@@ -8,13 +8,16 @@ import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
-import { getUserName } from '../../utils/getUserName'
+import { getAttendeeName } from '../../../api/accounts/getAttendeeName'
 import { loadDimensions } from '../../loaders/loadDimensions'
 import { dataTarget } from '../../utils/dataTarget'
 import classLanguage from './i18n/classLanguage'
 import './visualization/visualization'
 import './class.scss'
 import './class.html'
+import { i18n } from '../../../api/i18n/I18n'
+import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
+import { loadCompetencyCategories } from '../../loaders/loadCompetencyCategories'
 
 Template.class.onCreated(function () {
   const instance = this
@@ -25,7 +28,7 @@ Template.class.onCreated(function () {
   State.currentParticipant(null)
 
   instance.init({
-    contexts: [Course, Dimension, Competency, AlphaLevel, User],
+    contexts: [Course, Dimension, Competency, CompetencyCategory, AlphaLevel, User],
     useLanguage: [classLanguage],
     remotes: [OtuLea],
     debug: false,
@@ -94,7 +97,7 @@ Template.class.onCreated(function () {
     const users = userDocs.map(userDoc => userDoc.account._id)
 
     OtuLea.getRecords({ users, dimension })
-      .then((records) => instance.state.set({ records }))
+      .then((records = []) => instance.state.set({ records, hasRecords: records.length > 0 }))
       .catch(instance.api.notify)
   })
 
@@ -104,7 +107,17 @@ Template.class.onCreated(function () {
     const records = instance.state.get('records')
     const userDocs = instance.state.get('users')
 
+    instance.state.set({
+      results: null,
+      hasFeedback: null,
+      loadRecords: false,
+      competencyCategories: null,
+      openCards: null
+    })
+
     if (!userDocs?.length || !records?.length) { return }
+
+    instance.state.set({ loadRecords: true })
 
     const userMap = new Map()
     userDocs.forEach(user => userMap.set(user.account._id, user))
@@ -116,14 +129,13 @@ Template.class.onCreated(function () {
     const userDateCompetencyKeys = new Set()
 
     records.sort(byCreationDate).forEach(record => {
-      console.debug(record.completedAt.toLocaleDateString(), record.userId)
       // first, check if there is no record yet
       // for the current user and create one for her
       if (!recordsByUser.has(record.userId)) {
         const user = userMap.get(record.userId)
         recordsByUser.set(record.userId, {
           _id: record.userId,
-          name: getUserName(user),
+          name: getAttendeeName(user),
           allDate: []
         })
       }
@@ -145,28 +157,11 @@ Template.class.onCreated(function () {
 
       // existing dates will create a new data-structure
       else {
-        const levels = [
-          {
-            alpha: 'Alpha-Level 5',
-            value: 0,
-          },
-          {
-            alpha: 'Alpha-Level 4',
-            value: 0,
-          },
-          {
-            alpha: 'Alpha-Level 3',
-            value: 0,
-          },
-          {
-            alpha: 'Alpha-Level 2',
-            value: 0,
-          },
-          {
-            alpha: 'Alpha-Level 1',
-            value: 0,
-          },
-        ]
+        const alphaLabel = i18n.get('alphaLevel.title')
+        const levels = Array.of(5, 4, 3, 2, 1).map(index => ({
+          alpha: `${alphaLabel} ${index}`,
+          value: 0
+        }))
 
         record.alphaLevels.forEach(entry => {
           if (!alphaLevels.has(entry._id)) {
@@ -175,7 +170,6 @@ Template.class.onCreated(function () {
 
           const index = levels.length - entry.level
           levels[index].value = Math.round(entry.perc * 10)
-          levels[index].alpha = entry.description
         })
 
         userRecords.allDate.push({
@@ -190,7 +184,6 @@ Template.class.onCreated(function () {
         const key = `${record.userId}-${competency._id}`
 
         if (userDateCompetencyKeys.has(key)) {
-          console.debug('skip', key)
           return
         }
         else {
@@ -234,13 +227,12 @@ Template.class.onCreated(function () {
         entry.count++
         entry.perc += competency.perc
         entry.average = (entry.perc / entry.count) * 100
-        // console.debug(competency.shortCode, key, entry.count, entry.perc, entry.average)
 
         if (!entry.users.has(record.userId)) {
           const user = userMap.get(record.userId)
           entry.users.set(record.userId, {
             _id: user._id,
-            name: getUserName(user),
+            name: getAttendeeName(user),
             perc: 0,
             count: 0,
             average: 0
@@ -250,8 +242,8 @@ Template.class.onCreated(function () {
         const userDoc = entry.users.get(record.userId)
         userDoc.perc = competency.perc * 100
 
-        if (entry.users.length > category.users) {
-          category.users = entry.users.length
+        if (entry.users.size > category.users) {
+          category.users = entry.users.size
         }
       })
     })
@@ -271,9 +263,38 @@ Template.class.onCreated(function () {
         })
     })
 
+    const categoryIds = [...competencyCategories.keys()]
+
+    if (categoryIds.length > 0) {
+      loadCompetencyCategories(categoryIds)
+        .catch(e => instance.api.notify(e))
+        .then(() => {
+          const categories = (instance.state.get('competencyCategories') || []).map(cat => {
+            const catDoc = CompetencyCategory.localCollection().findOne(cat.name)
+
+            if (cat.name === 'undefined') {
+              cat.label = i18n.get('competency.categories.all')
+            }
+
+            if (!catDoc) return cat
+
+            cat.label = catDoc.title || cat.name
+            return cat
+          })
+
+          instance.state.set({
+            loadRecords: false,
+            competencyCategories: categories.sort((a, b) => a.label.localeCompare(b.label))
+          })
+        })
+    }
+
+    console.debug(results)
+
     instance.state.set({
       results,
       hasFeedback,
+      loadRecords: false,
       competencyCategories: Array.from(competencyCategories.values()),
       openCards: {}
     })
@@ -332,12 +353,17 @@ Template.class.helpers({
   openCard (category, competency) {
     const key = `${category}-${competency}`
     const openCards = Template.getState('openCards')
-    console.debug(openCards[key])
     return openCards[key]
   },
   openCategory (category) {
     return category && Template.getState('openCategories')[category]
-  }
+  },
+  loadRecords () {
+    return Template.getState('loadRecords')
+  },
+  hasRecords () {
+    return Template.getState('hasRecords')
+  },
 })
 
 Template.class.events({

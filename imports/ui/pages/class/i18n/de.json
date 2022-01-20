@@ -3,7 +3,8 @@
     "class": {
       "title": "Kurs",
       "noFeedback": "Es existieren noch keine Ergebnisse für diese Dimension für diesen Kurs.",
-      "noUsers": "Es existieren noch keine Teilnehmenden für diesen Kurs"
+      "noUsers": "Es existieren noch keine Teilnehmenden für diesen Kurs",
+      "noRecords": "Es sind noch keine Ergebnisse für diese Dimension vorhanden."
     }
   },
   "dimension": {
@@ -13,7 +14,10 @@
     "title": "α-Level"
   },
   "competency": {
-    "competencies": "Kann-Beschreibungen"
+    "competencies": "Kann-Beschreibungen",
+    "categories": {
+      "all": "Ohne Kategorie"
+    }
   },
   "users": {
     "title": "Teilnehmer*innen"

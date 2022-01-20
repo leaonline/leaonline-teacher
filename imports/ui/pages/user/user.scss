@@ -4,13 +4,26 @@
   height: 100%;
 }
 
+.user-sidebar.with-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .user-page-content {
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
 .category-card {
   background-color: #E2E4E7;
+}
+
+.competency-container {
+  min-height: 6rem;
+}
+
+.competency-card {
+  cursor: pointer;
 }
 
 /* ========================================================================== */

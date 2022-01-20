@@ -444,6 +444,7 @@ button {
   width: calc(100% - 255px);
   margin: auto;
   padding-bottom: 3px;
+  overflow-x: auto;
 }
 
 .graphtitle {

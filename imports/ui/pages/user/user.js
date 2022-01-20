@@ -65,6 +65,8 @@ Template.user.onCreated(function () {
 
         else {
          disabled = filters.some(({ target, hasKey, key, value }) => {
+           console.debug(target, key, value)
+           console.debug(competency[target])
             if (!competency[target]) return false
 
             const prop = hasKey
@@ -74,6 +76,7 @@ Template.user.onCreated(function () {
             return prop == value // eslint-disable-line
           })
         }
+
         competency.isActive = !disabled
       })
     })
@@ -352,9 +355,11 @@ Template.user.events({
         .then(() => {
           const categories = (templateInstance.state.get('competencyCategories') || []).map(cat => {
             const catDoc = CompetencyCategory.localCollection().findOne(cat.name)
-            if (!catDoc) return cat
+            cat.label = cat.name
 
-            cat.name = catDoc.title
+            if (!catDoc) { return cat }
+
+            cat.label = catDoc.title
             return cat
           })
           templateInstance.state.set({
@@ -380,6 +385,17 @@ Template.user.events({
 
     templateInstance.setFilter({ target, value, key, active })
     templateInstance.applyFilters()
+  },
+  'click .reset-filter-btn' (event, templateInstance) {
+    event.preventDefault()
+    event.stopPropagation() // prevent checkbox change dispatch
+
+    templateInstance.state.set({ search: null })
+    templateInstance.$('#search-input').val(null)
+    templateInstance.resetFilter()
+    templateInstance.$('.filter-input').prop('checked', true)
+    templateInstance.applyFilters()
+
   },
   'click .competency-card' (event, templateInstance) {
     event.preventDefault()

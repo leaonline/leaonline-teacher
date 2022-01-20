@@ -240,9 +240,11 @@ function addTable(findMaxInAry, resultData) {
               if (dateData.date == findMaxInAry.allDates[date].date) {
                 return dateData.level;
               }
-            });
+            })
           }
         });
+
+        if (!findSearchData) { continue }
 
         function mouseOver() {
           var ids = document.querySelectorAll(`[id="${resultData[i].name}"]`);
