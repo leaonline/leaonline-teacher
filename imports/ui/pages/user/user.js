@@ -136,8 +136,10 @@ Template.user.onCreated(function () {
       args: { _id: userId },
       failure: instance.api.notify,
       success (userDoc) {
+        const hasAccount = !!(userDoc?.account?._id)
+        console.debug(hasAccount, userDoc)
         State.currentParticipant(userDoc)
-        instance.state.set({ userDoc, sessionId })
+        instance.state.set({ userDoc, sessionId, hasAccount })
       }
     })
   })
@@ -148,6 +150,7 @@ Template.user.onCreated(function () {
 
   instance.autorun(() => {
     const userDoc = instance.state.get('userDoc')
+    const hasAccount = instance.state.get('hasAccount')
     const dimensionDoc = instance.state.get('dimensionDoc')
 
     // reset data to null to remove elements from DOM when user changes
@@ -163,7 +166,7 @@ Template.user.onCreated(function () {
 
     // we can only continue if we have loaded the current user doc
     // and the remote is connected AND logged-in
-    if (!dimensionDoc || !userDoc || !OtuLea.isLoggedIn()) { return }
+    if (!dimensionDoc || !userDoc || !hasAccount || !OtuLea.isLoggedIn()) { return }
 
     // load all feedbacks from all dimensions here for full-access
     OtuLea.getRecords({
@@ -227,6 +230,9 @@ Template.user.helpers({
   },
   flipped (id) {
     return Template.getState('flipped')[id]
+  },
+  hasNoAccount () {
+    return Template.getState('userDoc') && !Template.getState('hasAccount')
   }
 })
 

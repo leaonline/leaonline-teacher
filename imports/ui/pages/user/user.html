@@ -202,6 +202,12 @@
         </div>
     {{/if}}
 
+    {{#if hasNoAccount}}
+        <div class="alert alert-warning">
+            {{i18n "pages.user.noAccount"}}
+        </div>
+    {{/if}}
+
 
     {{#if competencyCategories}}
         {{#each category in competencyCategories}}
