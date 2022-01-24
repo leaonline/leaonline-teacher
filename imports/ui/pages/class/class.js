@@ -62,13 +62,13 @@ Template.class.onCreated(function () {
     const courseDoc = instance.state.get('courseDoc')
     if (!courseDoc) return
 
-    if (!courseDoc.users?.length) {
-      return instance.state.set('noUsers', true)
-    }
-
     loadDimensions()
       .catch(instance.api.notify)
       .finally(() => instance.state.set('dimensionsLoaded', true))
+
+    if (!courseDoc.users?.length) {
+      return instance.state.set({ users: [], hasUsers: false })
+    }
 
     instance.api.debug('load users')
 
@@ -81,7 +81,9 @@ Template.class.onCreated(function () {
           courseDoc.users = users
           State.currentClass(courseDoc)
         }
-        instance.state.set({ users })
+
+        const hasUsers = !!(users?.length)
+        instance.state.set({ users, hasUsers })
       }
     })
   })
@@ -90,11 +92,22 @@ Template.class.onCreated(function () {
     const dimensionDoc = instance.state.get('dimensionDoc')
     const courseDoc = instance.state.get('courseDoc')
     const userDocs = instance.state.get('users')
+    const hasUsers = instance.state.get('hasUsers')
 
-    if (!courseDoc || !dimensionDoc || !userDocs) { return }
+    if (!courseDoc || !dimensionDoc || !userDocs || !hasUsers) { return }
+
+    // we prepare to load all relevant records for this dimension
+    // for all users of the class but only if they have an associated
+    // user account with _id value
 
     const dimension = dimensionDoc._id
-    const users = userDocs.map(userDoc => userDoc.account._id)
+    const users = []
+
+    userDocs.forEach(userDoc => {
+      if (userDoc?.account?._id) {
+        users.push(userDoc.account._id)
+      }
+    })
 
     OtuLea.getRecords({ users, dimension })
       .then((records = []) => instance.state.set({ records, hasRecords: records.length > 0 }))
@@ -120,7 +133,12 @@ Template.class.onCreated(function () {
     instance.state.set({ loadRecords: true })
 
     const userMap = new Map()
-    userDocs.forEach(user => userMap.set(user.account._id, user))
+    userDocs.forEach(user => {
+      console.debug({ user })
+      if (user?.account?._id) {
+        userMap.set(user.account._id, user)
+      }
+    })
 
     let id = 0
     const recordsByUser = new Map()
@@ -341,11 +359,18 @@ Template.class.helpers({
     return Template.getState('courseDoc')
   },
   visualizationData () {
+    // if we are loading we need to return null here in order to
+    // wipe the DOM, which allows us to switch beteween dimensions
+    // easily without having multiple instances on the screen
+    if (Template.getState('loadRecords')) {
+      return null
+    }
+
     const results = Template.getState('results')
     return results && { results }
   },
   noUsers () {
-    return Template.getState('noUsers')
+    return Template.getState('users') && !Template.getState('hasUsers')
   },
   competencyCategories () {
     return Template.getState('competencyCategories')
@@ -363,7 +388,7 @@ Template.class.helpers({
   },
   hasRecords () {
     return Template.getState('hasRecords')
-  },
+  }
 })
 
 Template.class.events({

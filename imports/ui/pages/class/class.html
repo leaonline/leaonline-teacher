@@ -16,7 +16,7 @@
         </select>
 
         {{#if noUsers}}
-            <div class="alert alert-warning">{{i18n "pages.cass.noUsers"}}</div>
+            <div class="alert alert-warning">{{i18n "pages.class.noUsers"}}</div>
         {{/if}}
     {{/onLoaded}}
 
@@ -28,48 +28,48 @@
         {{/unless}}
         {{#if hasRecords}}
             {{#onLoaded loaded=visualizationData}}
-            {{#unless hasFeedback}}
-                <div class="alert alert-warning mt-3">
-                    {{i18n "pages.class.noFeedback"}}
-                </div>
-            {{else}}
-                {{#if visualizationData}}
-                    {{> visualization visualizationData}}
-                {{/if}}
+                {{#unless hasFeedback}}
+                    <div class="alert alert-warning mt-3">
+                        {{i18n "pages.class.noFeedback"}}
+                    </div>
+                {{else}}
+                    {{#if visualizationData}}
+                        {{> visualization visualizationData}}
+                    {{/if}}
 
 
-                {{#with processed}}
-                    <h3>AlphaLevels</h3>
-                    <ul class="list-group">
-                        {{#each entry in this.alphaLevels}}
-                        <li class="list-group-item">
-                            <span>
-                                {{#with alphaLevelDoc entry.id}}
-                                    {{this.description}}
-                                {{else}}
-                                    {{entry.id}}
-                                {{/with}}
-                            </span>: {{entry.score}} ({{entry.count}})
-                        </li>
-                        {{/each}}
-                    </ul>
-
-                    <h3>Competencies</h3>
-                    <ul class="list-group">
-                        {{#each entry in this.competencies}}
+                    {{#with processed}}
+                        <h3>AlphaLevels</h3>
+                        <ul class="list-group">
+                            {{#each entry in this.alphaLevels}}
                             <li class="list-group-item">
-                            <span>
-                                {{#with competencyDoc entry.id}}
-                                    {{this.description}}
-                                {{else}}
-                                    {{entry.id}}
-                                {{/with}}
-                            </span>: {{entry.score}} ({{entry.count}})
+                                <span>
+                                    {{#with alphaLevelDoc entry.id}}
+                                        {{this.description}}
+                                    {{else}}
+                                        {{entry.id}}
+                                    {{/with}}
+                                </span>: {{entry.score}} ({{entry.count}})
                             </li>
-                        {{/each}}
-                    </ul>
-                {{/with}}
-            {{/unless}}
+                            {{/each}}
+                        </ul>
+
+                        <h3>Competencies</h3>
+                        <ul class="list-group">
+                            {{#each entry in this.competencies}}
+                                <li class="list-group-item">
+                                <span>
+                                    {{#with competencyDoc entry.id}}
+                                        {{this.description}}
+                                    {{else}}
+                                        {{entry.id}}
+                                    {{/with}}
+                                </span>: {{entry.score}} ({{entry.count}})
+                                </li>
+                            {{/each}}
+                        </ul>
+                    {{/with}}
+                {{/unless}}
         {{/onLoaded}}
         {{/if}}
 

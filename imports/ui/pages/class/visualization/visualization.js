@@ -544,7 +544,7 @@ function hoverUserData(value, aryOfUser) {
 }
 
 
-function setNewVerticalGraph({ container }) {
+function setNewVerticalGraph({ container, graphCollection = [] }) {
   // const container = document.getElementById("GraphCol");
   for (let i = 0; i < graphCollection.length; i++) {
     var containerDiv = document.createElement("div");
