@@ -34,6 +34,10 @@ export const connectRemote = remote => {
       }
     }
 
+    if (state.status === 'waiting') {
+      notifyRemoteState(remote.name, state)
+    }
+
     if (state.timedOut) {
       notifyRemoteState(remote.name, state)
     }

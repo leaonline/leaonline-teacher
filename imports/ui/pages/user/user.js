@@ -65,8 +65,6 @@ Template.user.onCreated(function () {
 
         else {
          disabled = filters.some(({ target, hasKey, key, value }) => {
-           console.debug(target, key, value)
-           console.debug(competency[target])
             if (!competency[target]) return false
 
             const prop = hasKey
@@ -137,7 +135,6 @@ Template.user.onCreated(function () {
       failure: instance.api.notify,
       success (userDoc) {
         const hasAccount = !!(userDoc?.account?._id)
-        console.debug(hasAccount, userDoc)
         State.currentParticipant(userDoc)
         instance.state.set({ userDoc, sessionId, hasAccount })
       }

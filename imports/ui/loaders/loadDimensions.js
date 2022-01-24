@@ -17,8 +17,6 @@ export const loadDimensions = async () => {
     args: {}
   })
 
-  console.debug(dimensionDocs)
-
   dimensionDocs.forEach(doc => {
     Dimension.localCollection().upsert(doc._id, { $set: doc })
   })

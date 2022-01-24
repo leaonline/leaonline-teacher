@@ -60,7 +60,6 @@ Admin.methods = {
           throw error
         }
 
-        console.debug({ name, updated, count: collection.find().count() })
         return updated
       }
     })

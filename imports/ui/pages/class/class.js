@@ -134,7 +134,6 @@ Template.class.onCreated(function () {
 
     const userMap = new Map()
     userDocs.forEach(user => {
-      console.debug({ user })
       if (user?.account?._id) {
         userMap.set(user.account._id, user)
       }
@@ -306,8 +305,6 @@ Template.class.onCreated(function () {
           })
         })
     }
-
-    console.debug(results)
 
     instance.state.set({
       results,

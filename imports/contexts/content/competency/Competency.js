@@ -12,7 +12,6 @@ Competency.methods.exampleTexts = {
   run: onServerExec(function () {
     const transform = { fields: { _id: 1, example: 1 } }
     return function ({ ids }) {
-      console.debug('get competency examples', ids)
       const query = { _id: { $in: ids } }
       return Competency.collection().find(query, transform).fetch()
     }

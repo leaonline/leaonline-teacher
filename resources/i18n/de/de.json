@@ -41,7 +41,8 @@
   "remote": {
     "loggedIn": "Erfolgreich verbunden",
     "notConnected": "Keine Verbindung",
-    "timedOut": "Nicht verbunden, Zeit abgelaufen."
+    "timedOut": "Nicht verbunden, Zeit abgelaufen. Bitte prüfen Sie Ihre Internetverbindung und laden Sie die Seite in ein paar Minuten erneut.",
+    "connecting": "Versuche eine Verbindung aufzubauen"
   },
   "pages": {
     "myClasses": {

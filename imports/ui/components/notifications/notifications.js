@@ -49,6 +49,6 @@ Template.notification.onRendered(function () {
 
 Template.notification.events({
   'hidden.bs.toast' (event, templateInstance) {
-    console.debug('hidden', event.currentTarget.getAttribute('id'))
+    console.debug('[notification]: hidden', event.currentTarget.getAttribute('id'))
   }
 })
