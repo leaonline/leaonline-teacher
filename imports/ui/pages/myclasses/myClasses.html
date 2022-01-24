@@ -55,7 +55,7 @@
                     </h2>
 
                     {{#each summary in this}}
-                        <a href="{{route "user" summary.user._id "session" summary.session._id}}">
+                        <a href="{{route "user" summary.user._id "session" summary.session._id}}" class="d-block mb-2">
                             {{toLocaleDate summary.session.completedAt "date"}}:
                             {{summary.user.account.code}}
                             {{summary.user.firstName}}
