@@ -7,17 +7,17 @@ import { Competency } from '../../../contexts/content/competency/Competency'
 import { AlphaLevel } from '../../../contexts/content/alphalevel/AlphaLevel'
 import { ColorType } from '../../../contexts/content/color/ColorType'
 import { Dimension } from '../../../contexts/content/dimension/Dimension'
+import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
+import { i18n } from '../../../api/i18n/I18n'
+import classLanguage from './i18n/classLanguage'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
 import { getAttendeeName } from '../../../api/accounts/getAttendeeName'
 import { loadDimensions } from '../../loaders/loadDimensions'
 import { dataTarget } from '../../utils/dataTarget'
-import classLanguage from './i18n/classLanguage'
+import { loadCompetencyCategories } from '../../loaders/loadCompetencyCategories'
 import './visualization/visualization'
 import './class.scss'
 import './class.html'
-import { i18n } from '../../../api/i18n/I18n'
-import { CompetencyCategory } from '../../../contexts/content/competency/CompetencyCategory'
-import { loadCompetencyCategories } from '../../loaders/loadCompetencyCategories'
 
 Template.class.onCreated(function () {
   const instance = this
@@ -145,11 +145,16 @@ Template.class.onCreated(function () {
     const alphaLevels = new Map()
     const userDateCompetencyKeys = new Set()
 
+    // ---------------------------------------------
+    // SECTION A - Process and denormalize results
+    // ---------------------------------------------
+
     records.sort(byCreationDate).forEach(record => {
       // first, check if there is no record yet
       // for the current user and create one for her
       if (!recordsByUser.has(record.userId)) {
         const user = userMap.get(record.userId)
+
         recordsByUser.set(record.userId, {
           _id: record.userId,
           name: getAttendeeName(user),
@@ -161,9 +166,15 @@ Template.class.onCreated(function () {
       // entry => this is because, maybe someone has tested a dimension
       // in multiple levels on the same day
       const userRecords = recordsByUser.get(record.userId)
-      const existingDate = userRecords.allDate.find(d => d.date === record.completedAt.toLocaleDateString())
+      const searchDate = record.completedAt.toLocaleDateString()
+      const existingDate = userRecords.allDate.find(d => d.date === searchDate)
 
-      // existing dates will be directly updated in the data-structure
+      // ---------------------------------------------
+      // PART 1 - Alpha Levels
+      // ---------------------------------------------
+
+      // case: user has already entry for this date
+      // then: existing dates will be directly updated in the data-structure
       if (existingDate) {
         record.alphaLevels.forEach(entry => {
           const index = existingDate.level.length - entry.level
@@ -172,7 +183,8 @@ Template.class.onCreated(function () {
         })
       }
 
-      // existing dates will create a new data-structure
+      // case: user has no entry for this date
+      // then: new dates will create a new data-structure
       else {
         const alphaLabel = i18n.get('alphaLevel.title')
         const levels = Array.of(5, 4, 3, 2, 1).map(index => ({
@@ -185,8 +197,9 @@ Template.class.onCreated(function () {
             alphaLevels.set(entry._id, entry)
           }
 
+          const value = Math.round(entry.perc * 10)
           const index = levels.length - entry.level
-          levels[index].value = Math.round(entry.perc * 10)
+          levels[index].value = value
         })
 
         userRecords.allDate.push({
@@ -195,6 +208,10 @@ Template.class.onCreated(function () {
           level: levels
         })
       }
+
+      // ---------------------------------------------
+      // PART 2 - Competencies
+      // ---------------------------------------------
 
       // additionally, process competencies for the list view
       record.competencies.forEach(competency => {
@@ -264,6 +281,10 @@ Template.class.onCreated(function () {
         }
       })
     })
+
+    // ---------------------------------------------
+    // SECTION B - Prepare for rendering
+    // ---------------------------------------------
 
     const results = Array
       .from(recordsByUser.values())

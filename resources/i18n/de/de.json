@@ -8,7 +8,9 @@
     "delete": "Löschen",
     "logout": "Abmelden",
     "cancel": "Abbrechen",
-    "archive": "Archivieren"
+    "archive": "Archivieren",
+    "print": "Aktuelle Seite drucken",
+    "signOut": "Abmelden"
   },
   "accounts": {
     "firstName": "Vorname",
@@ -25,7 +27,10 @@
     "userId": "Benutzer ID",
     "user": "Teilnehmende",
     "users": "Teilnehmende",
-    "progress": "Fortschritt"
+    "progress": "Fortschritt",
+    "average": "Mittelwert",
+    "grade": "Bewertung",
+    "development": "Entwicklung"
   },
   "form": {
     "selectOne": "(Bitte wählen)",

@@ -28,6 +28,6 @@ describe(getAttendeeName.name, function () {
       firstName: 'john',
       lastName: 'doe'
     }
-    expect(getAttendeeName(user, {alwaysIncludeCode: true })).to.equal('john doe - foo')
+    expect(getAttendeeName(user, { alwaysIncludeCode: true })).to.equal('john doe - foo')
   })
 })

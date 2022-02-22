@@ -1,5 +1,5 @@
 <template name="class">
-    <div class="class-container p-4">
+    <div class="class-container p-4 d-print-none">
     <h1>
         {{#onLoaded loaded=loadComplete}}{{i18n "pages.class.title"}}{{/onLoaded}}
         {{title}}
@@ -7,7 +7,7 @@
 
 
     {{#onLoaded loaded=loadComplete}}
-        <select class="form-control border-{{color}} text-{{color}}"
+        <select class="form-control border-{{color}} text-{{color}} d-print-none"
                 id="dimension-select">
             <option value="">{{i18n "form.selectName" name=(i18n "dimension.title")}}</option>
             {{#each dimension in dimensions}}
@@ -20,7 +20,9 @@
         {{/if}}
     {{/onLoaded}}
 
+    {{! when selected }}
     {{#if dimensionDoc}}
+        <div class="d-print-none">
         {{#unless otuleaConnected}}
             <div class="alert alert-info">
                 {{> loading title="otulea"}}
@@ -72,6 +74,7 @@
                 {{/unless}}
         {{/onLoaded}}
         {{/if}}
+        </div>
 
         {{! ---------------------------------------------- }}
         {{! competency category cards with collapse effect }}
@@ -88,7 +91,8 @@
         {{/unless}}
 
         {{#if competencyCategories}}
-            <div class="row">
+
+            <div class="row d-print-none">
            {{#each category in competencyCategories}}
                 <div class="col col-12 col-md-6 col-lg-4 mb-3">
                     <div class="card">
@@ -179,4 +183,82 @@
         {{/if}}
     {{/if}}
     </div>
+
+    {{! ---------------------------------------------- }}
+    {{! print-only information                         }}
+    {{! ---------------------------------------------- }}
+
+    {{#onLoaded loaded=loadComplete}}
+        <div class="d-none d-print-block">
+            <h1>{{i18n "pages.class.title"}} {{title}}</h1>
+
+            {{#if dimensionDoc}}
+                <div class="d-block">
+                    <span class="font-weight-bold">{{i18n "dimension.title"}}</span>
+                    <span class="text-{{color}}">{{dimensionDoc.title}}</span>
+                </div>
+            {{/if}}
+
+            {{#if users}}
+                <div class="d-block">
+                    <div class="font-weight-bold d-block">{{i18n "users.title"}}</div>
+                    {{#each user in users}}
+                        <span class="p-2" style="border: 1px solid #000 !important;">
+                        <span>{{user.firstName}}</span>
+                        <span>{{user.lastName}}</span>
+                            {{#if user.account.code}}
+                                <span>({{user.account.code}})</span>
+                            {{/if}}
+                    </span>
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            <div class="d-none d-print-block h-100">
+                {{#each category in competencyCategories}}
+                    <div class="d-flex justify-content-between mt-5">
+                        <h4>{{category.label}}</h4>
+                        <span class="font-weight-bold">
+                            {{category.users}}
+                            {{i18n "users.title"}}
+                            <span>,</span>
+                            {{category.entries.length}}
+                            {{i18n "competency.competencies"}}
+                        </span>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        {{#each competency in category.entries}}
+                            <div class="card col{{#if gt category.entries 1}}-6{{/if}}">
+                                <div class="card-header d-flex justify-content-between">
+                                <span>
+                                    {{i18n "alphaLevel.title"}}
+                                    {{competency.level}}
+                                </span>
+                                    <span>
+                                    {{competency.shortCode}}
+                                        {{competency.description}}
+                                </span>
+                                </div>
+                                <div class="card-body">
+                                    {{#each user in competency.users}}
+                                        <div class="d-flex justify-content-between px-4">
+                                            <span>{{user.name}}</span>
+                                            <span>{{truncate user.perc}} %</span>
+                                        </div>
+                                    {{/each}}
+                                    <div class="d-flex justify-content-between px-4 font-weight-bold">
+                                        {{i18n "common.average"}}
+                                        <span>{{truncate competency.average}} %</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/each}}
+            </div>
+
+        </div>
+    {{/onLoaded}}
 </template>

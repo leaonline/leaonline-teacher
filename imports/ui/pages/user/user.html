@@ -1,5 +1,5 @@
 <template name="user">
-    <div class="user-container h-100 d-flex">
+    <div class="user-container h-100 d-flex d-print-none">
     {{! ================== SIDEBAR ========================================}}
     {{#unless sidebarHidden}}
         <div class="user-sidebar {{#if competencyCategories}}with-content{{/if}} bg-dark">
@@ -293,5 +293,70 @@
     {{/if}}
     </div>
     </div>
+
+
+    {{! ========================================================== }}
+    {{! PRINT ONLY                                                 }}
+    {{! ========================================================== }}
+    {{#onLoaded loaded=loadComplete}}
+    <div class="d-none d-print-block">
+        {{#with user}}
+            <h5>
+                {{this.firstName}} {{this.lastName}}
+                {{#if this.account.code}}({{this.account.code}}){{/if}}
+            </h5>
+        {{/with}}
+        {{#with dimensionDoc}}
+            <div class="d-block">
+                {{i18n "dimension.title"}}:
+                {{this.title}}
+            </div>
+        {{/with}}
+        {{#with selectedDates}}
+            <div class="d-block">
+                {{i18n "pages.user.selectedDates"}}:
+                {{this.join ", "}}
+            </div>
+        {{/with}}
+
+        {{#each category in competencyCategories}}
+            <h3 class="mt-5">{{category.label}}</h3>
+            <hr>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{i18n "competency.shortCode"}}</th>
+                <th>{{i18n "common.description"}}</th>
+                <th>{{i18n "alphaLevel.title"}}</th>
+                <th class="text-right">{{i18n "common.progress"}}</th>
+                <th>{{i18n "common.grade"}}</th>
+                <th></th>
+                <th>{{i18n "common.development"}}</th>
+            </tr>
+            </thead>
+        <tbody>
+            {{#each competency in category.entries}}
+                <tr>
+                    <td>{{competency.shortCode}}</td>
+                    <td>{{competency.description}} {{competency.description}} {{competency.description}}</td>
+                    <td class="text-c">α-{{competency.alphaLevel.level}}</td>
+                    <td class="text-right no-wrap">{{truncate competency.perc}} %</td>
+                    <td class="no-wrap">{{i18n competency.gradeLabel}}</td>
+                    <td class="no-wrap">
+                        {{#onLoaded loaded=competenciesLoaded}}
+                            {{>icon name=competency.icon class="text-primary"}}
+                        {{/onLoaded}}
+                    </td>
+                    <td class="no-wrap">
+                        {{i18n competency.developmentLabel}}
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        </table>
+        {{/each}}
+    </div>
+    {{/onLoaded}}
 </template>
 

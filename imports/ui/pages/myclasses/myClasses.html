@@ -22,7 +22,7 @@
                     </span>
 
                     {{> button
-                            class="ml-auto modal-trigger"
+                            class="ml-auto modal-trigger d-print-none"
                             data-target="insert"
                             data-type="course"
                             colortype="primary"
@@ -67,7 +67,7 @@
 
                 {{#if completedCourses}}
                     {{#button
-                            class="modal-trigger mt-5"
+                            class="modal-trigger mt-5 d-print-none"
                             data-target="archived"
                             data-type="course"
                             colortype="secondary"
@@ -87,7 +87,7 @@
                     </span>
 
                     {{> button
-                            class="ml-auto modal-trigger"
+                            class="ml-auto modal-trigger d-print-none"
                             data-target="insert"
                             data-type="user"
                             colortype="primary"
@@ -126,7 +126,7 @@
                                         {{/each}}
                                     </td>
 
-                                    <td class="text-right no-wrap">
+                                    <td class="text-right no-wrap d-print-none">
                                         <a href="{{route getUserRoute user._id}}"
                                            class="btn btn-sm btn-outline-secondary">
                                             {{> icon name="eye"}}
@@ -159,7 +159,7 @@
 
                 {{#if completedCourses}}
                     {{#button
-                            class="modal-trigger"
+                            class="modal-trigger d-print-none"
                             data-target="archived"
                             data-type="user"
                             colortype="secondary"
@@ -181,7 +181,7 @@
 
 
         {{! FORM MODAL - Display multiple form states in one modal }}
-        {{#modal id="form-modal" large=true}}
+        {{#modal id="form-modal" large=true class="d-print-none"}}
         {{! COMPLETED COURSES (ARCHIVED) }}
             {{#if formAction "archived"}}
                 {{> modalheader title=(i18n "pages.myClasses.archived" name=(i18n typeLabel)) dismiss=true class="bg-secondary text-white"}}
@@ -370,7 +370,7 @@
                     </span>
                 </a>
             </div>
-            <div class="col d-flex justify-content-end align-items-center no-wrap">
+            <div class="col d-flex justify-content-end align-items-center no-wrap d-print-none">
                  <a href="{{route courseRoute course._id}}"
                     class="btn btn-outline-secondary btn-sm mr-2 course-items-icon-buttons">
                      {{> icon name="eye"}}

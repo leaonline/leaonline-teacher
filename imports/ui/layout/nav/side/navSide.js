@@ -14,7 +14,6 @@ const componentsLoader = bbsComponentLoader([
 
 const componentsLoaded = componentsLoader.loaded
 
-
 Template.navSide.helpers({
   componentsLoaded () {
     return componentsLoaded.get()
@@ -40,5 +39,10 @@ Template.navSide.events({
   'click .sidebar-left-toggle' (event, templateInstance) {
     const hidden = templateInstance.state.get('hidden')
     templateInstance.state.set('hidden', !hidden)
+  },
+  'click .print-btn' () {
+    event.preventDefault()
+    event.stopPropagation()
+    window.print()
   }
 })

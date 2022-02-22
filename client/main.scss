@@ -36,3 +36,17 @@ form ul li {
 p, div, span, h1, h2, h3, h4, h5, h6, button, label, a {
   font-family: 'Semikolon', Arial, 'sans-serif';
 }
+
+@media print {
+
+  // force no bg on target when printing
+
+  .bg-print-none {
+    background: none !important;
+  }
+
+  body {
+    background: none !important;
+    height: 100%;
+  }
+}

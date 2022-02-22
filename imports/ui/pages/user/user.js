@@ -64,7 +64,7 @@ Template.user.onCreated(function () {
         }
 
         else {
-         disabled = filters.some(({ target, hasKey, key, value }) => {
+          disabled = filters.some(({ target, hasKey, key, value }) => {
             if (!competency[target]) return false
 
             const prop = hasKey
@@ -204,6 +204,9 @@ Template.user.helpers({
   recordDates () {
     return !Template.getState('noRecords') && Template.getState('recordDates')
   },
+  selectedDates () {
+    return Template.getState('selectedDates')
+  },
   noRecords () {
     return Template.getState('noRecords')
   },
@@ -250,6 +253,7 @@ Template.user.events({
       return templateInstance.state.set({
         competencyCategories: null,
         alphaLevels: null,
+        selectedDates: null
       })
     }
 
@@ -259,6 +263,10 @@ Template.user.events({
       const completedAt = recordDates[selected].getTime()
       selectedRecords = records.filter(r => r.completedAt.getTime() === completedAt)
     }
+
+    templateInstance.state.set({
+      selectedDates: selectedRecords.map(r => r.completedAt.toLocaleDateString())
+    })
 
     const competencies = new Map()
     const alphaLevels = new Map()
@@ -398,7 +406,6 @@ Template.user.events({
     templateInstance.resetFilter()
     templateInstance.$('.filter-input').prop('checked', true)
     templateInstance.applyFilters()
-
   },
   'click .competency-card' (event, templateInstance) {
     event.preventDefault()

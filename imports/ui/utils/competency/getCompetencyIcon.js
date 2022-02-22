@@ -1,8 +1,8 @@
 const icons = {
-  'new': 'circle',
-  'same': 'arrow-right',
-  'improved': 'arrow-up',
-  'declined': 'arrow-down'
+  new: 'circle',
+  same: 'arrow-right',
+  improved: 'arrow-up',
+  declined: 'arrow-down'
 }
 
 export const getCompetencyIcon = ({ development }) => {

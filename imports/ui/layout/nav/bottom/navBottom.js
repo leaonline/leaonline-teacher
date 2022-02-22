@@ -15,19 +15,19 @@ Template.navBottom.onCreated(function () {
 })
 
 Template.navBottom.helpers({
-  loadComplete() {
+  loadComplete () {
     return Template.getState('initComplete')
   },
   selectedCourse () {
     return State.currentClass()
   },
-  isSelected(userId) {
+  isSelected (userId) {
     const user = State.currentParticipant()
     return user && user._id === userId
   },
   shortName (user) {
     if (user.firstName && user.lastName) {
-      return `${user.firstName.substring(0,1)}${user.lastName.substring(0,1)}`.toUpperCase()
+      return `${user.firstName.substring(0, 1)}${user.lastName.substring(0, 1)}`.toUpperCase()
     }
   },
   compressedView () {
