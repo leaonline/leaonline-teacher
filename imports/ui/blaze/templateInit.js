@@ -8,6 +8,7 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
   import { Notify } from '../../ui/components/notifications/Notify'
   import { addLanguage } from '../../api/i18n/addLanguage'
   import { connectRemote } from '../../api/remotes/connectRemote'
+  import { Router } from '../../api/routing/Router'
 
   const handleError = error => {
     if (onError) {
@@ -34,6 +35,10 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
     if (!Meteor.isDevelopment || !debug) return
     console.debug(`[${instance.view.name}]:`, ...args)
   }
+
+  // ---------------------------------------------------------------------------
+
+  api.queryParam = (value) => Router.queryParam(value)
 
   // ---------------------------------------------------------------------------
 

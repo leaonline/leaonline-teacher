@@ -20,7 +20,7 @@
                 {{/unless}}
                 {{#each user in selectedCourse.users}}
                         {{#unless compressedView}}
-                            <a href="{{route "user" user._id "class" selectedCourse._id}}">
+                            <a href="{{route "user" user._id "class" selectedCourse._id "dimension" dimension}}">
                             <div class="profiles w-100 text-center overflow-hidden mt-2 {{#if isSelected user._id}}active{{/if}}">
                                 <img src="/images/user.png" alt="user"/>
                                 <div class="pro-captions">
@@ -31,7 +31,7 @@
                             </a>
                         {{else}}
                             <div class="w-100 text-center mt-2">
-                            <a href="{{route "user" user._id "class" selectedCourse._id}}" class="w-100 btn btn-{{#if isSelected user._id}}primary{{else}}dark{{/if}} border-2"
+                            <a href="{{route "user" user._id "class" selectedCourse._id "dimension" dimension}}" class="w-100 btn btn-{{#if isSelected user._id}}primary{{else}}dark{{/if}} border-2"
                                 title="{{fullName user}}">
                                 <span class="font-weight-bold">{{shortName user}}</span>
                             </a>

@@ -47,7 +47,7 @@ Template.user.onCreated(function () {
 
   instance.setDimension = dimensionId => {
     const dimensionDoc = dimensionId && Dimension.localCollection().findOne(dimensionId)
-    if (!dimensionDoc) {
+    if (dimensionId && !dimensionDoc) {
       const dimensionDocs = Dimension.localCollection().find().map(d => d._id)
       return console.warn('could not set dimension doc', dimensionId, 'in', dimensionDocs.toString())
     }
@@ -169,7 +169,6 @@ Template.user.onCreated(function () {
       }
     })
 
-
   })
 
   // ///////////////////////////////////////////////////////////////////////////
@@ -186,13 +185,11 @@ Template.user.onCreated(function () {
     OtuLea.recentFeedback({ users: [userDoc.account._id], resolve: true })
       .catch(instance.api.notify)
       .then((sessionDocs = []) => {
-        console.debug('found recent', sessionDocs)
         // if we received a doc we store it in the state and see, if we
         // can use it, once the other docs have been loaded
         instance.state.set({ recentSession: sessionDocs[0] })
       })
   })
-
 
   // ///////////////////////////////////////////////////////////////////////////
   // GET RECORDS
@@ -241,8 +238,11 @@ Template.user.onCreated(function () {
         const recordDates = Array.from(dates).map(t => new Date(t))
         instance.state.set({ records, recordDates, noRecords: false })
 
-        // auto-apply selecting recent session
+        // auto-apply selecting recent session por latest date
+        // depending on what auto-selecting mechanism we have used
+        // see Template.onRendered for dimension selection logic
         const recentSession = instance.state.get('recentSession')
+        const autoSelectLatestDate = instance.state.get('autoSelectLatestDate')
 
         if (recentSession) {
           const { completedAt } = recentSession
@@ -254,13 +254,33 @@ Template.user.onCreated(function () {
           if (completedIndex > -1) {
             loadCompetencies(completedIndex.toString(10), instance)
             setTimeout(() => {
-              const $select = document.querySelector('#record-select');
-              $select.value = completedIndex
+              const $select = document.querySelector('#record-select')
+              if ($select) $select.value = completedIndex
             }, 100)
           }
         }
+
+        // here we take '0' as the zero-index string value as the assumed
+        // latest date so we load competencies for this date automatically
+        // however this won't work when there are no records for the dimension
+        else if (autoSelectLatestDate && recordDates.length > 0) {
+          loadCompetencies('0', instance)
+          setTimeout(() => {
+            const $select = document.querySelector('#record-select')
+            if ($select) $select.value = '0'
+          }, 100)
+        }
+
+        else {
+          console.warn('could neither set recent session nor auto last date')
+        }
       })
   })
+
+})
+
+Template.user.onRendered(function () {
+  const instance = this
 
   // ///////////////////////////////////////////////////////////////////////////
   // APPLY MOST RECENT
@@ -269,19 +289,52 @@ Template.user.onCreated(function () {
   // if we found a recent doc and data has been loaded we can try
   // to set the current doc and auto-load the results
   instance.autorun(() => {
+    const data = Template.currentData()
+    const currentDimension = data.queryParams.dimension
     const recentSession = instance.state.get('recentSession')
     const initComplete = instance.state.get('initComplete')
+    const dimensionDoc = instance.state.get('dimensionDoc')
 
-    if (!initComplete || !recentSession || !OtuLea.isLoggedIn()) {
+    // skip either if
+    // - we already have a selected dimension
+    // - we have not initialized
+    // - we are not logged in
+    // - we no auto-values to be set
+    if (dimensionDoc || !initComplete || !OtuLea.isLoggedIn() ||
+      (!currentDimension && !recentSession)) {
       return
     }
 
-    instance.setDimension(recentSession.testCycle.dimension)
+    let dimensionToSelect = undefined
+    let autoSelectLatestDate = true
 
-    // update select component as well
+    // selection from class page beats auto-selecting last test
+    if (currentDimension !== null && currentDimension !== undefined) {
+      dimensionToSelect = currentDimension
+      autoSelectLatestDate = true
+    }
+
+    else {
+      dimensionToSelect = recentSession?.testCycle?.dimension
+    }
+
+    // skip if we have nothing to select anyway
+    if (!dimensionToSelect) { return }
+
     setTimeout(() => {
-      const $select = document.querySelector('#dimension-select');
-      $select.value = recentSession.testCycle.dimension
+      const $select = document.querySelector('#dimension-select')
+      const element = [...$select.options].some(option => {
+        return option.value === dimensionToSelect
+      })
+
+      if (element) {
+        $select.value = dimensionToSelect
+        instance.setDimension(dimensionToSelect)
+        instance.state.set({ autoSelectLatestDate })
+      }
+      else {
+        console.warn('skip attempt to select a non-existent dimension', currentDimension)
+      }
     }, 100)
   })
 })
@@ -340,12 +393,19 @@ Template.user.helpers({
 Template.user.events({
   'change #dimension-select' (event, templateInstance) {
     const selectedDimension = templateInstance.$(event.currentTarget).val() || null
+
+    // changing dimension removes all auto-behaviour triggers
+    templateInstance.api.queryParam({ dimension: null })
     templateInstance.state.set('recentSession', null)
+    templateInstance.state.set('autoSelectLatestDate', null)
+    State.currentDimension(null)
+
     templateInstance.setDimension(selectedDimension)
   },
   'change #record-select' (event, templateInstance) {
     templateInstance.state.set('competenciesLoaded', false)
     templateInstance.state.set('recentSession', null)
+    templateInstance.state.set('autoSelectLatestDate', null)
     const selected = templateInstance.$(event.currentTarget).val()
     loadCompetencies(selected, templateInstance)
   },
@@ -386,7 +446,6 @@ Template.user.events({
     templateInstance.applyFilters()
   }, 300)
 })
-
 
 const loadCompetencies = (selectedDate, templateInstance) => {
   if (!selectedDate) {

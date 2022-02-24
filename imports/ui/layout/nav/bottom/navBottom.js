@@ -46,6 +46,9 @@ Template.navBottom.helpers({
   },
   compressedView () {
     return Template.getState('compressedView')
+  },
+  dimension () {
+    return State.currentDimension()
   }
 })
 

@@ -37,6 +37,18 @@ Template.class.onCreated(function () {
     }
   })
 
+  instance.setDimension = dimensionId => {
+    State.currentDimension(dimensionId)
+
+    const dimensionDoc = dimensionId && Dimension.localCollection().findOne(dimensionId)
+    if (!dimensionDoc) {
+      return console.warn('No doc found by dimension Id', dimensionId)
+    }
+
+    const color = dimensionId && ColorType.byIndex(dimensionDoc.colorType)?.type
+    instance.state.set({ dimensionDoc, color })
+  }
+
   instance.autorun(() => {
     const data = Template.currentData()
     const { classId } = data.params
@@ -427,10 +439,7 @@ Template.class.events({
     event.preventDefault()
 
     const selectedDimension = templateInstance.$(event.currentTarget).val() || null
-    const dimensionDoc = selectedDimension && Dimension.localCollection().findOne(selectedDimension)
-    const color = selectedDimension && ColorType.byIndex(dimensionDoc.colorType)?.type
-
-    templateInstance.state.set({ dimensionDoc, color })
+    templateInstance.setDimension(selectedDimension)
   },
   'click .category-collapse' (event, templateInstance) {
     event.preventDefault()
