@@ -114,7 +114,7 @@ Template.class.onCreated(function () {
       .catch(instance.api.notify)
   })
 
-  const byCreationDate = (a, b) => b.completedAt.getTime() - a.completedAt.getTime()
+  const byCreationDate = (a, b) => a.completedAt.getTime() - b.completedAt.getTime()
 
   instance.autorun(() => {
     const records = instance.state.get('records')
@@ -132,6 +132,8 @@ Template.class.onCreated(function () {
 
     instance.state.set({ loadRecords: true })
 
+    // convert users array to map
+
     const userMap = new Map()
     userDocs.forEach(user => {
       if (user?.account?._id) {
@@ -144,12 +146,16 @@ Template.class.onCreated(function () {
     const competencyCategories = new Map()
     const alphaLevels = new Map()
     const userDateCompetencyKeys = new Set()
+    const allDates = new Set()
 
     // ---------------------------------------------
     // SECTION A - Process and denormalize results
     // ---------------------------------------------
 
     records.sort(byCreationDate).forEach(record => {
+      const dateStr = record.completedAt.toLocaleDateString()
+      allDates.add(dateStr)
+
       // first, check if there is no record yet
       // for the current user and create one for her
       if (!recordsByUser.has(record.userId)) {
@@ -178,7 +184,7 @@ Template.class.onCreated(function () {
       if (existingDate) {
         record.alphaLevels.forEach(entry => {
           const index = existingDate.level.length - entry.level
-          existingDate.level[index].value = Math.round(entry.perc * 10)
+          existingDate.level[index].value = Math.round(entry.perc * 100)
           existingDate.level[index].alpha = entry.description
         })
       }
@@ -197,7 +203,7 @@ Template.class.onCreated(function () {
             alphaLevels.set(entry._id, entry)
           }
 
-          const value = Math.round(entry.perc * 10)
+          const value = Math.round(entry.perc * 100)
           const index = levels.length - entry.level
           levels[index].value = value
         })
@@ -267,6 +273,7 @@ Template.class.onCreated(function () {
           entry.users.set(record.userId, {
             _id: user._id,
             name: getAttendeeName(user),
+            code: user?.account?.code,
             perc: 0,
             count: 0,
             average: 0
@@ -328,7 +335,11 @@ Template.class.onCreated(function () {
     }
 
     instance.state.set({
-      results,
+      visualizationData: {
+        entries: results,
+        dates: [...allDates.values()],
+        alphaLevels: [...alphaLevels.values()].map(a => a.description)
+      },
       hasFeedback,
       loadRecords: false,
       competencyCategories: Array.from(competencyCategories.values()),
@@ -370,6 +381,9 @@ Template.class.helpers({
     return Template.getState('alphaLevelDocsLoaded') &&
       AlphaLevel.localCollection().findOne(id)
   },
+  alphaLevels () {
+    return Template.getState('alphaLevels')
+  },
   users () {
     return Template.getState('users')
   },
@@ -384,8 +398,7 @@ Template.class.helpers({
       return null
     }
 
-    const results = Template.getState('results')
-    return results && { results }
+    return Template.getState('visualizationData')
   },
   noUsers () {
     return Template.getState('users') && !Template.getState('hasUsers')

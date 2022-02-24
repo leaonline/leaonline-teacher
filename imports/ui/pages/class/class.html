@@ -36,41 +36,10 @@
                     </div>
                 {{else}}
                     {{#if visualizationData}}
+                        <div class="mt-4">
                         {{> visualization visualizationData}}
+                        </div>
                     {{/if}}
-
-
-                    {{#with processed}}
-                        <h3>AlphaLevels</h3>
-                        <ul class="list-group">
-                            {{#each entry in this.alphaLevels}}
-                            <li class="list-group-item">
-                                <span>
-                                    {{#with alphaLevelDoc entry.id}}
-                                        {{this.description}}
-                                    {{else}}
-                                        {{entry.id}}
-                                    {{/with}}
-                                </span>: {{entry.score}} ({{entry.count}})
-                            </li>
-                            {{/each}}
-                        </ul>
-
-                        <h3>Competencies</h3>
-                        <ul class="list-group">
-                            {{#each entry in this.competencies}}
-                                <li class="list-group-item">
-                                <span>
-                                    {{#with competencyDoc entry.id}}
-                                        {{this.description}}
-                                    {{else}}
-                                        {{entry.id}}
-                                    {{/with}}
-                                </span>: {{entry.score}} ({{entry.count}})
-                                </li>
-                            {{/each}}
-                        </ul>
-                    {{/with}}
                 {{/unless}}
         {{/onLoaded}}
         {{/if}}
@@ -92,10 +61,10 @@
 
         {{#if competencyCategories}}
 
-            <div class="row d-print-none">
+            <div class="row d-print-none mt-4">
            {{#each category in competencyCategories}}
                 <div class="col col-12 col-md-6 col-lg-4 mb-3">
-                    <div class="card">
+                    <div class="card shadow-sm">
                         <div class="card-header text-center font-weight-bold text-secondary">
                             {{category.label}}
                         </div>
@@ -189,21 +158,21 @@
     {{! ---------------------------------------------- }}
 
     {{#onLoaded loaded=loadComplete}}
-        <div class="d-none d-print-block">
+        <div class="d-none d-print-block h-auto">
             <h1>{{i18n "pages.class.title"}} {{title}}</h1>
 
             {{#if dimensionDoc}}
                 <div class="d-block">
-                    <span class="font-weight-bold">{{i18n "dimension.title"}}</span>
+                    <span class="font-weight-bold">{{i18n "dimension.title"}}:</span>
                     <span class="text-{{color}}">{{dimensionDoc.title}}</span>
                 </div>
             {{/if}}
 
             {{#if users}}
-                <div class="d-block">
-                    <div class="font-weight-bold d-block">{{i18n "users.title"}}</div>
+                    <div class="font-weight-bold d-block">{{i18n "users.title"}}:</div>
+                <div class="d-flex flex-wrap">
                     {{#each user in users}}
-                        <span class="p-2" style="border: 1px solid #000 !important;">
+                     <span class="p-2 mx-2 no-wrap border-light" style="border: 1px solid !important;">
                         <span>{{user.firstName}}</span>
                         <span>{{user.lastName}}</span>
                             {{#if user.account.code}}
@@ -214,51 +183,59 @@
                 </div>
             {{/if}}
 
-            <div class="d-none d-print-block h-100">
-                {{#each category in competencyCategories}}
-                    <div class="d-flex justify-content-between mt-5">
-                        <h4>{{category.label}}</h4>
-                        <span class="font-weight-bold">
-                            {{category.users}}
-                            {{i18n "users.title"}}
-                            <span>,</span>
-                            {{category.entries.length}}
-                            {{i18n "competency.competencies"}}
-                        </span>
-                    </div>
-                    <hr>
+            {{#if visualizationData}}
+                <h2 class="mt-5">{{i18n "alphaLevel.title"}}</h2>
+                <div class="mt-4">
+                    {{> visualization visualizationData}}
+                </div>
+            {{/if}}
 
-                    <div class="row">
-                        {{#each competency in category.entries}}
-                            <div class="card col{{#if gt category.entries 1}}-6{{/if}}">
-                                <div class="card-header d-flex justify-content-between">
-                                <span>
-                                    {{i18n "alphaLevel.title"}}
-                                    {{competency.level}}
-                                </span>
-                                    <span>
-                                    {{competency.shortCode}}
-                                        {{competency.description}}
-                                </span>
-                                </div>
-                                <div class="card-body">
-                                    {{#each user in competency.users}}
-                                        <div class="d-flex justify-content-between px-4">
-                                            <span>{{user.name}}</span>
-                                            <span>{{truncate user.perc}} %</span>
-                                        </div>
-                                    {{/each}}
-                                    <div class="d-flex justify-content-between px-4 font-weight-bold">
-                                        {{i18n "common.average"}}
-                                        <span>{{truncate competency.average}} %</span>
-                                    </div>
-                                </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                {{/each}}
+            <h2 class="mt-5 ">{{i18n "competency.competencies"}}</h2>
+            {{#each category in competencyCategories}}
+                <div class="d-block mt-5 page-break-avoid">
+                    <h3>{{category.label}}</h3>
+                    <span class="font-weight-bold">
+                        {{category.users}}
+                        {{i18n "users.title"}}
+                        <span>,</span>
+                        {{category.entries.length}}
+                        {{i18n "competency.competencies"}}
+                    </span>
+                <hr>
+
+                    {{#each competency in category.entries}}
+                    <table class="table bg-transparent w-{{#if gt category.entries.length 1}}50 float-left{{else}}100{{/if}}">
+                        <thead>
+                        <tr>
+                            <th>
+                                {{i18n "alphaLevel.title"}}
+                                {{competency.level}}
+                            </th>
+                            <th>{{competency.shortCode}}: {{competency.description}}</th>
+                            <th>{{i18n "common.progress"}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {{#each user in competency.users}}
+                            <tr>
+                                <td>{{user.code}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{truncate user.perc}} %</td>
+                             </tr>
+                            {{/each}}
+                        </tbody>
+                        <tfoot>
+                        <tr class="font-weight-bold">
+                            <td colspan="2">{{i18n "common.average"}}</td>
+                            <td>
+                                {{truncate competency.average}} %
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    {{/each}}
+                </div>
+            {{/each}}
             </div>
-
-        </div>
     {{/onLoaded}}
 </template>

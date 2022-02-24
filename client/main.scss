@@ -14,6 +14,10 @@ form .card {
   border: 0 !important;
 }
 
+body {
+  overflow-y: hidden;
+}
+
 form ul li {
   padding: 0 !important;
 }
@@ -45,8 +49,26 @@ p, div, span, h1, h2, h3, h4, h5, h6, button, label, a {
     background: none !important;
   }
 
-  body {
+  body, main, .mainwrapper, .contentwrapper {
     background: none !important;
-    height: 100%;
+    overflow: visible;
+  }
+
+  // use as our page break anchor
+  .page-break-before {
+    page-break-before : always !important;
+  }
+
+  .page-break-avoid {
+    page-break-inside : avoid !important;
+  }
+
+  hr {
+    border: solid 2px !important;
+  }
+
+  .border-print {
+    border: solid 2px !important;
   }
 }
+

@@ -20,6 +20,7 @@
     }
   },
   "users": {
-    "title": "Teilnehmer*innen"
+    "title": "Teilnehmer*innen",
+    "user": "Teilnehmer*in"
   }
 }

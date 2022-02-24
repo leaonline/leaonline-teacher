@@ -31,8 +31,9 @@
                             </a>
                         {{else}}
                             <div class="w-100 text-center mt-2">
-                            <a href="{{route "user" user._id "class" selectedCourse._id}}" class="btn btn-{{#if isSelected user._id}}primary{{else}}dark{{/if}} border-2">
-                                <h5>{{shortName user}}</h5>
+                            <a href="{{route "user" user._id "class" selectedCourse._id}}" class="w-100 btn btn-{{#if isSelected user._id}}primary{{else}}dark{{/if}} border-2"
+                                title="{{fullName user}}">
+                                <span class="font-weight-bold">{{shortName user}}</span>
                             </a>
                             </div>
                         {{/unless}}

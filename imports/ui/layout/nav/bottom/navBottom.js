@@ -29,6 +29,20 @@ Template.navBottom.helpers({
     if (user.firstName && user.lastName) {
       return `${user.firstName.substring(0, 1)}${user.lastName.substring(0, 1)}`.toUpperCase()
     }
+    if (user.firstName) {
+      return user.firstName.substring(0, 2)
+    }
+    if (user.lastName) {
+      return user.lastName.substring(0, 2)
+    }
+    return '...'
+  },
+  fullName (user) {
+    const name = []
+    if (user.firstName) name.push(user.firstName)
+    if (user.lastName) name.push(user.lastName)
+    if (user.account?.code) name.push(user.account?.code)
+    return name.join(' ')
   },
   compressedView () {
     return Template.getState('compressedView')
