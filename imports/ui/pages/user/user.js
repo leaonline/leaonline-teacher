@@ -41,10 +41,35 @@ Template.user.onCreated(function () {
     }
   })
 
+  // ///////////////////////////////////////////////////////////////////////////
+  // GENERAL API
+  // ///////////////////////////////////////////////////////////////////////////
+
+  instance.setDimension = dimensionId => {
+    const dimensionDoc = dimensionId && Dimension.localCollection().findOne(dimensionId)
+    if (!dimensionDoc) {
+      const dimensionDocs = Dimension.localCollection().find().map(d => d._id)
+      return console.warn('could not set dimension doc', dimensionId, 'in', dimensionDocs.toString())
+    }
+    const color = dimensionId && ColorType.byIndex(dimensionDoc.colorType)?.type
+    instance.state.set({ dimensionDoc, color })
+  }
+
+  // ///////////////////////////////////////////////////////////////////////////
+  // FILTERING API
+  // ///////////////////////////////////////////////////////////////////////////
+
+  /**
+   * Reset all filters AND search
+   */
   instance.resetFilter = () => {
     instance.state.set('filters', [])
   }
 
+  /**
+   * Applies all added filters and search to the current
+   * processed list of data and set the filtered list to the instance state
+   */
   instance.applyFilters = () => {
     const filters = instance.state.get('filters') || []
     const search = instance.state.get('search') || ''
@@ -112,6 +137,10 @@ Template.user.onCreated(function () {
     instance.state.set({ filters })
   }
 
+  // ///////////////////////////////////////////////////////////////////////////
+  // GET USERS
+  // ///////////////////////////////////////////////////////////////////////////
+
   instance.autorun(() => {
     const data = Template.currentData()
     const { userId } = data.params
@@ -139,7 +168,35 @@ Template.user.onCreated(function () {
         instance.state.set({ userDoc, sessionId, hasAccount })
       }
     })
+
+
   })
+
+  // ///////////////////////////////////////////////////////////////////////////
+  // GET MOST RECENT
+  // ///////////////////////////////////////////////////////////////////////////
+
+  // load the most recent feedback to automatically
+  // display the last test
+  instance.autorun(() => {
+    const userDoc = instance.state.get('userDoc')
+
+    if (!userDoc?.account?._id || !OtuLea.isLoggedIn()) { return }
+
+    OtuLea.recentFeedback({ users: [userDoc.account._id], resolve: true })
+      .catch(instance.api.notify)
+      .then((sessionDocs = []) => {
+        console.debug('found recent', sessionDocs)
+        // if we received a doc we store it in the state and see, if we
+        // can use it, once the other docs have been loaded
+        instance.state.set({ recentSession: sessionDocs[0] })
+      })
+  })
+
+
+  // ///////////////////////////////////////////////////////////////////////////
+  // GET RECORDS
+  // ///////////////////////////////////////////////////////////////////////////
 
   // for gathering the data we create a two-step process:
   // 1. get all sessions by dimension and provide a select component
@@ -177,11 +234,55 @@ Template.user.onCreated(function () {
         if (!records?.length) {
           return instance.state.set({ noRecords: true })
         }
+
         const dates = new Set()
         records.forEach(r => dates.add(r.completedAt.getTime()))
+
         const recordDates = Array.from(dates).map(t => new Date(t))
         instance.state.set({ records, recordDates, noRecords: false })
+
+        // auto-apply selecting recent session
+        const recentSession = instance.state.get('recentSession')
+
+        if (recentSession) {
+          const { completedAt } = recentSession
+          const completedIndex = recordDates.findIndex(d => {
+            return d.toLocaleDateString() === completedAt.toLocaleDateString()
+          })
+
+          // only apply if the record is in the list
+          if (completedIndex > -1) {
+            loadCompetencies(completedIndex.toString(10), instance)
+            setTimeout(() => {
+              const $select = document.querySelector('#record-select');
+              $select.value = completedIndex
+            }, 100)
+          }
+        }
       })
+  })
+
+  // ///////////////////////////////////////////////////////////////////////////
+  // APPLY MOST RECENT
+  // ///////////////////////////////////////////////////////////////////////////
+
+  // if we found a recent doc and data has been loaded we can try
+  // to set the current doc and auto-load the results
+  instance.autorun(() => {
+    const recentSession = instance.state.get('recentSession')
+    const initComplete = instance.state.get('initComplete')
+
+    if (!initComplete || !recentSession || !OtuLea.isLoggedIn()) {
+      return
+    }
+
+    instance.setDimension(recentSession.testCycle.dimension)
+
+    // update select component as well
+    setTimeout(() => {
+      const $select = document.querySelector('#dimension-select');
+      $select.value = recentSession.testCycle.dimension
+    }, 100)
   })
 })
 
@@ -239,149 +340,14 @@ Template.user.helpers({
 Template.user.events({
   'change #dimension-select' (event, templateInstance) {
     const selectedDimension = templateInstance.$(event.currentTarget).val() || null
-    const dimensionDoc = selectedDimension && Dimension.localCollection().findOne(selectedDimension)
-    const color = selectedDimension && ColorType.byIndex(dimensionDoc.colorType)?.type
-    templateInstance.state.set({ dimensionDoc, color })
+    templateInstance.state.set('recentSession', null)
+    templateInstance.setDimension(selectedDimension)
   },
   'change #record-select' (event, templateInstance) {
     templateInstance.state.set('competenciesLoaded', false)
-    const records = templateInstance.state.get('records')
-    const recordDates = templateInstance.state.get('recordDates')
+    templateInstance.state.set('recentSession', null)
     const selected = templateInstance.$(event.currentTarget).val()
-
-    if (!selected) {
-      return templateInstance.state.set({
-        competencyCategories: null,
-        alphaLevels: null,
-        selectedDates: null
-      })
-    }
-
-    let selectedRecords = records
-
-    if (selected !== 'all') {
-      const completedAt = recordDates[selected].getTime()
-      selectedRecords = records.filter(r => r.completedAt.getTime() === completedAt)
-    }
-
-    templateInstance.state.set({
-      selectedDates: selectedRecords.map(r => r.completedAt.toLocaleDateString())
-    })
-
-    const competencies = new Map()
-    const alphaLevels = new Map()
-    const accomplishments = new Map()
-    const development = new Map()
-    const allCategory = i18n.get('competency.categories.all')
-
-    selectedRecords.forEach(record => {
-      record.alphaLevels.forEach(alphaLevel => {
-        if (!alphaLevels.has(alphaLevel._id)) {
-          alphaLevel.active = true
-          alphaLevels.set(alphaLevel._id, alphaLevel)
-        }
-      })
-
-      record.competencies.forEach(competency => {
-        if (!competencies.has(competency._id)) {
-          if (!competency.category) {
-            competency.category = allCategory
-          }
-
-          competency.isActive = true
-          competency.alphaLevel = alphaLevels.get(competency.alphaLevel)
-          competency.perc = competency.perc * 100 // scale from 0..1 to 0..100
-          competency.icon = getCompetencyIcon(competency)
-
-          const gradeLabel = toCompetencyTranslation(competency.gradeName)
-
-          if (!accomplishments.has(competency.gradeName)) {
-            accomplishments.set(competency.gradeName, {
-              value: competency.gradeName,
-              label: gradeLabel,
-              active: true
-            })
-          }
-
-          competency.gradeLabel = gradeLabel
-
-          const developmentLabel = toCompetencyTranslation(competency.development)
-
-          if (!development.has(competency.development)) {
-            development.set(competency.development, {
-              value: competency.development,
-              label: developmentLabel,
-              icon: competency.icon,
-              active: true
-            })
-          }
-
-          competency.developmentLabel = developmentLabel
-
-          competencies.set(competency._id, competency)
-        }
-      })
-    })
-
-    // use competencies map to load example texts
-    const ids = [...competencies.keys()]
-
-    if (ids.length > 0) {
-      loadExampleTexts(ids)
-        .then(exampleTexts => templateInstance.state.set({ exampleTexts }))
-        .catch(e => templateInstance.api.notify(e))
-    }
-
-    const competencyCategories = new Map()
-    competencies.forEach(comp => {
-      const list = competencyCategories.has(comp.category)
-        ? competencyCategories.get(comp.category)
-        : { name: comp.category, entries: [], active: true }
-      list.entries.push(comp)
-      competencyCategories.set(comp.category, list)
-    })
-
-    // sort competencies by alphalevel
-
-    competencyCategories.forEach(value => {
-      value.entries.sort((a, b) => {
-        return (a.alphaLevel.level - b.alphaLevel.level) + a.shortCode.localeCompare(b.shortCode)
-      })
-    })
-
-    templateInstance.state.set({
-      competencyCategories: Array.from(competencyCategories.values()),
-      alphaLevels: Array.from(alphaLevels.values()),
-      accomplishments: Array.from(accomplishments.values()),
-      development: Array.from(development.values()),
-      filters: [],
-      flipped: {}
-    })
-
-    const categoryIds = [...competencyCategories.keys()]
-
-    if (categoryIds.length > 0) {
-      loadCompetencyCategories(categoryIds)
-        .catch(e => templateInstance.api.notify(e))
-        .then(() => {
-          const categories = (templateInstance.state.get('competencyCategories') || []).map(cat => {
-            const catDoc = CompetencyCategory.localCollection().findOne(cat.name)
-            cat.label = cat.name
-
-            if (!catDoc) { return cat }
-
-            cat.label = catDoc.title
-            return cat
-          })
-          templateInstance.state.set({
-            competencyCategories: categories.sort((a, b) => a.name.localeCompare(b.name))
-          })
-        })
-    }
-
-    setTimeout(() => {
-      templateInstance.state.set({ competenciesLoaded: true })
-    }, 300)
+    loadCompetencies(selected, templateInstance)
   },
   'click .info-icon' (event, templateInstance) {
     event.preventDefault()
@@ -420,3 +386,142 @@ Template.user.events({
     templateInstance.applyFilters()
   }, 300)
 })
+
+
+const loadCompetencies = (selectedDate, templateInstance) => {
+  if (!selectedDate) {
+    return templateInstance.state.set({
+      competencyCategories: null,
+      alphaLevels: null,
+      selectedDates: null
+    })
+  }
+
+  const records = templateInstance.state.get('records')
+  const recordDates = templateInstance.state.get('recordDates')
+  let selectedRecords = records
+
+  if (selectedDate !== 'all') {
+    const completedAt = recordDates[selectedDate].getTime()
+    selectedRecords = records.filter(r => r.completedAt.getTime() === completedAt)
+  }
+
+  templateInstance.state.set({
+    selectedDates: selectedRecords.map(r => r.completedAt.toLocaleDateString())
+  })
+
+  const competencies = new Map()
+  const alphaLevels = new Map()
+  const accomplishments = new Map()
+  const development = new Map()
+  const allCategory = i18n.get('competency.categories.all')
+
+  selectedRecords.forEach(record => {
+    record.alphaLevels.forEach(alphaLevel => {
+      if (!alphaLevels.has(alphaLevel._id)) {
+        alphaLevel.active = true
+        alphaLevels.set(alphaLevel._id, alphaLevel)
+      }
+    })
+
+    record.competencies.forEach(competency => {
+      if (!competencies.has(competency._id)) {
+        if (!competency.category) {
+          competency.category = allCategory
+        }
+
+        competency.isActive = true
+        competency.alphaLevel = alphaLevels.get(competency.alphaLevel)
+        competency.perc = competency.perc * 100 // scale from 0..1 to 0..100
+        competency.icon = getCompetencyIcon(competency)
+
+        const gradeLabel = toCompetencyTranslation(competency.gradeName)
+
+        if (!accomplishments.has(competency.gradeName)) {
+          accomplishments.set(competency.gradeName, {
+            value: competency.gradeName,
+            label: gradeLabel,
+            active: true
+          })
+        }
+
+        competency.gradeLabel = gradeLabel
+
+        const developmentLabel = toCompetencyTranslation(competency.development)
+
+        if (!development.has(competency.development)) {
+          development.set(competency.development, {
+            value: competency.development,
+            label: developmentLabel,
+            icon: competency.icon,
+            active: true
+          })
+        }
+
+        competency.developmentLabel = developmentLabel
+
+        competencies.set(competency._id, competency)
+      }
+    })
+  })
+
+  // use competencies map to load example texts
+  const ids = [...competencies.keys()]
+
+  if (ids.length > 0) {
+    loadExampleTexts(ids)
+      .then(exampleTexts => templateInstance.state.set({ exampleTexts }))
+      .catch(e => templateInstance.api.notify(e))
+  }
+
+  const competencyCategories = new Map()
+  competencies.forEach(comp => {
+    const list = competencyCategories.has(comp.category)
+      ? competencyCategories.get(comp.category)
+      : { name: comp.category, entries: [], active: true }
+    list.entries.push(comp)
+    competencyCategories.set(comp.category, list)
+  })
+
+  // sort competencies by alphalevel
+
+  competencyCategories.forEach(value => {
+    value.entries.sort((a, b) => {
+      return (a.alphaLevel.level - b.alphaLevel.level) + a.shortCode.localeCompare(b.shortCode)
+    })
+  })
+
+  templateInstance.state.set({
+    competencyCategories: Array.from(competencyCategories.values()),
+    alphaLevels: Array.from(alphaLevels.values()),
+    accomplishments: Array.from(accomplishments.values()),
+    development: Array.from(development.values()),
+    filters: [],
+    flipped: {}
+  })
+
+  const categoryIds = [...competencyCategories.keys()]
+
+  if (categoryIds.length > 0) {
+    loadCompetencyCategories(categoryIds)
+      .catch(e => templateInstance.api.notify(e))
+      .then(() => {
+        const categories = (templateInstance.state.get('competencyCategories') || []).map(cat => {
+          const catDoc = CompetencyCategory.localCollection().findOne(cat.name)
+          cat.label = cat.name
+
+          if (!catDoc) { return cat }
+
+          cat.label = catDoc.title
+          return cat
+        })
+        templateInstance.state.set({
+          competencyCategories: categories.sort((a, b) => a.name.localeCompare(b.name))
+        })
+      })
+  }
+
+  setTimeout(() => {
+    templateInstance.state.set({ competenciesLoaded: true })
+  }, 300)
+}

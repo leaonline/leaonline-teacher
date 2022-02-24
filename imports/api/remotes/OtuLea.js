@@ -7,7 +7,7 @@ const { otulea } = Meteor.settings.public.hosts
  * @inheritDoc {Remote}
  * @type {Remote}
  */
-export const OtuLea = createRemote(otulea)
+const OtuLea = createRemote(otulea)
 
 OtuLea.generateUser = async () => await OtuLea.call({
   name: otulea.methods.generateUser,
@@ -24,9 +24,9 @@ OtuLea.userExists = async ({ code }) => await OtuLea.call({
  * @param users {Array<String>} user ids
  * @return {Promise<*>}
  */
-OtuLea.recentFeedback = async ({ users }) => await OtuLea.call({
+OtuLea.recentFeedback = async ({ users, resolve }) => await OtuLea.call({
   name: otulea.methods.recentCompleted,
-  args: { users }
+  args: { users, resolve }
 })
 
 /**
@@ -39,3 +39,5 @@ OtuLea.getRecords = async ({ users, dimension }) => await OtuLea.call({
   name: otulea.methods.getRecords,
   args: { users, dimension }
 })
+
+export { OtuLea }

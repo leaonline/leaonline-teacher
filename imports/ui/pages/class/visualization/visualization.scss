@@ -299,7 +299,7 @@
   flex-direction: row-reverse;
   align-items: center;
 }
-:checked + label { // cross-browser support
+.user-checkbox:checked + label { // cross-browser support
   color: #1a1a1a !important;
 }
 .zoombtn { // cross-browser support
