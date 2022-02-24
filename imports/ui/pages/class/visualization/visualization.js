@@ -110,7 +110,7 @@ Template.visualization.helpers({
   userNames () {
     return Template.getState('userNames')
   },
-  isActive(username) {
+  isActive (username) {
     if (!username) { return false }
     if (Template.getState('activeUser') === username) {
       return true
@@ -150,7 +150,6 @@ Template.visualization.events({
   'mouseleave .barline' (event, templateInstance) {
     const id = event.target.id
     const activeUser = templateInstance.state.get('activeUser')
-
 
     if (id === activeUser) { return }
 

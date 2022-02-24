@@ -168,7 +168,6 @@ Template.user.onCreated(function () {
         instance.state.set({ userDoc, sessionId, hasAccount })
       }
     })
-
   })
 
   // ///////////////////////////////////////////////////////////////////////////
@@ -276,7 +275,6 @@ Template.user.onCreated(function () {
         }
       })
   })
-
 })
 
 Template.user.onRendered(function () {
@@ -305,7 +303,7 @@ Template.user.onRendered(function () {
       return
     }
 
-    let dimensionToSelect = undefined
+    let dimensionToSelect
     let autoSelectLatestDate = true
 
     // selection from class page beats auto-selecting last test

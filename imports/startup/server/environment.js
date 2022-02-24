@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor'
+
 const { RUN_FLAG } = process.env
 
 if (Meteor.isDevelopment && !RUN_FLAG) {

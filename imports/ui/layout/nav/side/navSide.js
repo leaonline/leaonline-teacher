@@ -40,7 +40,7 @@ Template.navSide.events({
     const hidden = templateInstance.state.get('hidden')
     templateInstance.state.set('hidden', !hidden)
   },
-  'click .print-btn' () {
+  'click .print-btn' (event) {
     event.preventDefault()
     event.stopPropagation()
     window.print()
