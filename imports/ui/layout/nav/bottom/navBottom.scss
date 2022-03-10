@@ -5,15 +5,17 @@
 }
 
 .rightsidebar .toggleicon {
-  left: -10px; right: inherit;
+  left: -10px;
+  right: inherit;
 }
 
 .rightsidecontent {
-  height: 100vh; overflow: auto;
+  height: 100vh;
+  overflow: auto;
 }
 
 .rightsidebar .pro-captions {
+  background: #fafafb;
   /* TODO use scss variables for colors */
   color: #555;
-  background: #fafafb;
 }

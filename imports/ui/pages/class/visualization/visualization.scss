@@ -11,19 +11,11 @@
   display: flex;
 }
 
-@-webkit-keyframes animate-height { // cross-browser support
+@keyframes animate-height { // cross-browser support
   0% {
     height: 0;
   }
-  100% {
-    visibility: visible;
-  }
-}
 
-@-moz-keyframes animate-height { // cross-browser support
-  0% {
-    height: 0;
-  }
   100% {
     visibility: visible;
   }
@@ -33,23 +25,34 @@
   0% {
     height: 0;
   }
+
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes animate-height { // cross-browser support
+  0% {
+    height: 0;
+  }
+
   100% {
     visibility: visible;
   }
 }
 
 .graphtable { // cross-browser support
-  display: table;
   border-collapse: collapse;
+  display: table;
   width: 100%;
 }
 
 .graph-wrapper { // cross-browser support
-  display: table-row;
-  width: 100%;
   align-items: center;
   border-bottom: 1px solid #3a6491;
+  display: table-row;
   position: relative;
+  width: 100%;
 }
 
 .graph-title { // cross-browser support
@@ -57,12 +60,12 @@
 }
 
 .graph-title::after { // cross-browser support
-  content: "";
-  width: 130px;
   background-color: #3a6491;
+  bottom: -1px;
+  content: '';
   height: 1px;
   position: absolute;
-  bottom: -1px;
+  width: 130px;
 }
 
 .graph-title::after { // cross-browser support
@@ -74,7 +77,7 @@
 }
 
 .lines-s .graph-title { // cross-browser support
-  border-right: 0px;
+  border-right: 0;
   color: #fff;
 }
 
@@ -84,159 +87,163 @@
 }
 
 .graph-bottom-navigation { // cross-browser support
-  border-bottom: 0px !important;
+  border-bottom: 0 !important;
 }
 
 .graph-bottom-navigation .date-lists { // cross-browser support
-  padding: 15px 30px;
-  text-align: center;
-  padding-right: 40px;
   display: table-cell;
+  padding: 15px 30px;
+  padding-right: 40px;
+  text-align: center;
 }
 
 .graphloop { // cross-browser support
-  padding: 0px 30px;
   display: table-cell;
+  padding: 0 30px;
   padding-right: 50px;
 }
 
 .graph-group { // cross-browser support
+  border-bottom: 1px solid #3a6491;
   display: flex;
   width: 100%;
-  border-bottom: 1px solid #3a6491;
 }
 
 .graplist { // cross-browser support
-  justify-content: space-between;
   flex: 0 0 auto;
-  width: calc(100% - 255px);
+  justify-content: space-between;
   margin: auto;
-  overflow-y: hidden;
   overflow-x: scroll;
+  overflow-y: hidden;
   padding-bottom: 3px;
+  width: calc(100% - 255px);
 }
 
 .graphtitle { // cross-browser support
+  font-weight: 600;
   white-space: nowrap;
   width: 115px;
-  font-weight: 600;
 }
 
 .graph-title { // cross-browser support
-  display: flex;
   align-items: center;
-  height: 71px;
   border-bottom: 1px solid #3a6491;
   border-right: 1px solid #3a6491;
+  display: flex;
+  height: 71px;
 }
 
 .barchart { // cross-browser support
-  display: flex;
-  justify-content: center;
-  height: 70px;
   align-items: flex-end;
+  display: flex;
+  height: 70px;
+  justify-content: center;
   padding-top: 10px;
 }
 
 .barline { // cross-browser support
-  width: 20px;
-  position: relative;
-  height: 0px;
-  margin: 0px 4px;
-  background: rgb(25, 186, 113);
-  background: linear-gradient(
-          180deg,
-          rgba(25, 186, 113, 1) 40%,
-          rgba(47, 85, 70, 1) 100%
-  );
   animation: animate-height;
-  -webkit-animation: animate-height;
-  -moz-animation: animate-height;
   animation: animate-height;
-  animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
-  -webkit-animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
-  -moz-animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  animation: animate-height;
+  animation: animate-height;
   animation-duration: 0.4s;
-  -webkit-animation-duration: 0.4s;
-  -moz-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  animation-duration: 0.4s;
   animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  animation-timing-function: cubic-bezier(0.35, 0.95, 0.67, 0.99);
+  background: rgb(25, 186, 113);
+  background: linear-gradient(180deg,
+  rgba(25, 186, 113, 1) 40%,
+  rgba(47, 85, 70, 1) 100%);
+  height: 0;
+  margin: 0 4px;
+  position: relative;
+  width: 20px;
 }
 
 .passive-user {
   background: rgb(186, 186, 186) !important;
-  background: linear-gradient(
-          180deg,
-          rgba(186, 186, 186, 1) 40%,
-          rgba(47, 47, 47, 1) 100%
-  ) !important;
+  background: linear-gradient(180deg,
+  rgba(186, 186, 186, 1) 40%,
+  rgba(47, 47, 47, 1) 100%) !important;
 }
 
 .hover { // cross-browser support
   background: rgb(226, 149, 56);
-  background: linear-gradient(
-          180deg,
-          rgba(226, 149, 56, 1) 40%,
-          rgba(246, 229, 70, 1) 100%
-  );
+  background: linear-gradient(180deg,
+  rgba(226, 149, 56, 1) 40%,
+  rgba(246, 229, 70, 1) 100%);
 }
+
 .hoverbox { // cross-browser support
-  position: absolute;
-  top: -10px;
   background-color: #fff;
-  box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.22);
-  min-width: 185px;
-  z-index: 100;
-  left: 23px;
-  padding: 10px;
-  transition: all 0.2s ease-in-out 0s;
   border: 1px solid #777;
   border-radius: 15px;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.22);
   display: none;
+  left: 23px;
+  min-width: 185px;
+  padding: 10px;
+  position: absolute;
+  top: -10px;
+  transition: all 0.2s ease-in-out 0s;
+  z-index: 100;
 }
+
 .graphtable .graph-wrapper:nth-last-child(2) .hoverbox { // cross-browser support
-  top: inherit;
   bottom: 0 !important;
+  top: inherit;
 }
+
 .graphtable .graph-wrapper:nth-last-child(3) .hoverbox { // cross-browser support
-  top: inherit;
   bottom: 0 !important;
+  top: inherit;
 }
+
 .graph-wrapper .graphloop:last-child .hoverbox { // cross-browser support
   left: inherit;
   right: 25px;
 }
+
 .hoverbox .arrow { // cross-browser support
   display: none;
 }
+
 .barline:hover .hoverbox { // cross-browser support
-  opacity: 1;
   display: block;
+  opacity: 1;
 }
+
 .hoverbox p { // cross-browser support
   font-size: 14px;
-  margin-bottom: 2px;
   font-weight: 400;
+  margin-bottom: 2px;
 }
+
 .hoverbox .arrow { // cross-browser support
-  position: absolute;
   display: block;
-  width: 1rem;
   height: 0.5rem;
   margin: 0 0.3rem;
+  position: absolute;
+  width: 1rem;
 }
+
 .hoverbox .arrow::after,
 .hoverbox .arrow::before { // cross-browser support
-  position: absolute;
-  display: block;
-  content: "";
   border-color: transparent;
-  border-style: solid;
-  left: -17px;
-  top: 8px;
   border-right-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
   border-width: 0.5rem 0.5rem 0.5rem 0;
+  content: '';
+  display: block;
+  left: -17px;
+  position: absolute;
+  top: 8px;
 }
+
 .hoverbox .arrow::after { // cross-browser support
   border-right-color: #fff;
   left: -16px;
@@ -246,93 +253,109 @@
  *  STYLE 2
  */
 .customscroll::-webkit-scrollbar-track { // cross-browser not support
-  -webkit-box-shadow: none;
-  border-radius: 10px;
   background-color: #f5f5f5;
   border: 1px solid #3a6491;
-}
-.customscroll::-webkit-scrollbar { // cross-browser not support
-  width: 10px;
-  height: 10px;
-  background-color: #f5f5f5;
-}
-.customscroll::-webkit-scrollbar-thumb { // cross-browser not support
   border-radius: 10px;
-  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.customscroll::-webkit-scrollbar { // cross-browser not support
+  background-color: #f5f5f5;
+  height: 10px;
+  width: 10px;
+}
+
+.customscroll::-webkit-scrollbar-thumb { // cross-browser not support
   background-color: #3a6491;
   border: 1px solid #3a6491;
+  border-radius: 10px;
+  box-shadow: none;
 }
+
 .dropdownmenu { // cross-browser support
-  position: relative;
   border: 1px solid #3a6491;
-  padding: 6px 12px;
   border-radius: 25px;
   font-size: 14px;
   font-weight: 500;
+  padding: 6px 12px;
+  position: relative;
+
   .dropdown-menu {
-    top: 0;
     min-width: 200px;
+    top: 0;
   }
 }
+
 .dropdownmenu svg { // cross-browser support
-  padding-left: 6px;
-  margin-left: 5px;
   border-left: 1px solid #3a6491;
+  margin-left: 5px;
+  padding-left: 6px;
   width: 21px;
 }
+
 .labelvalue { // cross-browser support
   cursor: pointer;
   font-weight: 400;
 }
+
 .selctmenu { // cross-browser support
-  position: absolute;
   bottom: 26px;
+  position: absolute;
 }
+
 .selctmenu .dropdown-menu { // cross-browser support
-  transform: translate3d(5px, 35px, 0px) !important;
+  transform: translate3d(5px, 35px, 0) !important;
 }
+
 .dropdownmenu .dropdown-item { // cross-browser support
-  padding: 6px 10px;
-  font-weight: 400;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
   align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  font-weight: 400;
+  justify-content: space-between;
+  padding: 6px 10px;
 }
+
 .user-checkbox:checked + label { // cross-browser support
   color: #1a1a1a !important;
 }
+
 .zoombtn { // cross-browser support
+  bottom: 26px;
   position: absolute;
   right: 7px;
-  bottom: 26px;
 }
+
 .zoombtn #zoombar { // cross-browser support
-  display: flex;
   align-items: center;
+  display: flex;
 }
+
 .zoombtn span { // cross-browser support
   font-size: 13px;
   font-weight: 300;
-  margin: 0px 2px;
+  margin: 0 2px;
 }
+
 .zoombtn button { // cross-browser support
-  background-color: #ffff;
-  padding: 0px;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  width: 18px;
-  height: 18px;
-  font-size: 14px;
-  color: #ff00ff;
+  background-color: #ffff;
   border: 1px solid #3a6491;
   border-radius: 50%;
+  color: #f0f;
+  display: flex;
+  font-size: 14px;
+  height: 18px;
+  justify-content: center;
+  padding: 0;
+  width: 18px;
 }
+
 .zoombtn button:hover { // cross-browser support
   background-color: #3a6491;
-  color: #ff00ff;
+  color: #f0f;
 }
+
 .zoombtn button:focus { // cross-browser support
   outline: none;
 }
@@ -340,17 +363,21 @@
 .graphtable.zoomin1 .barline {
   width: 15px;
 }
+
 .graphtable.zoomin1 .graphloop { // cross-browser support
-  padding: 0px 6px;
+  padding: 0 6px;
   padding-right: 40px;
 }
+
 .graphtable.zoomin1 .barchart { // cross-browser support
   justify-content: center;
 }
+
 .graphtable.zoomin1 .graph-bottom-navigation .date-lists { // cross-browser support
   padding-left: 5px;
   padding-right: 40px;
 }
+
 .graphtable.zoomin1 .graph-bottom-navigation.graph-wrapper::after { // cross-browser support
   display: none;
 }

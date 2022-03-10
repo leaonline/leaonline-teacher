@@ -1,21 +1,21 @@
 .user-sidebar {
-  width: 15%;
-  min-width: 220px;
   height: 100%;
+  min-width: 220px;
+  width: 15%;
 }
 
 .user-sidebar.with-content {
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .user-page-content {
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .category-card {
-  background-color: #E2E4E7;
+  background-color: #e2e4e7;
 }
 
 .competency-container {
@@ -30,9 +30,9 @@
 /* ========================================================================== */
 
 .flip-card {
+  cursor: pointer;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   transform-style: preserve-3d;
-  cursor: pointer;
   transition: transform 0.8s;
 }
 

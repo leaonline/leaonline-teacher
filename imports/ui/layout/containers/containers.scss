@@ -4,49 +4,51 @@
 }
 
 main {
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .profiles img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
   border-radius: 50%;
+  height: 100px;
   margin: auto;
+  object-fit: cover;
+  width: 100px;
 }
 
 .pro-captions {
-  /* TODO use scss variables for colors */
-  color: #ffffff;
   background: #9f9f9f;
-  border: 1px solid #dddddd;
-  width: 220px;
+  border: 1px solid #ddd;
+  /* TODO use scss variables for colors */
+  color: #fff;
   margin: auto;
-  padding: 29px 5px 10px;
   margin-top: -20px;
+  padding: 29px 5px 10px;
+  width: 220px;
 }
 
 .pro-captions h5 {
-  text-transform: uppercase;
+  font-size: 17px;
   font-weight: 600;
   margin-bottom: 5px;
-  font-size: 17px;
+  text-transform: uppercase;
 }
 
 .pro-captions p {
-  margin-bottom: 0px;
   font-size: 14px;
+  margin-bottom: 0;
 }
 
-.profiles:hover .pro-captions, .profiles.active .pro-captions {
+.profiles:hover .pro-captions,
+.profiles.active .pro-captions {
   /* TODO use scss variables for colors */
   background-color: #f59d1d;
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
-.profiles:hover .pro-captions h5, .profiles.active .pro-captions h5 {
-  color: #ffffff !important;
+.profiles:hover .pro-captions h5,
+.profiles.active .pro-captions h5 {
+  color: #fff !important;
 }
 
 @media print {

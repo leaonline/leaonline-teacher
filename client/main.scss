@@ -23,8 +23,8 @@ form ul li {
 }
 
 .d-unavailable {
-  pointer-events: none;
   opacity: 0.65;
+  pointer-events: none;
 }
 
 .clickable {
@@ -32,12 +32,23 @@ form ul li {
 }
 
 @font-face {
+  font-display: auto;
   font-family: 'Semikolon';
   src: url('/SemikolonPlus-Regular.ttf') format('truetype');
-  font-display: auto;
 }
 
-p, div, span, h1, h2, h3, h4, h5, h6, button, label, a {
+p,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+label,
+a {
   font-family: 'Semikolon', Arial, 'sans-serif';
 }
 
@@ -49,18 +60,21 @@ p, div, span, h1, h2, h3, h4, h5, h6, button, label, a {
     background: none !important;
   }
 
-  body, main, .mainwrapper, .contentwrapper {
+  body,
+  main,
+  .mainwrapper,
+  .contentwrapper {
     background: none !important;
     overflow: visible;
   }
 
   // use as our page break anchor
   .page-break-before {
-    page-break-before : always !important;
+    page-break-before: always !important;
   }
 
   .page-break-avoid {
-    page-break-inside : avoid !important;
+    page-break-inside: avoid !important;
   }
 
   hr {

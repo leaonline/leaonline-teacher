@@ -36,6 +36,8 @@
                     </div>
                 {{else}}
                     {{#if visualizationData}}
+                        <h2 class="mt-4 text-gray">{{i18n "pages.class.visualization"}}</h2>
+
                         <div class="mt-4">
                         {{> visualization visualizationData}}
                         </div>
@@ -60,6 +62,8 @@
         {{/unless}}
 
         {{#if competencyCategories}}
+
+            <h2 class="mt-4 text-gray">{{i18n "pages.class.competencies"}}</h2>
 
             <div class="row d-print-none mt-4">
            {{#each category in competencyCategories}}

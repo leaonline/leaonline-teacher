@@ -4,7 +4,9 @@
       "title": "Kurs",
       "noFeedback": "Es existieren noch keine Ergebnisse für diese Dimension für diesen Kurs.",
       "noUsers": "Es existieren noch keine Teilnehmenden für diesen Kurs",
-      "noRecords": "Es sind noch keine Ergebnisse für diese Dimension vorhanden."
+      "noRecords": "Es sind noch keine Ergebnisse für diese Dimension vorhanden.",
+      "visualization": "Verlaufsübersicht",
+      "competencies": "Aktuelle Übersicht des Kurses über alle Kompetenzen"
     }
   },
   "dimension": {
