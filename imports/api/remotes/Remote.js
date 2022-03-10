@@ -39,6 +39,7 @@ class Remote {
       url: String
     }))
 
+    this.onConnectionCallbacks = []
     const { name, url, debug, defaultTimeout = 3 } = options
     this.name = name
     this.url = url
@@ -53,6 +54,7 @@ class Remote {
     })
 
     this.debugName = `[${this.name}]:`
+    this.log = (...args) => console.log(this.debugName, ...args)
     this.debug = debug
       ? (...args) => console.debug(this.debugName, ...args)
       : () => {}
@@ -106,8 +108,19 @@ class Remote {
       return
     }
 
-    const connection = DDP.connect(this.url)
+    const remote = this
+    const connection = DDP.connect(this.url, {
+      onConnected () {
+        remote.log('successfully connected to', remote.url)
+        remote.onConnectionCallbacks.forEach(fn => fn())
+        remote.onConnectionCallbacks.length = 0
+      }
+    })
     connections.set(this, connection)
+  }
+
+  onConnected (fn) {
+    this.onConnectionCallbacks.push(fn)
   }
 
   isConnected () {
@@ -206,11 +219,11 @@ class Remote {
   }
 
   // ---------------------------------------------------------------------------
-  // PART C - Communication
+  // PART B - Communication
   // ---------------------------------------------------------------------------
 
   async call ({ name, args }) {
-    this.debug('call', name, { args })
+    this.debug('call', name)
     if (!this.isConnected()) {
       throw new Error('remote.notConnected')
     }

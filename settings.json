@@ -38,6 +38,17 @@
       "url": "http://localhost:3030",
       "methods": {
         "getAll": "methods.getAll"
+      },
+      "jwt": {
+        "key": "0123456789001234567890",
+        "sub": "teacher-app-01234567890"
+      },
+      "sync": {
+        "dryRun": false,
+        "dimension": true,
+        "alphaLevel": true,
+        "competency": true,
+        "competencyCategory": true
       }
     }
   },

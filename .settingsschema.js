@@ -46,6 +46,17 @@ const settingsSchema = schema({
       icon: String,
       methods: schema({
         getAll: String
+      }),
+      jwt: schema({
+        key: String,
+        sub: String
+      }),
+      sync: schema({
+        dryRun: Boolean,
+        dimension: Boolean,
+        alphaLevel: Boolean,
+        competency: Boolean,
+        competencyCategory: Boolean
       })
     })
   }),

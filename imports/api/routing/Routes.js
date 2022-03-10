@@ -260,19 +260,3 @@ Routes.user = {
   template: 'user',
   data: null
 }
-
-Routes.content = {
-  path: () => `/${translateRoute(Routes.content)}`,
-  label: reactiveTranslate('pages.content.title'),
-  triggersEnter: () => {
-    if (!rootLoginTrigger) rootLoginTrigger = createLoginTrigger(Routes.login)
-    return [rootLoginTrigger]
-  },
-  async load () {
-    return import('../../ui/pages/content/content')
-  },
-  parent: null,
-  target: null,
-  template: 'content',
-  data: null
-}

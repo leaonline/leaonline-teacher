@@ -1,5 +1,7 @@
 import { Template } from 'meteor/templating'
 import '../../components/notifications/notifications' // TODO lazy load
+import '../nav/bottom/navBottom'
+import '../nav/side/navSide'
 import './containers.scss'
 import './containers.html'
 
