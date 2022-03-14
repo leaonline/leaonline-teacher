@@ -86,7 +86,7 @@ PORT=5599
 
 if [ "$T_VERBOSE" -eq "1" ];
 then
-	echo "=> Test leaonline-teacher"
+	echo "=> Test leaonline-content"
 	echo "=> Project path: [${PROJECT_PATH}]"
 	echo "=> Port: [${PORT}]"
 	echo "=> Lib path(s): [${T_PACKAGE_DIRS}]"
