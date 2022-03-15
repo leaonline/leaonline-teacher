@@ -1,7 +1,12 @@
 {
   "public": {
+    "issueMail": "mail@example.com",
     "app": {
-      "name": "lea. Dashboard"
+      "name": "lea. Dashboard",
+      "label": "apps.dashboard.title",
+      "description": "apps.dashboard.description",
+      "icon": "chart-line",
+      "logLevel": "info"
     },
     "hosts": {
       "otulea": {

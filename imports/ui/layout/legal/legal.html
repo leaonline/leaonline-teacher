@@ -1,0 +1,10 @@
+<template name="legalLinks">
+    <div class="d-block p-2 text-center">
+        {{#if loadComplete}}
+        {{#each legal in legalRoutes}}
+            <a href="{{route "legal" legal.name}}">{{i18n legal.label}}</a> |
+        {{/each}}
+            <a href="{{issueLink}}">{{i18n "legal.issue"}}</a>
+        {{/if}}
+    </div>
+</template>

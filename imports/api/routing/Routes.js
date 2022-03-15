@@ -260,3 +260,28 @@ Routes.user = {
   template: 'user',
   data: null
 }
+
+/**
+ * Legal routes need to be present for all possible sub-types:
+ * - imprint
+ * - terms
+ * - privacy
+ * - contact
+ */
+Routes.legal = {
+  path: (type = ':type') => {
+    const legalPath = translateRoute(Routes.legal)
+    const translatedType = type === ':type'
+      ? type
+      : translateRoute({ template: type })
+    return `/${legalPath}/${translatedType}`
+  },
+  label: reactiveTranslate('legal.title'),
+  triggersEnter: () => [], // public
+  async load () {
+    return import('../../ui/pages/legal/legal')
+  },
+  target: null,
+  template: 'legal',
+  data: null
+}

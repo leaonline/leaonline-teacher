@@ -1,7 +1,9 @@
 /* global ServiceConfiguration */
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
+import { HTTP } from 'meteor/jkuester:http'
 import { rateLimitAccounts } from '../../infrastructure/factories/ratelimit/rateLimit'
+import { getOAuthDDPLoginHandler, defaultDDPLoginName } from 'meteor/leaonline:ddp-login-handler'
 
 rateLimitAccounts()
 
@@ -26,6 +28,14 @@ Meteor.startup(() => {
       }
     }
   )
+
+  const loginHandler = getOAuthDDPLoginHandler({
+    identityUrl: oauth.identityUrl,
+    httpGet: (url, requestOptions) => HTTP.get(url, requestOptions),
+    debug: console.debug
+  })
+
+  Accounts.registerLoginHandler(defaultDDPLoginName, loginHandler)
 })
 
 Accounts.config({

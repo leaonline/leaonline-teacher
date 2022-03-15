@@ -1,4 +1,5 @@
 import '../imports/startup/server/validateSettings'
+import '../imports/startup/server/services'
 import '../imports/startup/server/environment'
 import '../imports/startup/both/schema'
 import '../imports/startup/server/content'

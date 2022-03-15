@@ -5,8 +5,13 @@ const optional = type => ({ type, optional: true })
 
 const settingsSchema = schema({
   public: schema({
+    issueMail: String,
     app: schema({
-      name: String
+      name: String,
+      label: String,
+      description: String,
+      icon: String,
+      logLevel: String
     }),
     hosts: schema({
       otulea: schema({

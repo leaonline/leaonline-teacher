@@ -17,7 +17,6 @@ export const translateRoute = (route, debug = () => {}) => {
     debug('[translateRoute]: error info', route)
     throw new Error('Expected route name, got undefined.')
   }
-
   const translatedPath = i18n.get(`routes.${route.template}`)
 
   if (!translatedPath || translatedPath.includes('.')) {

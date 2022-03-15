@@ -58,6 +58,7 @@ leaonline:publication-factory
 alanning:roles
 leaonline:accounts-lea
 leaonline:ddp-login
+leaonline:ddp-login-handler # for backend remote login
 service-configuration@1.3.0
 leaonline:service-registry
 email@2.2.0 # use to send account requests

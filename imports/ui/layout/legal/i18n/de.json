@@ -1,0 +1,13 @@
+{
+  "legal": {
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt",
+    "issue": "Problem melden"
+  },
+  "issues": {
+    "subject": "[lea. Dashboard]: Problem",
+    "body": "Zusammenfassung:\n\nDas Problem kann wie folgt reproduziert werden:\n\nLink: {{url}}"
+  }
+}
