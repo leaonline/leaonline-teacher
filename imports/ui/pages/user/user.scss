@@ -27,6 +27,10 @@
   cursor: pointer;
 }
 
+.bg-blue-gray {
+  background-color: #8094aa;
+}
+
 /* ========================================================================== */
 
 .flip-card {
@@ -34,6 +38,11 @@
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   transform-style: preserve-3d;
   transition: transform 0.8s;
+  backface-visibility: hidden;
+}
+
+.competency-content {
+  position: relative;
 }
 
 .flip {
@@ -42,9 +51,15 @@
 
 .flip-card-front {
   backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .flip-card-back {
   backface-visibility: hidden;
   transform: rotateY(180deg);
+  z-index: 9;
 }

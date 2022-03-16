@@ -218,9 +218,8 @@
                     <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 competency-container {{#if exampleText competency._id}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
                         data-target="{{competency._id}}">
 
-                        {{#unless flipped competency._id}}
-                            {{! render front page if not flipped }}
-                            <div class="card-wrapper bg-white rounded h-100 shadow-sm">
+                        {{! render front page if not flipped }}
+                        <div class="card-wrapper bg-white rounded h-100 shadow-sm d-{{#if flipped competency._id}}none{{else}}block{{/if}}">
                             <div class="d-flex justify-content-between py-1 px-3">
                                 <span class="text-secondary">
                                     {{i18n "alphaLevel.title"}}
@@ -267,14 +266,20 @@
                                 </small>
                             </div>
                         </div>
-                        {{else}}
+
                         {{! else render back page }}
-                            <div class="card-wrapper bg-success rounded h-100 shadow-sm">
-                                <div class="d-flex py-2 px-3">
-                                    {{exampleText competency._id}}
-                                </div>
+                        <div class="card-wrapper bg-blue-gray text-light rounded h-100 shadow-sm p-2 d-{{#if flipped competency._id}}block{{else}}none{{/if}}">
+                            <div class="d-block font-weight-bold">
+                                {{competency.shortCode}}: {{competency.description}}
                             </div>
-                        {{/unless}}
+                            <hr class="border-light">
+                            <div class="d-block">
+                                {{exampleText competency._id}}
+                            </div>
+                            <div class="d-block text-center">
+                                {{> icon name="undo"}}
+                            </div>
+                        </div>
                     </div>
                 {{/each}}
             </div>
@@ -356,4 +361,3 @@
     </div>
     {{/onLoaded}}
 </template>
-
