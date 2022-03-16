@@ -18,6 +18,7 @@ export const loadDimensions = async () => {
   })
 
   dimensionDocs.forEach(doc => {
+    if (doc.isLegacy === false) { return } // skip non-otu.lea
     Dimension.localCollection().upsert(doc._id, { $set: doc })
   })
 
