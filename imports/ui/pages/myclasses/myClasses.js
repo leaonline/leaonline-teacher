@@ -10,10 +10,10 @@ import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
-import myClassesLanguages from './i18n/myClassesLanguages'
-import './myClasses.html'
-import './scss/myClasses.scss'
 import { connectRemote } from '../../../api/remotes/connectRemote'
+import myClassesLanguages from './i18n/myClassesLanguages'
+import './scss/myClasses.scss'
+import './myClasses.html'
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -155,9 +155,13 @@ Template.myClasses.onCreated(function () {
     })
   })
 
+  // load an overview of the recent sessions
+
   instance.autorun(() => {
     const activeUsers = instance.state.get('activeUsers')
-    if (!activeUsers?.length || !OtuLea.isLoggedIn()) { return }
+    const recentFeedback = instance.state.get('recentFeedback')
+
+    if (recentFeedback || !activeUsers?.length || !OtuLea.isLoggedIn()) { return }
 
     const users = activeUsers.map(userDoc => userDoc.account?._id)
 
@@ -253,6 +257,9 @@ Template.myClasses.helpers({
   },
   recentFeedback () {
     return Template.getState('recentFeedback')
+  },
+  addUserError () {
+    return Template.getState('addUserError')
   }
 })
 
@@ -280,6 +287,22 @@ Template.myClasses.events({
     })
 
     if (!insertDoc) return
+
+    const account = insertDoc.account || {}
+
+    if (!insertDoc.firstName && !insertDoc.lastName && !account.code) {
+      return templateInstance.state.set('addUserError', 'user.addUserNoValues')
+    }
+
+    if (account.code && !account._id) {
+      return templateInstance.state.set('addUserError', 'user.userIsInvalid')
+    }
+
+    if (User.collection().find({ 'account.code': account.code }).count()) {
+      return templateInstance.state.set('addUserError', 'user.addUserAlreadyExists')
+    }
+
+    templateInstance.state.set({ addUserError: null })
 
     callMethod({
       name: type.context.methods.insert,
@@ -364,6 +387,7 @@ Template.myClasses.events({
     Form.reset(targetId)
     templateInstance.state.set({
       addUserCode: null,
+      addUserError: null,
       type: null,
       action: null,
       doc: null

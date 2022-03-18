@@ -51,9 +51,9 @@
       "sync": {
         "dryRun": false,
         "dimension": true,
-        "alphaLevel": true,
-        "competency": true,
-        "competencyCategory": true
+        "alphaLevel": false,
+        "competency": false,
+        "competencyCategory": false
       }
     }
   },

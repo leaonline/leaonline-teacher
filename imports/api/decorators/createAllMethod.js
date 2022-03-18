@@ -14,7 +14,12 @@ export const createAllMethod = ({ context }) => {
         throw new Meteor.Error('get.error', 'errors.collectionUndefined', { name })
       }
 
-      return Collection.find().fetch()
+      return  Collection.find({
+        $or: [
+          { isLegacy: { $exists: false }},
+          { isLegacy: true },
+        ]
+      }).fetch()
     })
   }
 }

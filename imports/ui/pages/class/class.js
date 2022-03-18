@@ -76,6 +76,12 @@ Template.class.onCreated(function () {
 
     loadDimensions()
       .catch(instance.api.notify)
+      .then(dimensionDocs => {
+        // if not already set by query param we load the first dimension
+        if (!instance.state.get('dimensionDoc')) {
+          instance.state.set({ dimensionDoc: dimensionDocs[0]})
+        }
+      })
       .finally(() => instance.state.set('dimensionsLoaded', true))
 
     if (!courseDoc.users?.length) {

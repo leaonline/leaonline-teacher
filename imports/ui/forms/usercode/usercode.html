@@ -40,7 +40,7 @@
                                {{#unless generating}}code-gen-btn{{/unless}}"
                         type="button" title="{{i18n "accounts.generateCode"}}">
                     {{#unless generating}}
-                        {{> icon name="dice"}}
+                        {{> icon name="dice"}} {{i18n "accounts.generateCode"}}
                     {{else}}
                         {{> icon name="spinner" pulse=true}}
                     {{/unless}}

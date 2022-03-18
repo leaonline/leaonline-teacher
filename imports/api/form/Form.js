@@ -32,7 +32,7 @@ async function initialize () {
   await import('../../ui/forms/courseUsers/courseUsers')
 }
 
-Form.getFormValues = ({ formId, schema, templateInstance, isUpdate }) => {
+Form.getFormValues = ({ formId, schema, templateInstance, isUpdate, clean }) => {
   return formIsValid(formId, schema, { templateInstance, isUpdate })
 }
 

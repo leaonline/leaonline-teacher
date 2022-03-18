@@ -295,6 +295,11 @@
                     {{> modalheader title=(i18n "pages.myClasses.modal.header.add" name=(i18n typeLabel)) dismiss=true class="bg-primary text-white"}}
                     {{#modalbody}}
                         {{> quickForm id="insertForm" schema=insertSchema type="normal" buttonClasses="d-none"}}
+                        {{#if addUserError}}
+                            <div class="d-block py-2 text-danger">
+                                {{i18n addUserError}}
+                            </div>
+                        {{/if}}
                     {{/modalbody}}
                     {{#modalfooter}}
                         <div class="d-flex justify-content-between w-100">

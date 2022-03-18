@@ -39,6 +39,7 @@ userSchemaDef.lastName.autoform.placeholder = userSchemaDef.lastName.label
 userSchemaDef.lastName.label = false
 
 userSchemaDef.account.label = false
+console.debug(userSchemaDef)
 
 const addUserSchema = Schema.create(userSchemaDef)
 
@@ -53,7 +54,7 @@ Template.afCourseUsers.onCreated(function () {
   })
 
   instance.users = new Mongo.Collection(null)
-  instance.state.set('viewState', 'showUsers')
+  instance.state.set('viewState', 'addUser')
   instance.updateValue = () => {
     const ids = instance.users.find().map(toUserId)
     instance.$('.afCourseUsersHiddenInput').val(JSON.stringify(ids))
@@ -84,7 +85,7 @@ Template.afCourseUsers.helpers({
     return addUserSchema
   },
   localUsers () {
-    return Template.instance().users.find()
+    return Template.instance().users.find({}, { sort: { lastName: 1, firstName: 1 }})
   },
   allUsers () {
     const localUsers = Template.instance().users.find().map(toUserId)
@@ -98,6 +99,9 @@ Template.afCourseUsers.helpers({
   },
   state (name) {
     return Template.getState('viewState') === name
+  },
+  addUserError () {
+    return Template.getState('addUserError')
   }
 })
 
@@ -128,17 +132,27 @@ Template.afCourseUsers.events({
 
     const userDoc = Form.getFormValues({
       formId: 'add-user-form',
-      schema: addUserSchema
+      schema: addUserSchema,
+      clean: false
     })
 
-    if (!userDoc) return
+    if (!userDoc) return // messages handled by schema
 
-    const users = templateInstance.users.find().fetch()
-    if (users.find(byAddedUser(userDoc))) {
-      // no doubles allowed
-      // TODO add sticky error
-      return
+    const account = userDoc.account || {}
+
+    if (!userDoc.firstName && !userDoc.lastName && !account.code) {
+      return templateInstance.state.set('addUserError', 'user.addUserNoValues')
     }
+
+    if (account.code && !account._id) {
+      return templateInstance.state.set('addUserError', 'user.userIsInvalid')
+    }
+
+    if (User.collection().find({ 'account.code': account.code }).count()) {
+      return templateInstance.state.set('addUserError', 'user.addUserAlreadyExists')
+    }
+
+    templateInstance.state.set({ addUserError: null })
 
     callMethod({
       name: User.methods.insert,

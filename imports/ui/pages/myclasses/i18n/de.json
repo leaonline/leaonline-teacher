@@ -45,5 +45,10 @@
         }
       }
     }
+  },
+  "user": {
+    "addUserNoValues": "TN benötigt mind. eine Angabe",
+    "addUserAlreadyExists": "TN existiert bereits. Bitte wählen Sie die Person aus der Liste aus.",
+    "userIsInvalid": "TN Code ist ungültig"
   }
 }

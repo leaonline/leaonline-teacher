@@ -24,5 +24,5 @@ export const loadDimensions = async () => {
 
   loaded = Dimension.localCollection().find().count() > 0
 
-  return true
+  return dimensionDocs
 }
