@@ -13,6 +13,7 @@ import { callMethod } from '../../../infrastructure/methods/callMethod'
 import myClassesLanguages from './i18n/myClassesLanguages'
 import './myClasses.html'
 import './scss/myClasses.scss'
+import { connectRemote } from '../../../api/remotes/connectRemote'
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -49,6 +50,10 @@ const byName = (a, b) =>
 
 Template.myClasses.onCreated(function () {
   const instance = this
+
+  // we connect outside of init to anyway render layout grid
+  connectRemote(OtuLea)
+
   instance.init({
     contexts: [Course, User],
     useLanguage: [myClassesLanguages],
