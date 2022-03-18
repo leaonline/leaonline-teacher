@@ -52,7 +52,7 @@ Template.myClasses.onCreated(function () {
   instance.init({
     contexts: [Course, User],
     useLanguage: [myClassesLanguages],
-    remotes: [OtuLea],
+    // remotes: [OtuLea],
     onComplete () {
       instance.state.set('initComplete', true)
     },
@@ -181,9 +181,10 @@ Template.myClasses.helpers({
       Template.getState('userPublicationComplete')
   },
   componentsLoaded () {
-    return componentsLoader.loaded.get() &&
-      formLoaded.get() &&
-      Template.getState('initComplete')
+    return componentsLoader.loaded.get() && formLoaded.get() && Template.getState('initComplete')
+  },
+  connecting () {
+    return !OtuLea.isConnected()
   },
   activeCourses () {
     const now = new Date()

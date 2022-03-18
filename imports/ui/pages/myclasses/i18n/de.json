@@ -1,6 +1,7 @@
 {
   "pages": {
     "myClasses": {
+      "connecting": "Verbinde mit Otu.Lea, Einige Funktionen sind bis dahin eingeschränkt.",
       "running": "Laufende Kurse",
       "completed": "Abgeschlossene Kurse",
       "upcoming": "Ausstehende Kurse",
