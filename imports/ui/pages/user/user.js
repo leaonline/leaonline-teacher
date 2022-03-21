@@ -536,6 +536,7 @@ const loadCompetencies = (selectedDate, templateInstance) => {
         if (!accomplishments.has(competency.gradeName)) {
           accomplishments.set(competency.gradeName, {
             value: competency.gradeName,
+            index: competency.gradeIndex || -1,
             label: gradeLabel,
             active: true
           })
@@ -588,10 +589,10 @@ const loadCompetencies = (selectedDate, templateInstance) => {
   })
 
   templateInstance.state.set({
-    competencyCategories: Array.from(competencyCategories.values()),
-    alphaLevels: Array.from(alphaLevels.values()),
-    accomplishments: Array.from(accomplishments.values()),
-    development: Array.from(development.values()),
+    competencyCategories: [...competencyCategories.values()],
+    alphaLevels: [...alphaLevels.values()].sort((a, b) => a.level - b.level),
+    accomplishments: [...accomplishments.values()].sort((a, b) => a.index - b.index),
+    development: [...development.values()],
     filters: [],
     flipped: {}
   })
