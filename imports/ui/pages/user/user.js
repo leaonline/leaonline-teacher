@@ -612,7 +612,7 @@ const loadCompetencies = (selectedDate, templateInstance) => {
           return cat
         })
         templateInstance.state.set({
-          competencyCategories: categories.sort((a, b) => a.name.localeCompare(b.name))
+          competencyCategories: categories.sort((a, b) => a.label.localeCompare(b.label))
         })
       })
   }
