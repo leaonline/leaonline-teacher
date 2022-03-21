@@ -288,21 +288,24 @@ Template.myClasses.events({
 
     if (!insertDoc) return
 
-    const account = insertDoc.account || {}
+    // todo use ctx for extended validation
+    if (type === User) {
+      const account = insertDoc.account || {}
 
-    if (!insertDoc.firstName && !insertDoc.lastName && !account.code) {
-      return templateInstance.state.set('addUserError', 'user.addUserNoValues')
+      if (!insertDoc.firstName && !insertDoc.lastName && !account.code) {
+        return templateInstance.state.set('addUserError', 'user.addUserNoValues')
+      }
+
+      if (account.code && !account._id) {
+        return templateInstance.state.set('addUserError', 'user.userIsInvalid')
+      }
+
+      if (User.collection().find({ 'account.code': account.code }).count()) {
+        return templateInstance.state.set('addUserError', 'user.addUserAlreadyExists')
+      }
+
+      templateInstance.state.set({ addUserError: null })
     }
-
-    if (account.code && !account._id) {
-      return templateInstance.state.set('addUserError', 'user.userIsInvalid')
-    }
-
-    if (User.collection().find({ 'account.code': account.code }).count()) {
-      return templateInstance.state.set('addUserError', 'user.addUserAlreadyExists')
-    }
-
-    templateInstance.state.set({ addUserError: null })
 
     callMethod({
       name: type.context.methods.insert,

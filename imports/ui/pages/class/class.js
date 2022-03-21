@@ -79,7 +79,7 @@ Template.class.onCreated(function () {
       .then(dimensionDocs => {
         // if not already set by query param we load the first dimension
         if (!instance.state.get('dimensionDoc')) {
-          instance.state.set({ dimensionDoc: dimensionDocs[0]})
+          instance.state.set({ dimensionDoc: dimensionDocs[0] })
         }
       })
       .finally(() => instance.state.set('dimensionsLoaded', true))
