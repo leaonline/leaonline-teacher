@@ -12,6 +12,8 @@ Template.visualization.onCreated(function () {
   })
 })
 
+const ascending = (a, b) => b - a
+
 Template.visualization.onRendered(function () {
   const instance = this
 
@@ -22,7 +24,7 @@ Template.visualization.onRendered(function () {
     if (!initComplete) { return }
 
     const userFilter = instance.state.get('userFilter') || {}
-    const alphaLevels = new Set()
+    const alphaLevels = new Map()
     const dates = new Set()
     const userData = {}
     const userNames = new Set()
@@ -44,8 +46,8 @@ Template.visualization.onRendered(function () {
         if (!userHasData[date]) userHasData[date] = {}
         userHasData[date][name] = true
 
-        level.forEach(({ alpha, value }) => {
-          alphaLevels.add(alpha)
+        level.forEach(({ alpha, value, title, description }) => {
+          alphaLevels.set(alpha, { label: alpha, title, description })
 
           // if the user is explicitly filtered ou
           // we skip here, so the date won't arrive
@@ -65,10 +67,12 @@ Template.visualization.onRendered(function () {
       })
     })
 
+    console.debug([...dates.values()])
+
     instance.state.set({
       processingComplete: true,
       alphaLevels: [...alphaLevels.values()],
-      dates: [...dates.values()],
+      dates: [...dates.values()].sort(ascending),
       userData: userData,
       userNames: [...userNames.values()],
       userFilter: userFilter,

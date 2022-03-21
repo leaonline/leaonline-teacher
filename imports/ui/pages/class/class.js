@@ -221,34 +221,39 @@ Template.class.onCreated(function () {
       // ---------------------------------------------
       // PART 1 - Alpha Levels
       // ---------------------------------------------
+      const alphaLabel = i18n.get('alphaLevel.title')
 
       // case: user has already entry for this date
       // then: existing dates will be directly updated in the data-structure
       if (existingDate) {
-        record.alphaLevels.forEach(entry => {
-          const index = existingDate.level.length - entry.level
-          existingDate.level[index].value = Math.round(entry.perc * 100)
-          existingDate.level[index].alpha = entry.description
+        record.alphaLevels.forEach(alphaLevel => {
+          const index = existingDate.level.length - alphaLevel.level
+          existingDate.level = existingDate.level || []
+          existingDate.level[index].value = Math.round(alphaLevel.perc * 100)
+          existingDate.level[index].alpha = `${alphaLabel} ${index}`
+          existingDate.level[index].title = alphaLevel.title
+          existingDate.level[index].description = alphaLevel.description
         })
       }
 
       // case: user has no entry for this date
       // then: new dates will create a new data-structure
       else {
-        const alphaLabel = i18n.get('alphaLevel.title')
         const levels = Array.of(5, 4, 3, 2, 1).map(index => ({
           alpha: `${alphaLabel} ${index}`,
           value: 0
         }))
 
-        record.alphaLevels.forEach(entry => {
-          if (!alphaLevels.has(entry._id)) {
-            alphaLevels.set(entry._id, entry)
+        record.alphaLevels.forEach(alphaLevel => {
+          if (!alphaLevels.has(alphaLevel._id)) {
+            alphaLevels.set(alphaLevel._id, alphaLevel)
           }
 
-          const value = Math.round(entry.perc * 100)
-          const index = levels.length - entry.level
+          const value = Math.round(alphaLevel.perc * 100)
+          const index = levels.length - alphaLevel.level
           levels[index].value = value
+          levels[index].title = alphaLevel.title
+          levels[index].description = alphaLevel.description
         })
 
         userRecords.allDate.push({

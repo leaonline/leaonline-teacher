@@ -4,22 +4,22 @@
             <div class="flexwraper">
                 <div class="graphtitle">
                     <!-- graph alpha level -->
-                    {{#each level in alphaLevels}}
-                        <div class="graph-title text-secondary">{{level}}</div>
+                    {{#each alpha in alphaLevels}}
+                        <div class="graph-title text-secondary" title="{{alpha.title}} {{alpha.description}}">{{alpha.label}}</div>
                     {{/each}}
                     <!-- end graph alpha level -->
                 </div>
                 <div class="graplist customscroll">
                     <div class="graphtable" id="graphwrap">
                         <!-- graph value -->
-                        {{#each level in alphaLevels}}
+                        {{#each alpha in alphaLevels}}
                             <div class="graph-wrapper">
                                 {{#each dateValue in dates}}
                                     <div class="graphloop">
                                         <div class="barchart">
                                             <!-- display user data graph value -->
                                             {{#each userDataValue in
-                                                    (getUserData dateValue level)}}
+                                                    (getUserData dateValue alpha.label)}}
                                                 {{#if gt userDataValue.value 0}}
                                                     <div class="barline clickable {{#if
                                                             isActive
@@ -40,9 +40,7 @@
 
                                                                 {{!-- on hover display alpha level & level value --}}
                                                                 <div class="mt-2">
-                                                                    {{#each res
-                                                                            in
-                                                                            userDataValue.result}}
+                                                                    {{#each res in userDataValue.result}}
                                                                         <h6>{{res.alpha}}
                                                                             : {{res.value}}
                                                                             %</h6>
@@ -122,8 +120,8 @@
                     <thead>
                     <tr>
                         <th>{{i18n "users.user"}}</th>
-                        {{#each level in alphaLevels.reverse}}
-                            <th>{{level}}</th>
+                        {{#each alpha in alphaLevels.reverse}}
+                            <th>{{alpha.label}}</th>
                         {{/each}}
                     </tr>
                     </thead>
@@ -132,9 +130,9 @@
                         {{#if userHasData date name}}
                             <tr>
                                 <td>{{name}}</td>
-                                {{#each level in alphaLevels.reverse}}
+                                {{#each alpha in alphaLevels.reverse}}
                                     <td>
-                                        {{#with (getUserData date level name)}}
+                                        {{#with (getUserData date alpha.label name)}}
                                             {{this.value}}
                                         {{/with}}
                                     </td>
