@@ -6,6 +6,11 @@ const optional = type => ({ type, optional: true })
 const settingsSchema = schema({
   public: schema({
     issueMail: String,
+    debug: {
+      type: Array,
+      optional: true
+    },
+    'debug.$': String,
     app: schema({
       name: String,
       label: String,

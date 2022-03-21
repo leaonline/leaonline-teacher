@@ -1,6 +1,7 @@
 {
   "public": {
     "issueMail": "mail@example.com",
+    "debug": ["class"],
     "app": {
       "name": "lea. Dashboard",
       "label": "apps.dashboard.title",
