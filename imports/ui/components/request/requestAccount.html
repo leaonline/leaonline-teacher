@@ -2,9 +2,11 @@
     {{#onLoaded loaded=loadComplete}}
         {{#unless complete}}
             <div class="request-container {{#if sending}}d-unavailable{{/if}}">
-                <p class="text-center">
+                <h2 class="text-center">
                     {{i18n "request.title"}}
-                </p>
+                </h2>
+
+                <hr>
 
                 {{> quickForm id="requestForm"
                         schema=requestSchema

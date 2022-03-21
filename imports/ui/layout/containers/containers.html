@@ -1,10 +1,12 @@
 <!-- the login render target is used only for routes on logged-out users -->
 
 <template name="logged-out-render-target">
-    <wrapper class="container-fluid d-flex flex-column">
-        <main class="w-100 main-container flex-fill">
+    <wrapper class="mainwrapper">
+        <div class="contentwrapper w-100 vh-100 d-flex bg-print-none">
+            <main role="main" class="w-100 h-100">
             {{> yield}}
-        </main>
+            </main>
+        </div>
     </wrapper>
     {{> notifications }}
 </template>

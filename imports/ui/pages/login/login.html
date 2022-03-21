@@ -3,77 +3,80 @@
         <img src="/logo/welcome-1110x624.png"
              width=1110
              height=624
+             loading="lazy"
              alt="lea. logo"
-             class="rounded lea-main-logo autoscale shadow"/>
+             class="rounded lea-main-logo img-fluid shadow"/>
     </div>
 
-    <div class="row my-5">
-        <div class="col col-sm-12 col-md-6 col-lg-4 ml-auto mr-auto">
-            {{#if login}}
-                <div class="w-100 {{#if loggingIn}}d-unavailable{{/if}}">
-                    <button class="btn btn-lg btn-primary btn-block login-button">
-                        {{#onLoaded loaded=loadComplete}}
-                            {{i18n "pages.login.login"}}
-                        {{/onLoaded}}
-                    </button>
-                </div>
-                <div class="d-block text-center p-4">
-                    <button class="btn btn-outline-secondary border-0 request-btn">
-                        {{#onLoaded loaded=loadComplete}}
-                            {{i18n "pages.login.request.title"}}
-                        {{/onLoaded}}
-                    </button>
-                </div>
-            {{/if}}
-
-            {{#if loggingIn}}
-                <div class="w-100 text-center">
-                    <span class="spinner-border text-primary"></span>
-                    {{#onLoaded loaded=loadComplete}}
-                        <span>{{i18n "pages.login.loggingIn"}}</span>
-                    {{/onLoaded}}
-                </div>
-            {{/if}}
-
-            {{#with loginError}}
-                <div class="alert alert-danger mt-3">
-                    <div class="d-block alert-heading font-weight-bold text-center">
-                        {{#with this.error}}
-                            {{i18n this}}
-                        {{else}}
-                            {{i18n "error.occurred"}}
-                        {{/with}}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col col-sm-12 col-md-6 col-lg-4 ml-auto mr-auto">
+                {{#if login}}
+                    <div class="w-100 {{#if loggingIn}}d-unavailable{{/if}}">
+                        <button class="btn btn-lg btn-primary btn-block login-button">
+                            {{#onLoaded loaded=loadComplete}}
+                                {{i18n "pages.login.login"}}
+                            {{/onLoaded}}
+                        </button>
                     </div>
-                    <div class="d-block text-center">
-                        {{#with this.reason}}
-                            {{i18n this}}
-                        {{else}}
-                            {{this.message}}
-                        {{/with}}
+                    <div class="d-block text-center p-4">
+                        <button class="btn btn-outline-secondary border-0 request-btn">
+                            {{#onLoaded loaded=loadComplete}}
+                                {{i18n "pages.login.request.title"}}
+                            {{/onLoaded}}
+                        </button>
                     </div>
-                </div>
-            {{/with}}
+                {{/if}}
 
-            {{#if loggedIn}}
-                <div class="alert alert-info">
-                    {{#onLoaded loaded=loadComplete}}
-                        <strong class="alert-heading">{{i18n
-                                "pages.login.loggedIn"}}</strong>
-                    {{/onLoaded}}
-                </div>
+                {{#if loggingIn}}
+                    <div class="w-100 text-center">
+                        <span class="spinner-border text-primary"></span>
+                        {{#onLoaded loaded=loadComplete}}
+                            <span>{{i18n "pages.login.loggingIn"}}</span>
+                        {{/onLoaded}}
+                    </div>
+                {{/if}}
 
-                <a class="btn btn-primary btn-block" href="{{next}}">
-                    {{#onLoaded loaded=loadComplete}}
-                        {{i18n "actions.continue"}}
-                    {{/onLoaded}}
-                </a>
-            {{/if}}
+                {{#with loginError}}
+                    <div class="alert alert-danger mt-3">
+                        <div class="d-block alert-heading font-weight-bold text-center">
+                            {{#with this.error}}
+                                {{i18n this}}
+                            {{else}}
+                                {{i18n "error.occurred"}}
+                            {{/with}}
+                        </div>
+                        <div class="d-block text-center">
+                            {{#with this.reason}}
+                                {{i18n this}}
+                            {{else}}
+                                {{this.message}}
+                            {{/with}}
+                        </div>
+                    </div>
+                {{/with}}
 
-            {{#if view "requesting"}}
-                <div class="d-block">
-                    {{> requestAccount requestAccountData}}
-                </div>
-            {{/if}}
+                {{#if loggedIn}}
+                    <div class="alert alert-info">
+                        {{#onLoaded loaded=loadComplete}}
+                            <strong class="alert-heading">{{i18n
+                                    "pages.login.loggedIn"}}</strong>
+                        {{/onLoaded}}
+                    </div>
+
+                    <a class="btn btn-primary btn-block" href="{{next}}">
+                        {{#onLoaded loaded=loadComplete}}
+                            {{i18n "actions.continue"}}
+                        {{/onLoaded}}
+                    </a>
+                {{/if}}
+
+                {{#if view "requesting"}}
+                    <div class="d-block">
+                        {{> requestAccount requestAccountData}}
+                    </div>
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>

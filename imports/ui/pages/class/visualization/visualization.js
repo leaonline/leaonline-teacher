@@ -67,12 +67,10 @@ Template.visualization.onRendered(function () {
       })
     })
 
-    console.debug([...dates.values()])
-
     instance.state.set({
       processingComplete: true,
       alphaLevels: [...alphaLevels.values()],
-      dates: [...dates.values()].sort(ascending),
+      dates: [...dates.values()],
       userData: userData,
       userNames: [...userNames.values()],
       userFilter: userFilter,

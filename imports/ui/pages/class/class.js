@@ -150,7 +150,7 @@ Template.class.onCreated(function () {
       })
   })
 
-  const byCreationDate = (a, b) => a.completedAt.getTime() - b.completedAt.getTime()
+  const byCreationDateAscending = (a, b) => a.completedAt.getTime() - b.completedAt.getTime()
 
   instance.autorun(() => {
     const records = instance.state.get('records')
@@ -185,20 +185,16 @@ Template.class.onCreated(function () {
     const competencyCategories = new Map()
     const alphaLevels = new Map()
     const userDateCompetencyKeys = new Set()
-    const allDates = new Set()
 
     // ---------------------------------------------
     // SECTION A - Process and denormalize results
     // ---------------------------------------------
 
     instance.api.debug('sort records')
-    records.sort(byCreationDate)
+    records.sort(byCreationDateAscending)
 
     instance.api.debug('denormalize records')
     records.forEach(record => {
-      const dateStr = record.completedAt.toLocaleDateString()
-      allDates.add(dateStr)
-
       // first, check if there is no record yet
       // for the current user and create one for her
       if (!recordsByUser.has(record.userId)) {
@@ -227,8 +223,9 @@ Template.class.onCreated(function () {
       // then: existing dates will be directly updated in the data-structure
       if (existingDate) {
         record.alphaLevels.forEach(alphaLevel => {
-          const index = existingDate.level.length - alphaLevel.level
           existingDate.level = existingDate.level || []
+
+          const index = existingDate.level.length - alphaLevel.level
           existingDate.level[index].value = Math.round(alphaLevel.perc * 100)
           existingDate.level[index].alpha = `${alphaLabel} ${index}`
           existingDate.level[index].title = alphaLevel.title
@@ -384,11 +381,7 @@ Template.class.onCreated(function () {
     }
 
     instance.state.set({
-      visualizationData: {
-        entries: results,
-        dates: [...allDates.values()],
-        alphaLevels: [...alphaLevels.values()].map(a => a.description)
-      },
+      visualizationData: { entries: results },
       hasFeedback,
       loadRecords: false,
       competencyCategories: Array.from(competencyCategories.values()),
