@@ -92,5 +92,9 @@ Template.requestAccount.events({
         }, 2000)
       }
     })
+  },
+  'click .cancel-request-btn' (event, templateInstance) {
+    event.preventDefault()
+    templateInstance.data.cancel()
   }
 })

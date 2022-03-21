@@ -290,7 +290,7 @@ const login = isomorphic({
           remote.debug('credentials received; init login')
           const options = {
             accessToken: credentials.accessToken,
-            debug: true
+            debug: false
           }
 
           DDP.loginWithLea(connection, options, (loginError, res) => {

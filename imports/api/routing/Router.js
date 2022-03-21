@@ -191,6 +191,13 @@ Router.refresh = function (target, template) {
 }
 
 Router.setTitle = function (label) {
-  _currentLabel.set(label)
-  document.title = `${_defaultLabel} - ${label}`
+  if (label) {
+    _currentLabel.set(label)
+    document.title = `${label} - ${_defaultLabel}`
+  }
+
+  else {
+    _currentLabel.set(null)
+    document.title = _defaultLabel
+  }
 }

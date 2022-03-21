@@ -60,6 +60,10 @@ Template.login.helpers({
   },
   requestAccountData () {
     return {
+      cancel: function () {
+        const instance = this
+        instance.state.set('view', states.login)
+      }.bind(Template.instance()),
       complete: function () {
         const instance = this
         instance.state.set('view', states.login)

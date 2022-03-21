@@ -12,7 +12,7 @@ Template.legal.onCreated(function () {
   instance.init({
     contexts: [Legal],
     useLanguage: [legalLanguage],
-    debug: true,
+    debug: false,
     onComplete: () => {
       instance.state.set('dependenciesComplete', true)
     }

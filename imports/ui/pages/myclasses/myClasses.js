@@ -64,7 +64,7 @@ Template.myClasses.onCreated(function () {
     onError (err) {
       instance.api.notify(err)
     },
-    debug: true
+    debug: false
   })
 
   instance.api.subscribe({

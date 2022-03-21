@@ -1,7 +1,10 @@
 import { Meteor } from 'meteor/meteor'
 
 const debugTemplates = Meteor.settings.public.debug || []
-const isDebug = name => debugTemplates.includes(name)
+const isDebug = (name = '') => {
+  const cleaned = name.replace('Template.', '')
+  return debugTemplates.includes(cleaned)
+}
 
 export const templateInit = function ({ contexts = [], remotes = null, subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
   import {
@@ -37,7 +40,7 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
   const debugTemplate = debug || isDebug(instance.view.name)
 
   api.debug = (...args) => {
-    if (!Meteor.isDevelopment || !debug) return
+    if (!debugTemplate) { return }
     console.debug(`[${instance.view.name}]:`, ...args)
   }
 

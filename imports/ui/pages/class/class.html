@@ -24,7 +24,7 @@
         <div class="d-print-none">
         {{#unless otuleaConnected}}
             <div class="alert alert-info">
-                {{> loading title="remotes.otulea.connecting"}}
+                {{> loading title="otu.lea"}}
             </div>
         {{/unless}}
         {{#if hasRecords}}
@@ -51,7 +51,11 @@
         {{! ---------------------------------------------- }}
 
         {{#if loadRecords}}
-            {{> loading title=(i18n "pages.class.records")}}
+            {{#if loadComplete}}
+                {{> loading title=(i18n "pages.class.records")}}
+            {{else}}
+                {{> loading}}
+            {{/if}}
         {{/if}}
 
         {{#unless hasRecords}}

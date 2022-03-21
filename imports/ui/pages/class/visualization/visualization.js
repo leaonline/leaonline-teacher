@@ -12,8 +12,6 @@ Template.visualization.onCreated(function () {
   })
 })
 
-const ascending = (a, b) => b - a
-
 Template.visualization.onRendered(function () {
   const instance = this
 
@@ -39,7 +37,9 @@ Template.visualization.onRendered(function () {
         userFilter[name] = true
       }
 
-      allDate.forEach(({ date, level }) => {
+      allDate.forEach((entry) => {
+        const level = entry.level
+        const date = entry.date.toLocaleDateString()
         dates.add(date)
 
         if (!userData[date])userData[date] = {}
@@ -47,6 +47,7 @@ Template.visualization.onRendered(function () {
         userHasData[date][name] = true
 
         level.forEach(({ alpha, value, title, description }) => {
+          if (value) instance.api.debug(name, date, alpha, value)
           alphaLevels.set(alpha, { label: alpha, title, description })
 
           // if the user is explicitly filtered ou
@@ -69,10 +70,10 @@ Template.visualization.onRendered(function () {
 
     instance.state.set({
       processingComplete: true,
-      alphaLevels: [...alphaLevels.values()],
-      dates: [...dates.values()],
+      alphaLevels: [...alphaLevels.values()].sort((a, b) => b.label.localeCompare(a.label)),
+      dates: [...dates.values()].sort((a, b) => a.localeCompare(b)),
       userData: userData,
-      userNames: [...userNames.values()],
+      userNames: [...userNames.values()].sort(),
       userFilter: userFilter,
       userHasData: userHasData
     })

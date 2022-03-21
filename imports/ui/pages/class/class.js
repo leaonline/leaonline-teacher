@@ -190,9 +190,6 @@ Template.class.onCreated(function () {
     // SECTION A - Process and denormalize results
     // ---------------------------------------------
 
-    instance.api.debug('sort records')
-    records.sort(byCreationDateAscending)
-
     instance.api.debug('denormalize records')
     records.forEach(record => {
       // first, check if there is no record yet
@@ -213,9 +210,11 @@ Template.class.onCreated(function () {
       const userRecords = recordsByUser.get(record.userId)
       const searchDate = record.completedAt.toLocaleDateString()
       const existingDate = userRecords.allDate.find(d => d.date === searchDate)
+      instance.api.debug('find entry for date:', searchDate, '=>', existingDate)
 
       // ---------------------------------------------
       // PART 1 - Alpha Levels
+      // ---------------------------------------------
       // ---------------------------------------------
       const alphaLabel = i18n.get('alphaLevel.title')
 
@@ -223,11 +222,10 @@ Template.class.onCreated(function () {
       // then: existing dates will be directly updated in the data-structure
       if (existingDate) {
         record.alphaLevels.forEach(alphaLevel => {
-          existingDate.level = existingDate.level || []
-
+          instance.api.debug('alpha level', alphaLevel?.level)
           const index = existingDate.level.length - alphaLevel.level
           existingDate.level[index].value = Math.round(alphaLevel.perc * 100)
-          existingDate.level[index].alpha = `${alphaLabel} ${index}`
+          existingDate.level[index].alpha = `${alphaLabel} ${index + 1}`
           existingDate.level[index].title = alphaLevel.title
           existingDate.level[index].description = alphaLevel.description
         })
@@ -246,6 +244,7 @@ Template.class.onCreated(function () {
             alphaLevels.set(alphaLevel._id, alphaLevel)
           }
 
+          instance.api.debug('alpha level', alphaLevel?.level)
           const value = Math.round(alphaLevel.perc * 100)
           const index = levels.length - alphaLevel.level
           levels[index].value = value
@@ -255,7 +254,7 @@ Template.class.onCreated(function () {
 
         userRecords.allDate.push({
           id: `graph${++id}`,
-          date: record.completedAt.toLocaleDateString(),
+          date: record.completedAt,
           level: levels
         })
       }
@@ -293,6 +292,10 @@ Template.class.onCreated(function () {
         // the same applies for each new competency, that occurs
         if (!category.entries.has(competency._id)) {
           const alphaLevel = alphaLevels.get(competency.alphaLevel)
+
+          if (!alphaLevel) {
+            return console.warn('Found no alphalevel by _id that was linked by competency', { competency })
+          }
 
           category.entries.set(competency._id, {
             _id: competency._id,
@@ -337,6 +340,8 @@ Template.class.onCreated(function () {
     // ---------------------------------------------
     // SECTION B - Prepare for rendering
     // ---------------------------------------------
+
+
 
     instance.api.debug('prepare records for rendering')
     const results = Array
