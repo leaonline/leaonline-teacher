@@ -14,12 +14,12 @@
                         <!-- graph value -->
                         {{#each alpha in alphaLevels}}
                             <div class="graph-wrapper">
-                                {{#each dateValue in dates}}
+                                {{#each date in dates}}
                                     <div class="graphloop">
                                         <div class="barchart">
                                             <!-- display user data graph value -->
                                             {{#each userDataValue in
-                                                    (getUserData dateValue alpha.label)}}
+                                                    (getUserData date.value alpha.label)}}
                                                 {{#if gt userDataValue.value 0}}
                                                     <div class="barline clickable {{#if
                                                             isActive
@@ -36,7 +36,7 @@
                                                                 <h5 class="mb-0">
                                                                     <b>{{userDataValue.name}}</b>
                                                                 </h5>
-                                                                <p class="dateText">{{dateValue}}</p>
+                                                                <p class="dateText">{{date.label}}</p>
 
                                                                 {{!-- on hover display alpha level & level value --}}
                                                                 <div class="mt-2">
@@ -62,7 +62,7 @@
                         <!-- end graph value -->
                         <div class="graph-bottom-navigation graph-wrapper">
                             {{#each date in dates}}
-                                <div class="date-lists">{{date}}</div>
+                                <div class="date-lists">{{date.label}}</div>
                             {{/each}}
                         </div>
                     </div>
@@ -114,7 +114,7 @@
     {{#onLoaded loaded=loadComplete}}
         <div class="d-none d-print-block">
             {{#each date in dates}}
-                <h3 class="mt-4">{{date}}</h3>
+                <h3 class="mt-4">{{date.label}}</h3>
 
                 <table class="table">
                     <thead>
@@ -127,12 +127,12 @@
                     </thead>
                     <tbody>
                     {{#each name in userNames}}
-                        {{#if userHasData date name}}
+                        {{#if userHasData date.value name}}
                             <tr>
                                 <td>{{name}}</td>
                                 {{#each alpha in alphaLevels.reverse}}
                                     <td>
-                                        {{#with (getUserData date alpha.label name)}}
+                                        {{#with (getUserData date.value alpha.label name)}}
                                             {{this.value}}
                                         {{/with}}
                                     </td>

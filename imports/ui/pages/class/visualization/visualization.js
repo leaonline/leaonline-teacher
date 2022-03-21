@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating'
 import visualizationLanguage from './i18n/visualizationLanguage'
+import { dataTarget } from '../../../utils/dataTarget'
 import './visualization.scss'
 import './visualization.html'
-import { dataTarget } from '../../../utils/dataTarget'
 
 Template.visualization.onCreated(function () {
   const instance = this
@@ -28,6 +28,9 @@ Template.visualization.onRendered(function () {
     const userNames = new Set()
     const userHasData = {}
 
+    // date values are transformed to unix-timestamps
+    // so they can be sorted accordingly
+
     entries.forEach(({ name, allDate }) => {
       userNames.add(name)
 
@@ -39,7 +42,7 @@ Template.visualization.onRendered(function () {
 
       allDate.forEach((entry) => {
         const level = entry.level
-        const date = entry.date.toLocaleDateString()
+        const date = entry.date.getTime()
         dates.add(date)
 
         if (!userData[date])userData[date] = {}
@@ -68,10 +71,17 @@ Template.visualization.onRendered(function () {
       })
     })
 
+    const dateValues = [...dates.values()]
+      .sort((a, b) => b - a)
+      .map(t => ({ value: t, label: new Date(t).toLocaleDateString()}))
+
+    instance.api.debug({ dateValues })
+    instance.api.debug({ userData })
+
     instance.state.set({
       processingComplete: true,
       alphaLevels: [...alphaLevels.values()].sort((a, b) => b.label.localeCompare(a.label)),
-      dates: [...dates.values()].sort((a, b) => a.localeCompare(b)),
+      dates: dateValues,
       userData: userData,
       userNames: [...userNames.values()].sort(),
       userFilter: userFilter,

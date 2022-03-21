@@ -284,9 +284,9 @@
 
                         {{! else render back page }}
                         <div class="card-wrapper bg-blue-gray text-light rounded h-100 shadow-sm p-2 d-{{#if flipped competency._id}}block{{else}}none{{/if}}">
-                            <div class="d-block font-weight-bold">
+                            <small class="d-block text-center font-weight-bold">
                                 {{competency.shortCode}}: {{competency.description}}
-                            </div>
+                            </small>
                             <hr class="border-light">
                             <small class="d-block text-center">
                                 {{exampleText competency._id}}

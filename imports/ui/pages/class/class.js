@@ -150,8 +150,6 @@ Template.class.onCreated(function () {
       })
   })
 
-  const byCreationDateAscending = (a, b) => a.completedAt.getTime() - b.completedAt.getTime()
-
   instance.autorun(() => {
     const records = instance.state.get('records')
     const userDocs = instance.state.get('users')
