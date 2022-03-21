@@ -24,7 +24,7 @@
         <div class="d-print-none">
         {{#unless otuleaConnected}}
             <div class="alert alert-info">
-                {{> loading title="otulea"}}
+                {{> loading title="remotes.otulea.connecting"}}
             </div>
         {{/unless}}
         {{#if hasRecords}}
@@ -55,9 +55,11 @@
         {{/if}}
 
         {{#unless hasRecords}}
-            <div class="alert alert-warning mt-4">
-                {{i18n "pages.class.noRecords"}}
-            </div>
+            {{#onLoaded loaded=loadComplete}}
+                <div class="alert alert-warning mt-4">
+                    {{i18n "pages.class.noRecords"}}
+                </div>
+            {{/onLoaded}}
         {{/unless}}
 
         {{#if competencyCategories}}

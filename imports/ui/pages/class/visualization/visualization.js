@@ -38,7 +38,6 @@ Template.visualization.onRendered(function () {
       }
 
       allDate.forEach(({ date, level }) => {
-        console.debug('process', name, date)
         dates.add(date)
 
         if (!userData[date])userData[date] = {}
@@ -66,7 +65,6 @@ Template.visualization.onRendered(function () {
       })
     })
 
-    console.debug(userHasData)
     instance.state.set({
       processingComplete: true,
       alphaLevels: [...alphaLevels.values()],

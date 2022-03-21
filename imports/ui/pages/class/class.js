@@ -53,11 +53,16 @@ Template.class.onCreated(function () {
     const data = Template.currentData()
     const { classId } = data.params
 
+    if (!Meteor.userId()) { return }
+
     callMethod({
       name: Course.methods.get,
       args: { _id: classId },
       prepare: () => instance.api.debug('load course doc'),
-      failure: instance.api.notify,
+      failure: error => {
+        instance.api.debug('error at', Course.methods.get.name)
+        instance.api.notify(error)
+      },
       success: courseDoc => {
         instance.api.debug('course doc loaded')
         instance.state.set({
@@ -72,10 +77,13 @@ Template.class.onCreated(function () {
 
   instance.autorun(() => {
     const courseDoc = instance.state.get('courseDoc')
-    if (!courseDoc) return
+    if (!courseDoc || !Meteor.userId()) return
 
     loadDimensions()
-      .catch(instance.api.notify)
+      .catch(error => {
+        instance.api.debug('error at load dimensions')
+        instance.api.notify(error)
+      })
       .then(dimensionDocs => {
         // if not already set by query param we load the first dimension
         if (!instance.state.get('dimensionDoc')) {
@@ -93,7 +101,10 @@ Template.class.onCreated(function () {
     callMethod({
       name: User.methods.get,
       args: { ids: courseDoc.users },
-      failure: instance.api.notify,
+      failure: error => {
+        instance.api.debug('error at', User.methods.get.name)
+        instance.api.notify(error)
+      },
       success: (users = []) => {
         if (courseDoc) {
           courseDoc.users = users
@@ -106,13 +117,17 @@ Template.class.onCreated(function () {
     })
   })
 
+  // load recrods
+
   instance.autorun(() => {
     const dimensionDoc = instance.state.get('dimensionDoc')
     const courseDoc = instance.state.get('courseDoc')
     const userDocs = instance.state.get('users')
     const hasUsers = instance.state.get('hasUsers')
 
-    if (!courseDoc || !dimensionDoc || !userDocs || !hasUsers) { return }
+    if (!courseDoc || !dimensionDoc || !userDocs || !hasUsers || !Meteor.userId() || !OtuLea.isLoggedIn()) {
+      return
+    }
 
     // we prepare to load all relevant records for this dimension
     // for all users of the class but only if they have an associated
@@ -129,7 +144,10 @@ Template.class.onCreated(function () {
 
     OtuLea.getRecords({ users, dimension })
       .then((records = []) => instance.state.set({ records, hasRecords: records.length > 0 }))
-      .catch(instance.api.notify)
+      .catch(error => {
+        instance.api.debug('error at OtuLea.getRecords')
+        instance.api.notify(error)
+      })
   })
 
   const byCreationDate = (a, b) => a.completedAt.getTime() - b.completedAt.getTime()
@@ -137,6 +155,8 @@ Template.class.onCreated(function () {
   instance.autorun(() => {
     const records = instance.state.get('records')
     const userDocs = instance.state.get('users')
+
+    if (!Meteor.userId()) { return }
 
     instance.state.set({
       results: null,
@@ -148,6 +168,7 @@ Template.class.onCreated(function () {
 
     if (!userDocs?.length || !records?.length) { return }
 
+    instance.api.debug('process records')
     instance.state.set({ loadRecords: true })
 
     // convert users array to map
@@ -170,7 +191,11 @@ Template.class.onCreated(function () {
     // SECTION A - Process and denormalize results
     // ---------------------------------------------
 
-    records.sort(byCreationDate).forEach(record => {
+    instance.api.debug('sort records')
+    records.sort(byCreationDate)
+
+    instance.api.debug('denormalize records')
+    records.forEach(record => {
       const dateStr = record.completedAt.toLocaleDateString()
       allDates.add(dateStr)
 
@@ -311,6 +336,7 @@ Template.class.onCreated(function () {
     // SECTION B - Prepare for rendering
     // ---------------------------------------------
 
+    instance.api.debug('prepare records for rendering')
     const results = Array
       .from(recordsByUser.values())
       .filter(doc => doc.allDate.length > 0)

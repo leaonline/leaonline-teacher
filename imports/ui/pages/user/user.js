@@ -30,6 +30,7 @@ Template.user.onCreated(function () {
   instance.state.set('filters', [])
   instance.state.set('flipped', {})
   instance.state.set('exampleTexts', {})
+  instance.state.set('selectOneIsActive', true)
 
   instance.init({
     contexts: [Course, Competency, CompetencyCategory, Dimension, AlphaLevel, User],
@@ -182,11 +183,34 @@ Template.user.onCreated(function () {
     if (!userDoc?.account?._id || !OtuLea.isLoggedIn()) { return }
 
     OtuLea.recentFeedback({ users: [userDoc.account._id], resolve: true })
-      .catch(instance.api.notify)
+      .catch(err => {
+        // notify only if the error is reasonable
+        if (err?.error !== 500) {
+          instance.api.notify(err)
+        }
+
+        // otherwise log it to the console but don't inform users
+        else {
+          console.error('Error received from [OtuLea.recentFeedback]:')
+          console.error(err)
+        }
+
+        // in this case we need to activate the "(Select one)" option
+        // for the select component in order to let users load a set
+        instance.state.set({
+          recentSession: null,
+          selectOneIsActive: true
+        })
+      })
       .then((sessionDocs = []) => {
         // if we received a doc we store it in the state and see, if we
         // can use it, once the other docs have been loaded
-        instance.state.set({ recentSession: sessionDocs[0] })
+        if (sessionDocs.length > 0) {
+          instance.state.set({
+            recentSession: sessionDocs[0],
+            selectOneIsActive: false
+          })
+        }
       })
   })
 
@@ -237,7 +261,7 @@ Template.user.onCreated(function () {
         const recordDates = Array.from(dates).map(t => new Date(t))
         instance.state.set({ records, recordDates, noRecords: false })
 
-        // auto-apply selecting recent session por latest date
+        // auto-apply selecting recent session for latest date
         // depending on what auto-selecting mechanism we have used
         // see Template.onRendered for dimension selection logic
         const recentSession = instance.state.get('recentSession')
@@ -312,6 +336,7 @@ Template.user.onRendered(function () {
       autoSelectLatestDate = true
     }
 
+    // otherwise guess  to get the recent completed
     else {
       dimensionToSelect = recentSession?.testCycle?.dimension
     }
@@ -385,6 +410,15 @@ Template.user.helpers({
   },
   hasNoAccount () {
     return Template.getState('userDoc') && !Template.getState('hasAccount')
+  },
+  loadingRecords () {
+    return Template.getState('loadingRecords')
+  },
+  selectOneIsActive () {
+    return Template.getState('selectOneIsActive')
+  },
+  isRecentCompleted () {
+    return Template.getState('isRecentCompleted')
   }
 })
 
@@ -395,6 +429,8 @@ Template.user.events({
     // changing dimension removes all auto-behaviour triggers
     templateInstance.api.queryParam({ dimension: null })
     templateInstance.state.set('recentSession', null)
+    templateInstance.state.set('selectOneIsActive', false)
+    templateInstance.state.set('currentDimension', null)
     templateInstance.state.set('autoSelectLatestDate', null)
     State.currentDimension(null)
 
@@ -450,9 +486,12 @@ const loadCompetencies = (selectedDate, templateInstance) => {
     return templateInstance.state.set({
       competencyCategories: null,
       alphaLevels: null,
-      selectedDates: null
+      selectedDates: null,
+      loadingRecords: false,
     })
   }
+
+  templateInstance.state.set('loadingRecords', true)
 
   const records = templateInstance.state.get('records')
   const recordDates = templateInstance.state.get('recordDates')
@@ -579,6 +618,9 @@ const loadCompetencies = (selectedDate, templateInstance) => {
   }
 
   setTimeout(() => {
-    templateInstance.state.set({ competenciesLoaded: true })
+    templateInstance.state.set({
+      loadingRecords: false,
+      competenciesLoaded: true
+    })
   }, 300)
 }
