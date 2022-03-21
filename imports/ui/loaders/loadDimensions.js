@@ -9,7 +9,7 @@ let loaded = false
  */
 export const loadDimensions = async () => {
   if (loaded) {
-    return true
+    return Dimension.localCollection().find().fetch()
   }
 
   const dimensionDocs = await callMethod({

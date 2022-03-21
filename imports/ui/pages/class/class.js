@@ -37,7 +37,13 @@ Template.class.onCreated(function () {
     }
   })
 
+  /**
+   * Sets the dimension doc by given dimension id
+   * @param dimensionId
+   * @return {*}
+   */
   instance.setDimension = dimensionId => {
+    instance.api.debug('set dimension', dimensionId)
     State.currentDimension(dimensionId)
 
     const dimensionDoc = dimensionId && Dimension.localCollection().findOne(dimensionId)
@@ -117,7 +123,7 @@ Template.class.onCreated(function () {
     })
   })
 
-  // load recrods
+  // load records
 
   instance.autorun(() => {
     const dimensionDoc = instance.state.get('dimensionDoc')
@@ -128,6 +134,8 @@ Template.class.onCreated(function () {
     if (!courseDoc || !dimensionDoc || !userDocs || !hasUsers || !Meteor.userId() || !OtuLea.isLoggedIn()) {
       return
     }
+
+    instance.api.debug('load records')
 
     // we prepare to load all relevant records for this dimension
     // for all users of the class but only if they have an associated
