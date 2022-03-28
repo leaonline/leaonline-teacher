@@ -93,7 +93,7 @@ jobs:
         with:
           repository: leaonline/corelib
           path: github/corelib
-          
+
       - name: Checkout leaonline:service-registry repo
         uses: actions/checkout@v2
         with:
@@ -172,4 +172,5 @@ jobs:
           meteor-release: '2.2'
 
       - run: meteor npm install
-      - run: sh ./test.sh -c
+      - run: sh ./test.sh -o # o = once
+      
