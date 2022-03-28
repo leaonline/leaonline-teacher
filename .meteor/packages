@@ -24,7 +24,7 @@ shell-server@0.5.0            # Server-side component of the `meteor shell` comm
 #========================================
 meteortesting:mocha
 lmieulet:meteor-coverage@3.2.0
-
+lmieulet:meteor-legacy-coverage
 
 #========================================
 # Common
