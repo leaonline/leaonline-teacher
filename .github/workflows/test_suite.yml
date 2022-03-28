@@ -94,6 +94,12 @@ jobs:
           repository: leaonline/corelib
           path: github/corelib
 
+      - name: Checkout leaonline:service-registry repo
+        uses: actions/checkout@v2
+        with:
+          repository: leaonline/service-registry
+          path: github/service-registry
+
      # -------------------------------------------------------------------------
      # We will need those repose later when the respective features are added
      # -------------------------------------------------------------------------
@@ -166,4 +172,5 @@ jobs:
           meteor-release: '2.2'
 
       - run: meteor npm install
-      - run: sh ./test.sh -c
+      - run: sh ./test.sh -o # o = once
+      

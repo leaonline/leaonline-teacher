@@ -1,26 +1,72 @@
 <template name="navSide">
-    <nav class="sidebar border-right {{class}}">
+    <div class="leftsidebar bg-dark d-print-none">
+    <nav class="sidebar d-flex">
         <div class="sidebar-sticky">
             {{#onLoaded loaded=componentsLoaded}}
-                {{#nav class="flex-column flex-wrap mt-4 justify-content-center"}}
+                {{#nav class="flex-column flex-wrap justify-content-center"}}
                     {{#navlink href=(route 'myClasses') linkclass="sidebar-nav-link text-white"
                                active=(currentRoute 'myClasses')}}
-                        <span title='Routes.myClasses.label' class="fa fas fa-fw fa-home"></span>
+                        <span title="{{i18n "routes.myClasses.label"}}" class="fa fas fa-fw fa-home"></span>
                     {{/navlink}}
-                    {{#navlink href=(route 'class' currentClass) linkclass="sidebar-nav-link text-white"
-                               disabled=(classRouteDisabled) active=(currentRoute 'class' currentClass)}}
-                        <span title='Routes.class.label' class="fa fas fa-fw fa-th-large"></span>
+                    {{#navlink href=(route 'class' currentClass._id) linkclass="sidebar-nav-link text-white"
+                               disabled=(classRouteDisabled)
+                               active=(currentRoute 'class' currentClass._id)}}
+                        <span title="{{i18n "routes.class.label"}}" class="fa fas fa-fw fa-th-large"></span>
                     {{/navlink}}
-                    {{#navlink href=(route 'user' currentClass currentParticipant)
-                               linkclass="sidebar-nav-link text-white" disabled=(userRouteDisabled)
+                    {{#navlink href=(route 'user' currentClass._id currentParticipant._id)
+                               linkclass="sidebar-nav-link text-white"
+                               disabled=(userRouteDisabled)
                                active=(currentRoute 'user')}}
-                        <span title='Routes.user.label' class="fa fas fa-fw fa-sliders-h"></span>
+                        <span title="{{i18n "routes.user.label"}}" class="fa fas fa-fw fa-sliders-h"></span>
                     {{/navlink}}
-                    {{#navlink href='#' linkclass="sidebar-nav-link text-white" disabled=false }}
-                        <span title='actions.print' class="fa fas fa-fw fa-print"></span>
+                    {{#navlink href="" linkclass="sidebar-nav-link text-white print-btn" disabled=false }}
+                        <span title="{{i18n "actions.print"}}" class="fa fas fa-fw fa-print"></span>
                     {{/navlink}}
+
+                {{!-- TODO uncomment when personal page has been set up }}
+                    <li class="nav-item">
+                        <a class="nav-link sidebar-nav-link userlogin tooglesidebar text-white" href>
+                            <i class="fa fas fa-fw fa-user-circle"></i>
+                        </a>
+                    </li>
+                --}}
+                    <li class="nav-item">
+                        <a class="nav-link sidebar-nav-link logoutbtn text-white" href="{{route 'logout'}}" title="{{i18n "actions.signOut"}}">
+                            <i class="fas fa-power-off"></i>
+                        </a>
+                    </li>
                 {{/nav}}
             {{/onLoaded}}
         </div>
+        {{!--
+        {{#if currentParticipant}}
+        <div class="userinfo">
+            <a class="toggleicon lefticonsidebar sidebar-left-toggle" href>
+                {{#unless hidden}}
+                    {{> icon name="angle-left"}}
+                {{else}}
+                    {{> icon name="angle-right"}}
+                {{/unless}}
+            </a>
+
+            {{#unless hidden}}
+                <div class="sidebarwrapper">
+                    {{#with currentParticipant}}
+                    <div class="profiles w-100 text-center overflow-hidden">
+                        <img src="/images/user.png" alt="user" />
+                        <div class="pro-captions">
+                            <h5 class="text-white">{{this.firstName}} {{this.lastName}}</h5>
+                            <h5 class="text-white">{{this.account.code}}</h5>
+                            {{! TODO list courses}}
+                        </div>
+                    </div>
+                    {{/with}}
+                </div>
+                <div id="user-filters"></div>
+            {{/unless}}
+        </div>
+        {{/if}}
+        --}}
     </nav>
+    </div>
 </template>

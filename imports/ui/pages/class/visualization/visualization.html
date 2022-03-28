@@ -1,0 +1,148 @@
+<template name="visualization">
+    {{#onLoaded loaded=loadComplete}}
+        <div class="graphcard bg-white d-print-none">
+            <div class="flexwraper">
+                <div class="graphtitle">
+                    <!-- graph alpha level -->
+                    {{#each alpha in alphaLevels}}
+                        <div class="graph-title text-secondary" title="{{alpha.title}} {{alpha.description}}">{{alpha.label}}</div>
+                    {{/each}}
+                    <!-- end graph alpha level -->
+                </div>
+                <div class="graplist customscroll">
+                    <div class="graphtable" id="graphwrap">
+                        <!-- graph value -->
+                        {{#each alpha in alphaLevels}}
+                            <div class="graph-wrapper">
+                                {{#each date in dates}}
+                                    <div class="graphloop">
+                                        <div class="barchart">
+                                            <!-- display user data graph value -->
+                                            {{#each userDataValue in
+                                                    (getUserData date.value alpha.label)}}
+                                                {{#if gt userDataValue.value 0}}
+                                                    <div class="barline clickable {{#if
+                                                            isActive
+                                                            userDataValue.name}}hover{{/if}} {{#if
+                                                            isPassive
+                                                            userDataValue.name}}passive-user{{/if}}"
+                                                         id="{{userDataValue.name}}"
+                                                         style="height: {{userDataValue.value}}%;">
+                                                        <!-- set hover bar value -->
+                                                        <div class="hoverbox"
+                                                             id="mystickytooltip">
+                                                            <div class="atip"
+                                                                 id="sticky0">
+                                                                <h5 class="mb-0">
+                                                                    <b>{{userDataValue.name}}</b>
+                                                                </h5>
+                                                                <p class="dateText">{{date.label}}</p>
+
+                                                                {{!-- on hover display alpha level & level value --}}
+                                                                <div class="mt-2">
+                                                                    {{#each res in userDataValue.result}}
+                                                                        <h6>{{res.alpha}}
+                                                                            : {{res.value}}
+                                                                            %</h6>
+                                                                    {{/each}}
+                                                                </div>
+                                                                {{!-- end on hover display alpha level & level value --}}
+                                                            </div>
+                                                        </div>
+                                                        <!-- end set hover bar value -->
+                                                    </div>
+                                                {{/if}}
+                                            {{/each}}
+                                            <!-- end display user data graph value -->
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/each}}
+                        <!-- end graph value -->
+                        <div class="graph-bottom-navigation graph-wrapper">
+                            {{#each date in dates}}
+                                <div class="date-lists">{{date.label}}</div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="g-actions d-print-none">
+                <div class="selctmenu">
+                    <div class="dropdownmenu dropdown">
+                        <div class="labelvalue text-muted"
+                             data-toggle="dropdown">
+                            {{i18n "visualization.filter"}}
+                            {{> icon name="chevron-down"}}
+                        </div>
+                        {{#onLoaded loaded=processingComplete}}
+                            <div class="dropdown-menu-bottom dropdown-menu">
+                                {{#each name in userNames}}
+                                    <div class="dropdown-item">
+                                        <input type="checkbox" name="dropdown"
+                                               id="checkbox-{{name}}"
+                                               data-target="{{name}}"
+                                               class="user-checkbox"
+                                               value="{{name}}"
+                                               checked="{{#if isChecked
+                                                              name}}checked{{/if}}">
+                                        <label class="text-muted">{{name}}</label>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/onLoaded}}
+                    </div>
+                </div>
+                <div class="zoombtn">
+                    <div id="zoombar" class="zoombar">
+                        <button type="button" id="buttonPlus"
+                                class="text-muted">-
+                        </button>
+                        <span id="zomval" class="text-muted">200%</span>
+                        <button type="button" id="buttonMinus"
+                                class="text-muted">+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/onLoaded}}
+
+    {{! PRINT ONLY STYLE }}
+
+    {{#onLoaded loaded=loadComplete}}
+        <div class="d-none d-print-block">
+            {{#each date in dates}}
+                <h3 class="mt-4">{{date.label}}</h3>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{i18n "users.user"}}</th>
+                        {{#each alpha in alphaLevels.reverse}}
+                            <th>{{alpha.label}}</th>
+                        {{/each}}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each name in userNames}}
+                        {{#if userHasData date.value name}}
+                            <tr>
+                                <td>{{name}}</td>
+                                {{#each alpha in alphaLevels.reverse}}
+                                    <td>
+                                        {{#with (getUserData date.value alpha.label name)}}
+                                            {{this.value}}
+                                        {{/with}}
+                                    </td>
+                                {{/each}}
+                            </tr>
+                        {{/if}}
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{/each}}
+        </div>
+    {{/onLoaded}}
+</template>

@@ -1,0 +1,58 @@
+.mainwrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.profiles img {
+  border-radius: 50%;
+  height: 100px;
+  margin: auto;
+  object-fit: cover;
+  width: 100px;
+}
+
+.pro-captions {
+  background: #9f9f9f;
+  border: 1px solid #ddd;
+  /* TODO use scss variables for colors */
+  color: #fff;
+  margin: auto;
+  margin-top: -20px;
+  padding: 29px 5px 10px;
+  width: 220px;
+}
+
+.pro-captions h5 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.pro-captions p {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.profiles:hover .pro-captions,
+.profiles.active .pro-captions {
+  /* TODO use scss variables for colors */
+  background-color: #f59d1d;
+  color: #fff !important;
+}
+
+.profiles:hover .pro-captions h5,
+.profiles.active .pro-captions h5 {
+  color: #fff !important;
+}
+
+@media print {
+  main {
+    overflow: visible;
+  }
+}

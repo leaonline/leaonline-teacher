@@ -10,7 +10,8 @@ const state = new ReactiveDict()
 
 state.set({
   currentParticipant: null,
-  currentClass: null
+  currentClass: null,
+  dimension: null
 })
 
 /**
@@ -20,10 +21,7 @@ state.set({
  */
 
 State.currentParticipant = (value) => {
-  if (typeof value !== 'undefined') {
-    state.set({ currentParticipant: value })
-  }
-  return state.get('currentParticipant')
+  return updateValue('currentParticipant', value)
 }
 
 /**
@@ -33,8 +31,16 @@ State.currentParticipant = (value) => {
  */
 
 State.currentClass = (value) => {
+  return updateValue('currentClass', value)
+}
+
+State.currentDimension = value => {
+  return updateValue('dimension', value)
+}
+
+const updateValue = (key, value) => {
   if (typeof value !== 'undefined') {
-    state.set({ currentClass: value })
+    return state.set(key, value)
   }
-  return state.get('currentClass')
+  return state.get(key)
 }

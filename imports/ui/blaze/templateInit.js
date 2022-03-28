@@ -1,5 +1,11 @@
 import { Meteor } from 'meteor/meteor'
 
+const debugTemplates = Meteor.settings.public.debug || []
+const isDebug = (name = '') => {
+  const cleaned = name.replace('Template.', '')
+  return debugTemplates.includes(cleaned)
+}
+
 export const templateInit = function ({ contexts = [], remotes = null, subscribe = [], debug = false, useLanguage = null, onComplete, onError }) {
   import {
     initClientContext,
@@ -8,6 +14,7 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
   import { Notify } from '../../ui/components/notifications/Notify'
   import { addLanguage } from '../../api/i18n/addLanguage'
   import { connectRemote } from '../../api/remotes/connectRemote'
+  import { Router } from '../../api/routing/Router'
 
   const handleError = error => {
     if (onError) {
@@ -30,10 +37,16 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
 
   // ---------------------------------------------------------------------------
 
+  const debugTemplate = debug || isDebug(instance.view.name)
+
   api.debug = (...args) => {
-    if (!Meteor.isDevelopment || !debug) return
+    if (!debugTemplate) { return }
     console.debug(`[${instance.view.name}]:`, ...args)
   }
+
+  // ---------------------------------------------------------------------------
+
+  api.queryParam = (value) => Router.queryParam(value)
 
   // ---------------------------------------------------------------------------
 

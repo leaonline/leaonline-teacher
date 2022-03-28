@@ -1,0 +1,21 @@
+.rightsidebar {
+  background-color: #d1d5d8; /* TODO use variables */
+  position: relative;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.rightsidebar .toggleicon {
+  left: -10px;
+  right: inherit;
+}
+
+.rightsidecontent {
+  height: 100vh;
+  overflow: auto;
+}
+
+.rightsidebar .pro-captions {
+  background: #fafafb;
+  /* TODO use scss variables for colors */
+  color: #555;
+}

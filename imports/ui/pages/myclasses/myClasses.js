@@ -10,9 +10,10 @@ import { bbsComponentLoader } from '../../utils/bbsComponentLoader'
 import { reactiveTranslate } from '../../../api/i18n/reactiveTranslate'
 import { dataTarget } from '../../utils/dataTarget'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
+import { connectRemote } from '../../../api/remotes/connectRemote'
 import myClassesLanguages from './i18n/myClassesLanguages'
-import './myClasses.html'
 import './scss/myClasses.scss'
+import './myClasses.html'
 
 const componentsLoader = bbsComponentLoader([
   BlazeBootstrap.link.load(),
@@ -49,17 +50,21 @@ const byName = (a, b) =>
 
 Template.myClasses.onCreated(function () {
   const instance = this
+
+  // we connect outside of init to anyway render layout grid
+  connectRemote(OtuLea)
+
   instance.init({
     contexts: [Course, User],
     useLanguage: [myClassesLanguages],
-    remotes: [OtuLea],
+    // remotes: [OtuLea],
     onComplete () {
       instance.state.set('initComplete', true)
     },
     onError (err) {
       instance.api.notify(err)
     },
-    debug: true
+    debug: false
   })
 
   instance.api.subscribe({
@@ -150,9 +155,13 @@ Template.myClasses.onCreated(function () {
     })
   })
 
+  // load an overview of the recent sessions
+
   instance.autorun(() => {
     const activeUsers = instance.state.get('activeUsers')
-    if (!activeUsers?.length || !OtuLea.isLoggedIn()) { return }
+    const recentFeedback = instance.state.get('recentFeedback')
+
+    if (recentFeedback || !activeUsers?.length || !OtuLea.isLoggedIn()) { return }
 
     const users = activeUsers.map(userDoc => userDoc.account?._id)
 
@@ -181,9 +190,10 @@ Template.myClasses.helpers({
       Template.getState('userPublicationComplete')
   },
   componentsLoaded () {
-    return componentsLoader.loaded.get() &&
-      formLoaded.get() &&
-      Template.getState('initComplete')
+    return componentsLoader.loaded.get() && formLoaded.get() && Template.getState('initComplete')
+  },
+  connecting () {
+    return !OtuLea.isConnected()
   },
   activeCourses () {
     const now = new Date()
@@ -247,6 +257,9 @@ Template.myClasses.helpers({
   },
   recentFeedback () {
     return Template.getState('recentFeedback')
+  },
+  addUserError () {
+    return Template.getState('addUserError')
   }
 })
 
@@ -274,6 +287,25 @@ Template.myClasses.events({
     })
 
     if (!insertDoc) return
+
+    // todo use ctx for extended validation
+    if (type === User) {
+      const account = insertDoc.account || {}
+
+      if (!insertDoc.firstName && !insertDoc.lastName && !account.code) {
+        return templateInstance.state.set('addUserError', 'user.addUserNoValues')
+      }
+
+      if (account.code && !account._id) {
+        return templateInstance.state.set('addUserError', 'user.userIsInvalid')
+      }
+
+      if (User.collection().find({ 'account.code': account.code }).count()) {
+        return templateInstance.state.set('addUserError', 'user.addUserAlreadyExists')
+      }
+
+      templateInstance.state.set({ addUserError: null })
+    }
 
     callMethod({
       name: type.context.methods.insert,
@@ -358,6 +390,7 @@ Template.myClasses.events({
     Form.reset(targetId)
     templateInstance.state.set({
       addUserCode: null,
+      addUserError: null,
       type: null,
       action: null,
       doc: null

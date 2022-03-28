@@ -6,6 +6,11 @@
     "myClasses": "meine-kurse",
     "class": "kurs",
     "user": "person",
-    "content": "content-sync"
+    "content": "content-sync",
+    "legal": "rechtliches",
+    "imprint": "impressum",
+    "privacy": "datenschutz",
+    "terms": "nutzungsbedingungen",
+    "contact": "kontakt"
   }
 }

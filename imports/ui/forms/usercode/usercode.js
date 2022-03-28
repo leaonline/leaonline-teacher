@@ -6,6 +6,8 @@ import './usercode.html'
 
 AutoForm.addInputType('usercode', { template: 'afUserCode' })
 
+const isDef = x => x !== undefined
+
 Template.afUserCode.onCreated(function () {
   const instance = this
   const updateValue = (name, value) => instance.$(`.${name}`).val(value)
@@ -18,10 +20,10 @@ Template.afUserCode.onCreated(function () {
   })
 
   instance.updateValues = ({ _id, username, code, firstName, lastName, valid }) => {
-    if (_id) updateValue('id-input', _id)
-    if (username || code) updateValue('code-input', username || code)
-    if (firstName) updateValue('first-name-input', firstName)
-    if (lastName) updateValue('last-name-input', lastName)
+    if (isDef(_id)) updateValue('id-input', _id)
+    if (isDef(username) || isDef(code)) updateValue('code-input', username || code)
+    if (isDef(firstName)) updateValue('first-name-input', firstName)
+    if (isDef(lastName)) updateValue('last-name-input', lastName)
     if (typeof valid === 'boolean') {
       updateValue('valid-input', valid)
       instance.state.set('isValid', valid)
@@ -74,6 +76,7 @@ Template.afUserCode.events({
   },
   'input .code-input': debounce(function (event, templateInstance) {
     templateInstance.state.set('checking', true)
+
     const code = (templateInstance.$(event.currentTarget).val() || '').toUpperCase()
     let isValid
 
@@ -101,8 +104,10 @@ Template.afUserCode.events({
         })
         .then((userDoc = {}) => {
           if (userDoc.username !== code) {
-            userDoc.valid = false
-            templateInstance.updateValues(userDoc)
+            templateInstance.updateValues({
+              _id: null,
+              valid: false
+            })
             templateInstance.state.set({ isValid: false, checking: false })
           }
           else {

@@ -1,47 +1,65 @@
-.flip-card {
-  height: 150px;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  width: 100%;
+.user-sidebar {
+  height: 100%;
+  min-width: 220px;
+  width: 15%;
 }
 
-.flip-card-inner {
-  height: 100%;
-  position: relative;
-  text-align: center;
+.user-sidebar.with-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.user-page-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.category-card {
+  background-color: #e2e4e7;
+}
+
+.competency-container {
+  min-height: 6rem;
+  padding: 0.75em !important;
+}
+
+.competency-card {
+  cursor: pointer;
+}
+
+.bg-blue-gray {
+  background-color: #8094aa;
+}
+
+/* ========================================================================== */
+
+.flip-card {
+  backface-visibility: hidden;
+  cursor: pointer;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
   transform-style: preserve-3d;
   transition: transform 0.8s;
-  width: 100%;
+}
+
+.competency-content {
+  position: relative;
 }
 
 .flip {
   transform: rotateY(180deg);
 }
 
-/* Position the front and back side */
 .flip-card-front {
   backface-visibility: hidden;
   height: 100%;
+  left: 0;
   position: absolute;
+  top: 0;
   width: 100%;
 }
 
 .flip-card-back {
   backface-visibility: hidden;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  //-webkit-backface-visibility: hidden; /* Safari */
-}
-
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: #fff;
-  color: #000;
-}
-
-/* Style the back side */
-.flip-card-back {
-  background-color: #7c7c7c;
-  color: #fff;
   transform: rotateY(180deg);
+  z-index: 9;
 }

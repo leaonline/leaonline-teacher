@@ -1,22 +1,44 @@
 <template name="navBottom">
-	<footer class="container-fluid w-100 p-0">
-		<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-			<div class="container-fluid">
-				{{!-- TODO logos need to be implemented here
-                {{#each logo in logos}}
-					<a class="navbar-brand" href="{{logo.href}}">
-						{{> image src=logo.src title=logo.title alt=logo.alt class="mr-4" height="30"}}
-					</a>
-				{{/each}}
-				--}}
-				<div class="collapse navbar-collapse" id="navbarNavDropdown">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="#">Test</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</footer>
+    {{#if selectedCourse}}
+        <div class="rightsidebar d-flex vh-100 p-2 d-print-none">
+            <a class="toggleicon righticons sidebar-right-toggle" href>
+                {{#unless compressedView}}
+                    {{> icon name="angle-right"}}
+                {{else}}
+                    {{> icon name="angle-left"}}
+                {{/unless}}
+            </a>
+            <footer class="rightsidecontent">
+                {{#unless compressedView}}
+                <h5 class="mt-4 text-center">
+                    {{#onLoaded loaded=loadComplete}}
+                        {{i18n "navbar.right.title"}}
+                    {{/onLoaded}}
+                </h5>
+                    {{else}}
+                    <div class="mt-5"></div>
+                {{/unless}}
+                {{#each user in selectedCourse.users}}
+                        {{#unless compressedView}}
+                            <a href="{{route "user" user._id "class" selectedCourse._id "dimension" dimension}}">
+                            <div class="profiles w-100 text-center overflow-hidden mt-2 {{#if isSelected user._id}}active{{/if}}">
+                                <img src="/images/user.png" alt="user"/>
+                                <div class="pro-captions">
+                                    <h5>{{user.firstName}} {{user.lastName}}</h5>
+                                    <h5>{{user.account.code}}</h5>
+                                </div>
+                            </div>
+                            </a>
+                        {{else}}
+                            <div class="w-100 text-center mt-2">
+                            <a href="{{route "user" user._id "class" selectedCourse._id "dimension" dimension}}" class="w-100 btn btn-{{#if isSelected user._id}}primary{{else}}dark{{/if}} border-2"
+                                title="{{fullName user}}">
+                                <span class="font-weight-bold">{{shortName user}}</span>
+                            </a>
+                            </div>
+                        {{/unless}}
+                {{/each}}
+            </footer>
+        </div>
+    {{/if}}
 </template>

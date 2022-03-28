@@ -1,0 +1,8 @@
+{
+  "visualization": {
+    "overview": "Verlaufsübersicht",
+    "description": "Aktuelle Übersicht des Kurses über alle Kompetenzen",
+    "testDate": "Testdatum",
+    "filter": "Personen filtern"
+  }
+}

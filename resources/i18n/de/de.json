@@ -8,7 +8,9 @@
     "delete": "Löschen",
     "logout": "Abmelden",
     "cancel": "Abbrechen",
-    "archive": "Archivieren"
+    "archive": "Archivieren",
+    "print": "Aktuelle Seite drucken",
+    "signOut": "Abmelden"
   },
   "accounts": {
     "firstName": "Vorname",
@@ -25,10 +27,14 @@
     "userId": "Benutzer ID",
     "user": "Teilnehmende",
     "users": "Teilnehmende",
-    "progress": "Fortschritt"
+    "progress": "Fortschritt",
+    "average": "Mittelwert",
+    "grade": "Bewertung",
+    "development": "Entwicklung"
   },
   "form": {
-    "selectOne": "(Bitte wählen)"
+    "selectOne": "(Bitte wählen)",
+    "selectName": "({{name}} wählen)"
   },
   "alphaLevel": {
     "title": "Alpha-Level"
@@ -40,13 +46,18 @@
   "remote": {
     "loggedIn": "Erfolgreich verbunden",
     "notConnected": "Keine Verbindung",
-    "timedOut": "Nicht verbunden, Zeit abgelaufen."
+    "timedOut": "Nicht verbunden, Zeit abgelaufen. Bitte prüfen Sie Ihre Internetverbindung und laden Sie die Seite in ein paar Minuten erneut.",
+    "connecting": "Versuche eine Verbindung aufzubauen"
   },
   "pages": {
     "myClasses": {
       "title": "Meine Kurse"
     },
+    "login": {
+      "title": "Anmelden"
+    },
     "logout": {
+      "title": "Abmelden",
       "logout": "Abmelden",
       "loggingOut": "Sie werden abgemeldet...",
       "loggedOut": "Sie wurden erfolgreich abgemeldet!"
@@ -59,5 +70,9 @@
     "user": {
       "title": "Personen-Dashboard"
     }
+  },
+  "schema": {
+    "required": "{{label}} ist ein Pflichtfeld",
+    "EmailWithTLD": "muss eine gültige Email-Adresse sein"
   }
 }

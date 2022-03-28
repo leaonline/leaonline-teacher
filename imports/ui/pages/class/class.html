@@ -1,95 +1,250 @@
 <template name="class">
+    <div class="class-container p-4 d-print-none">
     <h1>
         {{#onLoaded loaded=loadComplete}}{{i18n "pages.class.title"}}{{/onLoaded}}
         {{title}}
     </h1>
 
+
     {{#onLoaded loaded=loadComplete}}
-        <select class="form-control border-{{color}} text-{{color}}"
+        <select class="form-control border-{{color}} text-{{color}} d-print-none"
                 id="dimension-select">
-            <option value="">{{i18n "form.selectOne"}}</option>
             {{#each dimension in dimensions}}
                 <option value="{{dimension._id}}">{{dimension.title}}</option>
             {{/each}}
         </select>
+
+        {{#if noUsers}}
+            <div class="alert alert-warning">{{i18n "pages.class.noUsers"}}</div>
+        {{/if}}
     {{/onLoaded}}
 
+    {{! when selected }}
     {{#if dimensionDoc}}
+        <div class="d-print-none">
         {{#unless otuleaConnected}}
             <div class="alert alert-info">
-                {{> loading title="otulea"}}
+                {{> loading title="otu.lea"}}
             </div>
         {{/unless}}
-        {{#onLoaded loaded=feedbackLoaded}}
-            {{#unless hasFeedback}}
-                <div class="alert alert-warning mt-3">
-                    {{i18n "pages.class.noFeedback"}}
-                </div>
-            {{else}}
-                {{#with processed}}
-                    <h3>AlphaLevels</h3>
-                    <ul class="list-group">
-                        {{#each entry in this.alphaLevels}}
-                        <li class="list-group-item">
-                            <span>
-                                {{#with alphaLevelDoc entry.id}}
-                                    {{this.description}}
-                                {{else}}
-                                    {{entry.id}}
-                                {{/with}}
-                            </span>: {{entry.score}} ({{entry.count}})
-                        </li>
-                        {{/each}}
-                    </ul>
+        {{#if hasRecords}}
+            {{#onLoaded loaded=visualizationData}}
+                {{#unless hasFeedback}}
+                    <div class="alert alert-warning mt-3">
+                        {{i18n "pages.class.noFeedback"}}
+                    </div>
+                {{else}}
+                    {{#if visualizationData}}
+                        <h2 class="mt-4 text-gray">{{i18n "pages.class.visualization"}}</h2>
 
-                    <h3>Competencies</h3>
-                    <ul class="list-group">
-                        {{#each entry in this.competencies}}
-                            <li class="list-group-item">
-                            <span>
-                                {{#with competencyDoc entry.id}}
-                                    {{this.description}}
-                                {{else}}
-                                    {{entry.id}}
-                                {{/with}}
-                            </span>: {{entry.score}} ({{entry.count}})
-                            </li>
-                        {{/each}}
-                    </ul>
-                {{/with}}
-            {{/unless}}
+                        <div class="mt-4">
+                        {{> visualization visualizationData}}
+                        </div>
+                    {{/if}}
+                {{/unless}}
         {{/onLoaded}}
+        {{/if}}
+        </div>
+
+        {{! ---------------------------------------------- }}
+        {{! competency category cards with collapse effect }}
+        {{! ---------------------------------------------- }}
+
+        {{#if loadRecords}}
+            {{#if loadComplete}}
+                {{> loading title=(i18n "pages.class.records")}}
+            {{else}}
+                {{> loading}}
+            {{/if}}
+        {{/if}}
+
+        {{#unless hasRecords}}
+            {{#onLoaded loaded=loadComplete}}
+                <div class="alert alert-warning mt-4">
+                    {{i18n "pages.class.noRecords"}}
+                </div>
+            {{/onLoaded}}
+        {{/unless}}
+
+        {{#if competencyCategories}}
+
+            <h2 class="mt-4 text-gray">{{i18n "pages.class.competencies"}}</h2>
+
+            <div class="row d-print-none mt-4">
+           {{#each category in competencyCategories}}
+                <div class="col col-12 col-md-6 col-lg-4 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-center font-weight-bold text-secondary">
+                            {{category.label}}
+                        </div>
+
+                        <div class="card-body d-flex justify-content-between font-weight-bold text-secondary">
+                            <div class="mx-1">
+                                <h4 class="d-block text-center">{{category.entries.length}}</h4>
+                                {{i18n "competency.competencies"}}
+                            </div>
+
+                            <div class="mx-1">
+                                <h4 class="d-block text-center">{{category.users}}</h4>
+                                {{i18n "users.title"}}
+                            </div>
+                        </div>
+                        <div class="card-body category-collapse clickable text-center p-0 text-secondary"
+                             type="button"
+                             data-category="{{category.name}}"
+                             data-toggle="collapse"
+                             data-target="#collapse-category-{{@index}}"
+                             aria-expanded="false"
+                             aria-controls="collapse-category-{{@index}}">
+                            <h4 class="ml-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">
+                                {{> icon name="caret-down" }}
+                            </h4>
+                        </div>
+                        <ul class="list-group collapse text-secondary" id="collapse-category-{{@index}}">
+                            {{#each competency in category.entries}}
+                                <li class="list-group-item clickable competency-entry text-secondary"
+                                    type="button"
+                                    data-category="{{category.name}}"
+                                    data-competency="{{competency._id}}"
+                                    data-toggle="collapse" data-target="#collapse-{{category.name}}-{{@index}}">
+                                    <div class="d-block text-center">
+                                        <span class="badge badge-secondary p-2 font-weight-bold">
+                                            {{i18n "alphaLevel.title"}}
+                                            {{competency.level}}
+                                        </span>
+                                    </div>
+                                    <div class="d-block text-center text-muted p-2">
+                                        {{competency.shortCode}}
+                                        {{competency.description}}
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="progress flex-fill"
+                                             style="height: 0.5rem;">
+                                            <div class="progress-bar bg-success"
+                                                 role="progressbar"
+                                                 style="width: {{competency.average}}%"
+                                                 aria-valuenow="{{competency.average}}"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="ml-2 caret-icon {{#if openCard category.name competency._id}}caret-open{{/if}}">
+                                            {{> icon name="caret-down"}}
+                                        </div>
+                                    </div>
+
+                                    {{! collapsible users }}
+
+                                    <div class="collapse px-5" id="collapse-{{category.name}}-{{@index}}">
+                                        <hr>
+                                        {{#each user in competency.users}}
+                                            <small class="d-block text-center">
+                                                {{user.name}}
+                                            </small>
+                                            <div class="progress flex-fill"
+                                                 style="height: 0.25rem;">
+                                                <div class="progress-bar bg-success"
+                                                     role="progressbar"
+                                                     style="width: {{user.perc}}%"
+                                                     aria-valuenow="{{user.perc}}"
+                                                     aria-valuemin="0"
+                                                     aria-valuemax="100"></div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+           {{/each}}
+            </div>
+        {{/if}}
     {{/if}}
-
-    <div class="user-sidebar bg-dark">
-        {{#each user in users}}
-            <a class="btn btn-outline-primary col-1 border-secondary"
-                href="{{route "user" user._id "class" courseDoc._id}}">
-                <span class="font-weight-bold">
-                    {{user.firstName}} {{user.lastName}}
-                </span>
-            </a>
-        {{/each}}
     </div>
-</template>
 
-<template name="competencyCategoryForCourse">
-    <div>{{i18n "pages.class.compCategory"}}: {{this.competencyCategory}}</div>
-    <div>{{i18n "pages.class.competencies"}}: {{this.compCount}}</div>
-    <div>{{i18n "common.progress"}}: {{this.progress}}</div>
-    <div>{{i18n "common.users"}}: {{this.userCount}}</div>
+    {{! ---------------------------------------------- }}
+    {{! print-only information                         }}
+    {{! ---------------------------------------------- }}
 
-    {{#each competency in this.competencies}}
-        {{> competencyForCourse competency}}
-    {{/each}}
-</template>
+    {{#onLoaded loaded=loadComplete}}
+        <div class="d-none d-print-block h-auto">
+            <h1>{{i18n "pages.class.title"}} {{title}}</h1>
 
-<template name="competencyForCourse">
-    <div>{{i18n "alphaLevel.title"}}: {{this.alphaLevel}}</div>
-    <div>{{i18n "common.description"}}: {{this.description}}</div>
-    <div>{{i18n "common.progress"}}: {{this.progress}}</div>
-    {{#each entry in this.users}}
-        <div>{{i18n "common.user"}}: {{entry.name}}</div>
-        <div>{{i18n "common.progress"}}: {{entry.progress}}</div>
-    {{/each}}
+            {{#if dimensionDoc}}
+                <div class="d-block">
+                    <span class="font-weight-bold">{{i18n "dimension.title"}}:</span>
+                    <span class="text-{{color}}">{{dimensionDoc.title}}</span>
+                </div>
+            {{/if}}
+
+            {{#if users}}
+                    <div class="font-weight-bold d-block">{{i18n "users.title"}}:</div>
+                <div class="d-flex flex-wrap">
+                    {{#each user in users}}
+                     <span class="p-2 mx-2 no-wrap border-light" style="border: 1px solid !important;">
+                        <span>{{user.firstName}}</span>
+                        <span>{{user.lastName}}</span>
+                            {{#if user.account.code}}
+                                <span>({{user.account.code}})</span>
+                            {{/if}}
+                    </span>
+                    {{/each}}
+                </div>
+            {{/if}}
+
+            {{#if visualizationData}}
+                <h2 class="mt-5">{{i18n "alphaLevel.title"}}</h2>
+                <div class="mt-4">
+                    {{> visualization visualizationData}}
+                </div>
+            {{/if}}
+
+            <h2 class="mt-5 ">{{i18n "competency.competencies"}}</h2>
+            {{#each category in competencyCategories}}
+                <div class="d-block mt-5 page-break-avoid">
+                    <h3>{{category.label}}</h3>
+                    <span class="font-weight-bold">
+                        {{category.users}}
+                        {{i18n "users.title"}}
+                        <span>,</span>
+                        {{category.entries.length}}
+                        {{i18n "competency.competencies"}}
+                    </span>
+                <hr>
+
+                    {{#each competency in category.entries}}
+                    <table class="table bg-transparent w-{{#if gt category.entries.length 1}}50 float-left{{else}}100{{/if}}">
+                        <thead>
+                        <tr>
+                            <th>
+                                {{i18n "alphaLevel.title"}}
+                                {{competency.level}}
+                            </th>
+                            <th>{{competency.shortCode}}: {{competency.description}}</th>
+                            <th>{{i18n "common.progress"}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {{#each user in competency.users}}
+                            <tr>
+                                <td>{{user.code}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{truncate user.perc}} %</td>
+                             </tr>
+                            {{/each}}
+                        </tbody>
+                        <tfoot>
+                        <tr class="font-weight-bold">
+                            <td colspan="2">{{i18n "common.average"}}</td>
+                            <td>
+                                {{truncate competency.average}} %
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                    {{/each}}
+                </div>
+            {{/each}}
+            </div>
+    {{/onLoaded}}
 </template>

@@ -1,7 +1,3 @@
-wrapper {
-  min-height: 100vh;
-}
-
 .autoform-array-item-body > .card {
   border: 0 !important;
 }
@@ -18,6 +14,75 @@ form .card {
   border: 0 !important;
 }
 
+body {
+  overflow-y: hidden;
+}
+
 form ul li {
   padding: 0 !important;
 }
+
+.d-unavailable {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+@font-face {
+  font-display: auto;
+  font-family: 'Semikolon';
+  src: url('/SemikolonPlus-Regular.ttf') format('truetype');
+}
+
+p,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+label,
+a {
+  font-family: 'Semikolon', Arial, 'sans-serif';
+}
+
+@media print {
+
+  // force no bg on target when printing
+
+  .bg-print-none {
+    background: none !important;
+  }
+
+  body,
+  main,
+  .mainwrapper,
+  .contentwrapper {
+    background: none !important;
+    overflow: visible;
+  }
+
+  // use as our page break anchor
+  .page-break-before {
+    page-break-before: always !important;
+  }
+
+  .page-break-avoid {
+    page-break-inside: avoid !important;
+  }
+
+  hr {
+    border: solid 2px !important;
+  }
+
+  .border-print {
+    border: solid 2px !important;
+  }
+}
+

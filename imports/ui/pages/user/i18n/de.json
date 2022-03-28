@@ -1,8 +1,49 @@
 {
   "pages": {
     "user": {
+      "loadRecords": "Ergebnisse und Bewertungen",
+      "isRecentCompleted": "Auswahl ist die aktuellste Testung",
       "allDates": "Alle Testungen",
-      "noData": "Es sind noch keine Testreihen von dieser Person abgeschlossen worden."
+      "selectedDates": "Testungen",
+      "noData": "Es sind noch keine Testreihen von dieser Person abgeschlossen worden.",
+      "noRecords": "Es sind keine Einträge für diese Auswahl vorhanden.",
+      "noAccount": "Es ist noch kein otu.lea Account verknüpft",
+      "filter": {
+        "alphaLevel": "Alpha-Level der Kann-Beschreibung",
+        "accomplishments": "Erfüllen der Kann-Beschreibung",
+        "development": "Vergleich zu vorherigen Leistungen",
+        "reset": "Filter zurücksetzen"
+      }
     }
+  },
+  "dimension": {
+    "title": "Dimension"
+  },
+  "record": {
+    "title": "Testung"
+  },
+  "competency": {
+    "shortCode": "ID",
+    "category": "Kategorie",
+    "notAccomplished": "Nicht erfüllt",
+    "notEnough": "Nicht genug getestet",
+    "accomplished": "Voll erfüllt",
+    "nearAccomplished": "Beinahe erfüllt",
+    "partialAccomplished": "Teilweise erfüllt",
+    "undefined": "Nicht bekannt",
+    "new": "Zum ersten mal getestet",
+    "same": "Leistung unverändert",
+    "improved": "Leistung verbessert",
+    "declined": "Leistung verschlechtert",
+    "categories": {
+      "title": "Kategorien an Kann-Beschreibungen",
+      "all": "Ohne Kategorie"
+    }
+  },
+  "alphaLevel": {
+    "title": "α-Level"
+  },
+  "actions": {
+    "search": "Suchtext eingeben"
   }
 }

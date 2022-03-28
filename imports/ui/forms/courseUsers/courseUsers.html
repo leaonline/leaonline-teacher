@@ -9,25 +9,10 @@
 
         {{! COURSE USERS }}
         <div class="card col-12">
-            <div class="card-header d-flex justify-content-between">
-                <span>
-                    {{#onLoaded loaded=loadComplete}}
-                        {{i18n "courseUsers.title"}}
-                    {{/onLoaded}}
-                </span>
-                <span>
-                    {{#unless state "selectUser"}}
-                        <button class="btn btn-sm btn-outline-secondary state-btn"
-                                data-target="selectUser">
-                            {{> icon name="list-ul"}}
-                        </button>
-                    {{else}}
-                        <button class="btn btn-sm btn-secondary state-btn"
-                                data-target="showUsers">
-                            {{> icon name="list-ul"}}
-                        </button>
-                    {{/unless}}
-                </span>
+            <div class="card-header border">
+                {{#onLoaded loaded=loadComplete}}
+                    {{i18n "courseUsers.title"}}
+                {{/onLoaded}}
             </div>
             <div class="table-responsive">
                 <table class="table table-hover border">
@@ -70,49 +55,37 @@
                     </tbody>
                 </table>
             </div>
-            {{#unless state "selectUser"}}
-                <div class="card-body border">
-                    {{#autoForm id="add-user-form" schema=addUserSchema
-                                type="normal" class="pt-3"}}
-                        <div class="row">
-                            <div class="col-6">
-                                {{> afQuickField name="firstName" label=false}}
-                            </div>
-                            <div class="col-6">
-                                {{> afQuickField name="lastName" label=false}}
-                            </div>
-                            <div class="col-12">
-                                {{> afQuickField name="account" label=false}}
-                            </div>
-                        </div>
-
-                        <button class="btn btn-primary">
-                            {{> icon name="plus"}}
-                            <span>
-                                {{#onLoaded loaded=loadComplete}}
-                                    {{i18n "courseUsers.add"}}
-                                {{/onLoaded}}
-                            </span>
-                        </button>
-                    {{/autoForm}}
-                </div>
-            {{/unless}}
         </div>
 
-        {{! ALL USERS }}
-        {{#if state "selectUser"}}
-            <div class="card col">
-                <div class="card-header bg-secondary text-white d-flex justify-content-between">
-                <span>
-                    {{#onLoaded loaded=loadComplete}}
-                        {{i18n "courseUsers.select"}}
-                    {{/onLoaded}}
-                </span>
-                    <button class="btn btn-sm btn-outline-secondary text-white state-btn"
-                            data-target="showUsers">
-                        {{> icon name="times"}}
-                    </button>
-                </div>
+        <div class="col mt-3">
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link state-btn {{#if state "addUser"}}active{{/if}}"
+                       href data-target="addUser">
+                        <span class="text-primary">
+                            {{#onLoaded loaded=loadComplete}}
+                                {{i18n "courseUsers.add"}}
+                            {{/onLoaded}}
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link state-btn {{#if state "selectUser"}}active{{/if}}"
+                       href data-target="selectUser">
+                    <span class="text-secondary">
+                    {{> icon name="list-ul"}}
+                        {{#onLoaded loaded=loadComplete}}
+                            {{i18n "courseUsers.select"}}
+                        {{/onLoaded}}
+                    </span>
+                    </a>
+                </li>
+            </ul>
+
+
+
+            {{! ALL USERS }}
+            {{#if state "selectUser"}}
                 <div class="table-responsive">
                     <table class="table table-hover border">
                         <tbody>
@@ -142,12 +115,51 @@
                                     {{user.lastName}}
                                 </td>
                             </tr>
+                        {{else}}
+                            <tr>
+                                <td colspan="4">{{i18n
+                                        "courseUsers.noUsers"}}</td>
+                            </tr>
                         {{/each}}
                         </tbody>
                     </table>
                 </div>
-            </div>
-        {{/if}}
+            {{else}}
+
+                <div class="card-body border">
+                    {{#autoForm id="add-user-form" schema=addUserSchema
+                                type="normal" class="pt-3"}}
+                        <div class="row">
+                            <div class="col-6">
+                                {{> afQuickField name="firstName" label=false}}
+                            </div>
+                            <div class="col-6">
+                                {{> afQuickField name="lastName" label=false}}
+                            </div>
+                            <div class="col-12">
+                                {{> afQuickField name="account" label=false}}
+                            </div>
+                        </div>
+
+                        {{#if addUserError}}
+                            <div class="d-blick text-danger py-2">
+                                {{i18n addUserError}}
+                            </div>
+                        {{/if}}
+
+                        <button class="btn btn-primary">
+                            {{> icon name="plus"}}
+                            <span>
+                                {{#onLoaded loaded=loadComplete}}
+                                    {{i18n "courseUsers.add"}}
+                                {{/onLoaded}}
+                            </span>
+                        </button>
+                    {{/autoForm}}
+                </div>
+            {{/if}}
+
+        </div>
     </div>
 
     <input type="hidden" class="afCourseUsersHiddenInput"

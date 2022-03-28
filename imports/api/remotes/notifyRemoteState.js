@@ -9,7 +9,7 @@ export const notifyRemoteState = (key, state) => {
   const notAvailable = !state.loggedIn && !state.reason && !state.timedOut
 
   if (state.connecting || notAvailable) {
-    return
+    console.debug(`[${key}]: connecting', state.status`)
   }
 
   const hash = simpleHash(JSON.stringify(state))
@@ -19,7 +19,8 @@ export const notifyRemoteState = (key, state) => {
   Notify.add({
     type: getColorType(state),
     title: key,
-    message: getRemoteMessage(state)
+    message: getRemoteMessage(state),
+    delay: state.timedOut ? 15000 : 3000
   })
 }
 

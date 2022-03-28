@@ -18,9 +18,11 @@ export const connectRemote = remote => {
   }
 
   Tracker.autorun(async (computation) => {
+    if (!Meteor.userId()) { return } // otherwise login will fail
+
     const state = remote.state()
 
-    // TODO implement 3 re-login attemps before disconnecting and raising error
+    // TODO implement 3 re-login attempts before disconnecting and raising error
 
     if (state.connected) {
       if (!state.loggingIn && !state.loggedIn) {
@@ -32,6 +34,10 @@ export const connectRemote = remote => {
         notifyRemoteState(remote.name, state)
         connected.set(true)
       }
+    }
+
+    if (state.status === 'waiting') {
+      notifyRemoteState(remote.name, state)
     }
 
     if (state.timedOut) {

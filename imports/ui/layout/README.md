@@ -10,4 +10,3 @@
 - [**nav**](nav)
   - [**bottom**](nav/bottom)
   - [**side**](nav/side)
-  - [**top**](nav/top)

@@ -1,7 +1,13 @@
 {
   "public": {
+    "issueMail": "mail@example.com",
+    "debug": ["class", "visualization"],
     "app": {
-      "name": "lea. Dashboard"
+      "name": "lea. Dashboard",
+      "label": "apps.dashboard.title",
+      "description": "apps.dashboard.description",
+      "icon": "chart-line",
+      "logLevel": "info"
     },
     "hosts": {
       "otulea": {
@@ -12,8 +18,8 @@
         "methods": {
           "generateUser": "users.methods.generate",
           "userExists": "user.methods.exist",
-          "getFeedback": "feedback.methods.getForUsers",
-          "recentFeedback": "feedback.methods.recent"
+          "getRecords": "record.methods.getForUsers",
+          "recentCompleted": "session.methods.recentCompleted"
         }
       },
       "content": {
@@ -38,7 +44,25 @@
       "url": "http://localhost:3030",
       "methods": {
         "getAll": "methods.getAll"
+      },
+      "jwt": {
+        "key": "0123456789001234567890",
+        "sub": "teacher-app-01234567890"
+      },
+      "sync": {
+        "dryRun": false,
+        "dimension": true,
+        "alphaLevel": false,
+        "competency": false,
+        "competencyCategory": false
       }
+    }
+  },
+  "accounts": {
+    "request": {
+      "from": "system@example.com",
+      "subject": "Anfrage für Zugang",
+      "to": ["admin@example.com"]
     }
   }
 }

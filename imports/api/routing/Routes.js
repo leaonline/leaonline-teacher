@@ -261,18 +261,27 @@ Routes.user = {
   data: null
 }
 
-Routes.content = {
-  path: () => `/${translateRoute(Routes.content)}`,
-  label: reactiveTranslate('pages.content.title'),
-  triggersEnter: () => {
-    if (!rootLoginTrigger) rootLoginTrigger = createLoginTrigger(Routes.login)
-    return [rootLoginTrigger]
+/**
+ * Legal routes need to be present for all possible sub-types:
+ * - imprint
+ * - terms
+ * - privacy
+ * - contact
+ */
+Routes.legal = {
+  path: (type = ':type') => {
+    const legalPath = translateRoute(Routes.legal)
+    const translatedType = type === ':type'
+      ? type
+      : translateRoute({ template: type })
+    return `/${legalPath}/${translatedType}`
   },
+  label: reactiveTranslate('legal.title'),
+  triggersEnter: () => [], // public
   async load () {
-    return import('../../ui/pages/content/content')
+    return import('../../ui/pages/legal/legal')
   },
-  parent: null,
   target: null,
-  template: 'content',
+  template: 'legal',
   data: null
 }

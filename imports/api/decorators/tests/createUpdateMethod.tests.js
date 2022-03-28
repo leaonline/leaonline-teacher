@@ -26,7 +26,7 @@ describe(createUpdateMethod.name, function () {
 
   it('contains a validation for _id and modifier', function () {
     const { validate } = createUpdateMethod({ context })
-    expect(() => validate({})).to.throw('ID is required')
+    expect(() => validate({})).to.throw('schema.required')
     expect(() => validate({ _id: Random.id(), modifier: {} }))
       .to.throw('Expected \'modifier\' to be a modifier operator like \'$set\'')
     expect(() => validate({ _id: Random.id(), modifier: { $foo: { bar: 1 } } }))

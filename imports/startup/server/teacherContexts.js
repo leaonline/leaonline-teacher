@@ -1,3 +1,4 @@
+import { ServiceRegistry } from '../../api/ServiceRegistry'
 import { Course } from '../../contexts/courses/Course'
 import { User } from '../../contexts/users/User'
 import { createCollection } from '../../infrastructure/factories/collection/createCollection'
@@ -8,8 +9,10 @@ import {
   rateLimitPublications
 } from '../../infrastructure/factories/ratelimit/rateLimit'
 import { ContextRegistry } from '../../contexts/ContextRegistry'
+import { Legal } from '../../contexts/legal/Legal'
+import { Meteor } from 'meteor/meteor'
 
-[Course, User].forEach(ctx => {
+[Course, User, Legal].forEach(ctx => {
   console.debug(`[${ctx.name}]: build-pipeline`)
   const collection = createCollection(ctx)
   ctx.collection = () => collection
@@ -23,4 +26,11 @@ import { ContextRegistry } from '../../contexts/ContextRegistry'
   rateLimitPublications(allPubs)
 
   ContextRegistry.add(ctx)
+})
+
+ServiceRegistry.register(Legal)
+
+// bootstrapping legal docs
+Meteor.startup(() => {
+  Legal.helpers.init(Legal.collection())
 })

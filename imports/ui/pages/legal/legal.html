@@ -1,0 +1,14 @@
+<template name="legal">
+    <div class="p-4">
+        {{#onLoaded loaded=dependenciesComplete}}
+            <h1>{{i18n legalTitle}}</h1>
+            {{i18n "pages.legal.title"}}
+        {{/onLoaded}}
+
+        {{#onLoaded loaded=content}}
+            {{{content}}}
+        {{/onLoaded}}
+    </div>
+
+    {{> legalLinks}}
+</template>

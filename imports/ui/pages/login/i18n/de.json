@@ -10,7 +10,10 @@
       "login": "Mit meinem lea. Account anmelden",
       "loggingIn": "Sie werden angemeldet",
       "loggedIn": "Sie wurden erfolgreich angemeldet",
-      "cancelled": "Die Anmeldung wurde agbebrochen"
+      "cancelled": "Die Anmeldung wurde agbebrochen",
+      "request": {
+        "title": "Zugang anfordern"
+      }
     }
   }
 }

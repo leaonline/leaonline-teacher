@@ -1,11 +1,12 @@
 <!-- the login render target is used only for routes on logged-out users -->
 
 <template name="logged-out-render-target">
-    <wrapper class="container-fluid d-flex flex-column">
-        <main class="w-100 main-container flex-fill">
+    <wrapper class="mainwrapper">
+        <div class="contentwrapper w-100 vh-100 d-flex bg-print-none">
+            <main role="main" class="w-100 h-100">
             {{> yield}}
-        </main>
-        {{> navBottom}}
+            </main>
+        </div>
     </wrapper>
     {{> notifications }}
 </template>
@@ -13,13 +14,14 @@
 <!-- the login render target is used for logged-in users -->
 
 <template name="main-render-target">
-    {{> navTop}}
-    <wrapper class="container-fluid d-flex flex-row p-0">
+    <div class="mainwrapper">
         {{> navSide class="d-none d-md-block"}}
-        <main role="main" class="col-12 col-md-11 p-3 main-container">
-            {{> yield}}
-        </main>
-    </wrapper>
-    {{> navBottom}}
+        <div class="contentwrapper w-100 vh-100 d-flex bg-print-none">
+            <main role="main" class="w-100 h-100">
+                {{> yield}}
+            </main>
+        </div>
+        {{> navBottom}}
+    </div>
     {{> notifications }}
 </template>
