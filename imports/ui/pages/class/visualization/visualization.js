@@ -73,7 +73,7 @@ Template.visualization.onRendered(function () {
 
     const dateValues = [...dates.values()]
       .sort((a, b) => b - a)
-      .map(t => ({ value: t, label: new Date(t).toLocaleDateString()}))
+      .map(t => ({ value: t, label: new Date(t).toLocaleDateString() }))
 
     instance.api.debug({ dateValues })
     instance.api.debug({ userData })

@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { Course } from '../../../contexts/courses/Course'
@@ -151,7 +152,10 @@ Template.class.onCreated(function () {
     })
 
     OtuLea.getRecords({ users, dimension })
-      .then((records = []) => instance.state.set({ records, hasRecords: records.length > 0 }))
+      .then((records = []) => instance.state.set({
+        records,
+        hasRecords: records.length > 0
+      }))
       .catch(error => {
         instance.api.debug('error at OtuLea.getRecords')
         instance.api.notify(error)
@@ -346,8 +350,6 @@ Template.class.onCreated(function () {
     // ---------------------------------------------
     // SECTION B - Prepare for rendering
     // ---------------------------------------------
-
-
 
     instance.api.debug('prepare records for rendering')
     const results = Array

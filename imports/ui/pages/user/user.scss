@@ -34,11 +34,11 @@
 /* ========================================================================== */
 
 .flip-card {
+  backface-visibility: hidden;
   cursor: pointer;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   transform-style: preserve-3d;
   transition: transform 0.8s;
-  backface-visibility: hidden;
 }
 
 .competency-content {
@@ -51,11 +51,11 @@
 
 .flip-card-front {
   backface-visibility: hidden;
-  position: absolute;
-  width: 100%;
   height: 100%;
-  top: 0;
   left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .flip-card-back {

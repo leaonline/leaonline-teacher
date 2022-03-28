@@ -487,7 +487,7 @@ const loadCompetencies = (selectedDate, templateInstance) => {
       competencyCategories: null,
       alphaLevels: null,
       selectedDates: null,
-      loadingRecords: false,
+      loadingRecords: false
     })
   }
 
