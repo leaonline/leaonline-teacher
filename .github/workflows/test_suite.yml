@@ -93,6 +93,12 @@ jobs:
         with:
           repository: leaonline/corelib
           path: github/corelib
+          
+      - name: Checkout leaonline:service-registry repo
+        uses: actions/checkout@v2
+        with:
+          repository: leaonline/service-registry
+          path: github/service-registry
 
      # -------------------------------------------------------------------------
      # We will need those repose later when the respective features are added
