@@ -241,11 +241,11 @@
                                     {{i18n "alphaLevel.title"}}
                                     {{competency.alphaLevel.level}}
                                 </span>
-                                {{#if exampleText competency._id}}
-                                    {{> icon name="info"}}
-                                {{else}}
-                                    <span></span>
-                                {{/if}}
+                                <span>
+                                    {{#if exampleText competency._id}}
+                                        {{> icon name="info"}}
+                                    {{/if}}
+                                </span>
                             </div>
                             <div class="card-body text-center font-weight-bold text-secondary">
                                 {{competency.shortCode}}: {{competency.description}}
@@ -267,9 +267,9 @@
                                 </small>
 
                                 {{! right side: competency accomplishement }}
-                                <small class="w-50 text-center">
+                                <small class="w-50 text-center" title="{{#unless competency.isGraded}}{{i18n "competency.notEnough"}}{{/unless}}">
                                     <div class="progress" style="height: 0.5rem;">
-                                        <div class="progress-bar bg-{{#if competency.isGraded}}success{{else}}gray{{/if}}"
+                                        <div class="progress-bar bg-success"
                                              role="progressbar"
                                              style="width: {{competency.perc}}%"
                                              aria-valuenow="{{competency.perc}}"
@@ -277,6 +277,7 @@
                                              aria-valuemax="100"></div>
                                     </div>
                                     {{i18n competency.gradeLabel}}
+                                    {{#unless competency.isGraded}}*{{/unless}}
                                 </small>
                             </div>
                         </div>
