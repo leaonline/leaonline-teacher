@@ -5,20 +5,20 @@ const lastKeys = new Map()
 
 // TODO read from user preference about what they want to be informed
 
-export const notifyRemoteState = (key, state) => {
+export const notifyRemoteState = (title, state) => {
   const notAvailable = !state.loggedIn && !state.reason && !state.timedOut
 
   if (state.connecting || notAvailable) {
-    console.debug(`[${key}]: connecting', state.status`)
+    console.debug(`[${title}]: connecting', state.status`)
   }
 
   const hash = simpleHash(JSON.stringify(state))
-  if (lastKeys.get(key) === hash) return
-  lastKeys.set(key, hash)
+  if (lastKeys.get(title) === hash) return
+  lastKeys.set(title, hash)
 
   Notify.add({
     type: getColorType(state),
-    title: key,
+    title: title,
     message: getRemoteMessage(state),
     delay: state.timedOut ? 15000 : 3000
   })

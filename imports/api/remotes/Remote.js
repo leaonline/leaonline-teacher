@@ -3,6 +3,7 @@ import { DDP } from 'meteor/ddp-client'
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { callMethod } from '../../infrastructure/methods/callMethod'
 import { isomorphic } from '../../utils/arch'
+import { Users } from '../../contexts/Users'
 
 export const createRemote = ({ name, url, debug }) => {
   return new Remote({ name, url, debug })
@@ -251,12 +252,12 @@ const login = isomorphic({
         throw new Error('remote.notConnected')
       }
 
-      remote.debug('services', user)
       const loginTokens = OAuth.sealSecret(user?.services?.resume?.loginTokens)
       const { hashedToken } = loginTokens.pop()
       const accessToken = OAuth.sealSecret(user?.services?.lea?.accessToken)
       const options = { accessToken, resume: hashedToken, debug: true }
       const connection = getConnection(remote)
+      remote.debug('loginWithLea', { user , loginTokens, options })
 
       return DDP.loginWithLea(connection, options)
     }
@@ -287,17 +288,19 @@ const login = isomorphic({
             return reject(new Error('remote.noCredentials'))
           }
 
-          remote.debug('credentials received; init login')
           const options = {
             accessToken: credentials.accessToken,
-            debug: false
+            debug: remote.debug
           }
 
+          remote.debug('credentials received; init login', options)
           DDP.loginWithLea(connection, options, (loginError, res) => {
             connection._loggingIn = false
 
             if (loginError) {
-              return reject(loginError)
+              DDP.logout(connection, () => {
+                return reject(loginError)
+              })
             }
             else {
               remote.debug('logged in with token', !!res)
