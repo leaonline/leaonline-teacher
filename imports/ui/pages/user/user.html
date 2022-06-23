@@ -221,21 +221,22 @@
         </div>
     {{/if}}
 
+
     {{#if competencyCategories}}
         {{#each category in competencyCategories}}
-            <div class="row category-card rounded m-0 p-3 mb-4 text-secondary">
+            <div class="category-card rounded m-0 p-3 mb-4 text-secondary">
                 {{! header }}
-                <h3 class="col-12 font-weight-bold text-secondary p-2">{{category.label}}</h3>
+                <h3 class="font-weight-bold text-secondary">{{category.label}}</h3>
 
                 {{! competency-card = flip card }}
-
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                 {{#each competency in category.entries}}
-                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 p-1 competency-container {{#if exampleText competency._id}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
+                    <div class="col {{#if exampleText competency._id}}competency-card{{/if}} {{#unless competency.isActive}}d-none{{/unless}}"
                         data-target="{{competency._id}}">
 
                         {{! render front page if not flipped }}
-                        <div class="card-wrapper bg-white rounded h-100 shadow-sm d-{{#if flipped competency._id}}none{{else}}block{{/if}}">
-                            <div class="d-flex justify-content-between py-1 px-3">
+                        <div class="card h-100 shadow-sm rounded {{#if flipped competency._id}}d-none{{/if}}">
+                            <div class="card-header bg-white d-flex justify-content-between">
                                 <span class="text-secondary">
                                     {{i18n "alphaLevel.title"}}
                                     {{competency.alphaLevel.level}}
@@ -246,14 +247,12 @@
                                     <span></span>
                                 {{/if}}
                             </div>
-                            <hr>
-                            <div class="text-center p-2 font-weight-bold text-secondary">
+                            <div class="card-body text-center font-weight-bold text-secondary">
                                 {{competency.shortCode}}: {{competency.description}}
                             </div>
-                            <hr>
 
                                 {{! card footer }}
-                            <div class="d-flex justify-content-between align-items-center px-2">
+                            <div class="card-footer bg-white d-flex justify-content-between align-items-center">
 
                                 {{! left side: competency development status }}
                                 <small class="w-50">
@@ -283,20 +282,20 @@
                         </div>
 
                         {{! else render back page }}
-                        <div class="card-wrapper bg-blue-gray text-light rounded h-100 shadow-sm p-2 d-{{#if flipped competency._id}}block{{else}}none{{/if}}">
-                            <small class="d-block text-center font-weight-bold">
+                        <div class="card text-light rounded h-100 shadow-sm {{#unless flipped competency._id}}d-none{{/unless}}">
+                            <div class="card-header bg-blue-gray text-center font-weight-bold">
                                 {{competency.shortCode}}: {{competency.description}}
-                            </small>
-                            <hr class="border-light">
-                            <small class="d-block text-center">
-                                {{exampleText competency._id}}
-                            </small>
-                            <div class="d-block text-center">
-                                {{> icon name="undo"}}
                             </div>
+                            <div class="card-body bg-blue-gray">
+                                {{exampleText competency._id}}
+                            </div>
+                                <div class="card-footer bg-blue-gray text-center">
+                                    {{> icon name="undo"}}
+                                </div>
                         </div>
                     </div>
                 {{/each}}
+                </div>
             </div>
         {{/each}}
     {{/if}}
