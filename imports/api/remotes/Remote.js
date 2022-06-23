@@ -257,14 +257,12 @@ const login = isomorphic({
       const accessToken = OAuth.sealSecret(user?.services?.lea?.accessToken)
       const options = { accessToken, resume: hashedToken, debug: true }
       const connection = getConnection(remote)
-      remote.debug('loginWithLea', { user , loginTokens, options })
+      remote.debug('loginWithLea', { user, loginTokens, options })
 
       return DDP.loginWithLea(connection, options)
     }
   },
   client: function () {
-    import { Users } from '../../contexts/Users'
-
     return function (user) {
       const remote = this
       remote.debug('login user', user?._id)
