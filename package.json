@@ -37,7 +37,7 @@
     "markdown-notes-tree": "^1.11.2",
     "markdownlint-cli": "^0.27.1",
     "popper.js": "^1.16.1",
-    "puppeteer": "^13.0.0",
+    "puppeteer": "^13.7.0",
     "sinon": "^11.1.0",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
