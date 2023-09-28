@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: lea. Dashboard
+message: >-
+  Teacher analytics dashboard to evaluate diagnostics from
+  otu.lea
+type: software
+authors:
+  - given-names: Jan
+    family-names: Küster
+    email: jkuester@uni-bremen.de
+    affiliation: University of Bremen
+    orcid: 'https://orcid.org/0009-0008-8088-9837'
+identifiers:
+  - type: url
+    value: 'https://dashboard.lealernen.de/'
+    description: Direct link to the application
+repository-code: 'https://github.com/leaonline/leaonline-teacher'
+url: 'https://dashboard.lealernen.de/'
+abstract: >-
+  The lea. Dashboard provides a separate access for teachers
+  and trainers to view and evaluate results from the otu.lea
+  diagnostics (a diagnostic web application to assess German
+  fundamental literacy skills below PISA level 1). The
+  dashboard enables to view single-user or class progress of
+  competencies and alpha levels over time and multiple
+  assessments.
+keywords:
+  - dashboard
+  - literacy
+  - basic education
+  - German
+  - web application
+  - Meteor.js
+  - vocational training
+  - reading literacy
+  - writing literacy
+  - mathematical literacy
+  - language understanding literacy
+license: AGPL-3.0
+commit: 126469f9b29f9172bea4ebaf0599670bd4493f06
+version: '1.0'
+date-released: '2022-03-28'
