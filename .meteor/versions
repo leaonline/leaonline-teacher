@@ -60,12 +60,12 @@ leaonline:collection-factory@1.0.4
 leaonline:corelib@1.0.0
 leaonline:ddp-login@2.0.2
 leaonline:ddp-login-handler@2.0.0
-leaonline:method-factory@1.1.0
+leaonline:method-factory@1.1.1
 leaonline:oauth-lea@2.0.0
 leaonline:publication-factory@1.0.0
 leaonline:ratelimit-factory@1.0.0
 leaonline:service-registry@1.0.0
-leaonline:theme@1.0.0
+leaonline:theme@1.1.0
 livedata@1.0.18
 lmieulet:meteor-coverage@3.2.0
 lmieulet:meteor-legacy-coverage@0.1.0
