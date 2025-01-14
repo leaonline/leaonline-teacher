@@ -18,6 +18,11 @@ authors:
     email: imeyer@uni-bremen.de
     affiliation: University of Bremen
     orcid: 'https://orcid.org/0000-0001-8261-365X'
+  - given-names: ' Karsten D.'
+    family-names: Wolf
+    email: wolf@uni-bremen.de
+    affiliation: University of Bremen
+    orcid: 'https://orcid.org/0000-0002-4151-840X'
 identifiers:
   - type: url
     value: 'https://dashboard.lealernen.de/'
@@ -44,6 +49,7 @@ keywords:
   - writing literacy
   - mathematical literacy
   - language understanding literacy
+  - e-assessment
 license: AGPL-3.0
 commit: 126469f9b29f9172bea4ebaf0599670bd4493f06
 version: '1.0'
