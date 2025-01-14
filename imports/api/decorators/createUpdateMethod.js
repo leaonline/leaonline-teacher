@@ -20,7 +20,7 @@ export const createUpdateMethod = ({ context, schema, timeInterval, numRequests,
     },
     numRequests: numRequests || 1,
     timeInterval: timeInterval || 250,
-    run: onServer(run || function (updateDoc) {
+    run: onServer(run || async function (updateDoc) {
       const Collection = context.collection()
       if (!Collection) {
         throw new Meteor.Error('update.error', 'errors.collectionUndefined', { name })
@@ -28,12 +28,12 @@ export const createUpdateMethod = ({ context, schema, timeInterval, numRequests,
 
       const { _id, ...modifier } = updateDoc
 
-      if (Collection.find({ _id, 'meta.createdBy': this.userId }).count() < 1) {
+      if (await Collection.countDocuments({ _id, 'meta.createdBy': this.userId }) < 1) {
         throw new Meteor.Error('update.error', 'errors.docNotFound', { name, _id })
       }
 
       CollectionHooks.beforeUpdate(this.userId, modifier)
-      return Collection.update(_id, modifier)
+      return Collection.updateAsync(_id, modifier)
     })
   }
 }

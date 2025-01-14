@@ -4,7 +4,7 @@ export const createMyPublication = ({ context }) => {
   return {
     name: `${context.name}.publications.my`,
     schema: {},
-    run: onServer(function () {
+    run: onServer(async function () {
       return context.collection().find({
         $or: [
           { 'meta.createdBy': this.userId },

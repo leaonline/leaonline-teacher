@@ -7,9 +7,9 @@ import { getOAuthDDPLoginHandler, defaultDDPLoginName } from 'meteor/leaonline:d
 
 rateLimitAccounts()
 
-Meteor.startup(() => {
+Meteor.startup(async () => {
   const { oauth } = Meteor.settings
-  ServiceConfiguration.configurations.upsert(
+  await ServiceConfiguration.configurations.upsertAsync(
     { service: 'lea' },
     {
       $set: {

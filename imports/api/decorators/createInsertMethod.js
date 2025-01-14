@@ -11,7 +11,7 @@ export const createInsertMethod = ({ context, schema, run, ...additional }) => {
   return {
     name: `${name}.methods.insert`,
     schema: finalSchema,
-    run: onServer(run || function (insertDoc) {
+    run: onServer(run || async function (insertDoc) {
       const Collection = context.collection?.()
       if (!Collection) {
         throw new Meteor.Error('get.error', 'errors.collectionUndefined', { name })
@@ -19,7 +19,7 @@ export const createInsertMethod = ({ context, schema, run, ...additional }) => {
 
       CollectionHooks.beforeInsert(this.userId, insertDoc)
 
-      return Collection.insert(insertDoc)
+      return Collection.insertAsync(insertDoc)
     }),
     ...additional
   }

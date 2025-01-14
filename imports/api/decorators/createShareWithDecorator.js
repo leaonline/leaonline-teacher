@@ -14,7 +14,7 @@ export const createShareWithDecorator = ({ context }) => {
       },
       'users.$': String
     },
-    run: onServer(function ({ _id, users = [] } = {}) {
+    run: onServer(async function ({ _id, users = [] } = {}) {
       const Collection = context.collection?.()
       if (!Collection) {
         throw new Meteor.Error('shareWith.error', 'errors.collectionUndefined', {
@@ -22,14 +22,14 @@ export const createShareWithDecorator = ({ context }) => {
         })
       }
 
-      if (!Collection.find(_id).count()) {
+      if (!await Collection.findOneAsync(_id)) {
         throw new Meteor.Error('shareWith.error', 'errors.docNotFound', {
           name,
           _id
         })
       }
 
-      const currentUser = Meteor.users.findOne(this.userId)
+      const currentUser = await Meteor.users.findOneAsync(this.userId)
       const institution = currentUser?.services?.lea?.institution
 
       if (institution) {
@@ -46,14 +46,14 @@ export const createShareWithDecorator = ({ context }) => {
         institution: institution
       }
 
-      if (Meteor.users.find(userQuery).count() !== users.length) {
+      if (await Meteor.users.countDocuments(userQuery) !== users.length) {
         throw new Meteor.Error('shareWith.error', 'shareWith.userNotExists', {
           name,
           users
         })
       }
 
-      return Collection.update(_id, { $set: { 'meta.shareWith': users } })
+      return Collection.updateAsync(_id, { $set: { 'meta.shareWith': users } })
     })
   }
 }

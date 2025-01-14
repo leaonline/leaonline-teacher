@@ -24,7 +24,6 @@ Course.schema = (translate = x => x) => ({
     type: Date,
     label: translate('course.completesAt')
   },
-
   users: {
     type: Array,
     optional: true,

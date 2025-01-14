@@ -31,6 +31,6 @@ import { Meteor } from 'meteor/meteor'
 ServiceRegistry.register(Legal)
 
 // bootstrapping legal docs
-Meteor.startup(() => {
-  Legal.helpers.init(Legal.collection())
+Meteor.startup(async () => {
+  await Legal.helpers.init()
 })
