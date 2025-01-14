@@ -7,6 +7,7 @@ This is the code repository for the lea.online teacher dashboard application.
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 ![GitHub](https://img.shields.io/github/license/leaonline/leaonline-teacher)
+[![DOI](https://zenodo.org/badge/204467036.svg)](https://zenodo.org/doi/10.5281/zenodo.10817475)
 
 ## Install and run
 
