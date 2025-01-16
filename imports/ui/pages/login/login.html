@@ -10,10 +10,10 @@
 
     <div class="container">
         <div class="row my-5">
-            <div class="col col-sm-12 col-md-6 col-lg-4 ml-auto mr-auto">
+            <div class="col col-sm-12 col-md-6 col-lg-4 ms-auto me-auto">
                 {{#if login}}
                     <div class="w-100 {{#if loggingIn}}d-unavailable{{/if}}">
-                        <button class="btn btn-lg btn-primary btn-block login-button">
+                        <button class="btn btn-lg btn-primary w-100 block login-button">
                             {{#onLoaded loaded=loadComplete}}
                                 {{i18n "pages.login.login"}}
                             {{/onLoaded}}
@@ -64,7 +64,7 @@
                         {{/onLoaded}}
                     </div>
 
-                    <a class="btn btn-primary btn-block" href="{{next}}">
+                    <a class="btn btn-primary w-100 block" href="{{next}}">
                         {{#onLoaded loaded=loadComplete}}
                             {{i18n "actions.continue"}}
                         {{/onLoaded}}

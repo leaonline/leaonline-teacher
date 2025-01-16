@@ -241,10 +241,12 @@ Template.myClasses.helpers({
     return Template.getState('doc')
   },
   getEntryRoute () {
-    return Template.instance().data.getEntryRoute()
+    const getEntryRoute = Template.instance().api.getData('getEntryRoute')
+    return getEntryRoute()
   },
   getUserRoute () {
-    return Template.instance().data.getUserRoute()
+    const getUserRoute = Template.instance().api.getData('getUserRoute')
+    return getUserRoute()
   },
   getCourse (id) {
     return Course.collection().findOne(id)
@@ -277,6 +279,7 @@ Template.cardItems.helpers({
 })
 
 Template.myClasses.events({
+  'click a' (event, templateInstance) {},
   'submit #insertForm' (event, templateInstance) {
     event.preventDefault()
 

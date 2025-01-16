@@ -47,6 +47,9 @@
                 </button>
             </div>
         </div>
+            {{#if error}}
+                <div class="text-danger small block w-100">{{error}}</div>
+            {{/if}}
         {{/onLoaded}}
     </div>
 </template>

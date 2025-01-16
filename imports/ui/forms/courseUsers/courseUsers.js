@@ -9,6 +9,7 @@ import courseUsersLang from './i18n/courseUsersLang'
 import './courseUsers.html'
 import { dataTarget } from '../../utils/dataTarget'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
+import { logEvent } from '../../analytics/logEvent'
 
 AutoForm.addInputType('courseUsers', {
   template: 'afCourseUsers',
@@ -130,7 +131,11 @@ Template.afCourseUsers.events({
       clean: false
     })
 
-    if (!userDoc) return // messages handled by schema
+    if (!userDoc) return logEvent({
+      timestamp: new Date(),
+      event: 'form-invalid',
+
+    })// messages handled by schema
 
     const account = userDoc.account || {}
 

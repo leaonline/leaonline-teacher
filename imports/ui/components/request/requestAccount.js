@@ -88,7 +88,8 @@ Template.requestAccount.events({
       success: () => {
         templateInstance.state.set('sendComplete', true)
         setTimeout(() => {
-          templateInstance.data.complete()
+          const complete = templateInstance.api.getData('complete')
+          complete?.()
         }, 2000)
       }
     })

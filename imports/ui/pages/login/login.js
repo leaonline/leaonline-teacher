@@ -92,7 +92,9 @@ Template.login.events({
         return templateInstance.state.set('loginError', err)
       }
 
-      templateInstance.data.onSuccess(res)
+      if (templateInstance.data.onSuccess) {
+        templateInstance.data.onSuccess(res)
+      }
     })
   },
   'click .request-btn': async (event, templateInstance) => {

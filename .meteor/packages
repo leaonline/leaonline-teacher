@@ -48,7 +48,7 @@ aldeed:simple-schema
 leaonline:method-factory
 
 #========================================
-# Publicatons
+# Puaicatons
 #========================================
 leaonline:publication-factory
 
@@ -71,14 +71,14 @@ fourseven:scss@4.17.0-rc.0
 #seba:minifiers-autoprefixer
 aldeed:autoform
 communitypackages:autoform-bootstrap5
-ostrio:flow-router-extra@3.11.0-rc300.1
+ostrio:flow-router-extra@3.9.0
 ostrio:i18n
 jkuester:template-states
-
+jkuester:blaze-bs5
 leaonline:theme
 hot-module-replacement@0.5.4
 blaze-hot
-# jkuester:reactive-queue
+jkuester:reactive-queue
 
 #========================================
 # SECURITY

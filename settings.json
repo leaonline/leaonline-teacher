@@ -9,6 +9,10 @@
       "icon": "chart-line",
       "logLevel": "info"
     },
+    "analytics": {
+      "enabled": true,
+      "skip": ["keyup", "keydown", "input"]
+    },
     "hosts": {
       "otulea": {
         "name": "Otu.lea",

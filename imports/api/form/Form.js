@@ -2,7 +2,7 @@
 import { ReactiveVar } from 'meteor/reactive-var'
 import 'meteor/aldeed:autoform/dynamic'
 import { formIsValid } from 'meteor/leaonline:corelib/utils/form'
-import { AutoFormThemeBootstrap4 } from 'meteor/communitypackages:autoform-bootstrap4/dynamic'
+import { AutoFormThemeBootstrap5 } from 'meteor/communitypackages:autoform-bootstrap5/dynamic'
 import { resetForm } from '../../ui/utils/form/resetForm'
 
 export const Form = {}
@@ -24,8 +24,8 @@ Form.initialize = function () {
 
 async function initialize () {
   await AutoForm.load()
-  await AutoFormThemeBootstrap4.load()
-  await AutoForm.setDefaultTemplate('bootstrap4')
+  await AutoFormThemeBootstrap5.load()
+  await AutoForm.setDefaultTemplate('bootstrap5')
 
   // TODO move template-specific forms to template init-level
   await import('../../ui/forms/usercode/usercode')

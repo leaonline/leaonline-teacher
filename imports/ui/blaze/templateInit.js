@@ -11,7 +11,7 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
     initClientContext,
     contextHasInitialized
   } from '../../infrastructure/contexts/initClientContext'
-  import { Notify } from '../../ui/components/notifications/Notify'
+  import { Notify } from '../components/notifications/Notify'
   import { addLanguage } from '../../api/i18n/addLanguage'
   import { connectRemote } from '../../api/remotes/connectRemote'
   import { Router } from '../../api/routing/Router'
@@ -35,6 +35,7 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
   const api = {}
   instance.api = api
 
+  api.getData = ((data = {}) => key => data[key])(instance.data)
   // ---------------------------------------------------------------------------
 
   const debugTemplate = debug || isDebug(instance.view.name)

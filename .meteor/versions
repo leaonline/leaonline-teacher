@@ -50,7 +50,9 @@ htmljs@2.0.1
 http@3.0.0
 id-map@1.2.0
 inter-process-messaging@0.1.2
+jkuester:blaze-bs5@1.0.0
 jkuester:http@3.0.0
+jkuester:reactive-queue@1.0.0
 jkuester:template-states@1.0.0
 jquery@3.0.0
 lai:collection-extensions@1.0.0

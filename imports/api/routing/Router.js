@@ -4,6 +4,13 @@ import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
+import { Roles } from 'meteor/alanning:roles'
+import { logEvent } from '../../ui/analytics/logEvent'
+
+Roles.subscription = Meteor.subscribe('_roles')
+Tracker.autorun(function () {
+  console.debug('roles', Roles.subscription.ready())
+})
 
 /**
  * Facade to a router to support a common definition for routing in case
@@ -123,7 +130,7 @@ function createRoute (routeDef, onError) {
         Promise.resolve(routeDef.load()),
         new Promise((resolve) => {
           Tracker.autorun((computation) => {
-            const loadComplete = !Meteor.loggingIn() && Roles.subscription.ready()
+            const loadComplete = !Meteor.loggingIn() // && Roles.subscription.ready()
             if (loadComplete) {
               computation.stop()
               resolve()
@@ -133,6 +140,14 @@ function createRoute (routeDef, onError) {
       ])
     },
     triggersEnter: routeDef.triggersEnter && routeDef.triggersEnter(),
+    triggersExit: () => [() => {
+      logEvent({
+        event: 'exit-page',
+        target: routeDef.target || _defaultTarget,
+        template: routeDef.template,
+        value: {}
+      })
+    }],
     action (params, queryParams) {
       // if we have loaded the template but it is not available
       // on the rendering pipeline through Template.<name> we
@@ -156,6 +171,8 @@ function createRoute (routeDef, onError) {
 
       Router.setTitle(label())
       routeCache.set(routeDef)
+
+      let error
       try {
         this.render(routeDef.target || _defaultTarget, routeDef.template, data)
       }
@@ -164,6 +181,15 @@ function createRoute (routeDef, onError) {
         if (typeof onError === 'function') {
           onError(e)
         }
+        error = e
+      } finally {
+        logEvent({
+          event: 'enter-page',
+          error,
+          target: routeDef.target || _defaultTarget,
+          template: routeDef.template,
+          value: data
+        })
       }
     }
   }

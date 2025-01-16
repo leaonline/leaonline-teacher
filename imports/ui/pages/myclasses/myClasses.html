@@ -32,7 +32,7 @@
                     </span>
 
                         {{> button
-                                class="ml-auto modal-trigger d-print-none"
+                                class="ms-auto modal-trigger d-print-none"
                                 data-target="insert"
                                 data-type="course"
                                 colortype="primary"
@@ -103,7 +103,7 @@
                     </span>
 
                         {{> button
-                                class="ml-auto modal-trigger d-print-none"
+                                class="ms-auto modal-trigger d-print-none"
                                 data-target="insert"
                                 data-type="user"
                                 colortype="primary"
@@ -144,11 +144,17 @@
                                         </td>
 
                                         <td class="text-right no-wrap d-print-none">
-                                            <a href="{{route getUserRoute
-                                                             user._id}}"
-                                               class="btn btn-sm btn-outline-secondary">
-                                                {{> icon name="eye"}}
-                                            </a>
+                                            {{#if user.account.code}}
+                                                <a href="{{route getUserRoute user._id}}"
+                                                   class="btn btn-sm btn-outline-secondary">
+                                                    {{> icon name="eye"}}
+                                                </a>
+                                            {{else}}
+                                                <a disabled href tabindex="-1"
+                                                   class="btn btn-sm btn-outline-secondary disabled text-muted">
+                                                    {{> icon name="eye"}}
+                                                </a>
+                                            {{/if}}
                                             <button class="btn btn-sm btn-outline-success modal-trigger"
                                                     data-type="user"
                                                     data-id="{{user._id}}"
@@ -304,7 +310,7 @@
                     {{#modalfooter}}
                         <div class="d-flex justify-content-between w-100">
                             {{> button type="submit" form="insertForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
-                            {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                            {{> button colortype="secondary" outline=true data-bs-dismiss="modal" label=(i18n "actions.cancel")}}
                         </div>
                     {{/modalfooter}}
                 {{/if}}
@@ -318,7 +324,7 @@
                     {{#modalfooter}}
                         <div class="d-flex justify-content-between w-100">
                             {{> button type="submit" colortype="success" label=(i18n "actions.update") class="save-changes" form="updateForm"}}
-                            {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                            {{> button colortype="secondary" outline=true data-bs-dismiss="modal" label=(i18n "actions.cancel")}}
                         </div>
                     {{/modalfooter}}
                 {{/if}}
@@ -347,7 +353,7 @@
                                             label=(i18n "pages.myClasses.modal.body.delete.course")
                                             class="delete-button"}}
                                     </span>
-                                {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                                {{> button colortype="secondary" outline=true data-bs-dismiss="modal" label=(i18n "actions.cancel")}}
                             </div>
                         {{/modalfooter}}
                     {{/if}}
@@ -371,7 +377,7 @@
                                             label=(i18n "actions.delete")
                                             class="delete-button"}}
                                 </span>
-                                {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                                {{> button colortype="secondary" outline=true data-bs-dismiss="modal" label=(i18n "actions.cancel")}}
                             </div>
                         {{/modalfooter}}
                     {{/if}}
@@ -396,14 +402,14 @@
                     {{else}}
                         {{> icon name="clock" regular=true}}
                     {{/if}}
-                    <span class="ml-2">
+                    <span class="ms-2">
                         {{course.title}}
                     </span>
                 </a>
             </div>
             <div class="col d-flex justify-content-end align-items-center no-wrap d-print-none">
                 <a href="{{route courseRoute course._id}}"
-                   class="btn btn-outline-secondary btn-sm mr-2 course-items-icon-buttons">
+                   class="btn btn-outline-secondary btn-sm me-2 course-items-icon-buttons">
                     {{> icon name="eye"}}
                 </a>
                 {{#button data-id=course._id
@@ -413,7 +419,7 @@
                           colortype="success"
                           disabled=connecting
                           outline=true
-                          class="mr-2 course-items-icon-buttons modal-trigger"}}
+                          class="me-2 course-items-icon-buttons modal-trigger"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
                 {{#button
@@ -424,7 +430,7 @@
                         disabled=connecting
                         colortype="danger"
                         outline=true
-                        class="mr-1 course-items-icon-buttons modal-trigger"}}
+                        class="me-1 course-items-icon-buttons modal-trigger"}}
                     <span class="fa fas fa-fw fa-trash"></span>
                 {{/button}}
             </div>

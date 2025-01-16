@@ -1,4 +1,4 @@
-import { BlazeBs4 } from 'meteor/jkuester:blaze-bs4'
+import { BlazeBs5 } from 'meteor/jkuester:blaze-bs5'
 
 /** @deprecated **/
-export const BlazeBootstrap = BlazeBs4
+export const BlazeBootstrap = BlazeBs5
