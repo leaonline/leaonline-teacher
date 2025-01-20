@@ -47,6 +47,15 @@ const wrapFn = ({ key, fn, instance }) => {
     const env = this
     let error
 
+    let value
+
+    if (event.type === 'change') {
+      value = event.currentTarget.value
+    }
+    if (event.type === 'input') {
+      value = event.currentTarget.value
+    }
+
     try {
       await fn.call(env, event, templateInstance)
     } catch (e) {
@@ -59,7 +68,8 @@ const wrapFn = ({ key, fn, instance }) => {
         label: String(event.currentTarget.textContent ?? event.currentTarget.title ?? '').trim().replace(/\s+/g, ' '),
         target: event.target.getAttribute('data-aid') ?? event.target.id ?? event.target.class,
         current: event.currentTarget.getAttribute('data-aid') ?? event.currentTarget.id ?? event.currentTarget.class,
-        error: error && errorToObject(error)
+        error: error && errorToObject(error),
+        value
       })
     }
   }
