@@ -5,7 +5,7 @@ import { Tracker } from 'meteor/tracker'
 import { ReactiveVar } from 'meteor/reactive-var'
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
 import { Roles } from 'meteor/alanning:roles'
-import { logEvent } from '../../ui/analytics/logEvent'
+import { logAnalytics } from '../../ui/analytics/logAnalytics'
 
 Roles.subscription = Meteor.subscribe('_roles')
 Tracker.autorun(function () {
@@ -141,7 +141,7 @@ function createRoute (routeDef, onError) {
     },
     triggersEnter: routeDef.triggersEnter && routeDef.triggersEnter(),
     triggersExit: () => [() => {
-      logEvent({
+      logAnalytics({
         event: 'exit-page',
         target: routeDef.target || _defaultTarget,
         template: routeDef.template,
@@ -183,7 +183,7 @@ function createRoute (routeDef, onError) {
         }
         error = e
       } finally {
-        logEvent({
+        logAnalytics({
           event: 'enter-page',
           error,
           target: routeDef.target || _defaultTarget,

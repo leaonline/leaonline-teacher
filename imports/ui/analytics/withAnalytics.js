@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
-import { errorToObject } from '../utils/errorToObject'
-import { logEvent } from './logEvent'
+import { logAnalytics } from './logAnalytics'
 
 const { analytics } = Meteor.settings.public
 export const initAnalytics = () => {
@@ -16,7 +15,7 @@ export const initAnalytics = () => {
 
   // other global events
   document.addEventListener("visibilitychange", () => {
-    logEvent({
+    logAnalytics({
       event: 'visibilitychange',
       template: 'global',
       target: 'window.document',
@@ -61,14 +60,14 @@ const wrapFn = ({ key, fn, instance }) => {
     } catch (e) {
       error = e
     } finally {
-      logEvent({
+      logAnalytics({
         timestamp,
         event: event.type,
         template: viewName,
         label: String(event.currentTarget.textContent ?? event.currentTarget.title ?? '').trim().replace(/\s+/g, ' '),
         target: event.target.getAttribute('data-aid') ?? event.target.id ?? event.target.class,
         current: event.currentTarget.getAttribute('data-aid') ?? event.currentTarget.id ?? event.currentTarget.class,
-        error: error && errorToObject(error),
+        error,
         value
       })
     }

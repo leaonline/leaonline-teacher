@@ -51,10 +51,12 @@ describe(createAllMethod.name, function () {
     })
     it('defines a function that allows to a get all docs', async () => {
       const docId = localCollection.insert({ title: Random.id() })
+      const docId2 = localCollection.insert({ title: Random.id() })
       const expectedDoc = localCollection.findOne(docId)
+      const expectedDoc2 = localCollection.findOne(docId2)
 
       const { run } = createAllMethod({ context })
-      expect(await run({})).deep.equal([expectedDoc])
+      expect(await run({})).deep.equal([expectedDoc, expectedDoc2])
     })
   }
 })

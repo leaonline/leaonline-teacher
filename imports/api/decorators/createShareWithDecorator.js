@@ -22,7 +22,8 @@ export const createShareWithDecorator = ({ context }) => {
         })
       }
 
-      if (!await Collection.findOneAsync(_id)) {
+      const doc = await Collection.findOneAsync(_id)
+      if (!doc) {
         throw new Meteor.Error('shareWith.error', 'errors.docNotFound', {
           name,
           _id

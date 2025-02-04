@@ -12,9 +12,14 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
     contextHasInitialized
   } from '../../infrastructure/contexts/initClientContext'
   import { Notify } from '../components/notifications/Notify'
+  import { Router } from '../../api/routing/Router'
   import { addLanguage } from '../../api/i18n/addLanguage'
   import { connectRemote } from '../../api/remotes/connectRemote'
-  import { Router } from '../../api/routing/Router'
+
+  const languages = []
+  const instance = this
+  const allComplete = []
+  const subscriptions = new Set()
 
   const handleError = error => {
     if (onError) {
@@ -24,11 +29,6 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
       console.error(error)
     }
   }
-
-  const languages = []
-  const instance = this
-  const allComplete = []
-  const subscriptions = new Set()
 
   // ---------------------------------------------------------------------------
 

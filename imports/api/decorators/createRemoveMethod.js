@@ -22,7 +22,7 @@ export const createRemoveMethod = ({ context, run }) => {
         })
       }
 
-      return context.collection().removeAsync({ _id })
+      return Collection.removeAsync({ _id })
     })
   }
 }

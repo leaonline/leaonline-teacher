@@ -8,6 +8,7 @@
 
     {{#onLoaded loaded=loadComplete}}
         <select class="form-control border-{{color}} text-{{color}} d-print-none"
+                data-aid="class.dimensionSelect"
                 id="dimension-select">
             {{#each dimension in dimensions}}
                 <option value="{{dimension._id}}">{{dimension.title}}</option>
@@ -90,6 +91,7 @@
                             </div>
                         </div>
                         <div class="card-body category-collapse clickable text-center p-0 text-secondary"
+                             data-aid="class.categoryCollapse-{{category.name}}"
                              type="button"
                              data-category="{{category.name}}"
                              data-toggle="collapse"
@@ -103,6 +105,7 @@
                         <ul class="list-group collapse text-secondary" id="collapse-category-{{@index}}">
                             {{#each competency in category.entries}}
                                 <li class="list-group-item clickable competency-entry text-secondary"
+                                    data-aid="class.competencyCollapse-{{competency.shortCode}}"
                                     type="button"
                                     data-category="{{category.name}}"
                                     data-competency="{{competency._id}}"

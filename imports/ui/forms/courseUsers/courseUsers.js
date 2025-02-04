@@ -9,7 +9,7 @@ import courseUsersLang from './i18n/courseUsersLang'
 import './courseUsers.html'
 import { dataTarget } from '../../utils/dataTarget'
 import { callMethod } from '../../../infrastructure/methods/callMethod'
-import { logEvent } from '../../analytics/logEvent'
+import { logAnalytics } from '../../analytics/logAnalytics'
 
 AutoForm.addInputType('courseUsers', {
   template: 'afCourseUsers',
@@ -131,7 +131,7 @@ Template.afCourseUsers.events({
       clean: false
     })
 
-    if (!userDoc) return logEvent({
+    if (!userDoc) return logAnalytics({
       timestamp: new Date(),
       event: 'form-invalid',
 

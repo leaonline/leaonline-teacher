@@ -8,7 +8,7 @@ export const checkPermissions = function (options) {
   }
 
   const runFct = options.run
-  options.run = function run (...args) {
+  options.run = async function run (...args) {
     let userId = this.userId
 
     if (!userId) {
@@ -21,7 +21,7 @@ export const checkPermissions = function (options) {
     }
 
     if (backend) {
-      const user = Meteor.users.findOne(userId)
+      const user = await Meteor.users.findOneAsync(userId)
       if (!user?.services?.lea) {
         throw new Meteor.Error('errors.permissionDenied', 'errors.backendOnly', userId)
       }
