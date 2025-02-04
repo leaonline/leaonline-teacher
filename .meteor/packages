@@ -23,16 +23,16 @@ shell-server@0.6.0            # Server-side component of the `meteor shell` comm
 # TESTING
 #========================================
 meteortesting:mocha
-#lmieulet:meteor-coverage@3.2.0
-#lmieulet:meteor-legacy-coverage
+# lmieulet:meteor-coverage@5.0.0
+# lmieulet:meteor-legacy-coverage
 
 #========================================
 # Common
 #========================================
 leaonline:corelib
 leaonline:ratelimit-factory
-jkuester:http
-http
+# jkuester:http
+# http
 
 #========================================
 # Collections
