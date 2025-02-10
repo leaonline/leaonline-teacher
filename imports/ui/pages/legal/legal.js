@@ -20,9 +20,9 @@ Template.legal.onCreated(function () {
 
   instance.autorun(() => {
     const dependenciesComplete = instance.state.get('dependenciesComplete')
-    if (!dependenciesComplete) { return }
-
     const data = Template.currentData()
+    if (!data || !dependenciesComplete) { return }
+
     const { type } = data.params
     let originalType
 

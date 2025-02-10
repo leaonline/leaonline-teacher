@@ -312,6 +312,7 @@ Template.user.onRendered(function () {
   // to set the current doc and auto-load the results
   instance.autorun(() => {
     const data = Template.currentData()
+    if (!data) return
     const currentDimension = data.queryParams.dimension
     const recentSession = instance.state.get('recentSession')
     const initComplete = instance.state.get('initComplete')

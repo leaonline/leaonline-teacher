@@ -43,7 +43,8 @@ Template.afUserCode.onRendered(function () {
 
 Template.afUserCode.helpers({
   key (name) {
-    return Template.currentData().name + '.' + name
+    const data = Template.currentData()
+    return data && data.name + '.' + name
   },
   generating () {
     return Template.getState('generating')

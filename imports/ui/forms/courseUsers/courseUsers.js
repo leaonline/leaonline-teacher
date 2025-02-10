@@ -62,6 +62,7 @@ Template.afCourseUsers.onCreated(function () {
 
   instance.autorun(() => {
     const data = Template.currentData()
+    if (!data) return
     const isInvalid = data.atts.class && data.atts.class.includes('is-invalid')
     instance.state.set({ isInvalid })
   })

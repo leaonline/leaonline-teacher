@@ -16,11 +16,12 @@ Template.visualization.onRendered(function () {
   const instance = this
 
   instance.autorun(() => {
-    const { entries } = Template.currentData()
+    const data = Template.currentData()
     const initComplete = instance.state.get('initComplete')
 
-    if (!initComplete) { return }
+    if (!data || !initComplete) { return }
 
+    const { entries } = data
     const userFilter = instance.state.get('userFilter') || {}
     const alphaLevels = new Map()
     const dates = new Set()
