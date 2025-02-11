@@ -23,6 +23,14 @@ Analytics.schema = {
     type: String,
     optional: true
   },
+  aid: {
+    type: String,
+    optional: true
+  },
+  title: {
+    type: String,
+    optional: true
+  },
   label: {
     type: String,
     optional: true

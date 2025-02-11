@@ -36,6 +36,9 @@ Template.navSide.helpers({
 })
 
 Template.navSide.events({
+  'click .sidebar-nav-link' () {
+    // analytics-only
+  },
   'click .sidebar-left-toggle' (event, templateInstance) {
     const hidden = templateInstance.state.get('hidden')
     templateInstance.state.set('hidden', !hidden)

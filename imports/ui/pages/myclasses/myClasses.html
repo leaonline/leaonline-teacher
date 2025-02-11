@@ -325,13 +325,17 @@
                                     form="insertForm"
                                     colortype="primary"
                                     label=(i18n "actions.insert")
-                                    class="insert"}}
+                                    class="insert inser-form-btn"
+                            }}
                             {{> button
                                     data-aid="myClasses.cancelInsertFormBtn"
+                                    class="cancel-form-btn"
                                     colortype="secondary"
                                     outline=true
                                     data-bs-dismiss="modal"
-                                    label=(i18n "actions.cancel")}}
+                                    class="cancel-form-btn"
+                                    label=(i18n "actions.cancel")
+                            }}
                         </div>
                     {{/modalfooter}}
                 {{/if}}
@@ -356,6 +360,7 @@
                                     colortype="secondary"
                                     outline=true
                                     data-bs-dismiss="modal"
+                                    class="cancel-form-btn"
                                     label=(i18n "actions.cancel")}}
                         </div>
                     {{/modalfooter}}
@@ -389,7 +394,7 @@
                                     </span>
                                 {{> button
                                         data-aid="myClasses.cancelDeleteFormBtn"
-                                        colortype="secondary" outline=true data-bs-dismiss="modal" label=(i18n "actions.cancel")}}
+                                        colortype="secondary" outline=true data-bs-dismiss="modal" class="cancel-form-btn" label=(i18n "actions.cancel")}}
                             </div>
                         {{/modalfooter}}
                     {{/if}}
@@ -416,7 +421,7 @@
                                 </span>
                                 {{> button
                                         data-aid="myClasses.cancelDeleteUserFormBtn"
-                                        colortype="secondary" outline=true data-bs-dismiss="modal" label=(i18n "actions.cancel")}}
+                                        colortype="secondary" outline=true data-bs-dismiss="modal" class="cancel-form-btn" label=(i18n "actions.cancel")}}
                             </div>
                         {{/modalfooter}}
                     {{/if}}

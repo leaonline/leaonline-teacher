@@ -11,12 +11,14 @@ import { errorToObject } from '../utils/errorToObject'
  * @param event {object|string|undefined}
  * @param  template {string=}
  * @param  label {string=}
+ * @param  aid {string=}
+ * @param  title {string=}
  * @param  target {string=}
  * @param  current {string=}
  * @param  error {Error=}
  * @param data
  */
-export const logAnalytics = ({ timestamp = new Date(), value, event, template, label, target, current, error }) => {
+export const logAnalytics = ({ timestamp = new Date(), value, event, aid, title, template, label, target, current, error }) => {
   const path = Router.current().path
   const eventName = typeof event === 'object'
     ? event.type
@@ -43,6 +45,8 @@ export const logAnalytics = ({ timestamp = new Date(), value, event, template, l
     label: labelValue,
     target,
     current,
+    aid,
+    title,
     value: valueObj,
     error: errorValue
   }

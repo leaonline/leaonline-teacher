@@ -60,8 +60,10 @@ const wrapFn = ({ key, fn, instance }) => {
     } catch (e) {
       error = e
     } finally {
+      const title = event.currentTarget?.title ?? event.target?.title
       logAnalytics({
         timestamp,
+        title,
         event: event.type,
         template: viewName,
         label: String(event.currentTarget.textContent ?? event.currentTarget.title ?? '').trim().replace(/\s+/g, ' '),

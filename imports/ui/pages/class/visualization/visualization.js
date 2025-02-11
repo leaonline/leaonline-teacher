@@ -167,7 +167,7 @@ Template.visualization.events({
 
     templateInstance.state.set('hoverUser', null)
   },
-  'click #buttonPlus' (event, templateInstance) {
+  'click #buttonPlus' (event) {
     event.preventDefault()
     const myImg = document.getElementById('graphwrap')
     const zval = document.getElementById('zomval')
@@ -180,7 +180,7 @@ Template.visualization.events({
     myImg.classList.remove('zoomout1')
   },
 
-  'click #buttonMinus' (event, templateInstance) {
+  'click #buttonMinus' (event) {
     event.preventDefault()
     const myImg = document.getElementById('graphwrap')
     const zval = document.getElementById('zomval')
@@ -199,5 +199,8 @@ Template.visualization.events({
     const userFilter = templateInstance.state.get('userFilter')
     userFilter[username] = !userFilter[username]
     templateInstance.state.set({ userFilter })
-  }
+  },
+
+  'click .dropdownmenu' () {},
+  'hidden.bs.dropdown .dropdownmenu' () {},
 })

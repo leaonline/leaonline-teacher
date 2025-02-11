@@ -4,6 +4,7 @@ import 'meteor/aldeed:autoform/dynamic'
 import { formIsValid } from 'meteor/leaonline:corelib/utils/form'
 import { AutoFormThemeBootstrap5 } from 'meteor/communitypackages:autoform-bootstrap5/dynamic'
 import { resetForm } from '../../ui/utils/form/resetForm'
+import { logAnalytics } from '../../ui/analytics/logAnalytics'
 
 export const Form = {}
 
@@ -33,7 +34,14 @@ async function initialize () {
 }
 
 Form.getFormValues = ({ formId, schema, templateInstance, isUpdate, clean }) => {
-  return formIsValid(formId, schema, { templateInstance, isUpdate })
+  const isValid = formIsValid(formId, schema, { templateInstance, isUpdate })
+  logAnalytics({
+    aid: formId,
+    event: 'validate-form',
+    template: templateInstance?.viewName ?? templateInstance?.view?.name,
+    value: { isUpdate }
+  })
+  return isValid
 }
 
 Form.reset = formId => resetForm(formId)

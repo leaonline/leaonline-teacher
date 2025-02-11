@@ -286,7 +286,8 @@ Template.myClasses.events({
     const type = Types[templateInstance.state.get('type')]
     const insertDoc = Form.getFormValues({
       formId: 'insertForm',
-      schema: type.schema
+      schema: type.schema,
+      templateInstance,
     })
 
     if (!insertDoc) return
@@ -398,5 +399,8 @@ Template.myClasses.events({
       action: null,
       doc: null
     })
+  },
+  'click .cancel-form-btn' () {
+    // analytics-only
   }
 })

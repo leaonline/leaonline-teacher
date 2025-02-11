@@ -143,7 +143,9 @@ Template.user.onCreated(function () {
   // ///////////////////////////////////////////////////////////////////////////
 
   instance.autorun(() => {
+    debugger
     const data = Template.currentData()
+    if (!data) return
     const { userId } = data.params
     State.currentParticipant(userId)
 
@@ -151,8 +153,39 @@ Template.user.onCreated(function () {
     // should update the sidebarState
     const classId = data.queryParams.class || null
     const currentClass = State.currentClass()
-    if (currentClass && classId !== currentClass._id) {
+    const refetchClass = currentClass
+      ? classId !== currentClass._id
+      : true
+
+    if (refetchClass) {
       // fetch class and update in case we have no classDoc available
+      callMethod({
+        name: Course.methods.get,
+        args: { _id: classId },
+        prepare: () => instance.api.debug('load course doc'),
+        failure: error => {
+          instance.api.debug('error at', Course.methods.get.name)
+          instance.api.notify(error)
+        },
+        success: courseDoc => {
+          instance.api.debug('course doc loaded')
+
+          callMethod({
+            name: User.methods.get,
+            args: { ids: courseDoc.users },
+            failure: error => {
+              instance.api.debug('error at', User.methods.get.name)
+              instance.api.notify(error)
+            },
+            success: (users = []) => {
+              if (courseDoc) {
+                courseDoc.users = users
+                State.currentClass(courseDoc)
+              }
+            }
+          })
+        }
+      })
     }
 
     // if we selected a specific session

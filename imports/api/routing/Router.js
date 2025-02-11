@@ -142,6 +142,7 @@ function createRoute (routeDef, onError) {
     triggersEnter: routeDef.triggersEnter && routeDef.triggersEnter(),
     triggersExit: () => [() => {
       logAnalytics({
+        aid: 'router',
         event: 'exit-page',
         target: routeDef.target || _defaultTarget,
         template: routeDef.template,
@@ -184,6 +185,7 @@ function createRoute (routeDef, onError) {
         error = e
       } finally {
         logAnalytics({
+          aid: 'router',
           event: 'enter-page',
           error,
           target: routeDef.target || _defaultTarget,

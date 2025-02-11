@@ -5,6 +5,7 @@ initAnalytics()
 
 window.addEventListener('unhandledrejection', (event) => {
   logAnalytics({
+    aid: 'unhandledrejection',
     event,
     error: typeof event.reason === 'string' ? { reason: event.reason } : event.reason
   })
@@ -12,7 +13,8 @@ window.addEventListener('unhandledrejection', (event) => {
 
 window.addEventListener('error', (event) => {
   logAnalytics({
+    aid: 'global-error',
     event,
-    error: event.errro
+    error: event.error
   })
 })
