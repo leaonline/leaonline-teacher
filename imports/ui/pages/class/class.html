@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="card-body category-collapse clickable text-center p-0 text-secondary"
-                             data-aid="class.categoryCollapse-{{category.name}}"
+                             data-aid="class.categoryCollapse-{{category.label}}"
                              type="button"
                              data-category="{{category.name}}"
                              data-bs-toggle="collapse"
@@ -112,7 +112,7 @@
                                     data-bs-toggle="collapse"
                                     data-bs-target="#collapse-{{category.name}}-{{@index}}">
                                     <div class="d-block text-center">
-                                        <span class="badge badge-secondary p-2 font-weight-bold">
+                                        <span class="badge bg-secondary p-2 font-weight-bold">
                                             {{i18n "alphaLevel.title"}}
                                             {{competency.level}}
                                         </span>
