@@ -1,4 +1,4 @@
-/* global Roles Promise */
+/* global Promise */
 import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Tracker } from 'meteor/tracker'
@@ -183,7 +183,8 @@ function createRoute (routeDef, onError) {
           onError(e)
         }
         error = e
-      } finally {
+      }
+      finally {
         logAnalytics({
           aid: 'router',
           event: 'enter-page',

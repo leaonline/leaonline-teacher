@@ -202,5 +202,5 @@ Template.visualization.events({
   },
 
   'click .dropdownmenu' () {},
-  'hidden.bs.dropdown .dropdownmenu' () {},
+  'hidden.bs.dropdown .dropdownmenu' () {}
 })

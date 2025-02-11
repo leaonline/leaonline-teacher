@@ -6,6 +6,10 @@ module.exports = function (settings, SimpleSchema) {
   const settingsSchema = schema({
     public: schema({
       issueMail: String,
+      analytics: schema({
+        enabled: Boolean,
+        skip: [String]
+      }),
       debug: {
         type: Array,
         optional: true

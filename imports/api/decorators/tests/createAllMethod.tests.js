@@ -47,7 +47,6 @@ describe(createAllMethod.name, function () {
         fn: () => run(),
         message: 'errors.collectionUndefined'
       })
-
     })
     it('defines a function that allows to a get all docs', async () => {
       const docId = localCollection.insert({ title: Random.id() })

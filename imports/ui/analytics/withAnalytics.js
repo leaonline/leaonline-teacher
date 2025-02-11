@@ -14,7 +14,7 @@ export const initAnalytics = () => {
   }
 
   // other global events
-  document.addEventListener("visibilitychange", () => {
+  document.addEventListener('visibilitychange', () => {
     logAnalytics({
       event: 'visibilitychange',
       template: 'global',
@@ -52,16 +52,19 @@ const wrapFn = ({ fn, instance }) => {
     if (['change', 'input'].includes(event.type)) {
       if ('checked' in event.currentTarget) {
         value = templateInstance.$(event.currentTarget ?? event.target).is(':checked') ? 'checked' : 'unchecked'
-      } else {
+      }
+      else {
         value = templateInstance.$(event.currentTarget ?? event.target).val()
       }
     }
 
     try {
       await fn.call(env, event, templateInstance)
-    } catch (e) {
+    }
+    catch (e) {
       error = e
-    } finally {
+    }
+    finally {
       const title = event.currentTarget?.title ?? event.target?.title
       logAnalytics({
         timestamp,

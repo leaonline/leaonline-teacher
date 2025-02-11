@@ -2,7 +2,6 @@
 import { Template } from 'meteor/templating'
 import { OtuLea } from '../../../api/remotes/OtuLea'
 import { debounce } from '../../utils/debounce'
-import { errorToObject } from '../../utils/errorToObject'
 import './usercode.html'
 
 AutoForm.addInputType('usercode', { template: 'afUserCode' })
@@ -75,12 +74,13 @@ Template.afUserCode.events({
     let userDoc
     try {
       userDoc = await OtuLea.generateUser()
-    } catch (e) {
+    }
+    catch (e) {
       templateInstance.state.set({
         generating: false,
         error: e.message,
         valid: false,
-        invalid: true,
+        invalid: true
       })
     }
     userDoc.valid = true

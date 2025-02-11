@@ -287,7 +287,7 @@ Template.myClasses.events({
     const insertDoc = Form.getFormValues({
       formId: 'insertForm',
       schema: type.schema,
-      templateInstance,
+      templateInstance
     })
 
     if (!insertDoc) return

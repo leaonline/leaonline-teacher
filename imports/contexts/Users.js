@@ -34,7 +34,6 @@ Users.methods.requestAccount = {
   timeInterval: 5000,
   isPublic: true,
   run: onServerExec(function () {
-    import { Email } from 'meteor/email'
     import { printObj } from '../utils/printObj'
 
     const options = Meteor.settings.accounts.request

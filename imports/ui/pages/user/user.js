@@ -511,13 +511,15 @@ Template.user.events({
   },
   'input #search-input': debounce(function (event, templateInstance) {
     const search = (event.target.value || '').toLowerCase()
-    if (search) logAnalytics({
-      event: 'input',
-      current: 'search-input',
-      template: templateInstance,
-      aid: 'search-input',
-      value: { search }
-    })
+    if (search) {
+      logAnalytics({
+        event: 'input',
+        current: 'search-input',
+        template: templateInstance,
+        aid: 'search-input',
+        value: { search }
+      })
+    }
     templateInstance.state.set({ search })
     templateInstance.applyFilters()
   }, 300)
