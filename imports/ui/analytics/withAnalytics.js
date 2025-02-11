@@ -28,7 +28,8 @@ const withAnalytics = (events, instance) => {
   const map = {}
 
   Object.entries(events).forEach(([key, fn]) => {
-    const exclude = analytics.skip.some(name => key.includes(name))
+    const [type] = key.split(/\s+/gi)
+    const exclude = analytics.skip.some(name => type.includes(name))
     map[key] = exclude
       ? fn
       : wrapFn({ key, fn, instance })
@@ -37,7 +38,7 @@ const withAnalytics = (events, instance) => {
   return map
 }
 
-const wrapFn = ({ key, fn, instance }) => {
+const wrapFn = ({ fn, instance }) => {
   const { viewName } = instance
 
   return async function (event, templateInstance) {
@@ -48,11 +49,12 @@ const wrapFn = ({ key, fn, instance }) => {
 
     let value
 
-    if (event.type === 'change') {
-      value = event.currentTarget.value
-    }
-    if (event.type === 'input') {
-      value = event.currentTarget.value
+    if (['change', 'input'].includes(event.type)) {
+      if ('checked' in event.currentTarget) {
+        value = templateInstance.$(event.currentTarget ?? event.target).is(':checked') ? 'checked' : 'unchecked'
+      } else {
+        value = templateInstance.$(event.currentTarget ?? event.target).val()
+      }
     }
 
     try {

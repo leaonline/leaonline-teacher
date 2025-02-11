@@ -50,6 +50,7 @@ export const logAnalytics = ({ timestamp = new Date(), value, event, aid, title,
     value: valueObj,
     error: errorValue
   }
+  console.debug(data)
   callMethod({
     name: Analytics.methods.send,
     args: data,

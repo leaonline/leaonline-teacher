@@ -20,6 +20,7 @@ import { debounce } from '../../utils/debounce'
 import userLanguage from './i18n/userLanguage'
 import './user.scss'
 import './user.html'
+import { logAnalytics } from '../../analytics/logAnalytics'
 
 const toCompetencyTranslation = translationStringFactory('competency')
 
@@ -143,7 +144,6 @@ Template.user.onCreated(function () {
   // ///////////////////////////////////////////////////////////////////////////
 
   instance.autorun(() => {
-    debugger
     const data = Template.currentData()
     if (!data) return
     const { userId } = data.params
@@ -155,7 +155,7 @@ Template.user.onCreated(function () {
     const currentClass = State.currentClass()
     const refetchClass = currentClass
       ? classId !== currentClass._id
-      : true
+      : !!classId
 
     if (refetchClass) {
       // fetch class and update in case we have no classDoc available
@@ -169,6 +169,7 @@ Template.user.onCreated(function () {
         },
         success: courseDoc => {
           instance.api.debug('course doc loaded')
+          if (!courseDoc) return
 
           callMethod({
             name: User.methods.get,
@@ -510,6 +511,13 @@ Template.user.events({
   },
   'input #search-input': debounce(function (event, templateInstance) {
     const search = (event.target.value || '').toLowerCase()
+    if (search) logAnalytics({
+      event: 'input',
+      current: 'search-input',
+      template: templateInstance,
+      aid: 'search-input',
+      value: { search }
+    })
     templateInstance.state.set({ search })
     templateInstance.applyFilters()
   }, 300)
