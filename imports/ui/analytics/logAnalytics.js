@@ -1,7 +1,10 @@
+import { Meteor } from 'meteor/meteor'
 import { Router } from '../../api/routing/Router'
 import { callMethod } from '../../infrastructure/methods/callMethod'
 import { Analytics } from '../../contexts/analytics/Analytics'
 import { errorToObject } from '../utils/errorToObject'
+
+const { analytics } = Meteor.settings.public
 
 /**
  * Globally available handler to send analytics data to the server.
@@ -19,6 +22,8 @@ import { errorToObject } from '../utils/errorToObject'
  * @param data
  */
 export const logAnalytics = ({ timestamp = new Date(), value, event, aid, title, template, label, target, current, error }) => {
+  if (!analytics.enabled) return
+
   const path = Router.current().path
   const eventName = typeof event === 'object'
     ? event.type
@@ -35,7 +40,7 @@ export const logAnalytics = ({ timestamp = new Date(), value, event, aid, title,
     errorValue = error
   }
   const labelValue = typeof label === 'string'
-    ? label.trim().substring(0, 15)
+    ? label.trim().substring(0, 50)
     : label
   const data = {
     timestamp,
@@ -50,10 +55,10 @@ export const logAnalytics = ({ timestamp = new Date(), value, event, aid, title,
     value: valueObj,
     error: errorValue
   }
-  console.debug(data)
+
   callMethod({
     name: Analytics.methods.send,
     args: data,
-    failure: console.error
+    failure: (err, args) => console.error(err, args)
   })
 }

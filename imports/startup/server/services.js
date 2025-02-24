@@ -5,7 +5,6 @@ import { rateLimitMethods } from '../../infrastructure/factories/ratelimit/rateL
 // import de from '../../../resources/i18n/de/backend'
 
 const { app } = Meteor.settings.public
-console.debug(app)
 ServiceRegistry.init(app)
 ServiceRegistry.addLang('de', {})
 

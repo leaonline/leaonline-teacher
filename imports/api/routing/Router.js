@@ -8,9 +8,6 @@ import { Roles } from 'meteor/alanning:roles'
 import { logAnalytics } from '../../ui/analytics/logAnalytics'
 
 Roles.subscription = Meteor.subscribe('_roles')
-Tracker.autorun(function () {
-  console.debug('roles', Roles.subscription.ready())
-})
 
 /**
  * Facade to a router to support a common definition for routing in case

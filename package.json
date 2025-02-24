@@ -37,7 +37,7 @@
     "markdown-notes-tree": "^1.13.0",
     "markdownlint-cli": "^0.27.1",
     "puppeteer": "^13.7.0",
-    "simpl-schema": "^3.4.6",
+    "simpl-schema": "^1.13.1",
     "sinon": "^11.1.2",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",

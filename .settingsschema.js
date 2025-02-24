@@ -1,5 +1,6 @@
 
 module.exports = function (settings, SimpleSchema) {
+  console.debug(SimpleSchema)
   const schema = def => new SimpleSchema(def)
   const optional = type => ({ type, optional: true })
 

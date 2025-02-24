@@ -1,6 +1,6 @@
 import { EJSON } from 'meteor/ejson'
 import { Analytics } from '../Analytics'
-import crypt from 'node:crypto'
+import crypto from 'node:crypto'
 
 /**
  * Adds an analytics record if it's not an exact duplicate of an already existing record.
@@ -25,5 +25,5 @@ export const addAnalytics = async (data) => {
  */
 const createHash = data => {
   const str = EJSON.stringify(data, null, 0)
-  return crypt.createHash('md5').update(str).digest('hex')
+  return crypto.createHash('md5').update(str).digest('hex')
 }

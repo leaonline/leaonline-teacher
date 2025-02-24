@@ -69,10 +69,12 @@ Analytics.methods.send = {
   name: 'analytics.methods.send',
   schema: Analytics.schema,
   run: onServerExec(() => {
+    import { Meteor } from 'meteor/meteor'
     import { addAnalytics } from './api/addAnalytics'
 
     return async function (data) {
       const { userId } = this
+      if (!Meteor.settings.public.analytics.enabled) return null
       return addAnalytics({ userId, ...data })
     }
   })

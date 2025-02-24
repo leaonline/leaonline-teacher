@@ -297,7 +297,6 @@ const login = isomorphic({
             connection._loggingIn = false
 
             if (loginError) {
-              console.debug(loginError)
               return reject(loginError)
             }
             else {

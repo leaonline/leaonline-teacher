@@ -34,7 +34,7 @@ async function initialize () {
 }
 
 Form.getFormValues = ({ formId, schema, templateInstance, isUpdate, clean }) => {
-  const isValid = formIsValid(formId, schema, { templateInstance, isUpdate })
+  const isValid = formIsValid(formId, schema, { isUpdate })
   logAnalytics({
     aid: formId,
     event: 'validate-form',

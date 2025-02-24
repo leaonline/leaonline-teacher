@@ -31,9 +31,7 @@ userSchemaDef.firstName.label = false
 userSchemaDef.lastName.autoform = userSchemaDef.lastName.autoform || {}
 userSchemaDef.lastName.autoform.placeholder = userSchemaDef.lastName.label
 userSchemaDef.lastName.label = false
-
 userSchemaDef.account.label = false
-console.debug(userSchemaDef)
 
 const addUserSchema = Schema.create(userSchemaDef)
 
