@@ -7,7 +7,7 @@
       "selectedDates": "Testungen",
       "noData": "Es sind noch keine Testreihen von dieser Person abgeschlossen worden.",
       "noRecords": "Es sind keine Einträge für diese Auswahl vorhanden.",
-      "noAccount": "Es ist noch kein otu.lea Account verknüpft",
+      "noAccount": "Es ist noch kein otu.lea Code verknüpft mit {{firstName}} {{lastName}}.",
       "filter": {
         "alphaLevel": "Alpha-Level der Kann-Beschreibung",
         "accomplishments": "Erfüllen der Kann-Beschreibung",

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 
 export const checkPermissions = function (options) {
-  const { isPublic, backend } = options
+  const { isPublic, backend, name } = options
 
   if (isPublic) {
     return options
@@ -9,21 +9,16 @@ export const checkPermissions = function (options) {
 
   const runFct = options.run
   options.run = async function run (...args) {
-    let userId = this.userId
+    const userId = this.userId
 
     if (!userId) {
-      const user = Meteor.user()
-      userId = user?._id
-    }
-
-    if (!userId) {
-      throw new Meteor.Error('errors.permissionDenied', 'errors.userNotExists', userId)
+      throw new Meteor.Error('errors.permissionDenied', 'errors.userNotExists', { userId, name })
     }
 
     if (backend) {
       const user = await Meteor.users.findOneAsync(userId)
       if (!user?.services?.lea) {
-        throw new Meteor.Error('errors.permissionDenied', 'errors.backendOnly', userId)
+        throw new Meteor.Error('errors.permissionDenied', 'errors.backendOnly', { userId, name })
       }
     }
 

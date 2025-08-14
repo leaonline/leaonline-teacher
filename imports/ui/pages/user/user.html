@@ -212,13 +212,17 @@
 
     {{#if noRecords}}
         <div class="alert alert-warning">
+        {{#onLoaded loaded=loadComplete}}
             {{i18n "pages.user.noRecords"}}
+        {{/onLoaded}}
         </div>
     {{/if}}
 
     {{#if hasNoAccount}}
         <div class="alert alert-warning">
-            {{i18n "pages.user.noAccount"}}
+        {{#onLoaded loaded=loadComplete}}
+            {{i18n "pages.user.noAccount" user}}
+        {{/onLoaded}}
         </div>
     {{/if}}
 

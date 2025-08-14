@@ -15,3 +15,8 @@ Template.registerHelper('truncate', function (num) {
   if (typeof num !== 'number') return 0
   return Math.trunc(num)
 })
+
+Template.registerHelper('stringify', function (obj, indent = 2) {
+  if (typeof obj !== 'object') return ''
+  return JSON.stringify(obj, null, indent)
+})

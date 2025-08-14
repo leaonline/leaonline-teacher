@@ -22,7 +22,7 @@ const { analytics } = Meteor.settings.public
  * @param data
  */
 export const logAnalytics = ({ timestamp = new Date(), value, event, aid, title, template, label, target, current, error }) => {
-  if (!analytics.enabled) return
+  if (!analytics.enabled || !Meteor.userId() || !Meteor.user()) return
 
   const path = Router.current().path
   const eventName = typeof event === 'object'
