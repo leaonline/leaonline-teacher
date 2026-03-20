@@ -1,6 +1,6 @@
 /**
  * Extracts the name of a given test attendee and optionally her code.
- *
+ * @locus client
  * @param user {object} the user object of the attendee
  * @param alwaysIncludeCode {boolean} if true, the code will be added
  * @return {string|undefined} a full name and/or code representation

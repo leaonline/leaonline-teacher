@@ -4,6 +4,7 @@ import { Mongo } from 'meteor/mongo'
 import { createAllMethod } from '../createAllMethod'
 import { expect } from 'chai'
 import { Random } from 'meteor/random'
+import { expectThrow } from '../../../../tests/testUtils.tests'
 
 describe(createAllMethod.name, function () {
   const localCollection = new Mongo.Collection(null)
@@ -31,20 +32,30 @@ describe(createAllMethod.name, function () {
   }
 
   if (Meteor.isServer) {
-    it('throws if no collection is found for this context', function () {
+    it('throws if no collection is found for this context', async () => {
       const name = Random.id()
       const ctx = { name }
       const { run } = createAllMethod({ context: ctx })
-      expect(() => run()).to.throw('errors.collectionUndefined')
+      await expectThrow({
+        fn: () => run(),
+        message: 'errors.collectionUndefined'
+      })
+
       ctx.collection = () => undefined
-      expect(() => run()).to.throw('errors.collectionUndefined')
+
+      await expectThrow({
+        fn: () => run(),
+        message: 'errors.collectionUndefined'
+      })
     })
-    it('defines a function that allows to a get all docs', function () {
+    it('defines a function that allows to a get all docs', async () => {
       const docId = localCollection.insert({ title: Random.id() })
+      const docId2 = localCollection.insert({ title: Random.id() })
       const expectedDoc = localCollection.findOne(docId)
+      const expectedDoc2 = localCollection.findOne(docId2)
 
       const { run } = createAllMethod({ context })
-      expect(run({})).deep.equal([expectedDoc])
+      expect(await run({})).deep.equal([expectedDoc, expectedDoc2])
     })
   }
 })

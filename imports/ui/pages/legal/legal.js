@@ -5,6 +5,8 @@ import settings from '../../../../resources/i18n/de/routes'
 import legalLanguage from './i18n/legalLanguage'
 import { marked } from 'marked'
 import { i18n } from '../../../api/i18n/I18n'
+import { errorToObject } from '../../utils/errorToObject'
+import { getParams } from '../../../api/routing/getParams'
 import './legal.html'
 
 Template.legal.onCreated(function () {
@@ -20,10 +22,10 @@ Template.legal.onCreated(function () {
 
   instance.autorun(() => {
     const dependenciesComplete = instance.state.get('dependenciesComplete')
-    if (!dependenciesComplete) { return }
+    const params = getParams()
+    if (!params || !dependenciesComplete) { return }
 
-    const data = Template.currentData()
-    const { type } = data.params
+    const { type } = params
     let originalType
 
     Object.entries(settings.routes).forEach(([key, value]) => {
@@ -39,7 +41,7 @@ Template.legal.onCreated(function () {
     }
 
     Meteor.call(Legal.methods.get.name, { name: originalType }, (err, legalText) => {
-      if (err) return instance.state.set({ error: err })
+      if (err) return instance.state.set({ error: errorToObject(err), type: null, content: null })
 
       const markedOptions = {
         mangle: false,
@@ -47,14 +49,15 @@ Template.legal.onCreated(function () {
         gfm: true
       }
 
-      marked.parse(legalText, markedOptions, (parsingError, content) => {
-        if (parsingError) {
-          return instance.state.set({ error: parsingError })
-        }
-
-        instance.state.set({ content })
-      })
-      instance.state.set({ type: originalType })
+      try {
+        // eslint-disable-next-line
+        const input = legalText.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, '')
+        const content = marked.parse(input, markedOptions)?.trim() || i18n.get('pages.legal.noContent')
+        instance.state.set({ content, type: originalType })
+      }
+      catch (parsingError) {
+        instance.state.set({ error: errorToObject(parsingError), type: null, content: null })
+      }
     })
   })
 })
@@ -72,5 +75,8 @@ Template.legal.helpers({
   legalTitle () {
     const type = Template.getState('type')
     return `pages.legal.${type}`
+  },
+  error () {
+    return Template.getState('error')
   }
 })

@@ -11,10 +11,15 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
     initClientContext,
     contextHasInitialized
   } from '../../infrastructure/contexts/initClientContext'
-  import { Notify } from '../../ui/components/notifications/Notify'
+  import { Notify } from '../components/notifications/Notify'
+  import { Router } from '../../api/routing/Router'
   import { addLanguage } from '../../api/i18n/addLanguage'
   import { connectRemote } from '../../api/remotes/connectRemote'
-  import { Router } from '../../api/routing/Router'
+
+  const languages = []
+  const instance = this
+  const allComplete = []
+  const subscriptions = new Set()
 
   const handleError = error => {
     if (onError) {
@@ -25,16 +30,12 @@ export const templateInit = function ({ contexts = [], remotes = null, subscribe
     }
   }
 
-  const languages = []
-  const instance = this
-  const allComplete = []
-  const subscriptions = new Set()
-
   // ---------------------------------------------------------------------------
 
   const api = {}
   instance.api = api
 
+  api.getData = ((data = {}) => key => data[key])(instance.data)
   // ---------------------------------------------------------------------------
 
   const debugTemplate = debug || isDebug(instance.view.name)

@@ -58,6 +58,7 @@ Template.class.onCreated(function () {
 
   instance.autorun(() => {
     const data = Template.currentData()
+    if (!data?.params) return
     const { classId } = data.params
 
     if (!Meteor.userId()) { return }
@@ -388,7 +389,7 @@ Template.class.onCreated(function () {
 
           instance.state.set({
             loadRecords: false,
-            competencyCategories: categories.sort((a, b) => a.label.localeCompare(b.label))
+            competencyCategories: categories.sort((a, b) => (a.label ?? '').localeCompare(b.label ?? ''))
           })
         })
     }

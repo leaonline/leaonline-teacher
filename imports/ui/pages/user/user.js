@@ -20,6 +20,7 @@ import { debounce } from '../../utils/debounce'
 import userLanguage from './i18n/userLanguage'
 import './user.scss'
 import './user.html'
+import { logAnalytics } from '../../analytics/logAnalytics'
 
 const toCompetencyTranslation = translationStringFactory('competency')
 
@@ -144,6 +145,7 @@ Template.user.onCreated(function () {
 
   instance.autorun(() => {
     const data = Template.currentData()
+    if (!data) return
     const { userId } = data.params
     State.currentParticipant(userId)
 
@@ -151,8 +153,40 @@ Template.user.onCreated(function () {
     // should update the sidebarState
     const classId = data.queryParams.class || null
     const currentClass = State.currentClass()
-    if (currentClass && classId !== currentClass._id) {
+    const refetchClass = currentClass
+      ? classId !== currentClass._id
+      : !!classId
+
+    if (refetchClass) {
       // fetch class and update in case we have no classDoc available
+      callMethod({
+        name: Course.methods.get,
+        args: { _id: classId },
+        prepare: () => instance.api.debug('load course doc'),
+        failure: error => {
+          instance.api.debug('error at', Course.methods.get.name)
+          instance.api.notify(error)
+        },
+        success: courseDoc => {
+          instance.api.debug('course doc loaded')
+          if (!courseDoc) return
+
+          callMethod({
+            name: User.methods.get,
+            args: { ids: courseDoc.users },
+            failure: error => {
+              instance.api.debug('error at', User.methods.get.name)
+              instance.api.notify(error)
+            },
+            success: (users = []) => {
+              if (courseDoc) {
+                courseDoc.users = users
+                State.currentClass(courseDoc)
+              }
+            }
+          })
+        }
+      })
     }
 
     // if we selected a specific session
@@ -312,6 +346,7 @@ Template.user.onRendered(function () {
   // to set the current doc and auto-load the results
   instance.autorun(() => {
     const data = Template.currentData()
+    if (!data) return
     const currentDimension = data.queryParams.dimension
     const recentSession = instance.state.get('recentSession')
     const initComplete = instance.state.get('initComplete')
@@ -476,6 +511,15 @@ Template.user.events({
   },
   'input #search-input': debounce(function (event, templateInstance) {
     const search = (event.target.value || '').toLowerCase()
+    if (search) {
+      logAnalytics({
+        event: 'input',
+        current: 'search-input',
+        template: templateInstance,
+        aid: 'search-input',
+        value: { search }
+      })
+    }
     templateInstance.state.set({ search })
     templateInstance.applyFilters()
   }, 300)

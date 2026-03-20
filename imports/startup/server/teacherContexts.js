@@ -11,17 +11,18 @@ import {
 import { ContextRegistry } from '../../contexts/ContextRegistry'
 import { Legal } from '../../contexts/legal/Legal'
 import { Meteor } from 'meteor/meteor'
+import { Analytics } from '../../contexts/analytics/Analytics'
 
-[Course, User, Legal].forEach(ctx => {
+[Course, User, Legal, Analytics].forEach(ctx => {
   console.debug(`[${ctx.name}]: build-pipeline`)
   const collection = createCollection(ctx)
   ctx.collection = () => collection
 
-  const allMethods = Object.values(ctx.methods)
+  const allMethods = Object.values(ctx.methods ?? {})
   createMethods(allMethods)
   rateLimitMethods(allMethods)
 
-  const allPubs = Object.values(ctx.publications)
+  const allPubs = Object.values(ctx.publications ?? {})
   createPublications(allPubs)
   rateLimitPublications(allPubs)
 
@@ -29,8 +30,9 @@ import { Meteor } from 'meteor/meteor'
 })
 
 ServiceRegistry.register(Legal)
+ServiceRegistry.register(Analytics)
 
 // bootstrapping legal docs
-Meteor.startup(() => {
-  Legal.helpers.init(Legal.collection())
+Meteor.startup(async () => {
+  await Legal.helpers.init()
 })

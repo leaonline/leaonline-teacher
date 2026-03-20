@@ -2,9 +2,9 @@
     <div class="d-block p-2 text-center">
         {{#if loadComplete}}
         {{#each legal in legalRoutes}}
-            <a href="{{route "legal" legal.name}}">{{i18n legal.label}}</a> |
+            <a data-aid="legal.{{legal.name}}-link" href="{{route "legal" legal.name}}">{{i18n legal.label}}</a> |
         {{/each}}
-            <a href="{{issueLink}}">{{i18n "legal.issue"}}</a>
+            <a data-aid="legal.issue-link" href="{{issueLink}}">{{i18n "legal.issue"}}</a>
         {{/if}}
     </div>
 </template>

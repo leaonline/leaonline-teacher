@@ -1,5 +1,5 @@
 <template name="login">
-    <div class="container">
+    <div class="container text-center">
         <img src="/logo/welcome-1110x624.png"
              width=1110
              height=624
@@ -10,10 +10,10 @@
 
     <div class="container">
         <div class="row my-5">
-            <div class="col col-sm-12 col-md-6 col-lg-4 ml-auto mr-auto">
+            <div class="col col-sm-12 col-md-6 col-lg-4 ms-auto me-auto">
                 {{#if login}}
                     <div class="w-100 {{#if loggingIn}}d-unavailable{{/if}}">
-                        <button class="btn btn-lg btn-primary btn-block login-button">
+                        <button class="btn btn-lg btn-primary w-100 block login-button">
                             {{#onLoaded loaded=loadComplete}}
                                 {{i18n "pages.login.login"}}
                             {{/onLoaded}}
@@ -39,19 +39,21 @@
 
                 {{#with loginError}}
                     <div class="alert alert-danger mt-3">
-                        <div class="d-block alert-heading font-weight-bold text-center">
-                            {{#with this.error}}
-                                {{i18n this}}
-                            {{else}}
-                                {{i18n "error.occurred"}}
-                            {{/with}}
+                        <div class="d-block alert-heading fw-bold text-center">
+                          {{i18n "error.occurred"}}
                         </div>
                         <div class="d-block text-center">
-                            {{#with this.reason}}
-                                {{i18n this}}
+                            {{#if this.reason}}
+                                <p>{{i18n this.reason}}</p>
                             {{else}}
-                                {{this.message}}
-                            {{/with}}
+                                <p>{{this.message}}</p>
+                            {{/if}}
+                          {{#if this.details}}
+                            <details>
+                              <summary>{{i18n "common.details"}}</summary>
+                              <pre><code>{{stringify this.details}}</code></pre>
+                            </details>
+                          {{/if}}
                         </div>
                     </div>
                 {{/with}}
@@ -64,7 +66,7 @@
                         {{/onLoaded}}
                     </div>
 
-                    <a class="btn btn-primary btn-block" href="{{next}}">
+                    <a class="btn btn-primary w-100 block" href="{{next}}">
                         {{#onLoaded loaded=loadComplete}}
                             {{i18n "actions.continue"}}
                         {{/onLoaded}}

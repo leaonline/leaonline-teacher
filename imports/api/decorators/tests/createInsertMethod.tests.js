@@ -6,6 +6,7 @@ import { expect } from 'chai'
 import { stub, restoreAll } from '../../../../tests/teacherStubs'
 import { Random } from 'meteor/random'
 import { CollectionHooks } from '../../collections/CollectionHooks'
+import { expectThrow } from '../../../../tests/testUtils.tests'
 
 describe(createInsertMethod.name, function () {
   const localCollection = new Mongo.Collection(null)
@@ -17,8 +18,8 @@ describe(createInsertMethod.name, function () {
     collection: () => localCollection
   }
 
-  afterEach(function () {
-    localCollection.remove({})
+  afterEach(async function () {
+    await localCollection.removeAsync({})
     restoreAll()
   })
 
@@ -39,20 +40,26 @@ describe(createInsertMethod.name, function () {
   }
 
   if (Meteor.isServer) {
-    it('throws if no collection is found for this context', function () {
+    it('throws if no collection is found for this context', async () => {
       const name = Random.id()
       const ctx = { name }
       const { run } = createInsertMethod({ context: ctx })
-      expect(() => run()).to.throw('errors.collectionUndefined')
+      await expectThrow({
+        fn: () => run(),
+        message: 'errors.collectionUndefined'
+      })
       ctx.collection = () => undefined
-      expect(() => run()).to.throw('errors.collectionUndefined')
+      await expectThrow({
+        fn: () => run(),
+        message: 'errors.collectionUndefined'
+      })
     })
-    it('defines a function that allows to a get all docs', function () {
+    it('defines a function that allows to a get all docs', async () => {
       const insertDoc = { title: Random.id() }
       stub(CollectionHooks, 'beforeInsert', () => {})
       const { run } = createInsertMethod({ context })
-      const docId = run(insertDoc)
-      const loadedDoc = localCollection.findOne(docId)
+      const docId = await run.call({}, insertDoc)
+      const loadedDoc = await localCollection.findOneAsync(docId)
       expect(loadedDoc).deep.equal({
         _id: docId,
         title: insertDoc.title

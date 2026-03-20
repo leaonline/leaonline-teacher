@@ -42,7 +42,8 @@ Template.afUserCode.onRendered(function () {
 
 Template.afUserCode.helpers({
   key (name) {
-    return Template.currentData().name + '.' + name
+    const data = Template.currentData()
+    return data && data.name + '.' + name
   },
   generating () {
     return Template.getState('generating')
@@ -58,6 +59,9 @@ Template.afUserCode.helpers({
   },
   loadComplete () {
     return Template.getState('initComplete')
+  },
+  error () {
+    return Template.getState('error')
   }
 })
 
@@ -66,7 +70,19 @@ Template.afUserCode.events({
     event.preventDefault()
 
     templateInstance.state.set('generating', true)
-    const userDoc = await OtuLea.generateUser()
+
+    let userDoc
+    try {
+      userDoc = await OtuLea.generateUser()
+    }
+    catch (e) {
+      templateInstance.state.set({
+        generating: false,
+        error: e.message,
+        valid: false,
+        invalid: true
+      })
+    }
     userDoc.valid = true
 
     templateInstance.updateValues(userDoc)

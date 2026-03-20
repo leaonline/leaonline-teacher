@@ -36,10 +36,10 @@ Legal.schema = {
 
 Legal.helpers = {}
 
-Legal.helpers.init = function () {
-  const configDoc = Legal.collection().findOne()
+Legal.helpers.init = async function () {
+  const configDoc = await Legal.collection().findOneAsync()
   if (!configDoc) {
-    Legal.collection().insert({
+    await Legal.collection().insertAsync({
       imprint: 'Imprint',
       privacy: 'Privacy',
       terms: 'Terms',
@@ -62,8 +62,8 @@ Legal.methods.update = {
     terms: Legal.schema.terms,
     contact: Legal.schema.contact
   },
-  run: onServer(function ({ _id, imprint, privacy, terms, contact }) {
-    return Legal.collection().update(_id, { $set: { imprint, privacy, terms, contact } })
+  run: onServer(async function ({ _id, imprint, privacy, terms, contact }) {
+    return Legal.collection().updateAsync(_id, { $set: { imprint, privacy, terms, contact } })
   })
 }
 
@@ -81,8 +81,8 @@ Legal.methods.get = {
       allowedValues: Object.keys(Legal.schema)
     }
   },
-  run: onServer(function ({ name } = {}) {
-    const config = Legal.collection().findOne()
+  run: onServer(async function ({ name } = {}) {
+    const config = await Legal.collection().findOneAsync()
     if (!name) {
       return config
     }

@@ -16,11 +16,12 @@ Template.visualization.onRendered(function () {
   const instance = this
 
   instance.autorun(() => {
-    const { entries } = Template.currentData()
+    const data = Template.currentData()
     const initComplete = instance.state.get('initComplete')
 
-    if (!initComplete) { return }
+    if (!data || !initComplete) { return }
 
+    const { entries } = data
     const userFilter = instance.state.get('userFilter') || {}
     const alphaLevels = new Map()
     const dates = new Set()
@@ -166,7 +167,7 @@ Template.visualization.events({
 
     templateInstance.state.set('hoverUser', null)
   },
-  'click #buttonPlus' (event, templateInstance) {
+  'click #buttonPlus' (event) {
     event.preventDefault()
     const myImg = document.getElementById('graphwrap')
     const zval = document.getElementById('zomval')
@@ -179,7 +180,7 @@ Template.visualization.events({
     myImg.classList.remove('zoomout1')
   },
 
-  'click #buttonMinus' (event, templateInstance) {
+  'click #buttonMinus' (event) {
     event.preventDefault()
     const myImg = document.getElementById('graphwrap')
     const zval = document.getElementById('zomval')
@@ -198,5 +199,8 @@ Template.visualization.events({
     const userFilter = templateInstance.state.get('userFilter')
     userFilter[username] = !userFilter[username]
     templateInstance.state.set({ userFilter })
-  }
+  },
+
+  'click .dropdownmenu' () {},
+  'hidden.bs.dropdown .dropdownmenu' () {}
 })

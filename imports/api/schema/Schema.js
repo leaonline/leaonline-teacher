@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { Tracker } from 'meteor/tracker'
-import SimpleSchema from 'simpl-schema'
+import SimpleSchema from 'meteor/aldeed:simple-schema'
 import { ServiceRegistry } from '../ServiceRegistry'
 
 const schemaOptions = Object.keys(ServiceRegistry.schemaOptions)

@@ -27,6 +27,7 @@
                                                             isPassive
                                                             userDataValue.name}}passive-user{{/if}}"
                                                          id="{{userDataValue.name}}"
+                                                         data-aid="vis.barline-{{userDataValue.name}}"
                                                          style="height: {{userDataValue.value}}%;">
                                                         <!-- set hover bar value -->
                                                         <div class="hoverbox"
@@ -72,7 +73,8 @@
                 <div class="selctmenu">
                     <div class="dropdownmenu dropdown">
                         <div class="labelvalue text-muted"
-                             data-toggle="dropdown">
+                             data-aid="vis.filterDropdown"
+                             data-bs-toggle="dropdown">
                             {{i18n "visualization.filter"}}
                             {{> icon name="chevron-down"}}
                         </div>
@@ -81,6 +83,7 @@
                                 {{#each name in userNames}}
                                     <div class="dropdown-item">
                                         <input type="checkbox" name="dropdown"
+                                               data-aid="vis.filterCheckbox-{{name}}"
                                                id="checkbox-{{name}}"
                                                data-target="{{name}}"
                                                class="user-checkbox"
@@ -97,10 +100,12 @@
                 <div class="zoombtn">
                     <div id="zoombar" class="zoombar">
                         <button type="button" id="buttonPlus"
+                                data-aid="vis.zoomOutBtn"
                                 class="text-muted">-
                         </button>
                         <span id="zomval" class="text-muted">200%</span>
                         <button type="button" id="buttonMinus"
+                                data-aid="vis.zoomInBtn"
                                 class="text-muted">+
                         </button>
                     </div>

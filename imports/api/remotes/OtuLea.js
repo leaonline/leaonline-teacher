@@ -5,11 +5,15 @@ const { otulea } = Meteor.settings.public.hosts
 
 /**
  * @inheritDoc {Remote}
- * @type {Remote}
+ * @extends {Remote}
  */
 const OtuLea = createRemote(otulea)
 
-OtuLea.generateUser = async () => await OtuLea.call({
+/**
+ * @async
+ * @return {Promise<*>}
+ */
+OtuLea.generateUser = () => OtuLea.call({
   name: otulea.methods.generateUser,
   args: {}
 })

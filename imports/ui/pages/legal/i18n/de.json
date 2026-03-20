@@ -9,7 +9,8 @@
       "paragraph": "Paragraph",
       "paragraphs": "Paragraphen",
       "section": "Absatz {{number}}",
-      "unknownKey": "Unbekannte Kategorie: {{name}}"
+      "unknownKey": "Unbekannte Kategorie: {{name}}",
+      "noContent": "Es konnte kein Inhalte gefunden werden. Bitte kontaktieren Sie den Support, um dieses Problem zu melden."
     }
   }
 }

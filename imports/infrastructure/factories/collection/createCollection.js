@@ -27,11 +27,8 @@ export const createCollection = (context) => {
     : context.schema
 
   if (context.isLocalCollection) {
-    const local = new Mongo.Collection(null)
-    // const override = { collection: local, schema }
-    // return collectionFactory({ ...context, ...override })
-    return local
+    return new Mongo.Collection(null)
   }
 
-  return collectionFactory({ ...context, schema })
+  return collectionFactory({ name: context.name, schema })
 }

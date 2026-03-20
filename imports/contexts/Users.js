@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { onServer, onServerExec } from '../utils/arch'
+import { Email } from 'meteor/email'
 
 export const Users = {
   name: 'users',
@@ -33,24 +34,23 @@ Users.methods.requestAccount = {
   timeInterval: 5000,
   isPublic: true,
   run: onServerExec(function () {
-    import { Email } from 'meteor/email'
     import { printObj } from '../utils/printObj'
 
     const options = Meteor.settings.accounts.request
     const headers = { 'content-transfer-encoding': 'quoted-printable' }
 
-    return function (requestDoc) {
+    return async function (requestDoc) {
       const body = printObj(requestDoc)
-
-      ;(options.to || []).forEach(destination => {
-        Email.send({
+      const destinations = options.to || []
+      for (const destination of destinations) {
+        await Email.sendAsync({
           to: destination,
           headers: headers,
           from: options.from,
           subject: options.subject,
           text: body
         })
-      })
+      }
     }
   })
 }
@@ -60,8 +60,8 @@ Users.methods.getServiceCredentials = {
   schema: {},
   numRequests: 5,
   timeInterval: 500,
-  run: onServer(function () {
-    const user = Meteor.users.findOne(this.userId)
+  run: onServer(async function () {
+    const user = await Meteor.users.findOneAsync(this.userId)
     return {
       accessToken: user.services.lea.accessToken
     }

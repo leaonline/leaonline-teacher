@@ -8,7 +8,7 @@ export const createAllMethod = ({ context }) => {
     schema: {},
     numRequests: 1,
     timeInterval: 5000,
-    run: onServer(function () {
+    run: onServer(async function () {
       const Collection = context.collection?.()
       if (!Collection) {
         throw new Meteor.Error('get.error', 'errors.collectionUndefined', { name })
@@ -19,7 +19,7 @@ export const createAllMethod = ({ context }) => {
           { isLegacy: { $exists: false } },
           { isLegacy: true }
         ]
-      }).fetch()
+      }).fetchAsync()
     })
   }
 }

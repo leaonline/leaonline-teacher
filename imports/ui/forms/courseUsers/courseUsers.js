@@ -31,9 +31,7 @@ userSchemaDef.firstName.label = false
 userSchemaDef.lastName.autoform = userSchemaDef.lastName.autoform || {}
 userSchemaDef.lastName.autoform.placeholder = userSchemaDef.lastName.label
 userSchemaDef.lastName.label = false
-
 userSchemaDef.account.label = false
-console.debug(userSchemaDef)
 
 const addUserSchema = Schema.create(userSchemaDef)
 
@@ -61,6 +59,7 @@ Template.afCourseUsers.onCreated(function () {
 
   instance.autorun(() => {
     const data = Template.currentData()
+    if (!data) return
     const isInvalid = data.atts.class && data.atts.class.includes('is-invalid')
     instance.state.set({ isInvalid })
   })
@@ -130,7 +129,7 @@ Template.afCourseUsers.events({
       clean: false
     })
 
-    if (!userDoc) return // messages handled by schema
+    if (!userDoc) return
 
     const account = userDoc.account || {}
 

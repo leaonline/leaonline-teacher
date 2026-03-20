@@ -50,14 +50,15 @@ ContentServer.sync = async ({ name, dryRun = true, debug = false }) => {
 
   ContentServer.log(name, 'sync', allDocs.length, 'documents')
 
-  allDocs.forEach((doc, index) => {
+  for (let index = 0; index < allDocs.length; index++) {
+    const doc = allDocs[index]
     const { _id: docId } = doc
     delete doc.meta
 
     allIds[index] = docId
 
-    if (collection.find(docId).count() === 0) {
-      const insertId = !dryRun && collection.insert(doc)
+    if (!(await collection.findOneAsync(docId))) {
+      const insertId = !dryRun && await collection.insertAsync(doc)
 
       if (debug) ContentServer.debug(name, 'inserted', insertId)
       stats.created++
@@ -65,15 +66,15 @@ ContentServer.sync = async ({ name, dryRun = true, debug = false }) => {
 
     else {
       delete doc._id
-      const updated = !dryRun && collection.update(docId, { $set: doc })
+      const updated = !dryRun && await collection.updateAsync(docId, { $set: doc })
 
       if (debug) ContentServer.debug(name, 'updated', docId, '=', updated)
       stats.updated++
     }
-  })
+  }
 
   // remove all docs, that are not in ids anymore
-  stats.removed = !dryRun && collection.remove({ _id: { $nin: allIds } })
+  stats.removed = !dryRun && await collection.removeAsync({ _id: { $nin: allIds } })
 
   // always log the stats
   ContentServer.log(JSON.stringify(stats))

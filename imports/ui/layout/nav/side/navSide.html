@@ -5,21 +5,25 @@
             {{#onLoaded loaded=componentsLoaded}}
                 {{#nav class="flex-column flex-wrap justify-content-center"}}
                     {{#navlink href=(route 'myClasses') linkclass="sidebar-nav-link text-white"
+                               data-aid="navSide.toMyClassesLink"
                                active=(currentRoute 'myClasses')}}
                         <span title="{{i18n "routes.myClasses.label"}}" class="fa fas fa-fw fa-home"></span>
                     {{/navlink}}
                     {{#navlink href=(route 'class' currentClass._id) linkclass="sidebar-nav-link text-white"
+                               data-aid="navSide.toCurrentClassLink"
                                disabled=(classRouteDisabled)
                                active=(currentRoute 'class' currentClass._id)}}
                         <span title="{{i18n "routes.class.label"}}" class="fa fas fa-fw fa-th-large"></span>
                     {{/navlink}}
                     {{#navlink href=(route 'user' currentClass._id currentParticipant._id)
+                               data-aid="navSide.toCurrentUserLink"
                                linkclass="sidebar-nav-link text-white"
                                disabled=(userRouteDisabled)
                                active=(currentRoute 'user')}}
                         <span title="{{i18n "routes.user.label"}}" class="fa fas fa-fw fa-sliders-h"></span>
                     {{/navlink}}
-                    {{#navlink href="" linkclass="sidebar-nav-link text-white print-btn" disabled=false }}
+                    {{#navlink href="" linkclass="sidebar-nav-link text-white print-btn" disabled=false
+                               data-aid="navSide.printBtn"}}
                         <span title="{{i18n "actions.print"}}" class="fa fas fa-fw fa-print"></span>
                     {{/navlink}}
 
@@ -31,7 +35,8 @@
                     </li>
                 --}}
                     <li class="nav-item">
-                        <a class="nav-link sidebar-nav-link logoutbtn text-white" href="{{route 'logout'}}" title="{{i18n "actions.signOut"}}">
+                        <a class="nav-link sidebar-nav-link logoutbtn text-white" href="{{route 'logout'}}" title="{{i18n "actions.signOut"}}"
+                           data-aid="navSide.logoutLink">
                             <i class="fas fa-power-off"></i>
                         </a>
                     </li>

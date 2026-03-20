@@ -43,4 +43,18 @@ describe(createUpdateMethod.name, function () {
       expect(method.run).to.equal(undefined)
     })
   }
+
+  if (Meteor.isServer) {
+    it('defines a function that allows to update a given document', async () => {
+      const insertDoc = { title: Random.id() }
+      const docId = localCollection.insert(insertDoc)
+      const { run } = createUpdateMethod({ context })
+      const updated = await run.call({}, { _id: docId, $set: { title: 'moo' } })
+      expect(updated).to.equal(1)
+
+      const { meta, ...updatedDoc } = await localCollection.findOneAsync(docId)
+      expect(updatedDoc).deep.equal({ _id: docId, title: 'moo' })
+      expect(meta.updatedAt).to.be.instanceof(Date)
+    })
+  }
 })

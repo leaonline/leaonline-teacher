@@ -16,17 +16,17 @@ export const createGetMethod = ({ context }) => {
       },
       'ids.$': String
     },
-    run: onServer(function ({ _id, ids } = {}) {
+    run: onServer(async function ({ _id, ids } = {}) {
       const Collection = context.collection?.()
       if (!Collection) {
         throw new Meteor.Error('get.error', 'errors.collectionUndefined', { name })
       }
 
       if ((Array.isArray(ids))) {
-        return Collection.find({ _id: { $in: ids } }).fetch()
+        return Collection.find({ _id: { $in: ids } }).fetchAsync()
       }
       else {
-        return Collection.findOne(_id)
+        return Collection.findOneAsync(_id)
       }
     })
   }

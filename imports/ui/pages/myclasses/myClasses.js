@@ -241,10 +241,12 @@ Template.myClasses.helpers({
     return Template.getState('doc')
   },
   getEntryRoute () {
-    return Template.instance().data.getEntryRoute()
+    const getEntryRoute = Template.instance().api.getData('getEntryRoute')
+    return getEntryRoute()
   },
   getUserRoute () {
-    return Template.instance().data.getUserRoute()
+    const getUserRoute = Template.instance().api.getData('getUserRoute')
+    return getUserRoute()
   },
   getCourse (id) {
     return Course.collection().findOne(id)
@@ -277,13 +279,15 @@ Template.cardItems.helpers({
 })
 
 Template.myClasses.events({
+  'click a' (event, templateInstance) {},
   'submit #insertForm' (event, templateInstance) {
     event.preventDefault()
 
     const type = Types[templateInstance.state.get('type')]
     const insertDoc = Form.getFormValues({
       formId: 'insertForm',
-      schema: type.schema
+      schema: type.schema,
+      templateInstance
     })
 
     if (!insertDoc) return
@@ -395,5 +399,8 @@ Template.myClasses.events({
       action: null,
       doc: null
     })
+  },
+  'click .cancel-form-btn' () {
+    // analytics-only
   }
 })

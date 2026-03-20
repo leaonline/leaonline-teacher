@@ -44,6 +44,7 @@
                     {{#each category in competencyCategories}}
                         <div class="form-check">
                             <input class="form-check-input filter-input"
+                                   data-aid="user.checkBox-competency-category-{{category.name}}"
                                    id="checkbox-{{category.name}}"
                                    type="checkbox"
                                    value=""
@@ -51,6 +52,7 @@
                                    data-value="{{category.name}}"
                                    checked="{{#if category.active}}checked{{/if}}">
                             <label class="form-check-label text-white font-weight-bold"
+                                   data-aid="user.checkBox-{{category.name}}-label"
                                    for="checkbox-{{category.name}}">
                                 {{category.label}}
                             </label>
@@ -73,6 +75,7 @@
                                data-target="alphaLevel"
                                data-key="level"
                                data-value="{{alphaLevel.level}}"
+                               data-aid="user.checkBox-alphalevel-{{alphaLevel.level}}"
                                checked="{{#if alphaLevel.active}}checked{{/if}}">
                         <label class="form-check-label text-white font-weight-bold"
                                for="checkbox-{{alphaLevel._id}}">
@@ -90,6 +93,7 @@
                     {{#each level in accomplishments}}
                     <div class="form-check">
                         <input class="form-check-input filter-input"
+                               data-aid="user.checkBox-accomplishments-{{level.value}}"
                                id="acc-checkbox-{{level.value}}"
                                type="checkbox"
                                value=""
@@ -113,6 +117,7 @@
                     <div class="form-check">
                         <input class="form-check-input filter-input"
                                id="dev-checkbox-{{status.value}}"
+                               data-aid="user.checkBox-development-{{status.value}}"
                                type="checkbox"
                                value=""
                                data-target="development"
@@ -147,6 +152,7 @@
                     <input id="search-input"
                            type="search"
                            class="form-control"
+                           data-aid="user.searchInput"
                            placeholder="{{i18n "actions.search"}}">
                 </div>
             </div>
@@ -157,6 +163,7 @@
         <div class="col-12 col-lg-6 d-flex">
             {{! dimension select}}
             <select id="dimension-select"
+                    data-aid="user.dimensionSelect"
                     class="form-control border-{{color}} text-{{color}}">
                 {{#if selectOneIsActive}}
                     <option value="">{{i18n "form.selectOne"}}</option>
@@ -170,7 +177,7 @@
 
             {{! test date select }}
             {{#with recordDates}}
-                <select id="record-select" class="form-control">
+                <select id="record-select" class="form-control" data-aid="user.recordSelect">
                     <option value="">
                         {{i18n "form.selectName" name=(i18n "record.title")}}
                     </option>
@@ -185,6 +192,7 @@
                 </select>
             {{else}}
                 <select id="record-select"
+                        data-aid="user.recordSelect"
                         class="form-control disabled"
                         disabled>
                     <option value="">
@@ -204,13 +212,17 @@
 
     {{#if noRecords}}
         <div class="alert alert-warning">
+        {{#onLoaded loaded=loadComplete}}
             {{i18n "pages.user.noRecords"}}
+        {{/onLoaded}}
         </div>
     {{/if}}
 
     {{#if hasNoAccount}}
         <div class="alert alert-warning">
-            {{i18n "pages.user.noAccount"}}
+        {{#onLoaded loaded=loadComplete}}
+            {{i18n "pages.user.noAccount" user}}
+        {{/onLoaded}}
         </div>
     {{/if}}
 
@@ -234,7 +246,8 @@
                         data-target="{{competency._id}}">
 
                         {{! render front page if not flipped }}
-                        <div class="card-wrapper bg-white rounded h-100 shadow-sm d-{{#if flipped competency._id}}none{{else}}block{{/if}}">
+                        <div data-aid="user.competencyFlipcard-{{competency.shortCode}}"
+                             class="card-wrapper bg-white rounded h-100 shadow-sm d-{{#if flipped competency._id}}none{{else}}block{{/if}}">
                             <div class="d-flex justify-content-between py-1 px-3">
                                 <span class="text-secondary">
                                     {{i18n "alphaLevel.title"}}
@@ -283,7 +296,8 @@
                         </div>
 
                         {{! else render back page }}
-                        <div class="card-wrapper bg-blue-gray text-light rounded h-100 shadow-sm p-2 d-{{#if flipped competency._id}}block{{else}}none{{/if}}">
+                        <div data-aid="user.competencyFlipcard-{{competency.shortCode}}"
+                             class="card-wrapper bg-blue-gray text-light rounded h-100 shadow-sm p-2 d-{{#if flipped competency._id}}block{{else}}none{{/if}}">
                             <small class="d-block text-center font-weight-bold">
                                 {{competency.shortCode}}: {{competency.description}}
                             </small>

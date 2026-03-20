@@ -1,5 +1,7 @@
-// import '../imports/startup/client/serviceWorker'
+import 'jquery'
+import '../imports/startup/client/serviceWorker'
 import '../imports/startup/client/i18n'
+import '../imports/startup/client/analytics'
 import '../imports/startup/client/routes'
 import '../imports/startup/client/minimalui'
 import '../imports/startup/client/styles'

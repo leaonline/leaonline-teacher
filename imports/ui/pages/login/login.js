@@ -4,6 +4,7 @@ import { loggedIn } from '../../../api/utils/accountUtils'
 import loginLanguages from './i18n/loginLanguages'
 import '../../components/request/requestAccount'
 import './login.html'
+import { errorToObject } from '../../utils/errorToObject'
 
 const states = {
   login: 'login',
@@ -13,7 +14,7 @@ const states = {
 
 Template.login.onCreated(function () {
   const instance = this
-
+  instance.onSuccess = instance.data.onSuccess
   instance.init({
     useLanguage: [loginLanguages],
     onComplete () {
@@ -83,16 +84,20 @@ Template.login.events({
     Meteor.loginWithLea((err, res) => {
       templateInstance.state.set('loggingIn', false)
       if (err) {
-        console.error(err)
-
-        if (err.name === 'Accounts.LoginCancelledError') {
-          err.reason = 'pages.login.cancelled'
+        let error = err
+        if (err.errorType === 'Accounts.LoginCancelledError') {
+          error = new Meteor.Error(400, 'pages.login.cancelled', { original: err.name })
         }
-
-        return templateInstance.state.set('loginError', err)
+        const loginError = errorToObject(error)
+        return templateInstance.state.set({ loginError })
       }
 
-      templateInstance.data.onSuccess(res)
+      if (templateInstance.onSuccess) {
+        templateInstance.onSuccess(res)
+      }
+      else {
+        window.location.reload(true)
+      }
     })
   },
   'click .request-btn': async (event, templateInstance) => {

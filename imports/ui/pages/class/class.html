@@ -8,6 +8,7 @@
 
     {{#onLoaded loaded=loadComplete}}
         <select class="form-control border-{{color}} text-{{color}} d-print-none"
+                data-aid="class.dimensionSelect"
                 id="dimension-select">
             {{#each dimension in dimensions}}
                 <option value="{{dimension._id}}">{{dimension.title}}</option>
@@ -90,25 +91,28 @@
                             </div>
                         </div>
                         <div class="card-body category-collapse clickable text-center p-0 text-secondary"
+                             data-aid="class.categoryCollapse-{{category.label}}"
                              type="button"
                              data-category="{{category.name}}"
-                             data-toggle="collapse"
-                             data-target="#collapse-category-{{@index}}"
+                             data-bs-toggle="collapse"
+                             data-bs-target="#collapse-category-{{@index}}"
                              aria-expanded="false"
                              aria-controls="collapse-category-{{@index}}">
-                            <h4 class="ml-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">
+                            <h4 class="ms-2 caret-icon {{#if openCategory category.name}}caret-open{{/if}}">
                                 {{> icon name="caret-down" }}
                             </h4>
                         </div>
                         <ul class="list-group collapse text-secondary" id="collapse-category-{{@index}}">
                             {{#each competency in category.entries}}
                                 <li class="list-group-item clickable competency-entry text-secondary"
+                                    data-aid="class.competencyCollapse-{{competency.shortCode}}"
                                     type="button"
                                     data-category="{{category.name}}"
                                     data-competency="{{competency._id}}"
-                                    data-toggle="collapse" data-target="#collapse-{{category.name}}-{{@index}}">
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#collapse-{{category.name}}-{{@index}}">
                                     <div class="d-block text-center">
-                                        <span class="badge badge-secondary p-2 font-weight-bold">
+                                        <span class="badge bg-secondary p-2 font-weight-bold">
                                             {{i18n "alphaLevel.title"}}
                                             {{competency.level}}
                                         </span>
@@ -127,7 +131,7 @@
                                                  aria-valuemin="0"
                                                  aria-valuemax="100"></div>
                                         </div>
-                                        <div class="ml-2 caret-icon {{#if openCard category.name competency._id}}caret-open{{/if}}">
+                                        <div class="ms-2 caret-icon {{#if openCard category.name competency._id}}caret-open{{/if}}">
                                             {{> icon name="caret-down"}}
                                         </div>
                                     </div>

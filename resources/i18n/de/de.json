@@ -10,7 +10,8 @@
     "cancel": "Abbrechen",
     "archive": "Archivieren",
     "print": "Aktuelle Seite drucken",
-    "signOut": "Abmelden"
+    "signOut": "Abmelden",
+    "success": "Aktion erfolgreich!"
   },
   "accounts": {
     "firstName": "Vorname",
@@ -30,7 +31,8 @@
     "progress": "Fortschritt",
     "average": "Mittelwert",
     "grade": "Bewertung",
-    "development": "Entwicklung"
+    "development": "Entwicklung",
+    "details": "Details"
   },
   "form": {
     "selectOne": "(Bitte wählen)",

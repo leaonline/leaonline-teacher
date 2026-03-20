@@ -32,7 +32,8 @@
                     </span>
 
                         {{> button
-                                class="ml-auto modal-trigger d-print-none"
+                                data-aid="myClasses.addNewBtn"
+                                class="ms-auto modal-trigger d-print-none"
                                 data-target="insert"
                                 data-type="course"
                                 colortype="primary"
@@ -66,9 +67,8 @@
                             </h2>
 
                             {{#each summary in this}}
-                                <a href="{{route "user" summary.user._id
-                                                 "session"
-                                                 summary.session._id}}"
+                                <a data-aid="myClasses.toUserLink"
+                                   href="{{route "user" summary.user._id "session" summary.session._id}}"
                                    class="d-block mb-2">
                                     {{toLocaleDate summary.session.completedAt
                                                    "date"}}:
@@ -82,6 +82,7 @@
 
                     {{#if completedCourses}}
                         {{#button
+                                data-aid="myClasses.archivedClassesBtn"
                                 class="modal-trigger mt-5 d-print-none"
                                 data-target="archived"
                                 data-type="course"
@@ -103,7 +104,8 @@
                     </span>
 
                         {{> button
-                                class="ml-auto modal-trigger d-print-none"
+                                data-aid="myClasses.addUserBtn"
+                                class="ms-auto modal-trigger d-print-none"
                                 data-target="insert"
                                 data-type="user"
                                 colortype="primary"
@@ -144,12 +146,21 @@
                                         </td>
 
                                         <td class="text-right no-wrap d-print-none">
-                                            <a href="{{route getUserRoute
-                                                             user._id}}"
-                                               class="btn btn-sm btn-outline-secondary">
-                                                {{> icon name="eye"}}
-                                            </a>
+                                            {{#if user.account.code}}
+                                                <a href="{{route getUserRoute user._id}}"
+                                                   data-aid="myClasses.toUserRoute2Link"
+                                                   class="btn btn-sm btn-outline-secondary">
+                                                    {{> icon name="eye"}}
+                                                </a>
+                                            {{else}}
+                                                <a disabled href tabindex="-1"
+                                                   data-aid="myClasses.toUserRoute2LinkDisabled"
+                                                   class="btn btn-sm btn-outline-secondary disabled text-muted">
+                                                    {{> icon name="eye"}}
+                                                </a>
+                                            {{/if}}
                                             <button class="btn btn-sm btn-outline-success modal-trigger"
+                                                    data-aid="myClasses.editUserBtn"
                                                     data-type="user"
                                                     data-id="{{user._id}}"
                                                     disabled="{{#if
@@ -158,6 +169,7 @@
                                                 {{> icon name="edit"}}
                                             </button>
                                             <button class="btn btn-sm btn-outline-danger modal-trigger"
+                                                    data-aid="myClasses.deleteUserBtn"
                                                     data-type="user"
                                                     data-id="{{user._id}}"
                                                     disabled="{{#if
@@ -181,6 +193,7 @@
 
                     {{#if completedCourses}}
                         {{#button
+                                data-aid="myClasses.archivedUsersBtn"
                                 class="modal-trigger d-print-none"
                                 data-target="archived"
                                 data-type="user"
@@ -259,16 +272,19 @@
                                             <td class="text-right no-wrap">
                                                 <a href="{{route getUserRoute
                                                                  user._id}}"
+                                                   data-aid="myClasses.toArchivedUserLink"
                                                    class="btn btn-sm btn-outline-secondary">
                                                     {{> icon name="eye"}}
                                                 </a>
                                                 <button class="btn btn-sm btn-outline-success modal-trigger"
+                                                        data-aid="myClasses.editArchivedUserBtn"
                                                         data-type="user"
                                                         data-id="{{user._id}}"
                                                         data-target="update">
                                                     {{> icon name="edit"}}
                                                 </button>
                                                 <button class="btn btn-sm btn-outline-danger modal-trigger"
+                                                        data-aid="myClasses.deleteArchivedUserBtn"
                                                         data-type="user"
                                                         data-id="{{user._id}}"
                                                         data-target="delete">
@@ -303,8 +319,23 @@
                     {{/modalbody}}
                     {{#modalfooter}}
                         <div class="d-flex justify-content-between w-100">
-                            {{> button type="submit" form="insertForm" colortype="primary" label=(i18n "actions.insert") class="insert"}}
-                            {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                            {{> button
+                                    type="submit"
+                                    data-aid="myClasses.submitInsertFormBtn"
+                                    form="insertForm"
+                                    colortype="primary"
+                                    label=(i18n "actions.insert")
+                                    class="insert inser-form-btn"
+                            }}
+                            {{> button
+                                    data-aid="myClasses.cancelInsertFormBtn"
+                                    class="cancel-form-btn"
+                                    colortype="secondary"
+                                    outline=true
+                                    data-bs-dismiss="modal"
+                                    class="cancel-form-btn"
+                                    label=(i18n "actions.cancel")
+                            }}
                         </div>
                     {{/modalfooter}}
                 {{/if}}
@@ -317,8 +348,20 @@
                     {{/modalbody}}
                     {{#modalfooter}}
                         <div class="d-flex justify-content-between w-100">
-                            {{> button type="submit" colortype="success" label=(i18n "actions.update") class="save-changes" form="updateForm"}}
-                            {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                            {{> button
+                                    data-aid="myClasses.submitUpdateFormBtn"
+                                    type="submit"
+                                    colortype="success"
+                                    label=(i18n "actions.update")
+                                    class="save-changes"
+                                    form="updateForm"}}
+                            {{> button
+                                    data-aid="myClasses.cancelUpdateFormbtn"
+                                    colortype="secondary"
+                                    outline=true
+                                    data-bs-dismiss="modal"
+                                    class="cancel-form-btn"
+                                    label=(i18n "actions.cancel")}}
                         </div>
                     {{/modalfooter}}
                 {{/if}}
@@ -335,19 +378,23 @@
                             <div class="d-flex justify-content-between w-100">
                                 <span>
                                 {{> button
+                                        data-aid="myClasses.submitDeleteSinlgeFormBtn"
                                         type="button"
                                         colortype="danger"
                                         data-flag="all"
                                         label=(i18n "pages.myClasses.modal.body.delete.all")
                                         class="delete-button"}}
                                     {{> button
+                                            data-aid="myClasses.submitDeleteAllFormBtn"
                                             type="button"
                                             colortype="danger"
                                             data-flag="course"
                                             label=(i18n "pages.myClasses.modal.body.delete.course")
                                             class="delete-button"}}
                                     </span>
-                                {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                                {{> button
+                                        data-aid="myClasses.cancelDeleteFormBtn"
+                                        colortype="secondary" outline=true data-bs-dismiss="modal" class="cancel-form-btn" label=(i18n "actions.cancel")}}
                             </div>
                         {{/modalfooter}}
                     {{/if}}
@@ -365,13 +412,16 @@
                             <div class="d-flex justify-content-between w-100">
                                 <span>
                                     {{> button
+                                            data-aid="myClasses.submitDeleteUserFormBtn"
                                             type="button"
                                             colortype="danger"
                                             data-delete="all"
                                             label=(i18n "actions.delete")
                                             class="delete-button"}}
                                 </span>
-                                {{> button colortype="secondary" outline=true data-dismiss="modal" label=(i18n "actions.cancel")}}
+                                {{> button
+                                        data-aid="myClasses.cancelDeleteUserFormBtn"
+                                        colortype="secondary" outline=true data-bs-dismiss="modal" class="cancel-form-btn" label=(i18n "actions.cancel")}}
                             </div>
                         {{/modalfooter}}
                     {{/if}}
@@ -396,27 +446,30 @@
                     {{else}}
                         {{> icon name="clock" regular=true}}
                     {{/if}}
-                    <span class="ml-2">
+                    <span class="ms-2">
                         {{course.title}}
                     </span>
                 </a>
             </div>
             <div class="col d-flex justify-content-end align-items-center no-wrap d-print-none">
                 <a href="{{route courseRoute course._id}}"
-                   class="btn btn-outline-secondary btn-sm mr-2 course-items-icon-buttons">
+                   data-aid="myClasses.toClassLink"
+                   class="btn btn-outline-secondary btn-sm me-2 course-items-icon-buttons">
                     {{> icon name="eye"}}
                 </a>
                 {{#button data-id=course._id
+                          data-aid="myClasses.openEditClassFormBtn"
                           data-type="course"
                           data-target="update"
                           size="sm"
                           colortype="success"
                           disabled=connecting
                           outline=true
-                          class="mr-2 course-items-icon-buttons modal-trigger"}}
+                          class="me-2 course-items-icon-buttons modal-trigger"}}
                     <span class="fa fas fa-fw fa-edit"></span>
                 {{/button}}
                 {{#button
+                        data-aid="myClasses.openDeleteClassFormBtn"
                         data-id=course._id
                         data-type="course"
                         data-target="delete"
@@ -424,7 +477,7 @@
                         disabled=connecting
                         colortype="danger"
                         outline=true
-                        class="mr-1 course-items-icon-buttons modal-trigger"}}
+                        class="me-1 course-items-icon-buttons modal-trigger"}}
                     <span class="fa fas fa-fw fa-trash"></span>
                 {{/button}}
             </div>

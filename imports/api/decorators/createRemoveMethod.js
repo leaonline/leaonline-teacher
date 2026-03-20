@@ -9,20 +9,20 @@ export const createRemoveMethod = ({ context, run }) => {
     schema: {
       _id: String
     },
-    run: onServer(run || function ({ _id }) {
+    run: onServer(run || async function ({ _id }) {
       const Collection = context.collection()
       if (!Collection) {
         throw new Meteor.Error('update.error', 'errors.collectionUndefined', { name })
       }
 
-      if (Collection.find({ _id, 'meta.createdBy': this.userId }).count() < 1) {
+      if (await Collection.countDocuments({ _id, 'meta.createdBy': this.userId }) < 1) {
         throw new Meteor.Error('update.error', 'errors.docNotFound', {
           name,
           _id
         })
       }
 
-      return context.collection().remove({ _id })
+      return Collection.removeAsync({ _id })
     })
   }
 }

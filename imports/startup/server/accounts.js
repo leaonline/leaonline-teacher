@@ -1,18 +1,18 @@
-/* global ServiceConfiguration */
+/* global ServiceConfiguration fetch */
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
-import { HTTP } from 'meteor/jkuester:http'
 import { rateLimitAccounts } from '../../infrastructure/factories/ratelimit/rateLimit'
 import { getOAuthDDPLoginHandler, defaultDDPLoginName } from 'meteor/leaonline:ddp-login-handler'
 
 rateLimitAccounts()
 
-Meteor.startup(() => {
+Meteor.startup(async () => {
   const { oauth } = Meteor.settings
-  ServiceConfiguration.configurations.upsert(
+  await ServiceConfiguration.configurations.upsertAsync(
     { service: 'lea' },
     {
       $set: {
+        debug: true,
         loginStyle: 'popup',
         clientId: oauth.clientId,
         secret: oauth.secret,
@@ -31,7 +31,11 @@ Meteor.startup(() => {
 
   const loginHandler = getOAuthDDPLoginHandler({
     identityUrl: oauth.identityUrl,
-    httpGet: (url, requestOptions) => HTTP.get(url, requestOptions),
+    httpGet: async (url, requestOptions) => {
+      const response = await fetch(url, requestOptions)
+      const data = await response.json()
+      return { data, status: response.status }
+    },
     debug: console.debug
   })
 

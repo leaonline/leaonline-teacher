@@ -4,6 +4,7 @@ import { Mongo } from 'meteor/mongo'
 import { createGetMethod } from '../createGetMethod'
 import { expect } from 'chai'
 import { Random } from 'meteor/random'
+import { expectThrow } from '../../../../tests/testUtils.tests'
 
 describe(createGetMethod.name, function () {
   const localCollection = new Mongo.Collection(null)
@@ -35,35 +36,42 @@ describe(createGetMethod.name, function () {
   }
 
   if (Meteor.isServer) {
-    it('throws if no collection is found for this context', function () {
+    it('throws if no collection is found for this context', async () => {
       const name = Random.id()
       const ctx = { name }
       const { run } = createGetMethod({ context: ctx })
-      expect(() => run()).to.throw('errors.collectionUndefined')
+
+      await expectThrow({
+        fn: () => run(),
+        message: 'errors.collectionUndefined'
+      })
       ctx.collection = () => undefined
-      expect(() => run()).to.throw('errors.collectionUndefined')
+      await expectThrow({
+        fn: () => run(),
+        message: 'errors.collectionUndefined'
+      })
     })
-    it('defines a function that allows to a get a document by _id', function () {
+    it('defines a function that allows to a get a document by _id', async () => {
       const docId = localCollection.insert({ title: Random.id() })
       const expectedDoc = localCollection.findOne(docId)
 
       const { run } = createGetMethod({ context })
-      expect(run({ _id: Random.id() })).to.equal(undefined)
-      expect(run({ _id: docId })).deep.equal(expectedDoc)
+      expect(await run({ _id: Random.id() })).to.equal(undefined)
+      expect(await run({ _id: docId })).deep.equal(expectedDoc)
     })
-    it('defines a function that allows to a get multiple documents by ids', function () {
+    it('defines a function that allows to a get multiple documents by ids', async () => {
       const docId = localCollection.insert({ title: Random.id() })
       const expectedDoc = localCollection.findOne(docId)
 
       const { run } = createGetMethod({ context })
-      expect(run({ ids: [Random.id()] })).to.deep.equal([])
-      expect(run({
+      expect(await run({ ids: [Random.id()] })).to.deep.equal([])
+      expect(await run({
         ids: [Random.id(), Random.id(), docId, Random.id(), Random.id()]
       })).deep.equal([expectedDoc])
     })
-    it('returns undefined of both _id and ids are undefined', function () {
+    it('returns undefined of both _id and ids are undefined', async () => {
       const { run } = createGetMethod({ context })
-      expect(run()).to.equal(undefined)
+      expect(await run()).to.equal(undefined)
     })
   }
 })

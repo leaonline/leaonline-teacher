@@ -15,13 +15,13 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer,dynamic-import --settings=settings.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.5",
-    "bootstrap": "^4.6.1",
-    "jquery": "^3.6.0",
-    "marked": "^4.0.12",
-    "meteor-node-stubs": "^1.1.0",
-    "njwt": "^1.2.0",
-    "simpl-schema": "^1.12.0"
+    "@babel/runtime": "^7.26.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "marked": "^17.0.4",
+    "meteor-node-stubs": "^1.2.12",
+    "njwt": "^2.0.1"
   },
   "meteor": {
     "mainModule": {
@@ -31,21 +31,30 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.16.5",
+    "@babel/eslint-parser": "^7.26.5",
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "chai": "^4.3.4",
-    "markdown-notes-tree": "^1.11.2",
+    "babel-plugin-istanbul": "^7.0.0",
+    "chai": "^4.5.0",
+    "markdown-notes-tree": "^1.13.0",
     "markdownlint-cli": "^0.27.1",
-    "popper.js": "^1.16.1",
-    "puppeteer": "^13.0.0",
-    "sinon": "^11.1.0",
+    "puppeteer": "^13.7.0",
+    "simpl-schema": "^1.13.1",
+    "sinon": "^11.1.2",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-sass-guidelines": "^8.0.0",
     "stylelint-config-standard": "^22.0.0"
   },
-  "babel": {},
+  "babel": {
+    "env": {
+      "COVERAGE": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
   "eslintConfig": {
     "parser": "@babel/eslint-parser",
     "parserOptions": {
