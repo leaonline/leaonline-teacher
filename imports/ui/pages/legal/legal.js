@@ -50,7 +50,7 @@ Template.legal.onCreated(function () {
       }
 
       try {
-        // eslint-disable-next
+        // eslint-disable-next-line
         const input = legalText.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, '')
         const content = marked.parse(input, markedOptions)?.trim() || i18n.get('pages.legal.noContent')
         instance.state.set({ content, type: originalType })
