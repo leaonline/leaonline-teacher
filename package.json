@@ -19,7 +19,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
-    "marked": "^15.0.6",
+    "marked": "^17.0.4",
     "meteor-node-stubs": "^1.2.12",
     "njwt": "^2.0.1"
   },
@@ -46,10 +46,12 @@
     "stylelint-config-sass-guidelines": "^8.0.0",
     "stylelint-config-standard": "^22.0.0"
   },
-  "babel":{
+  "babel": {
     "env": {
       "COVERAGE": {
-        "plugins": ["istanbul"]
+        "plugins": [
+          "istanbul"
+        ]
       }
     }
   },

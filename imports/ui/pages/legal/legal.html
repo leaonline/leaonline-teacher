@@ -2,12 +2,17 @@
     <div class="p-4">
         {{#onLoaded loaded=dependenciesComplete}}
             <h1>{{i18n legalTitle}}</h1>
-            {{i18n "pages.legal.title"}}
         {{/onLoaded}}
 
         {{#onLoaded loaded=content}}
             {{{content}}}
         {{/onLoaded}}
+
+        {{#if error}}
+            <div class="alert alert-danger" role="alert">
+                {{error.message}}
+            </div>
+        {{/if}}
     </div>
 
     {{> legalLinks}}
