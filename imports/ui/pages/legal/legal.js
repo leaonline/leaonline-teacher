@@ -6,6 +6,7 @@ import legalLanguage from './i18n/legalLanguage'
 import { marked } from 'marked'
 import { i18n } from '../../../api/i18n/I18n'
 import { errorToObject } from '../../utils/errorToObject'
+import { getParams } from '../../../api/routing/getParams'
 import './legal.html'
 
 Template.legal.onCreated(function () {
@@ -21,10 +22,10 @@ Template.legal.onCreated(function () {
 
   instance.autorun(() => {
     const dependenciesComplete = instance.state.get('dependenciesComplete')
-    const data = Template.currentData()
-    if (!data || !dependenciesComplete) { return }
+    const params = getParams()
+    if (!params || !dependenciesComplete) { return }
 
-    const { type } = data.params
+    const { type } = params
     let originalType
 
     Object.entries(settings.routes).forEach(([key, value]) => {
@@ -40,7 +41,7 @@ Template.legal.onCreated(function () {
     }
 
     Meteor.call(Legal.methods.get.name, { name: originalType }, (err, legalText) => {
-      if (err) return instance.state.set({ error: errorToObject(err) })
+      if (err) return instance.state.set({ error: errorToObject(err), type: null, content: null })
 
       const markedOptions = {
         mangle: false,
@@ -49,13 +50,13 @@ Template.legal.onCreated(function () {
       }
 
       try {
-        // eslint-disable-next-line
+        // eslint-disable-next
         const input = legalText.replace(/^[\u200B\u200C\u200D\u200E\u200F\uFEFF]/, '')
         const content = marked.parse(input, markedOptions)?.trim() || i18n.get('pages.legal.noContent')
         instance.state.set({ content, type: originalType })
       }
       catch (parsingError) {
-        instance.state.set({ error: errorToObject(parsingError), type: null })
+        instance.state.set({ error: errorToObject(parsingError), type: null, content: null })
       }
     })
   })
